@@ -18,9 +18,13 @@
 		D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */; };
 		D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4281F2A96D200308ABB /* Map.storyboard */; };
 		D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */; };
+		EF2B14ACC5ED8F8292C207C7 /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9CFC6DEF00297A546C0A6B /* Pods_Umbrella.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42219E97875697CC28DC2A0D /* Pods-Umbrella.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.debug.xcconfig"; sourceTree = "<group>"; };
+		BF9CFC6DEF00297A546C0A6B /* Pods_Umbrella.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Umbrella.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7A82209A491E5087B8A7EDC /* Pods-Umbrella.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.release.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.release.xcconfig"; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -41,18 +45,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF2B14ACC5ED8F8292C207C7 /* Pods_Umbrella.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D82A9210E92B234778DDA7C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				42219E97875697CC28DC2A0D /* Pods-Umbrella.debug.xcconfig */,
+				C7A82209A491E5087B8A7EDC /* Pods-Umbrella.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
 				D4B1E4001F2A78CF00308ABB /* Umbrella */,
 				D4B1E41A1F2A795000308ABB /* Others */,
 				D4B1E3FF1F2A78CF00308ABB /* Products */,
+				6D82A9210E92B234778DDA7C /* Pods */,
+				F43BD2F9C6D83E8316606B39 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +179,14 @@
 			name = Map;
 			sourceTree = "<group>";
 		};
+		F43BD2F9C6D83E8316606B39 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF9CFC6DEF00297A546C0A6B /* Pods_Umbrella.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,9 +194,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4B1E4101F2A78CF00308ABB /* Build configuration list for PBXNativeTarget "Umbrella" */;
 			buildPhases = (
+				FC04B211AF76D6C682BF5675 /* [CP] Check Pods Manifest.lock */,
 				D4B1E3FA1F2A78CF00308ABB /* Sources */,
 				D4B1E3FB1F2A78CF00308ABB /* Frameworks */,
 				D4B1E3FC1F2A78CF00308ABB /* Resources */,
+				BFB41091C8C6FB3255DE5548 /* [CP] Embed Pods Frameworks */,
+				0C79E8D90862BF6A20784F6C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -233,6 +260,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C79E8D90862BF6A20784F6C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFB41091C8C6FB3255DE5548 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC04B211AF76D6C682BF5675 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D4B1E3FA1F2A78CF00308ABB /* Sources */ = {
@@ -364,6 +439,7 @@
 		};
 		D4B1E4111F2A78CF00308ABB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42219E97875697CC28DC2A0D /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7CN8A9X5L6;
@@ -377,6 +453,7 @@
 		};
 		D4B1E4121F2A78CF00308ABB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7A82209A491E5087B8A7EDC /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7CN8A9X5L6;
