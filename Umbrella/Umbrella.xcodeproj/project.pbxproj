@@ -21,6 +21,7 @@
 		EF2B14ACC5ED8F8292C207C7 /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9CFC6DEF00297A546C0A6B /* Pods_Umbrella.framework */; };
 		FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7998721F2BB516005FC75D /* MapViewDelegate.swift */; };
 		FB7998791F2BBA85005FC75D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7998781F2BBA85005FC75D /* CoreLocation.framework */; };
+		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FB7998721F2BB516005FC75D /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998781F2BBA85005FC75D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				D4B1E4281F2A96D200308ABB /* Map.storyboard */,
 				D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */,
 				FB7998721F2BB516005FC75D /* MapViewDelegate.swift */,
+				FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
+				FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

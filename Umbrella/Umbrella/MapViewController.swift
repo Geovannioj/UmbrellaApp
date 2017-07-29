@@ -14,6 +14,7 @@ import Mapbox
 class MapViewController: UIViewController,CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
+    let image = UIImage(named: "CustomLocationPIN")
     
     @IBOutlet weak var mapView: MGLMapView!
     
@@ -47,12 +48,24 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
        // mapView.setCamera(camera, animated: false)
         mapView.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
         mapView.showsUserLocation = true
+        addPoint(image: image!)
+    }
+    func addPoint(image:UIImage) {
+       // let imagePin = UIView(frame: CGRect(x: mapView.center.x, y: mapView.center.y, width: 5, height: 5))
+        let imageView = UIImageView(image: image)
+       // imageView.center = mapView.center
+        imageView.center = CGPoint(x: mapView.center.x, y: (mapView.center.y - imageView.frame.height/2))
+        self.view.addSubview(imageView)
+       // imagePin.backgroundColor = UIColor.cyan
+       // self.view.addSubview(imagePin)
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
            // configLocationManager(locationManager: locationManager)
             locationManager.startUpdatingLocation()
             centerOnUser()
+            
+            
         }
     }
     
