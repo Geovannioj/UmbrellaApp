@@ -14,7 +14,6 @@ class Report {
     var description : String
     var violenceKind : String
     var userStatus : String
-    var violenceDate : Date
     var violenceStartTime : Date
     var violenceFinishTime : Date
     var latitude : Double
@@ -22,7 +21,7 @@ class Report {
     
     init(id : Int, description : String, violenceKind : String, userStatus : String,
          violenceStartTime : Date, violenceFinishTime : Date, latitude : Double,
-         longitude : Double, violenceDate : Date) {
+         longitude : Double) {
         
         self.id = id
         self.description = description
@@ -32,12 +31,12 @@ class Report {
         self.violenceFinishTime = violenceFinishTime
         self.latitude = latitude
         self.longitude = longitude
-        self.violenceDate = violenceDate
+        
     }
     
     init(description : String, violenceKind : String, userStatus : String,
          violenceStartTime : Date, violenceFinishTime : Date, latitude : Double,
-         longitude : Double, violenceDate : Date) {
+         longitude : Double) {
         
         self.description = description
         self.violenceKind = violenceKind
@@ -46,15 +45,16 @@ class Report {
         self.violenceFinishTime = violenceFinishTime
         self.latitude = latitude
         self.longitude = longitude
-        self.violenceDate = violenceDate
     }
 
     func turnToDictionary() -> Any {
+        
+        
         return [
+            "id" : id,
             "description" : description,
             "violenceKind" : violenceKind,
             "userStatus" : userStatus,
-            "violenceDate" : violenceDate,
             "violenceStartTime" : violenceStartTime,
             "violenceFinishTime" : violenceFinishTime,
             "latitude" : latitude,

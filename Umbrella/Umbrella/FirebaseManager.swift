@@ -7,3 +7,15 @@
 //
 
 import Foundation
+import Firebase
+
+class FirebaseManager {
+    
+    var refReports : FIRDatabaseReference!
+    
+    func initReference() {
+        self.refReports =  FIRDatabase.database().reference().child("reports")
+    }
+    
+    
+}

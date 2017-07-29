@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Firebase
-
 class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate  {
     
     
@@ -21,7 +20,6 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
     @IBOutlet weak var violenceDescription: UITextView!
     @IBOutlet weak var violenceFinishTime: UIDatePicker!
     @IBOutlet weak var violenceStartTime: UIDatePicker!
-    @IBOutlet weak var violenceDate: UIDatePicker!
     @IBOutlet weak var reportButton: UIButton!
     
     //Mark: acessories
@@ -32,11 +30,13 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
     
     override func viewDidLoad() {
         self.refReports =  FIRDatabase.database().reference().child("reports")
+        
         super.viewDidLoad()
+        
         self.violenceKindOption.dataSource = self
         self.violenceKindOption.delegate = self
+        self.violenceKindChosen = self.violenceKindArray[0]
         
-        //getting a reference to the node artists
         
 
         
@@ -44,31 +44,48 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
     
     // MARK: - Acion
     @IBAction func registerReport(_ sender: Any) {
+
+        
+        
+//        let report = Report(description: description!, violenceKind: violenceKind,
+//                            userStatus: userStatus, violenceStartTime: violenceStartTime,
+//                            violenceFinishTime: violenceFinishTime, latitude: latitude!,
+//                            longitude: longitude!)
+        
+//        let reportRef = self.refReports.child("report")
+//        
+//        
+//        reportRef.setValue(report.turnToDictionary())
+        addReport()
+        
+    }
+    
+    func addReport() {
+        
+        let id = refReports.childByAutoId().key
         
         let description = self.violenceDescription.text
         var violenceKind = self.violenceKindChosen
         let userStatus = "victim"
-        let violenceStartTime = self.violenceStartTime.date
-        let violenceFinishTime = self.violenceFinishTime.date
-        let violenceDate = self.violenceDate.date
-        let latitude = Double(self.violencelatitude.text!)
-        let longitude = Double(self.violenceLongitude.text!)
+        let violenceStartTime = String(describing: self.violenceStartTime.date)
+        let violenceFinishTime = String(describing: self.violenceFinishTime.date)
+        let latitude = self.violencelatitude.text!
+        let longitude = self.violenceLongitude.text!
         
-        
-        let report = Report(description: description!, violenceKind: violenceKind,
-                            userStatus: userStatus, violenceStartTime: violenceStartTime,
-                            violenceFinishTime: violenceFinishTime, latitude: latitude!,
-                            longitude: longitude!,violenceDate: violenceDate)
-        
-        let reportRef = self.refReports.child("report")
-        
-        
-        reportRef.setValue(report.turnToDictionary())
-        
-        
+        let report =  [
+            "id" : id,
+            "description" : description,
+            "violenceKind" : violenceKind,
+            "userStatus" : userStatus,
+            "violenceStartTime" : violenceStartTime,
+            "violenceFinishTime" : violenceFinishTime,
+            "latitude" : latitude,
+            "longitude" : longitude
+        ]
+
+        self.refReports.child(id).setValue(report)
     }
     
-    //MARK: - Delegates and data sources
     //MARK: Data Sources
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
