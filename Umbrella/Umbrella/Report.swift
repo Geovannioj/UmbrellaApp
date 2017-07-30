@@ -10,18 +10,18 @@ import Foundation
 
 class Report {
     
-    var id : Int?
+    var id : String?
     var description : String
     var violenceKind : String
     var userStatus : String
-    var violenceStartTime : Date
-    var violenceFinishTime : Date
-    var latitude : Double
-    var longitude : Double
+    var violenceStartTime : String
+    var violenceFinishTime : String
+    var latitude : String
+    var longitude : String
     
-    init(id : Int, description : String, violenceKind : String, userStatus : String,
-         violenceStartTime : Date, violenceFinishTime : Date, latitude : Double,
-         longitude : Double) {
+    init(id : String, description : String, violenceKind : String, userStatus : String,
+         violenceStartTime : String, violenceFinishTime : String, latitude : String,
+         longitude : String) {
         
         self.id = id
         self.description = description
@@ -34,18 +34,18 @@ class Report {
         
     }
     
-    init(description : String, violenceKind : String, userStatus : String,
-         violenceStartTime : Date, violenceFinishTime : Date, latitude : Double,
-         longitude : Double) {
-        
-        self.description = description
-        self.violenceKind = violenceKind
-        self.userStatus = userStatus
-        self.violenceStartTime = violenceStartTime
-        self.violenceFinishTime = violenceFinishTime
-        self.latitude = latitude
-        self.longitude = longitude
-    }
+//    init(description : String, violenceKind : String, userStatus : String,
+//         violenceStartTime : Date, violenceFinishTime : Date, latitude : Double,
+//         longitude : Double) {
+//        
+//        self.description = description
+//        self.violenceKind = violenceKind
+//        self.userStatus = userStatus
+//        self.violenceStartTime = violenceStartTime
+//        self.violenceFinishTime = violenceFinishTime
+//        self.latitude = latitude
+//        self.longitude = longitude
+//    }
 
     func turnToDictionary() -> Any {
         
