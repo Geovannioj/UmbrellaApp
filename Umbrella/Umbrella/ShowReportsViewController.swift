@@ -13,17 +13,18 @@ import Firebase
 class ShowReports: UITableViewController {
     
     var reports: [Report] = []
-    var refReports : FIRDatabaseReference!
+    var refReports : DatabaseReference!
+    var reportToSend:Report?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.refReports =  FIRDatabase.database().reference().child("reports");
-        
-        self.refReports.observe(FIRDataEventType.value, with: {(snapshot) in
+        self.refReports =  Database.database().reference().child("reports");
+        //setObserverToFireBaseChanges()
+        self.refReports.observe(DataEventType.value, with: {(snapshot) in
             if snapshot.childrenCount > 0 {
                 self.reports.removeAll()
                 
-                for report in snapshot.children.allObjects as![FIRDataSnapshot]{
+                for report in snapshot.children.allObjects as![DataSnapshot]{
                     let reportObj = report.value as? [String: AnyObject]
                     
                     let id = reportObj?["id"]
@@ -38,12 +39,20 @@ class ShowReports: UITableViewController {
                     let reportAtt = Report(id: id as! String, description: description as! String, violenceKind: violenceKind as! String, userStatus: userStatus as! String, violenceStartTime: violenceStartTime as! String, violenceFinishTime: violenceFinishTime as! String, latitude: latitude as! String, longitude: longitude as! String)
                     
                     self.reports.append(reportAtt)
-
+                    
                 }
+                
                 self.tableView.reloadData()
-            
+                
             }
-            })
+        })
+
+        
+    }
+    
+    func setObserverToFireBaseChanges() {
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,10 +68,24 @@ class ShowReports: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.reportToSend = self.reports[indexPath.row]
+        performSegue(withIdentifier: "SeeReport", sender: Any.self)
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "SeeReport" {
+            if let seeReportScreen = segue.destination as? SeeReportViewController {
+                seeReportScreen.report = self.reportToSend
+            }
+        }
+    }
+    
+    
 }

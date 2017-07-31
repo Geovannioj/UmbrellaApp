@@ -11,10 +11,10 @@ import Firebase
 
 class FirebaseManager {
     
-    var refReports : FIRDatabaseReference!
+    var refReports : DatabaseReference!
     
     func initReference() {
-        self.refReports =  FIRDatabase.database().reference().child("reports")
+        self.refReports =  Database.database().reference().child("reports")
     }
     
     

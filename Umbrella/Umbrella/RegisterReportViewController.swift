@@ -24,24 +24,63 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
     
     //Mark: acessories
     
-    var refReports : FIRDatabaseReference!
+    var refReports : DatabaseReference!
     let violenceKindArray = ["Verbal","Física","Moral","Psicológica","LGBTQ+fobia","Sexual"]
     var violenceKindChosen : String = ""
+    var reportToEdit : Report?
     
     override func viewDidLoad() {
-        self.refReports =  FIRDatabase.database().reference().child("reports")
+        self.refReports =  Database.database().reference().child("reports")
         
         super.viewDidLoad()
         
+        
+        if (reportToEdit != nil) {
+            
+            initFieldsToEdit()
+            self.reportButton.setTitle("Save", for: .normal)
+            self.violenceKindChosen = (reportToEdit?.violenceKind)!
+            
+        } else {
+            
+            self.violenceKindOption.selectRow(2, inComponent: 0, animated: true)
+            self.violenceKindChosen = self.violenceKindArray[0]
+        }
+        
         self.violenceKindOption.dataSource = self
         self.violenceKindOption.delegate = self
-        self.violenceKindChosen = self.violenceKindArray[0]
         
         
+
 
         
     }
     
+    func getViolenceKind(report: Report) -> Int {
+        
+        var counter: Int = 0
+        
+        for violenceKind in self.violenceKindArray {
+            
+            if violenceKind == report.violenceKind{
+                return counter
+            }
+            counter += 1
+        }
+        
+        return counter
+    }
+    
+    func initFieldsToEdit() {
+        self.violencelatitude.text = self.reportToEdit?.latitude
+        self.violenceLongitude.text = self.reportToEdit?.longitude
+        self.violenceDescription.text = self.reportToEdit?.description
+        self.violenceKindOption.selectRow(getViolenceKind(report: self.reportToEdit!),
+                                          inComponent: 0, animated: true)
+//        self.violenceFinishTime.date = Date(self.reportToEdit?.violenceFinishTime)
+//        self.violenceStartTime.date = Date(self.reportToEdit?.violenceStartTime)
+        
+    }
     // MARK: - Acion
     @IBAction func registerReport(_ sender: Any) {
 
@@ -51,12 +90,15 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
 //                            userStatus: userStatus, violenceStartTime: violenceStartTime,
 //                            violenceFinishTime: violenceFinishTime, latitude: latitude!,
 //                            longitude: longitude!)
+      
+        if (self.reportToEdit != nil) {
+            
+            editReport(reportToEdit: self.reportToEdit!)
         
-//        let reportRef = self.refReports.child("report")
-//        
-//        
-//        reportRef.setValue(report.turnToDictionary())
-        addReport()
+        }else {
+        
+            addReport()
+        }
         
     }
     
@@ -65,7 +107,7 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
         let id = refReports.childByAutoId().key
         
         let description = self.violenceDescription.text
-        var violenceKind = self.violenceKindChosen
+        let violenceKind = self.violenceKindChosen
         let userStatus = "victim"
         let violenceStartTime = String(describing: self.violenceStartTime.date)
         let violenceFinishTime = String(describing: self.violenceFinishTime.date)
@@ -86,6 +128,37 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
         self.refReports.child(id).setValue(report)
     }
     
+    func editReport(reportToEdit: Report){
+        
+        let description = self.violenceDescription.text
+        let violenceKind = self.violenceKindChosen
+        let userStatus = "victim"
+        let violenceStartTime = String(describing: self.violenceStartTime.date)
+        let violenceFinishTime = String(describing: self.violenceFinishTime.date)
+        let latitude = self.violencelatitude.text!
+        let longitude = self.violenceLongitude.text!
+        
+        let report =  [
+            "id" : reportToEdit.id,
+            "description" : description,
+            "violenceKind" : violenceKind,
+            "userStatus" : userStatus,
+            "violenceStartTime" : violenceStartTime,
+            "violenceFinishTime" : violenceFinishTime,
+            "latitude" : latitude,
+            "longitude" : longitude
+        ]
+        
+        self.refReports.child(reportToEdit.id!).setValue(report)
+        
+        let updateMessage = UIAlertController(title: "Report Updated",
+                                              message: "This report has been successfully updated",
+                                              preferredStyle: .alert)
+        updateMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
+                                              handler: nil))
+        
+        self.present(updateMessage, animated: true, completion: nil)
+    }
     //MARK: Data Sources
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -96,7 +169,9 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
     
     //MARK: Delegates
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
         return violenceKindArray[row]
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
