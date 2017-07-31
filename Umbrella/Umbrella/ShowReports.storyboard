@@ -41,7 +41,13 @@
                             <outlet property="delegate" destination="nIs-h3-xgF" id="WWX-Bu-lov"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="aHM-kg-osX"/>
+                    <navigationItem key="navigationItem" id="aHM-kg-osX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0ur-AZ-9Kf">
+                            <connections>
+                                <segue destination="I2N-2o-Tvn" kind="show" id="tOo-oH-GPA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="Sfy-26-4aL" kind="show" identifier="SeeReport" id="7lC-KO-Cw7"/>
                     </connections>
@@ -50,13 +56,21 @@
             </objects>
             <point key="canvasLocation" x="1100" y="166.8665667166417"/>
         </scene>
+        <!--RegisterReportViewController-->
+        <scene sceneID="B0J-SN-DKb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RegisterReport" referencedIdentifier="RegisterReportViewController" id="I2N-2o-Tvn" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B9r-t2-Nv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1910" y="140"/>
+        </scene>
         <!--SeeReport-->
         <scene sceneID="np6-az-EDk">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="SeeReportViewController" storyboardName="SeeReport" id="Sfy-26-4aL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BzW-hM-sje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816" y="165.51724137931035"/>
+            <point key="canvasLocation" x="1816" y="185"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="a5s-gr-aS5">

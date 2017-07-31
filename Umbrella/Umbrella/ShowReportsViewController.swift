@@ -19,7 +19,13 @@ class ShowReports: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refReports =  Database.database().reference().child("reports");
-        //setObserverToFireBaseChanges()
+        setObserverToFireBaseChanges()
+        
+        
+    }
+    
+    func setObserverToFireBaseChanges() {
+        
         self.refReports.observe(DataEventType.value, with: {(snapshot) in
             if snapshot.childrenCount > 0 {
                 self.reports.removeAll()
@@ -50,11 +56,6 @@ class ShowReports: UITableViewController {
         
     }
     
-    func setObserverToFireBaseChanges() {
-        
-        
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reports.count
     }
@@ -76,6 +77,9 @@ class ShowReports: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
+        let reportToDelete = reports[indexPath.row].id
+        self.refReports.child(reportToDelete!).setValue(nil)
+        //tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
