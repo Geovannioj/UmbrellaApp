@@ -123,6 +123,7 @@
 		D4B1E4161F2A790400308ABB /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				FBF3C18E1F30F84B00E2F578 /* LFHeatMapHeader.h */,
 			);
 			name = Router;
 			sourceTree = "<group>";
@@ -185,7 +186,6 @@
 				D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */,
 				FB7998721F2BB516005FC75D /* MapViewDelegate.swift */,
 				FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */,
-				FBF3C18E1F30F84B00E2F578 /* LFHeatMapHeader.h */,
 			);
 			name = Map;
 			sourceTree = "<group>";

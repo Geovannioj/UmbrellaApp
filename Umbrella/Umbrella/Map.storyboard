@@ -48,6 +48,14 @@
                                     <action selector="pinAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="5hh-fJ-clo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p29-0M-cOK">
+                                <rect key="frame" x="143" y="20" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="AddCenter"/>
+                                <connections>
+                                    <action selector="addCenterAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="dvO-d1-LEn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

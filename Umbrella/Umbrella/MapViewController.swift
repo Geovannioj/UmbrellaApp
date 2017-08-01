@@ -21,7 +21,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapDelegate = MapViewDelegate(mapView: mapView, view: self.view)
-        
+        //Adiiona observer para authorização do GPS
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.centerOnUser),
@@ -40,21 +40,32 @@ class MapViewController: UIViewController {
     }
     
   
-    
+    //Objetivo: Função para centrar no usuario quando ocorre o request do GPS.
     func centerOnUser(){
-       // let camera = MGLMapCamera(lookingAtCenter: (mapView.userLocation?.coordinate)!, fromDistance: CLLocationDistance.init(exactly: 500)!, pitch: 5, heading: CLLocationDirection(exactly: 9)!)
-       // mapView.setCamera(camera, animated: false)
         mapView.setCenter((locationDelegate.locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
         mapView.showsUserLocation = true
     }
+    //Objetivo:Instanciar uma view com a imagem fornecida no centro do mapa .
     func addPoint(image:UIImage) {
-       // let imagePin = UIView(frame: CGRect(x: mapView.center.x, y: mapView.center.y, width: 5, height: 5))
-        let imageView = UIImageView(image: image)
-       // imageView.center = mapView.center
-        imageView.center = CGPoint(x: mapView.center.x, y: (mapView.center.y - imageView.frame.height/2))
-        self.view.addSubview(imageView)
-       // imagePin.backgroundColor = UIColor.cyan
-       // self.view.addSubview(imagePin)
+        let view = self.view.subviews.first { (i) -> Bool in
+            i.restorationIdentifier == "pinPoint"
+        }
+        if view != nil {
+            view?.removeFromSuperview()
+            
+        }else{
+            let imageView = UIImageView(image: image)
+            
+            imageView.center = CGPoint(x: mapView.center.x, y: (mapView.center.y - imageView.frame.height/2))
+            imageView.restorationIdentifier = "pinPoint"
+            self.view.addSubview(imageView)
+        }
+        
+  
+    }
+    
+    @IBAction func addCenterAction(_ sender: Any) {
+        addPoint(image: UIImage(named: "CustomLocationPIN")!)
     }
     
     @IBAction func heatMapButton(_ sender: UIButton) {
