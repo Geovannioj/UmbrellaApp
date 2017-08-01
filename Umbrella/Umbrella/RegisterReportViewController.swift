@@ -26,12 +26,12 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
     
     //Mark: acessories
     
-    var refReports : FIRDatabaseReference!
+    var refReports : DatabaseReference!
     let violenceKindArray = ["Verbal","Física","Moral","Psicológica","LGBTQ+fobia","Sexual"]
     var violenceKindChosen : String = ""
     
     override func viewDidLoad() {
-        self.refReports =  FIRDatabase.database().reference().child("reports")
+        self.refReports =  Database.database().reference().child("reports")
         super.viewDidLoad()
         self.violenceKindOption.dataSource = self
         self.violenceKindOption.delegate = self

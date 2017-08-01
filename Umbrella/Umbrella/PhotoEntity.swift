@@ -10,6 +10,18 @@ import Foundation
 import RealmSwift
 
 class Photo: Object {
-    dynamic var id = 1
-    dynamic var name = ""
+    dynamic var id = ""
+    dynamic var url = ""
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    func toAnyObject() -> Any {
+        return [
+            "id": id,
+            "url": url
+        ]
+    }
+    
 }

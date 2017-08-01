@@ -8,28 +8,31 @@
 
 import Foundation
 import RealmSwift
+import Firebase
 
 extension User {
     
-    static func getUsers() -> Results<User>{
-        return AppRealm.instance.objects(User.self)
-    }
-    
-    static func getUserWith(id: Int) -> User? {
-        return AppRealm.instance.objects(User.self).filter("id == %d", id).first
-    }
-    
-    static func getUserWith(email: String) -> User? {
-        return AppRealm.instance.objects(User.self).filter("email == %s", email).first
-    }
-    
-    static func addUser(id: Int, nickname: String, email: String,
+    // -TODO: Password cryptography and email validation
+    static func createUser(nickname: String, email: String,
                             password: String, age: Int?, photo: Photo?,
                             minority: Minority?) {
-        try! AppRealm.instance.write {
+        
+        // Add user to firebase
+        Auth.auth().createUser(withEmail: email, password: password) { user, error in
+            
+            // Treatment in case of error
+            if error != nil {
+                print(error!)
+                return
+            }
+            
             let newUser = User()
             
-            newUser.id = self.IncrementID()
+            // Reference of the user table in firebase
+            let userRef = Database.database().reference().child("user").child(String(newUser.id))
+            
+            // Fill an instance of the user with data
+            newUser.id = (user?.uid)!
             newUser.nickname = nickname
             newUser.email = email
             newUser.password = password
@@ -37,64 +40,154 @@ extension User {
                 newUser.age = age!
             }
             if photo != nil {
-                newUser.photo = photo
+                newUser.idPhoto = photo?.id
+                createPhoto(photo: photo!)
             }
             if minority != nil {
-                newUser.minority = minority
+                newUser.idMinority = minority?.id
             }
             
-            AppRealm.instance.add(newUser)
+            userRef.setValue(newUser.toAnyObject())
+            
+            // Add user to realm
+            try! AppRealm.instance.write {
+                AppRealm.instance.add(newUser)
+            }
+            
+            connectUser(email: email, password: password)
         }
     }
     
-    static func updateUser(id: Int, nickname: String) {
-        let user = AppRealm.instance.objects(User.self).filter("id == %d", id).first
+    //    static func getUsers() -> Results<User>{
+    //
+    //    }
+    //
+    //    static func getOnlineUsers() {
+    //        
+    //    }
+    //
+    //    static func getUserWith(id: Int) -> User? {
+    //
+    //    }
+    //
+    //    static func getUserWith(email: String) -> User? {
+    //        
+    //    }
+    
+    static func updateUser(id: String, nickname: String) {
+        let userRef = Database.database().reference().child("user").child(id)
+        let user = User()
+        user.id = id
+        user.nickname = nickname
+        
+        userRef.observe(.value, with: { (snapshot) in
+            
+            let userDic = snapshot.value as! [String : Any]
+            user.email = userDic["email"] as! String
+            user.password = userDic["password"] as! String
+            user.age = userDic["age"] as! Int
+            user.idPhoto = userDic["idPhoto"] as? String
+            user.idMinority = userDic["idMinority"] as? String
+        })
+
+        userRef.updateChildValues(user.toAnyObject() as! [AnyHashable : Any])
+        
+        let userRealm = AppRealm.instance.objects(User.self).filter("id == %s", id).first
         
         try! AppRealm.instance.write {
-            user?.nickname = nickname
+            userRealm?.nickname = nickname
         }
     }
     
-    static func updateUser(id: Int, password: String) {
-        let user = AppRealm.instance.objects(User.self).filter("id == %d", id).first
+    static func updateUser(id: String, password: String) {
+        let userRef = Database.database().reference().child("user").child(id)
+        let user = User()
+        user.id = id
+        user.password = password
+        
+        userRef.observe(.value, with: { (snapshot) in
+            
+            let userDic = snapshot.value as! [String : Any]
+            user.email = userDic["email"] as! String
+            user.nickname = userDic["nickname"] as! String
+            user.age = userDic["age"] as! Int
+            user.idPhoto = userDic["idPhoto"] as? String
+            user.idMinority = userDic["idMinority"] as? String
+        })
+        
+        userRef.updateChildValues(user.toAnyObject() as! [AnyHashable : Any])
+        
+        let userRealm = AppRealm.instance.objects(User.self).filter("id == %s", id).first
         
         try! AppRealm.instance.write {
-            user?.password = password
+            userRealm?.password = password
         }
     }
     
-    static func updateUser(id: Int, age: Int?, photo: Photo?, minority: Minority?) {
-        let user = AppRealm.instance.objects(User.self).filter("id == %d", id).first
+    static func updateUser(id: String, age: Int?, photo: Photo?, minority: Minority?) {
+        let userRef = Database.database().reference().child("user").child(id)
+        let user = User()
+        
+        userRef.observe(.value, with: { (snapshot) in
+            
+            let userDic = snapshot.value as! [String : Any]
+            user.email = userDic["email"] as! String
+            user.nickname = userDic["nickname"] as! String
+            user.password = userDic["password"] as! String
+            
+            user.id = id
+            if age != nil {
+                user.age = age!
+            }
+            if photo != nil {
+                user.idPhoto = photo?.id
+                createPhoto(photo: photo!)
+                deletePhoto(idPhoto: userDic["idPhoto"] as! String)
+            }
+            if minority != nil {
+                user.idMinority = minority?.id
+            }
+            
+        })
+        
+        userRef.updateChildValues(user.toAnyObject() as! [AnyHashable : Any])
+        
+        let userRealm = AppRealm.instance.objects(User.self).filter("id == %s", id).first
         
         try! AppRealm.instance.write {
             if age != nil {
-                user?.age = age!
+                userRealm?.age = age!
             }
             if photo != nil {
-                user?.photo = photo
+                userRealm?.idPhoto = photo?.id
             }
             if minority != nil {
-                user?.minority = minority
+                userRealm?.idMinority = minority?.id
             }
         }
     }
     
-    static func deleteUser(id: Int) {
-        let user = AppRealm.instance.objects(User.self).filter("id == %d", id).first
+    // -TODO: Delete auth user reference
+    static func deleteUser(id: String) {
+        let userRef = Database.database().reference().child("user").child(id)
+        
+        userRef.observe(.value, with: { (snapshot) in
+            let userDic = snapshot.value as! [String : Any]
+            deletePhoto(idPhoto: userDic["idPhoto"] as! String)
+        })
+        
+        userRef.removeValue()
+        
+        let user = AppRealm.instance.objects(User.self).filter("id == %s", id).first
         
         try! AppRealm.instance.write {
             AppRealm.instance.delete(user!)
         }
     }
     
-    static func IncrementID() -> Int{
-        let RetNext: NSArray = Array(AppRealm.instance.objects(User.self).sorted(byKeyPath: "id")) as NSArray
-        let last = RetNext.lastObject
-        if RetNext.count > 0 {
-            let valor = (last as! User).value(forKey: "id") as? Int
-            return valor! + 1
-        } else {
-            return 1
-        }
+    // -TODO: give access to all funccionalities of the app
+    static func connectUser(email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password)
     }
+    
 }

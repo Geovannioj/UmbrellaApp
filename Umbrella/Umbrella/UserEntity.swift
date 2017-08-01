@@ -10,18 +10,30 @@ import Foundation
 import RealmSwift
 
 class User: Object {
-    dynamic var id = 1
+    dynamic var id = ""
     dynamic var nickname = ""
     dynamic var email = ""
     dynamic var password = ""
     dynamic var age = 0
-    dynamic var photo: Photo?
-    dynamic var minority: Minority?
+    dynamic var idPhoto: String? = nil
+    dynamic var idMinority: String? = nil
+    
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
+    func toAnyObject() -> Any {
+        return [
+            "id": id,
+            "nickname": nickname,
+            "email": email,
+            "age": age,
+            "idPhoto": idPhoto as Any,
+            "idMinority": idMinority as Any
+        ]
+    }
+
 }
 
 

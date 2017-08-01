@@ -10,18 +10,15 @@ import Foundation
 import RealmSwift
 
 class Minority: Object {
-    dynamic var id = 1
-    dynamic var type = 0
+    var id = ""
+    var type = ""
     
-    override static func primaryKey() -> String? {
-        return "id"
+    func toAnyObject() -> Any {
+        return [
+            "id": id,
+            "type": type
+        ]
     }
+
 }
 
-enum MinorityTypes: Int {
-    case Gay = 0
-    case Lesbian = 1
-    case Transgender = 2
-    case Bisexual = 3
-    // ...
-}

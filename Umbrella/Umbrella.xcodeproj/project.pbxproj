@@ -15,6 +15,11 @@
 		9ECE54E31F2BBEF90035913B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ECE54E11F2BBEF90035913B /* Realm.framework */; };
 		9ECE54E41F2BBEF90035913B /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ECE54E21F2BBEF90035913B /* RealmSwift.framework */; };
 		9ECE54E71F2BC2850035913B /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54E61F2BC2850035913B /* UserInteractor.swift */; };
+		9ECE54EC1F2BEA760035913B /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54E91F2BEA760035913B /* FirebaseManager.swift */; };
+		9ECE54ED1F2BEA760035913B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ECE54EA1F2BEA760035913B /* GoogleService-Info.plist */; };
+		9ECE54EE1F2BEA760035913B /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54EB1F2BEA760035913B /* Report.swift */; };
+		9ECE54F01F2FAC0A0035913B /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54EF1F2FAC0A0035913B /* PhotoInteractor.swift */; };
+		9ECE54F21F2FB4EA0035913B /* MinorityInterector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54F11F2FB4EA0035913B /* MinorityInterector.swift */; };
 		D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
 		D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */; };
 		D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4051F2A78CF00308ABB /* Login.storyboard */; };
@@ -39,6 +44,11 @@
 		9ECE54E21F2BBEF90035913B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		9ECE54E61F2BC2850035913B /* UserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInteractor.swift; sourceTree = "<group>"; };
 		9ECE54E81F2BCB350035913B /* Umbrella.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Umbrella.entitlements; sourceTree = "<group>"; };
+		9ECE54E91F2BEA760035913B /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		9ECE54EA1F2BEA760035913B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9ECE54EB1F2BEA760035913B /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		9ECE54EF1F2FAC0A0035913B /* PhotoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInteractor.swift; sourceTree = "<group>"; };
+		9ECE54F11F2FB4EA0035913B /* MinorityInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinorityInterector.swift; sourceTree = "<group>"; };
 		C23FDDCB502693F2472FFFCF /* Pods_Umbrella.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Umbrella.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				9ECE54E61F2BC2850035913B /* UserInteractor.swift */,
+				9ECE54EF1F2FAC0A0035913B /* PhotoInteractor.swift */,
+				9ECE54F11F2FB4EA0035913B /* MinorityInterector.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -193,6 +205,9 @@
 		D4B1E41A1F2A795000308ABB /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				9ECE54E91F2BEA760035913B /* FirebaseManager.swift */,
+				9ECE54EA1F2BEA760035913B /* GoogleService-Info.plist */,
+				9ECE54EB1F2BEA760035913B /* Report.swift */,
 				D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */,
 				D4B1E40D1F2A78CF00308ABB /* Info.plist */,
 			);
@@ -310,6 +325,7 @@
 				D4B1E4091F2A78CF00308ABB /* Assets.xcassets in Resources */,
 				D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */,
 				D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */,
+				9ECE54ED1F2BEA760035913B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,12 +388,16 @@
 				9ECE54E71F2BC2850035913B /* UserInteractor.swift in Sources */,
 				9ECE54D91F2BB6970035913B /* RealmSingleton.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
+				9ECE54EC1F2BEA760035913B /* FirebaseManager.swift in Sources */,
+				9ECE54F21F2FB4EA0035913B /* MinorityInterector.swift in Sources */,
+				9ECE54F01F2FAC0A0035913B /* PhotoInteractor.swift in Sources */,
 				9ECE54E01F2BBCC80035913B /* MinorityEntity.swift in Sources */,
 				9ECE54DE1F2BBCB30035913B /* PhotoEntity.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
 				9ECE54DC1F2BBAD90035913B /* UserEntity.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
+				9ECE54EE1F2BEA760035913B /* Report.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
