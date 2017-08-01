@@ -34,6 +34,7 @@ class ShowReports: UITableViewController {
                     let reportObj = report.value as? [String: AnyObject]
                     
                     let id = reportObj?["id"]
+                    let userId = reportObj?["userId"]
                     let description = reportObj?["description"]
                     let violenceKind = reportObj?["violenceKind"]
                     let userStatus = reportObj?["userStatus"]
@@ -42,13 +43,15 @@ class ShowReports: UITableViewController {
                     let latitude = reportObj?["latitude"]
                     let longitude = reportObj?["longitude"]
                     
-                    let reportAtt = Report(id: id as! String, description: description as! String, violenceKind: violenceKind as! String, userStatus: userStatus as! String, violenceStartTime: violenceStartTime as! String, violenceFinishTime: violenceFinishTime as! String, latitude: latitude as! String, longitude: longitude as! String)
+                    let reportAtt = Report(id: id as! String, userId: userId as! String, description: description as! String, violenceKind: violenceKind as! String, userStatus: userStatus as! String, violenceStartTime: violenceStartTime as! String, violenceFinishTime: violenceFinishTime as! String, latitude: latitude as! String, longitude: longitude as! String)
                     
                     self.reports.append(reportAtt)
                     
                 }
-                
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    
+                    self.tableView.reloadData()
+                }
                 
             }
         })
@@ -76,10 +79,24 @@ class ShowReports: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+       
+        let deleteWarning = UIAlertController(title: "Delete",
+                                              message: "Are you sure you want to delete it?",
+                                              preferredStyle: .alert)
+        deleteWarning.addAction(UIAlertAction(title: "Delete", style: .destructive,
+                                              handler: nil))
+        deleteWarning.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel,
+                                              handler: { (action) in
+            let reportToDelete = self.reports[indexPath.row].id
+            self.refReports.child(reportToDelete).setValue(nil)
+           
+        }))
         
-        let reportToDelete = reports[indexPath.row].id
-        self.refReports.child(reportToDelete!).setValue(nil)
-        //tableView.reloadData()
+        
+        self.present(deleteWarning, animated: true, completion: nil)
+
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

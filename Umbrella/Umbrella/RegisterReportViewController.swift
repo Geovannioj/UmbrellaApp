@@ -32,6 +32,8 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
     override func viewDidLoad() {
         self.refReports =  Database.database().reference().child("reports")
         
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "fundo_cadastro")!)
+        
         super.viewDidLoad()
         
         
@@ -84,13 +86,6 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
     // MARK: - Acion
     @IBAction func registerReport(_ sender: Any) {
 
-        
-        
-//        let report = Report(description: description!, violenceKind: violenceKind,
-//                            userStatus: userStatus, violenceStartTime: violenceStartTime,
-//                            violenceFinishTime: violenceFinishTime, latitude: latitude!,
-//                            longitude: longitude!)
-      
         if (self.reportToEdit != nil) {
             
             editReport(reportToEdit: self.reportToEdit!)
@@ -105,7 +100,7 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
     func addReport() {
         
         let id = refReports.childByAutoId().key
-        
+        let userId = "userIdComing"
         let description = self.violenceDescription.text
         let violenceKind = self.violenceKindChosen
         let userStatus = "victim"
@@ -114,18 +109,10 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
         let latitude = self.violencelatitude.text!
         let longitude = self.violenceLongitude.text!
         
-        let report =  [
-            "id" : id,
-            "description" : description,
-            "violenceKind" : violenceKind,
-            "userStatus" : userStatus,
-            "violenceStartTime" : violenceStartTime,
-            "violenceFinishTime" : violenceFinishTime,
-            "latitude" : latitude,
-            "longitude" : longitude
-        ]
+        let report = Report(id: id, userId: userId, description: description!, violenceKind: violenceKind, userStatus: userStatus, violenceStartTime: violenceStartTime, violenceFinishTime: violenceFinishTime, latitude: latitude, longitude: longitude)
+        
 
-        self.refReports.child(id).setValue(report)
+        self.refReports.child(id).setValue(report.turnToDictionary())
     }
     
     func editReport(reportToEdit: Report){
@@ -140,6 +127,7 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
         
         let report =  [
             "id" : reportToEdit.id,
+            "userId" : reportToEdit.userId,
             "description" : description,
             "violenceKind" : violenceKind,
             "userStatus" : userStatus,
@@ -149,7 +137,7 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
             "longitude" : longitude
         ]
         
-        self.refReports.child(reportToEdit.id!).setValue(report)
+        self.refReports.child(reportToEdit.id).setValue(report)
         
         let updateMessage = UIAlertController(title: "Report Updated",
                                               message: "This report has been successfully updated",
