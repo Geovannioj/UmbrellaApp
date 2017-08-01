@@ -14,11 +14,14 @@ class MapViewController: UIViewController {
     
     let image = UIImage(named: "CustomLocationPIN")
     let locationDelegate = LocationManagerDelegate()
+    var mapDelegate = MapViewDelegate()
     
     @IBOutlet weak var mapView: MGLMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapDelegate = MapViewDelegate(mapView: mapView, view: self.view)
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.centerOnUser),
@@ -54,6 +57,14 @@ class MapViewController: UIViewController {
        // self.view.addSubview(imagePin)
     }
     
+    @IBAction func heatMapButton(_ sender: UIButton) {
+        mapDelegate.heatAction()
+        
+    }
+    @IBAction func pinAction(_ sender: UIButton) {
+        mapDelegate.addPin()
+        
+    }
     
 }
 

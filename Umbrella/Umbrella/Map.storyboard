@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,8 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAZ-Iw-YaG" customClass="MGLMapView">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BAZ-Iw-YaG" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="67" width="375" height="534"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.78473385612414526" green="0.97203450289587945" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
@@ -32,14 +32,24 @@
                                     <outlet property="delegate" destination="qZ2-lf-tyu" id="GWA-ab-OaD"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhE-On-wyu">
+                                <rect key="frame" x="27" y="20" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="HeatMap"/>
+                                <connections>
+                                    <action selector="heatMapButton:" destination="bb1-H1-beB" eventType="touchUpInside" id="hq1-qj-yxh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oO2-0R-k1A">
+                                <rect key="frame" x="283" y="20" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Pin"/>
+                                <connections>
+                                    <action selector="pinAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="5hh-fJ-clo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="BAZ-Iw-YaG" firstAttribute="centerY" secondItem="seH-bm-Qjz" secondAttribute="centerY" id="DuX-Ad-Rsy"/>
-                            <constraint firstItem="BAZ-Iw-YaG" firstAttribute="leading" secondItem="seH-bm-Qjz" secondAttribute="leading" id="GRz-4I-x7F"/>
-                            <constraint firstItem="BAZ-Iw-YaG" firstAttribute="height" secondItem="seH-bm-Qjz" secondAttribute="height" multiplier="0.8" id="Hhl-3s-Qm0"/>
-                            <constraint firstAttribute="trailing" secondItem="BAZ-Iw-YaG" secondAttribute="trailing" id="d02-aE-J5x"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="BAZ-Iw-YaG" id="Ewc-mu-H4Q"/>
