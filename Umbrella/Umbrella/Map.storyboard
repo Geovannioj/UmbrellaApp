@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="Uwl-4S-G5v">
             <objects>
-                <viewController id="6hp-Bo-oh2" sceneMemberID="viewController">
+                <viewController id="6hp-Bo-oh2" customClass="MapViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Adu-ly-G7h"/>
                         <viewControllerLayoutGuide type="bottom" id="L13-3V-MFq"/>

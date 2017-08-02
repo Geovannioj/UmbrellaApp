@@ -27,12 +27,13 @@ extension User {
             }
             
             let newUser = User()
+            newUser.id = (user?.uid)!
             
             // Reference of the user table in firebase
             let userRef = Database.database().reference().child("user").child(String(newUser.id))
             
             // Fill an instance of the user with data
-            newUser.id = (user?.uid)!
+            
             newUser.nickname = nickname
             newUser.email = email
             newUser.password = password
@@ -55,24 +56,84 @@ extension User {
             }
             
             connectUser(email: email, password: password)
+            
         }
     }
     
-    //    static func getUsers() -> Results<User>{
-    //
-    //    }
+    // -TODO: Int is not accepted on dictionary
+//    static func getUsers(completion: @escaping ([User]) -> ()) {
+//        let userRef = Database.database().reference().child("user")
+//        var users = [User]()
+//        
+//        userRef.observe(.childAdded, with: { (snapshot) in
+//            if snapshot.value is NSNull {
+//                print("Users not found")
+//                return
+//            }
+//            
+//            for child in snapshot.children {
+//                let user = User()
+//                let snap = child as! DataSnapshot
+//                let dict = snap.value as! [String : Any]
+//                
+//                user.id = dict["id"] as! String
+//                user.email = dict["email"] as! String
+//                user.nickname = dict["nickname"] as! String
+//                user.age = dict["age"] as! Int
+//                user.idPhoto = dict["idPhoto"] as? String
+//                user.idMinority = dict["idMinority"] as? String
+//                users.append(user)
+//            }
+//            
+//            completion(users)
+//        })
+//    }
+    
     //
     //    static func getOnlineUsers() {
     //        
     //    }
     //
-    //    static func getUserWith(id: Int) -> User? {
-    //
-    //    }
-    //
-    //    static func getUserWith(email: String) -> User? {
-    //        
-    //    }
+    
+    static func getUser(withId id: String, completion: @escaping (User) -> ()) {
+        let userRef = Database.database().reference().child("user").child(id)
+        let user = User()
+        
+        userRef.observe(.value, with: { (snapshot) in
+            
+            let dict = snapshot.value as! [String : Any]
+            user.id = dict["id"] as! String
+            user.email = dict["email"] as! String
+            user.nickname = dict["nickname"] as! String
+            user.age = dict["age"] as! Int
+            user.idPhoto = dict["idPhoto"] as? String
+            user.idMinority = dict["idMinority"] as? String
+            
+            completion(user)
+        })
+        
+    }
+    
+    static func getUser(withEmail email: String, completion: @escaping (User) -> ()) {
+        let userRef = Database.database().reference().child("user")
+        
+        userRef.observe(.childAdded, with: { (snapshot: DataSnapshot) in
+            
+            let dict = snapshot.value as! [String : Any]
+            if (dict["email"] as? String) != nil && (dict["email"] as! String) == email {
+            
+                let user = User()
+                user.id = dict["id"] as! String
+                user.email = dict["email"] as! String
+                user.nickname = dict["nickname"] as! String
+                user.age = dict["age"] as! Int
+                user.idPhoto = dict["idPhoto"] as? String
+                user.idMinority = dict["idMinority"] as? String
+                
+                completion(user)
+            }
+        })
+    }
     
     static func updateUser(id: String, nickname: String) {
         let userRef = Database.database().reference().child("user").child(id)

@@ -12,29 +12,37 @@ import Firebase
 
 extension User {
 
-    static func createMinority(minority: Minority) {
+    static func createMinority(minority: String) {
         let ref = Database.database().reference()
+        let mino = Minority()
+        mino.id = ref.childByAutoId().key
+        mino.type = minority
         
-        let minorityRef = ref.child("minority").child(ref.childByAutoId().key)
-        minorityRef.setValue(minority.toAnyObject())
-
+        let minorityRef = ref.child("minority").child(mino.id)
+        minorityRef.setValue(mino.toAnyObject())
     }
     
-    // -TODO: testar
-    static func getMinorities() -> [Minority]{
+    static func getMinorities(completion: @escaping ([Minority]) -> ()){
         let minorityRef = Database.database().reference().child("minority")
         var minorities = [Minority]()
         
         minorityRef.observe(.value, with: { (snapshot) in
-            
-            let minoritiesDic = snapshot.value as! [String : Any]
-            let minority = Minority()
-            minority.id = minoritiesDic["id"] as! String
-            minority.type = minoritiesDic["type"] as! String
-            minorities.append(minority)
+            if snapshot.value is NSNull {
+                print("Minority not found")
+                return
+            }
+                    
+            for child in snapshot.children {
+                let minority = Minority()
+                let snap = child as! DataSnapshot
+                let dict = snap.value as! [String : AnyObject]
+                
+                minority.id = dict["id"] as! String
+                minority.type = dict["type"] as! String
+                minorities.append(minority)
+            }
+            completion(minorities)
         })
-        
-        return minorities
     }
     
     static func updateMinority(id: String, type: String) {
