@@ -29,12 +29,25 @@ class SeeReportViewController: UIViewController {
     }
     
     func initLabels() {
+        
         self.descriptionLbl.text = self.report?.description
         self.violenceKindLvl.text = self.report?.violenceKind
-        self.violenceStartTime.text = self.report?.violenceStartTime
-        self.violenceFinishTime.text = self.report?.violenceFinishTime
         self.latitudeLbl.text = self.report?.latitude
         self.longitudeLbl.text = self.report?.longitude
+        formatDate()
+    }
+    
+    func formatDate () {
+        
+        let startDate = Date(timeIntervalSince1970: (self.report?.violenceStartTime)!)
+        let finishDate = Date(timeIntervalSince1970: (self.report?.violenceFinishTime)!)
+        
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "dd/MM/yyyy HH:mm"
+        
+        self.violenceStartTime.text = dateFormat.string(from: startDate)
+        self.violenceFinishTime.text = dateFormat.string(from: finishDate)
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editReport" {

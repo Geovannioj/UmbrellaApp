@@ -28,12 +28,18 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
     let violenceKindArray = ["Verbal","Física","Moral","Psicológica","LGBTQ+fobia","Sexual"]
     var violenceKindChosen : String = ""
     var reportToEdit : Report?
+    var reportLatitude = Double()
+    var reportLongitude = Double()
+    
     
     override func viewDidLoad() {
         self.refReports =  Database.database().reference().child("reports")
+
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "fundo_cadastro")!)
-        
+        self.violencelatitude.text = String(self.reportLatitude)
+        self.violenceLongitude.text = String(self.reportLongitude)
+
         super.viewDidLoad()
         
         
@@ -79,8 +85,8 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
         self.violenceDescription.text = self.reportToEdit?.description
         self.violenceKindOption.selectRow(getViolenceKind(report: self.reportToEdit!),
                                           inComponent: 0, animated: true)
-//        self.violenceFinishTime.date = Date(self.reportToEdit?.violenceFinishTime)
-//        self.violenceStartTime.date = Date(self.reportToEdit?.violenceStartTime)
+        self.violenceFinishTime.date = Date(timeIntervalSince1970: (self.reportToEdit?.violenceFinishTime)!)
+        self.violenceStartTime.date = Date(timeIntervalSince1970: (self.reportToEdit?.violenceStartTime)!)
         
     }
     // MARK: - Acion
@@ -89,14 +95,26 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
         if (self.reportToEdit != nil) {
             
             editReport(reportToEdit: self.reportToEdit!)
-        
+            self.navigationController?.popToRootViewController(animated: true)
         }else {
         
             addReport()
+            self.navigationController?.popToRootViewController(animated: true)
         }
         
     }
     
+    @IBAction func goToMapBtn(_ sender: Any) {
+        performSegue(withIdentifier: "goToMap", sender: Any.self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToMap" {
+            if let nextScreen = segue.destination as? MapViewController {
+                nextScreen.reportPosition = true
+            }
+        }
+    }
     func addReport() {
         
         let id = refReports.childByAutoId().key
@@ -104,12 +122,12 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
         let description = self.violenceDescription.text
         let violenceKind = self.violenceKindChosen
         let userStatus = "victim"
-        let violenceStartTime = String(describing: self.violenceStartTime.date)
-        let violenceFinishTime = String(describing: self.violenceFinishTime.date)
+        let violenceStartTime = Int(self.violenceStartTime.date.timeIntervalSince1970) //
+        let violenceFinishTime = Int(self.violenceFinishTime.date.timeIntervalSince1970) //
         let latitude = self.violencelatitude.text!
         let longitude = self.violenceLongitude.text!
         
-        let report = Report(id: id, userId: userId, description: description!, violenceKind: violenceKind, userStatus: userStatus, violenceStartTime: violenceStartTime, violenceFinishTime: violenceFinishTime, latitude: latitude, longitude: longitude)
+        let report = Report(id: id, userId: userId, description: description!, violenceKind: violenceKind, userStatus: userStatus, violenceStartTime: Double(violenceStartTime), violenceFinishTime: Double(violenceFinishTime), latitude: latitude, longitude: longitude)
         
 
         self.refReports.child(id).setValue(report.turnToDictionary())
@@ -120,8 +138,8 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
         let description = self.violenceDescription.text
         let violenceKind = self.violenceKindChosen
         let userStatus = "victim"
-        let violenceStartTime = String(describing: self.violenceStartTime.date)
-        let violenceFinishTime = String(describing: self.violenceFinishTime.date)
+        let violenceStartTime = Double(self.violenceStartTime.date.timeIntervalSince1970)
+        let violenceFinishTime = Double(self.violenceFinishTime.date.timeIntervalSince1970)
         let latitude = self.violencelatitude.text!
         let longitude = self.violenceLongitude.text!
         
@@ -135,7 +153,7 @@ class RegisterReportViewController: UIViewController, UIPickerViewDataSource,UIP
             "violenceFinishTime" : violenceFinishTime,
             "latitude" : latitude,
             "longitude" : longitude
-        ]
+        ] as [String : Any]
         
         self.refReports.child(reportToEdit.id).setValue(report)
         

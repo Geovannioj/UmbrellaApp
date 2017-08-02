@@ -43,7 +43,7 @@ class ShowReports: UITableViewController {
                     let latitude = reportObj?["latitude"]
                     let longitude = reportObj?["longitude"]
                     
-                    let reportAtt = Report(id: id as! String, userId: userId as! String, description: description as! String, violenceKind: violenceKind as! String, userStatus: userStatus as! String, violenceStartTime: violenceStartTime as! String, violenceFinishTime: violenceFinishTime as! String, latitude: latitude as! String, longitude: longitude as! String)
+                    let reportAtt = Report(id: id as! String, userId: userId as! String, description: description as! String, violenceKind: violenceKind as! String, userStatus: userStatus as! String, violenceStartTime: violenceStartTime as! Double, violenceFinishTime: violenceFinishTime as! Double, latitude: latitude as! String, longitude: longitude as! String)
                     
                     self.reports.append(reportAtt)
                     
@@ -84,14 +84,17 @@ class ShowReports: UITableViewController {
                                               message: "Are you sure you want to delete it?",
                                               preferredStyle: .alert)
         deleteWarning.addAction(UIAlertAction(title: "Delete", style: .destructive,
-                                              handler: nil))
-        deleteWarning.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel,
                                               handler: { (action) in
+                                                
             let reportToDelete = self.reports[indexPath.row].id
+            self.reports.remove(at: indexPath.row)
             self.refReports.child(reportToDelete).setValue(nil)
-           
+            tableView.reloadData()
         }))
+
         
+        deleteWarning.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel,
+                                              handler:nil))
         
         self.present(deleteWarning, animated: true, completion: nil)
 

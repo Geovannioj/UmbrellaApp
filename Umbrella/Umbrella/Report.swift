@@ -15,13 +15,13 @@ class Report {
     var description : String
     var violenceKind : String
     var userStatus : String
-    var violenceStartTime : String
-    var violenceFinishTime : String
+    var violenceStartTime : Double
+    var violenceFinishTime : Double
     var latitude : String
     var longitude : String
     
     init(id : String, userId: String, description : String, violenceKind : String, userStatus : String,
-         violenceStartTime : String, violenceFinishTime : String, latitude : String,
+         violenceStartTime : Double, violenceFinishTime : Double, latitude : String,
          longitude : String) {
         
         self.id = id

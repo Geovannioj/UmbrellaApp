@@ -1,7 +1,99 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bb1-H1-beB">
+
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Map View Controller-->
+
+        <scene sceneID="JIZ-ym-j5n">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bb1-H1-beB" customClass="MapViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8R4-SC-L3W"/>
+                        <viewControllerLayoutGuide type="bottom" id="vCi-fA-jnF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="seH-bm-Qjz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAZ-Iw-YaG" customClass="MGLMapView">
+                                <rect key="frame" x="0.0" y="67" width="375" height="534"/>
+                                <color key="backgroundColor" red="0.78473385612414526" green="0.97203450289587945" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="534" id="y1r-t1-Zxw"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="qZ2-lf-tyu" id="GWA-ab-OaD"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhE-On-wyu">
+                                <rect key="frame" x="27" y="20" width="63" height="30"/>
+                                <state key="normal" title="HeatMap"/>
+                                <connections>
+                                    <action selector="heatMapButton:" destination="bb1-H1-beB" eventType="touchUpInside" id="hq1-qj-yxh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oO2-0R-k1A">
+                                <rect key="frame" x="283" y="20" width="30" height="30"/>
+                                <state key="normal" title="Pin"/>
+                                <connections>
+                                    <action selector="pinAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="5hh-fJ-clo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p29-0M-cOK">
+                                <rect key="frame" x="143" y="20" width="74" height="30"/>
+                                <state key="normal" title="AddCenter"/>
+                                <connections>
+                                    <action selector="addCenterAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="dvO-d1-LEn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rhE-On-wyu" firstAttribute="top" secondItem="8R4-SC-L3W" secondAttribute="bottom" id="0Qu-Np-sIz"/>
+                            <constraint firstItem="rhE-On-wyu" firstAttribute="leading" secondItem="seH-bm-Qjz" secondAttribute="leadingMargin" constant="11" id="0c7-86-QVD"/>
+                            <constraint firstItem="p29-0M-cOK" firstAttribute="top" secondItem="8R4-SC-L3W" secondAttribute="bottom" id="5rh-jQ-g1C"/>
+                            <constraint firstItem="p29-0M-cOK" firstAttribute="leading" secondItem="rhE-On-wyu" secondAttribute="trailing" constant="53" id="ALf-0v-c0C"/>
+                            <constraint firstItem="oO2-0R-k1A" firstAttribute="leading" secondItem="seH-bm-Qjz" secondAttribute="leadingMargin" constant="267" id="FEh-xw-rVi"/>
+                            <constraint firstItem="oO2-0R-k1A" firstAttribute="top" secondItem="8R4-SC-L3W" secondAttribute="bottom" id="LJh-rU-aY5"/>
+                            <constraint firstAttribute="trailing" secondItem="BAZ-Iw-YaG" secondAttribute="trailing" id="ZWO-XG-PWW"/>
+                            <constraint firstItem="BAZ-Iw-YaG" firstAttribute="top" secondItem="p29-0M-cOK" secondAttribute="bottom" constant="17" id="blY-af-wxo"/>
+                            <constraint firstItem="BAZ-Iw-YaG" firstAttribute="leading" secondItem="seH-bm-Qjz" secondAttribute="leading" id="hce-Yw-NfJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oO2-0R-k1A" secondAttribute="trailing" constant="46" id="tCv-2l-d6O"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="BAZ-Iw-YaG" id="Ewc-mu-H4Q"/>
+                        <segue destination="Tp1-Sp-M95" kind="show" identifier="backToRegister" id="wuy-hJ-zLk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k2C-Dd-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="qZ2-lf-tyu" customClass="MapViewDelegate" customModule="Umbrella" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="-1431.2" y="-627.4362818590705"/>
+        </scene>
+        <!--RegisterReportViewController-->
+        <scene sceneID="WtJ-Ip-brt">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RegisterReport" referencedIdentifier="RegisterReportViewController" id="Tp1-Sp-M95" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="01Z-ug-aKm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-746" y="-628"/>
+
+        </scene>
+    </scenes>
 </document>

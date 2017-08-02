@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vse-cI-W7Y" id="AxK-BX-TFn">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irI-IQ-dPc">
@@ -42,6 +42,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="aHM-kg-osX">
+                        <barButtonItem key="leftBarButtonItem" title="mapa" id="oIB-Kv-MME">
+                            <connections>
+                                <segue destination="0DV-g6-XZG" kind="show" id="PCO-fu-jIT"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0ur-AZ-9Kf">
                             <connections>
                                 <segue destination="I2N-2o-Tvn" kind="show" id="tOo-oH-GPA"/>
@@ -56,13 +61,21 @@
             </objects>
             <point key="canvasLocation" x="1100" y="166.8665667166417"/>
         </scene>
+        <!--MapViewController-->
+        <scene sceneID="k4s-k3-fOR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Map" referencedIdentifier="MapViewController" id="0DV-g6-XZG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vVa-T8-ZUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1857" y="124"/>
+        </scene>
         <!--RegisterReportViewController-->
         <scene sceneID="B0J-SN-DKb">
             <objects>
                 <viewControllerPlaceholder storyboardName="RegisterReport" referencedIdentifier="RegisterReportViewController" id="I2N-2o-Tvn" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9r-t2-Nv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1910" y="140"/>
+            <point key="canvasLocation" x="1910" y="167"/>
         </scene>
         <!--SeeReport-->
         <scene sceneID="np6-az-EDk">
@@ -70,7 +83,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="SeeReportViewController" storyboardName="SeeReport" id="Sfy-26-4aL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BzW-hM-sje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816" y="185"/>
+            <point key="canvasLocation" x="1815" y="212"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="a5s-gr-aS5">
