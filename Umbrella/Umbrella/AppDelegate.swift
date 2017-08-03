@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 
 @UIApplicationMain
@@ -20,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
+        var config = Realm.Configuration()
+        config.deleteRealmIfMigrationNeeded = true
+        
+        Realm.Configuration.defaultConfiguration = config
         
         return true
     }

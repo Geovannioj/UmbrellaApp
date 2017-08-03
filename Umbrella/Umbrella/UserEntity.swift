@@ -25,7 +25,6 @@ class User: Object {
     
     func toAnyObject() -> Any {
         return [
-            "id": id,
             "nickname": nickname,
             "email": email,
             "age": age,

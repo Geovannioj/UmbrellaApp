@@ -12,16 +12,17 @@ import RealmSwift
 class Photo: Object {
     dynamic var id = ""
     dynamic var url = ""
+    dynamic var image: Data?
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
-    func toAnyObject() -> Any {
-        return [
-            "id": id,
-            "url": url
-        ]
-    }
+//    func toAnyObject() -> Any {
+//        return [
+//            "id": id,
+//            "url": url
+//        ]
+//    }
     
 }

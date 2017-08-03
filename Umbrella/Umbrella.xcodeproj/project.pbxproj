@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		012D6F8A0A5AFB8F63835AE5 /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FDDCB502693F2472FFFCF /* Pods_Umbrella.framework */; };
-		9ECE54D91F2BB6970035913B /* RealmSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54D81F2BB6970035913B /* RealmSingleton.swift */; };
+		9E1A21761F33C67F00D53E16 /* UIImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1A21751F33C67F00D53E16 /* UIImageHandler.swift */; };
+		9E1A21781F33D80500D53E16 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1A21771F33D80500D53E16 /* SaveManager.swift */; };
 		9ECE54DC1F2BBAD90035913B /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DB1F2BBAD90035913B /* UserEntity.swift */; };
 		9ECE54DE1F2BBCB30035913B /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DD1F2BBCB30035913B /* PhotoEntity.swift */; };
 		9ECE54E01F2BBCC80035913B /* MinorityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DF1F2BBCC80035913B /* MinorityEntity.swift */; };
@@ -36,7 +37,8 @@
 /* Begin PBXFileReference section */
 		6C4C6F829752E1D18BE78232 /* Pods-Umbrella.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.debug.xcconfig"; sourceTree = "<group>"; };
 		80FDEC28595ABF030E25AE4C /* Pods-Umbrella.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.release.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.release.xcconfig"; sourceTree = "<group>"; };
-		9ECE54D81F2BB6970035913B /* RealmSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmSingleton.swift; sourceTree = "<group>"; };
+		9E1A21751F33C67F00D53E16 /* UIImageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageHandler.swift; sourceTree = "<group>"; };
+		9E1A21771F33D80500D53E16 /* SaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
 		9ECE54DB1F2BBAD90035913B /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		9ECE54DD1F2BBCB30035913B /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntity.swift; sourceTree = "<group>"; };
 		9ECE54DF1F2BBCC80035913B /* MinorityEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinorityEntity.swift; sourceTree = "<group>"; };
@@ -88,12 +90,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9ECE54D71F2BB6770035913B /* Realm */ = {
+		9ECE54D71F2BB6770035913B /* SaveManager */ = {
 			isa = PBXGroup;
 			children = (
-				9ECE54D81F2BB6970035913B /* RealmSingleton.swift */,
+				9E1A21751F33C67F00D53E16 /* UIImageHandler.swift */,
+				9E1A21771F33D80500D53E16 /* SaveManager.swift */,
 			);
-			name = Realm;
+			name = SaveManager;
 			sourceTree = "<group>";
 		};
 		9ECE54DA1F2BBA9B0035913B /* User */ = {
@@ -189,7 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				9ECE54E51F2BC26B0035913B /* User */,
-				9ECE54D71F2BB6770035913B /* Realm */,
+				9ECE54D71F2BB6770035913B /* SaveManager */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -384,11 +387,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E1A21761F33C67F00D53E16 /* UIImageHandler.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
 				9ECE54E71F2BC2850035913B /* UserInteractor.swift in Sources */,
-				9ECE54D91F2BB6970035913B /* RealmSingleton.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				9ECE54EC1F2BEA760035913B /* FirebaseManager.swift in Sources */,
+				9E1A21781F33D80500D53E16 /* SaveManager.swift in Sources */,
 				9ECE54F21F2FB4EA0035913B /* MinorityInterector.swift in Sources */,
 				9ECE54F01F2FAC0A0035913B /* PhotoInteractor.swift in Sources */,
 				9ECE54E01F2BBCC80035913B /* MinorityEntity.swift in Sources */,

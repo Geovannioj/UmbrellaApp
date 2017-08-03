@@ -1,23 +1,25 @@
 //
-//  RealmSingleton.swift
+//  SaveManager.swift
 //  Umbrella
 //
-//  Created by Bruno Chagas on 28/07/17.
+//  Created by Bruno Chagas on 03/08/17.
 //  Copyright © 2017 Geovanni Oliveira de Jesus. All rights reserved.
 //
 
 import Foundation
 import RealmSwift
 
-class AppRealm {
+class SaveManager {
     
-    static let instance:Realm = {
+    static let instance = SaveManager()
+    
+    static let realm : Realm = {
+        
         do {
             let config = Realm.Configuration(
                 schemaVersion: 1,
                 migrationBlock: { migration, oldSchemaVersion in
-                    if (oldSchemaVersion < 1) {
-                    }
+
             })
             Realm.Configuration.defaultConfiguration = config
             return try Realm()
@@ -29,5 +31,17 @@ class AppRealm {
     }()
     
     private init() {}
+    
+    func create(_ object : Object) {
+        
+        try! SaveManager.realm.write {
+            SaveManager.realm.add(object)
+        }
+        
+    }
+    
+    func delete() {
+        
+    }
 }
 

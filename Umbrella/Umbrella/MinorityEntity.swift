@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import RealmSwift
 
-class Minority: Object {
+class Minority {
     var id = ""
     var type = ""
     

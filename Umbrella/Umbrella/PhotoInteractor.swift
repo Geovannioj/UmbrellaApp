@@ -9,59 +9,88 @@
 import Foundation
 import RealmSwift
 import Firebase
+import FirebaseStorage
 
 extension User {
 
-    static func createPhoto(photo: Photo) {
-        let ref = Database.database().reference()
-        
-        let photoRef = ref.child("photo").child(ref.childByAutoId().key)
-        photoRef.setValue(photo.toAnyObject())
-        
-        // Add user to realm
-        try! AppRealm.instance.write {
-            AppRealm.instance.add(photo)
-        }
-    }
-    
-    static func getPhotos() -> [Photo] {
-        let photoRef = Database.database().reference().child("photo")
-        var photos = [Photo]()
-        
-        photoRef.observe(.value, with: { (snapshot) in
-            
-            let photosDic = snapshot.value as! [String : Any]
-            let photo = Photo()
-            photo.id = photosDic["id"] as! String
-            photo.url = photosDic["url"] as! String
-            photos.append(photo)
-        })
-        
-        return photos
-    }
-
-    static func updatePhoto(id: String, url: String) {
-        let photoRef = Database.database().reference().child("photo").child(id)
+    static func createPhoto(image: UIImage, completion comp: @escaping (String?) -> ()) {
         let photo = Photo()
-        photo.id = id
-        photo.url = url
-        photoRef.updateChildValues(photo.toAnyObject() as! [AnyHashable : Any])
         
-        let photoRealm = AppRealm.instance.objects(Photo.self).filter("id == %s", id).first
+        photo.id = UUID().uuidString
         
-        try! AppRealm.instance.write {
-            photoRealm?.url = url
+        let ref = Storage.storage().reference().child("userPhotos").child("\(photo.id).jpg")
+        if let uploadData = image.data() {
+            
+            ref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
+                if let url = metadata?.downloadURL()?.absoluteString {
+                    
+                    photo.image = uploadData
+                    photo.url = url
+                    
+                    // Add photo to local database
+                    SaveManager.instance.create(photo)
+                    
+                    comp(url)
+                }
+                
+            })
         }
     }
     
-    static func deletePhoto(idPhoto: String) {
-        let photoRef = Database.database().reference().child("photo").child(idPhoto)
-        photoRef.removeValue()
-        
-        let photoRealm = AppRealm.instance.objects(Photo.self).filter("id == %s", idPhoto).first
-        
-        try! AppRealm.instance.write {
-            AppRealm.instance.delete(photoRealm!)
-        }
-    }
+//    static func getPhotos() -> [Photo] {
+//        let photoRef = Database.database().reference().child("photo")
+//        var photos = [Photo]()
+//        
+//        photoRef.observe(.value, with: { (snapshot) in
+//            if snapshot.value is NSNull {
+//                print("Photos not found")
+//                return
+//            }
+//            
+//            for child in snapshot.children {
+//                let photo = Photo()
+//                let snap = child as! DataSnapshot
+//                let dict = snap.value as! [String : Any]
+//                
+//                photo.id = dict["id"] as! String
+//                photo.image = photosDic["url"] as! String
+//                photos.append(photo)
+//
+//            }
+//            
+//        })
+//        
+//        return photos
+//    }
+
+//    static func updatePhoto(id: String, url: String) {
+//        let photoRef = Database.database().reference().child("photo").child(id)
+//        let photo = Photo()
+//        photo.id = id
+//        photo.url = url
+//        photoRef.updateChildValues(photo.toAnyObject() as! [AnyHashable : Any])
+//        
+//        let photoRealm = AppRealm.instance.objects(Photo.self).filter("id == %s", id).first
+//        
+//        try! AppRealm.instance.write {
+//            photoRealm?.url = url
+//        }
+//    }
+//    
+//    static func deletePhoto(idPhoto: String) {
+//        let photoRef = Database.database().reference().child("photo").child(idPhoto)
+//        photoRef.removeValue()
+//        
+//        let photoRealm = AppRealm.instance.objects(Photo.self).filter("id == %s", idPhoto).first
+//        
+//        try! AppRealm.instance.write {
+//            AppRealm.instance.delete(photoRealm!)
+//        }
+//    }
 }

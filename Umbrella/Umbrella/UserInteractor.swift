@@ -14,8 +14,8 @@ extension User {
     
     // -TODO: Password cryptography and email validation
     static func createUser(nickname: String, email: String,
-                            password: String, age: Int?, photo: Photo?,
-                            minority: Minority?) {
+                           password: String, age: Int?, image: UIImage?,
+                            idMinority: String?) {
         
         // Add user to firebase
         Auth.auth().createUser(withEmail: email, password: password) { user, error in
@@ -40,20 +40,22 @@ extension User {
             if age != nil {
                 newUser.age = age!
             }
-            if photo != nil {
-                newUser.idPhoto = photo?.id
-                createPhoto(photo: photo!)
+            if idMinority != nil {
+                newUser.idMinority = idMinority
             }
-            if minority != nil {
-                newUser.idMinority = minority?.id
+            if image != nil {
+                createPhoto(image: image!, completion: { (photo) -> () in
+                    newUser.idPhoto = photo
+                    
+                    // Add user to local database
+                    SaveManager.instance.create(newUser)
+                    
+                    userRef.setValue(newUser.toAnyObject())
+                })
             }
             
-            userRef.setValue(newUser.toAnyObject())
             
-            // Add user to realm
-            try! AppRealm.instance.write {
-                AppRealm.instance.add(newUser)
-            }
+            
             
             connectUser(email: email, password: password)
             
@@ -89,11 +91,22 @@ extension User {
 //        })
 //    }
     
-    //
-    //    static func getOnlineUsers() {
-    //        
-    //    }
-    //
+    
+    static func getUserEmail() -> String? {
+        return Auth.auth().currentUser?.email
+    }
+    
+    static func isUserOnline(completion: @escaping (Bool) -> ()) {
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
+        connectedRef.observe(.value, with: { snapshot in
+            if snapshot.value != nil {
+                completion(true)
+            }
+            else {
+                completion(false)
+            }
+        })
+    }
     
     static func getUser(withId id: String, completion: @escaping (User) -> ()) {
         let userRef = Database.database().reference().child("user").child(id)
@@ -135,116 +148,119 @@ extension User {
         })
     }
     
-    static func updateUser(id: String, nickname: String) {
-        let userRef = Database.database().reference().child("user").child(id)
-        let user = User()
-        user.id = id
-        user.nickname = nickname
-        
-        userRef.observe(.value, with: { (snapshot) in
-            
-            let userDic = snapshot.value as! [String : Any]
-            user.email = userDic["email"] as! String
-            user.password = userDic["password"] as! String
-            user.age = userDic["age"] as! Int
-            user.idPhoto = userDic["idPhoto"] as? String
-            user.idMinority = userDic["idMinority"] as? String
-        })
-
-        userRef.updateChildValues(user.toAnyObject() as! [AnyHashable : Any])
-        
-        let userRealm = AppRealm.instance.objects(User.self).filter("id == %s", id).first
-        
-        try! AppRealm.instance.write {
-            userRealm?.nickname = nickname
-        }
-    }
+    // -FIXME: Not working
+//    static func updateUser(id: String, nickname: String) {
+//        let userRef = Database.database().reference().child("user").child(id)
+//        let user = User()
+//        user.id = id
+//        user.nickname = nickname
+//        
+//        userRef.observe(.value, with: { (snapshot) in
+//            
+//            let dict = snapshot.value as! [String : Any]
+//            user.email = dict["email"] as! String
+//            user.password = dict["password"] as! String
+//            user.age = dict["age"] as! Int
+//            user.idPhoto = dict["idPhoto"] as? String
+//            user.idMinority = dict["idMinority"] as? String
+//        })
+//
+//        userRef.updateChildValues(user.toAnyObject() as! [AnyHashable : Any])
+//        
+//        let userRealm = AppRealm.instance.objects(User.self).filter("id == %s", id).first
+//        
+//        try! AppRealm.instance.write {
+//            userRealm?.nickname = nickname
+//        }
+//    }
     
-    static func updateUser(id: String, password: String) {
-        let userRef = Database.database().reference().child("user").child(id)
-        let user = User()
-        user.id = id
-        user.password = password
-        
-        userRef.observe(.value, with: { (snapshot) in
-            
-            let userDic = snapshot.value as! [String : Any]
-            user.email = userDic["email"] as! String
-            user.nickname = userDic["nickname"] as! String
-            user.age = userDic["age"] as! Int
-            user.idPhoto = userDic["idPhoto"] as? String
-            user.idMinority = userDic["idMinority"] as? String
-        })
-        
-        userRef.updateChildValues(user.toAnyObject() as! [AnyHashable : Any])
-        
-        let userRealm = AppRealm.instance.objects(User.self).filter("id == %s", id).first
-        
-        try! AppRealm.instance.write {
-            userRealm?.password = password
-        }
-    }
+    // -FIXME: Not working
+//    static func updateUser(id: String, password: String) {
+//        let userRef = Database.database().reference().child("user").child(id)
+//        let user = User()
+//        user.id = id
+//        user.password = password
+//        
+//        userRef.observe(.value, with: { (snapshot) in
+//            
+//            let userDic = snapshot.value as! [String : Any]
+//            user.email = userDic["email"] as! String
+//            user.nickname = userDic["nickname"] as! String
+//            user.age = userDic["age"] as! Int
+//            user.idPhoto = userDic["idPhoto"] as? String
+//            user.idMinority = userDic["idMinority"] as? String
+//        })
+//        
+//        userRef.updateChildValues(user.toAnyObject() as! [AnyHashable : Any])
+//        
+//        let userRealm = AppRealm.instance.objects(User.self).filter("id == %s", id).first
+//        
+//        try! AppRealm.instance.write {
+//            userRealm?.password = password
+//        }
+//    }
     
-    static func updateUser(id: String, age: Int?, photo: Photo?, minority: Minority?) {
-        let userRef = Database.database().reference().child("user").child(id)
-        let user = User()
-        
-        userRef.observe(.value, with: { (snapshot) in
-            
-            let userDic = snapshot.value as! [String : Any]
-            user.email = userDic["email"] as! String
-            user.nickname = userDic["nickname"] as! String
-            user.password = userDic["password"] as! String
-            
-            user.id = id
-            if age != nil {
-                user.age = age!
-            }
-            if photo != nil {
-                user.idPhoto = photo?.id
-                createPhoto(photo: photo!)
-                deletePhoto(idPhoto: userDic["idPhoto"] as! String)
-            }
-            if minority != nil {
-                user.idMinority = minority?.id
-            }
-            
-        })
-        
-        userRef.updateChildValues(user.toAnyObject() as! [AnyHashable : Any])
-        
-        let userRealm = AppRealm.instance.objects(User.self).filter("id == %s", id).first
-        
-        try! AppRealm.instance.write {
-            if age != nil {
-                userRealm?.age = age!
-            }
-            if photo != nil {
-                userRealm?.idPhoto = photo?.id
-            }
-            if minority != nil {
-                userRealm?.idMinority = minority?.id
-            }
-        }
-    }
+    // -FIXME: Not working
+//    static func updateUser(id: String, age: Int?, photo: Photo?, minority: Minority?) {
+//        let userRef = Database.database().reference().child("user").child(id)
+//        let user = User()
+//        
+//        userRef.observe(.value, with: { (snapshot) in
+//            
+//            let userDic = snapshot.value as! [String : Any]
+//            user.email = userDic["email"] as! String
+//            user.nickname = userDic["nickname"] as! String
+//            user.password = userDic["password"] as! String
+//            
+//            user.id = id
+//            if age != nil {
+//                user.age = age!
+//            }
+//            if photo != nil {
+//                user.idPhoto = photo?.id
+//                createPhoto(photo: photo!)
+//                deletePhoto(idPhoto: userDic["idPhoto"] as! String)
+//            }
+//            if minority != nil {
+//                user.idMinority = minority?.id
+//            }
+//            
+//        })
+//        
+//        userRef.updateChildValues(user.toAnyObject() as! [AnyHashable : Any])
+//        
+//        let userRealm = AppRealm.instance.objects(User.self).filter("id == %s", id).first
+//        
+//        try! AppRealm.instance.write {
+//            if age != nil {
+//                userRealm?.age = age!
+//            }
+//            if photo != nil {
+//                userRealm?.idPhoto = photo?.id
+//            }
+//            if minority != nil {
+//                userRealm?.idMinority = minority?.id
+//            }
+//        }
+//    }
     
     // -TODO: Delete auth user reference
-    static func deleteUser(id: String) {
-        let userRef = Database.database().reference().child("user").child(id)
-        
-        userRef.observe(.value, with: { (snapshot) in
-            let userDic = snapshot.value as! [String : Any]
-            deletePhoto(idPhoto: userDic["idPhoto"] as! String)
-        })
-        
-        userRef.removeValue()
-        
-        let user = AppRealm.instance.objects(User.self).filter("id == %s", id).first
-        
-        try! AppRealm.instance.write {
-            AppRealm.instance.delete(user!)
-        }
-    }
+//    static func deleteUser(id: String) {
+//        let userRef = Database.database().reference().child("user").child(id)
+//        
+//        userRef.observe(.value, with: { (snapshot) in
+//            let userDic = snapshot.value as! [String : Any]
+//            deletePhoto(idPhoto: userDic["idPhoto"] as! String)
+//        })
+//        
+//        userRef.removeValue()
+//        
+//        let user = AppRealm.instance.objects(User.self).filter("id == %s", id).first
+//        
+//        try! AppRealm.instance.write {
+//            AppRealm.instance.delete(user!)
+//        }
+//    }
     
     // -TODO: give access to all funccionalities of the app
     static func connectUser(email: String, password: String) {
