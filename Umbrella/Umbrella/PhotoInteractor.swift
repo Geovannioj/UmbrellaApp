@@ -16,9 +16,9 @@ class PhotoInteractor {
     static func createPhoto(image: UIImage, completion comp: @escaping (String?) -> ()) {
         let photo = Photo()
         
-        photo.id = UUID().uuidString
+        photo.id = UUID().uuidString + ".jpg"
         
-        let ref = Storage.storage().reference().child("userPhotos").child("\(photo.id).jpg")
+        let ref = Storage.storage().reference().child("userPhotos").child("\(photo.id)")
         if let uploadData = image.data() {
             
             ref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -69,28 +69,40 @@ class PhotoInteractor {
 //        return photos
 //    }
 
-//    static func updatePhoto(id: String, url: String) {
-//        let photoRef = Database.database().reference().child("photo").child(id)
-//        let photo = Photo()
-//        photo.id = id
-//        photo.url = url
-//        photoRef.updateChildValues(photo.toAnyObject() as! [AnyHashable : Any])
-//        
-//        let photoRealm = AppRealm.instance.objects(Photo.self).filter("id == %s", id).first
-//        
-//        try! AppRealm.instance.write {
-//            photoRealm?.url = url
-//        }
-//    }
-//    
-//    static func deletePhoto(idPhoto: String) {
-//        let photoRef = Database.database().reference().child("photo").child(idPhoto)
-//        photoRef.removeValue()
-//        
-//        let photoRealm = AppRealm.instance.objects(Photo.self).filter("id == %s", idPhoto).first
-//        
-//        try! AppRealm.instance.write {
-//            AppRealm.instance.delete(photoRealm!)
-//        }
-//    }
+    static func updateUserPhoto(image: UIImage) {
+        
+        deleteUserPhoto()
+        createPhoto(image: image, completion: {(urlPhoto) -> () in
+            UserInteractor.updateUser(urlPhoto: urlPhoto!)
+        })
+    }
+    
+
+    static func deleteUserPhoto() {
+        if let userId = Auth.auth().currentUser?.uid {
+
+            let urlRef = Database.database().reference().child("user").child(userId).child("urlPhoto")
+            urlRef.observe(.value, with: { (snapshot: DataSnapshot) in
+                if (snapshot.value as! String) == "" {
+                    let photoRef = Storage.storage().reference(forURL: snapshot.value as! String)
+                    let idRef = photoRef.name
+                    
+                    photoRef.delete(completion: { (error) in
+                        if let err = error {
+                            print(err)
+                        }
+                        else {
+                            UserInteractor.updateUser(urlPhoto: "")
+                            
+                            let photoRealm = SaveManager.realm.objects(Photo.self).filter("id == %s", idRef).first
+                            
+                            try! SaveManager.realm.write {
+                                SaveManager.realm.delete(photoRealm!)
+                            }
+                        }
+                    })
+                }
+            })
+        }
+    }
 }

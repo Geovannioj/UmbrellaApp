@@ -15,7 +15,7 @@ class User: Object {
     dynamic var email = ""
     dynamic var password = ""
     dynamic var birthDate: Date? = nil
-    dynamic var idPhoto: String? = nil
+    dynamic var urlPhoto: String? = nil
     dynamic var idMinority: String? = nil
     
     
@@ -34,9 +34,9 @@ class User: Object {
         return [
             "nickname": nickname,
             "email": email,
-            "birthDate": (birth != nil ? birth! : ""),
-            "idPhoto": (idPhoto != nil ? idPhoto! : ""),
-            "idMinority": (idMinority != nil ? idMinority! : "")
+            "birthDate": birth ?? "",
+            "urlPhoto": urlPhoto ?? "",
+            "idMinority": idMinority ?? ""
         ]
     }
 

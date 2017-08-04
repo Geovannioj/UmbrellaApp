@@ -45,7 +45,7 @@ class UserInteractor {
             }
             if image != nil {
                 PhotoInteractor.createPhoto(image: image!, completion: { (photo) -> () in
-                    newUser.idPhoto = photo
+                    newUser.urlPhoto = photo
                     
                     // Add user to local database
                     SaveManager.instance.create(newUser)
@@ -94,7 +94,7 @@ class UserInteractor {
                 user.email = dict["email"] as! String
                 user.nickname = dict["nickname"] as! String
                 user.birthDate = dict["birthDate"] as? Date
-                user.idPhoto = dict["idPhoto"] as? String
+                user.urlPhoto = dict["urlPhoto"] as? String
                 user.idMinority = dict["idMinority"] as? String
                 users.append(user)
             }
@@ -114,7 +114,7 @@ class UserInteractor {
             user.email = dict["email"] as! String
             user.nickname = dict["nickname"] as! String
             user.birthDate = dict["birthDate"] as? Date
-            user.idPhoto = dict["idPhoto"] as? String
+            user.urlPhoto = dict["urlPhoto"] as? String
             user.idMinority = dict["idMinority"] as? String
             
             completion(user)
@@ -135,7 +135,7 @@ class UserInteractor {
                 user.email = dict["email"] as! String
                 user.nickname = dict["nickname"] as! String
                 user.birthDate = dict["birthDate"] as? Date
-                user.idPhoto = dict["idPhoto"] as? String
+                user.urlPhoto = dict["urlPhoto"] as? String
                 user.idMinority = dict["idMinority"] as? String
                 
                 completion(user)
@@ -161,6 +161,24 @@ class UserInteractor {
         }
     }
     
+    static func updateUser(urlPhoto: String) {
+        if let userId = Auth.auth().currentUser?.uid {
+            
+            let userRef = Database.database().reference().child("user").child(userId)
+            
+            userRef.observe(.value, with: { (snapshot) in
+                
+                userRef.updateChildValues(["urlPhoto" : urlPhoto])
+                
+                let userRealm = SaveManager.realm.objects(User.self).filter("id == %s", userId).first
+                
+                try! SaveManager.realm.write {
+                    userRealm?.urlPhoto = urlPhoto
+                }
+            })
+        }
+    }
+    
     static func updateUser(birthDate: Date) {
         if let userId = Auth.auth().currentUser?.uid {
         
@@ -181,7 +199,7 @@ class UserInteractor {
         }
     }
     
-    static func updateUser(withId id: String, idMinority: String) {
+    static func updateUser(idMinority: String) {
         if let userId = Auth.auth().currentUser?.uid {
 
             let userRef = Database.database().reference().child("user").child(userId)
