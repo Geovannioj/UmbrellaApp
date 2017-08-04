@@ -62,36 +62,6 @@ class UserInteractor {
         }
     }
     
-    // -TODO: Int is not accepted on dictionary
-//    static func getUsers(completion: @escaping ([User]) -> ()) {
-//        let userRef = Database.database().reference().child("user")
-//        var users = [User]()
-//        
-//        userRef.observe(.childAdded, with: { (snapshot) in
-//            if snapshot.value is NSNull {
-//                print("Users not found")
-//                return
-//            }
-//            
-//            for child in snapshot.children {
-//                let user = User()
-//                let snap = child as! DataSnapshot
-//                let dict = snap.value as! [String : Any]
-//                
-//                user.id = dict["id"] as! String
-//                user.email = dict["email"] as! String
-//                user.nickname = dict["nickname"] as! String
-//                user.age = dict["age"] as! Int
-//                user.idPhoto = dict["idPhoto"] as? String
-//                user.idMinority = dict["idMinority"] as? String
-//                users.append(user)
-//            }
-//            
-//            completion(users)
-//        })
-//    }
-    
-    
     static func getUserEmail() -> String? {
         return Auth.auth().currentUser?.email
     }
@@ -108,6 +78,34 @@ class UserInteractor {
         })
     }
     
+    static func getUsers(completion: @escaping ([User]) -> ()) {
+        let userRef = Database.database().reference().child("user")
+        var users = [User]()
+        
+        userRef.observe(.value, with: { (snapshot) in
+            if snapshot.value is NSNull {
+                print("Users not found")
+                return
+            }
+            
+            for child in snapshot.children {
+                let user = User()
+                let snap = child as! DataSnapshot
+                let dict = snap.value as! [String : Any]
+                
+                user.id = snapshot.key
+                user.email = dict["email"] as! String
+                user.nickname = dict["nickname"] as! String
+                user.birthDate = dict["birthDate"] as? Date
+                user.idPhoto = dict["idPhoto"] as? String
+                user.idMinority = dict["idMinority"] as? String
+                users.append(user)
+            }
+            
+            completion(users)
+        })
+    }
+    
     static func getUser(withId id: String, completion: @escaping (User) -> ()) {
         let userRef = Database.database().reference().child("user").child(id)
         let user = User()
@@ -115,7 +113,7 @@ class UserInteractor {
         userRef.observe(.value, with: { (snapshot) in
             
             let dict = snapshot.value as! [String : Any]
-            user.id = dict["id"] as! String
+            user.id = snapshot.key
             user.email = dict["email"] as! String
             user.nickname = dict["nickname"] as! String
             user.birthDate = dict["birthDate"] as? Date
@@ -136,7 +134,7 @@ class UserInteractor {
             if (dict["email"] as? String) != nil && (dict["email"] as! String) == email {
             
                 let user = User()
-                user.id = dict["id"] as! String
+                user.id = snapshot.key
                 user.email = dict["email"] as! String
                 user.nickname = dict["nickname"] as! String
                 user.birthDate = dict["birthDate"] as? Date
