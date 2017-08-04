@@ -45,6 +45,27 @@ extension User {
         })
     }
     
+    static func getMinority(withType type: String, completion: @escaping (Minority) -> ()){
+        let minorityRef = Database.database().reference().child("minority")
+        
+        minorityRef.observe(.childAdded, with: { (snapshot: DataSnapshot) in
+            
+            let dict = snapshot.value as! [String : Any]
+            if (dict["type"] as? String) != nil && (dict["type"] as! String) == type {
+                
+                let minority = Minority()
+                
+                minority.id = dict["id"] as! String
+                minority.type = dict["type"] as! String
+                
+                completion(minority)
+            }
+            
+            
+        })
+    }
+
+    
     static func updateMinority(id: String, type: String) {
         let minorityRef = Database.database().reference().child("minority").child(id)
         let minority = Minority()
