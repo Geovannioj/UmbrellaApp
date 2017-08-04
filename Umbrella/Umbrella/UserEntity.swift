@@ -24,8 +24,8 @@ class User: Object {
     }
     
     func toAnyObject() -> Any {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
+        let formatter = dateConverter()
+        
         var birth: String? = nil
         if birthDate != nil {
             birth = formatter.string(from: birthDate!)
@@ -40,6 +40,12 @@ class User: Object {
         ]
     }
 
+    func dateConverter() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter
+    }
+    
 }
 
 

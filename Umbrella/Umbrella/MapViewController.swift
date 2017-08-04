@@ -22,12 +22,20 @@ class MapViewController: UIViewController {
 //            print(user.nickname)
 //        })
         
-        UserInteractor.getUsers(completion: {(users) -> () in
-            for user in users {
-                print(user.nickname)
-            }
-        })
-//        User.createUser(nickname: "Eduardo", email: "eduardo@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")
+//        UserInteractor.getUsers(completion: {(users) -> () in
+//            for user in users {
+//                print(user.nickname)
+//            }
+//        })
+        
+//        UserInteractor.updateUser(withId: "vQptgxyxMpcPOEtK8IpKVlX963y2", idMinority: "-KqTAOwbyOsNnb5ZStUe")
+        
+//        UserInteractor.createUser(nickname: "Eduardo2", email: "eduardo2222@mail.com", password: "123456", birthDate: formatter.date(from: "08/11/1995"), image: #imageLiteral(resourceName: "turn-off"), idMinority: "-KqTAOwPUvqs0f_sbVeP")
+        
+//        Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: {_ in 
+//            UserInteractor.updateUser(nickname: "Relampago")
+//        })
+
 //        User.createUser(nickname: "Geovanni", email: "geovanni@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")
 //        User.createUser(nickname: "Osmala", email: "osmala@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")
 //        User.createUser(nickname: "Marquinhos", email: "marquinhos@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")
