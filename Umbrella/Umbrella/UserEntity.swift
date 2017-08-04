@@ -14,7 +14,7 @@ class User: Object {
     dynamic var nickname = ""
     dynamic var email = ""
     dynamic var password = ""
-    dynamic var age = 0
+    dynamic var birthDate: Date? = nil
     dynamic var idPhoto: String? = nil
     dynamic var idMinority: String? = nil
     
@@ -24,10 +24,17 @@ class User: Object {
     }
     
     func toAnyObject() -> Any {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        var birth: String? = nil
+        if birthDate != nil {
+            birth = formatter.string(from: birthDate!)
+        }
+        
         return [
             "nickname": nickname,
             "email": email,
-            "age": age,
+            "birthDate": birth as Any,
             "idPhoto": idPhoto as Any,
             "idMinority": idMinority as Any
         ]

@@ -14,7 +14,7 @@ extension User {
     
     // -TODO: Password cryptography and email validation
     static func createUser(nickname: String, email: String,
-                           password: String, age: Int?, image: UIImage?,
+                           password: String, birthDate: Date?, image: UIImage?,
                             idMinority: String?) {
         
         // Add user to firebase
@@ -37,8 +37,8 @@ extension User {
             newUser.nickname = nickname
             newUser.email = email
             newUser.password = password
-            if age != nil {
-                newUser.age = age!
+            if birthDate != nil {
+                newUser.birthDate = birthDate!
             }
             if idMinority != nil {
                 newUser.idMinority = idMinority
@@ -118,7 +118,7 @@ extension User {
             user.id = dict["id"] as! String
             user.email = dict["email"] as! String
             user.nickname = dict["nickname"] as! String
-            user.age = dict["age"] as! Int
+            user.birthDate = dict["birthDate"] as? Date
             user.idPhoto = dict["idPhoto"] as? String
             user.idMinority = dict["idMinority"] as? String
             
@@ -139,7 +139,7 @@ extension User {
                 user.id = dict["id"] as! String
                 user.email = dict["email"] as! String
                 user.nickname = dict["nickname"] as! String
-                user.age = dict["age"] as! Int
+                user.birthDate = dict["birthDate"] as? Date
                 user.idPhoto = dict["idPhoto"] as? String
                 user.idMinority = dict["idMinority"] as? String
                 

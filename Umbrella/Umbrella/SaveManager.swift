@@ -21,6 +21,8 @@ class SaveManager {
                 migrationBlock: { migration, oldSchemaVersion in
 
             })
+            
+            print(Realm.Configuration.defaultConfiguration)
             Realm.Configuration.defaultConfiguration = config
             return try Realm()
             
