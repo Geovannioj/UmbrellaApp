@@ -9,16 +9,16 @@
 import Foundation
 import CoreLocation
 
-class LocationManagerDelegate: NSObject,CLLocationManagerDelegate {
-     var locationManager = CLLocationManager()
-   
-    override init() {
-        super.init()
-        self.locationManager.delegate = self
-        self.authorizationStatusCheck()
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        self.locationManager.startUpdatingLocation()
-    }
+extension MapViewController:CLLocationManagerDelegate {
+    
+//   
+//    override init() {
+//        super.init()
+//        self.locationManager.delegate = self
+//        self.authorizationStatusCheck()
+//        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+//        self.locationManager.startUpdatingLocation()
+//    }
     func authorizationStatusCheck(){
         if (CLLocationManager.authorizationStatus() != .authorizedWhenInUse){
             locationManager.requestWhenInUseAuthorization()

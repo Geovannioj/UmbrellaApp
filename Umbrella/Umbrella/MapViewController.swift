@@ -15,8 +15,9 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     
     @IBOutlet weak var searchBar: UISearchBar!
     let image = UIImage(named: "CustomLocationPIN")
-    let locationDelegate = LocationManagerDelegate()
-    var mapDelegate = MapViewDelegate()
+    var locationManager = CLLocationManager()
+
+   // var mapDelegate = MapViewDelegate()
     let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiZWR1YXJkb3RvcnJlcyIsImEiOiJjajVtcHlwczgydTk2MzFsbXlvZDNlM253In0.rVHnntpHbIO6bY3dKv4f6w")
     @IBOutlet weak var mapView: MGLMapView!
     var querryResults:[GeocodedPlacemark] = []
@@ -24,37 +25,53 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-          tableView = UITableView(frame: CGRect(x: searchBar.frame.minX, y: searchBar.frame.maxY, width: searchBar.frame.width, height: searchBar.frame.width / 3))
-        tableView.restorationIdentifier = "SearchTableView"
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.view.addSubview(tableView)
-         self.tableView.isHidden = true
-        mapDelegate = MapViewDelegate(mapView: mapView, view: self.view)
-        searchBar.delegate = self
-        //Adiiona observer para authorização do GPS
+        
+        locationCheck()
+        tableViewConstruct()
+        searchBarConfig()
+        
+        mapView.delegate = self
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.centerOnUser),
             name:NSNotification.Name.init(rawValue: "AuthorizationAccepted"),
             object: nil
         )
-        tableView.allowsSelection = false
-        
-        
-        
+  //      mapDelegate = MapViewDelegate(mapView: mapView, view: self.view)
+      
+        //Adiciona observer para authorização do GPS
+
         
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+       // searchBar.barTintColor = UIColor.clear
     }
-    
-  
+    func searchBarConfig(){
+        searchBar.delegate = self
+        searchBar.isTranslucent = true
+        searchBar.backgroundImage = UIImage()
+        searchBar.barTintColor = UIColor.clear
+    }
+    func locationCheck(){
+        locationManager.delegate = self
+        self.authorizationStatusCheck()
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        self.locationManager.startUpdatingLocation()
+    }
+    func tableViewConstruct(){
+        tableView = UITableView(frame: CGRect(x: searchBar.frame.minX, y: searchBar.frame.maxY, width: searchBar.frame.width, height: searchBar.frame.width / 3))
+        tableView.restorationIdentifier = "SearchTableView"
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.view.addSubview(tableView)
+        self.tableView.isHidden = true
+        tableView.allowsSelection = false
+    }
     //Objetivo: Função para centrar no usuario quando ocorre o request do GPS.
     func centerOnUser(){
         
-        mapView.setCenter((locationDelegate.locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
+        mapView.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
         mapView.showsUserLocation = true
     }
     //Objetivo: mover a camera para as coordenadas informadas com o zoom imformado
@@ -129,11 +146,11 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     
     @IBAction func heatMapButton(_ sender: UIButton) {
-        mapDelegate.heatAction()
+        heatAction()
         
     }
     @IBAction func pinAction(_ sender: UIButton) {
-        mapDelegate.addPin()
+        addPin()
         
     }
     

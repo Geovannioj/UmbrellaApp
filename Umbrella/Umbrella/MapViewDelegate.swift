@@ -9,22 +9,22 @@
 import UIKit
 import Mapbox
 
-class MapViewDelegate: NSObject,MGLMapViewDelegate {
-    let mapView:MGLMapView
-    let mainView:UIView
+extension MapViewController : MGLMapViewDelegate {
+//    let mapView:MGLMapView
+//    let mainView:UIView
     
-    init(mapView:MGLMapView,view: UIView) {
-        self.mapView = mapView
-        mainView = view
-        super.init()
-        self.mapView.delegate = self
-    }
-     override init() {
-        mapView = MGLMapView()
-        mainView = UIView()
-        super.init()
-        
-    }
+//    init(mapView:MGLMapView,view: UIView) {
+//        self.mapView = mapView
+//        mainView = view
+//        super.init()
+//        self.mapView.delegate = self
+//    }
+//     override init() {
+//        mapView = MGLMapView()
+//        mainView = UIView()
+//        super.init()
+//        
+//    }
     
     func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
         
@@ -32,7 +32,7 @@ class MapViewDelegate: NSObject,MGLMapViewDelegate {
     }
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
         
-        let view = mainView.subviews.first { (i) -> Bool in
+        let view = self.view.subviews.first { (i) -> Bool in
             i.restorationIdentifier == "heatmap"
         }
         if view != nil {
@@ -64,7 +64,7 @@ class MapViewDelegate: NSObject,MGLMapViewDelegate {
                 
                 
                 let x = (CGFloat(mapView.frame.width) * pinXDistance)/xDistanceAll
-                let y = (CGFloat(mapView.frame.height) * pinYDistance/yDistanceAll) + CGFloat(mapView.frame.minY - mainView.frame.minY)
+                let y = (CGFloat(mapView.frame.height) * pinYDistance/yDistanceAll) + CGFloat(mapView.frame.minY - self.view.frame.minY)
                 
                 let ponto = CGPoint(x:CGFloat(x) + mapView.frame.width/2, y:CGFloat(y) + mapView.frame.height/2 )
                 pontos.append(ponto)
@@ -104,7 +104,7 @@ class MapViewDelegate: NSObject,MGLMapViewDelegate {
     //Objetivo:Instanciar UIImageView e printar mapa de calor
     func heatAction() {
         
-        let view = mainView.subviews.first { (i) -> Bool in
+        let view = self.view.subviews.first { (i) -> Bool in
             i.restorationIdentifier == "heatmap"
         }
         if view != nil {
@@ -117,7 +117,7 @@ class MapViewDelegate: NSObject,MGLMapViewDelegate {
             let heatView = UIImageView(frame: CGRect(x: mapView.frame.minX, y: mapView.frame.minY, width: mapView.frame.width * 2 , height: mapView.frame.height * 2))
             heatView.restorationIdentifier = "heatmap"
             printHeatmap(imageView: heatView)
-            mainView.addSubview(heatView)
+            self.view.addSubview(heatView)
             
         }
         
