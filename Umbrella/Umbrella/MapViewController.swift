@@ -14,7 +14,7 @@ class MapViewController: UIViewController {
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
-        User.createUser(nickname: "BrunoAgoraRealm", email: "bruno@mail.com", password: "123456", birthDate: nil, image: #imageLiteral(resourceName: "turn-off"), idMinority: "-KqTAOwPUvqs0f_sbVeP")
+        UserInteractor.createUser(nickname: "BrunoAgoraRealm", email: "bruno@mail.com", password: "123456", birthDate: nil, image: #imageLiteral(resourceName: "turn-off"), idMinority: "-KqTAOwPUvqs0f_sbVeP")
 //        User.createUser(nickname: "Jonas", email: "jonas@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")
 //        User.createUser(nickname: "Eduardo", email: "eduardo@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")
 //        User.createUser(nickname: "Geovanni", email: "geovanni@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")

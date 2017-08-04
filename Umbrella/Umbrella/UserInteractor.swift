@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Firebase
 
-extension User {
+class UserInteractor {
     
     // -TODO: Password cryptography and email validation
     static func createUser(nickname: String, email: String,
@@ -44,7 +44,7 @@ extension User {
                 newUser.idMinority = idMinority
             }
             if image != nil {
-                createPhoto(image: image!, completion: { (photo) -> () in
+                PhotoInteractor.createPhoto(image: image!, completion: { (photo) -> () in
                     newUser.idPhoto = photo
                     
                     // Add user to local database

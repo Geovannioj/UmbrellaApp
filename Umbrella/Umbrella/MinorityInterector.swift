@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Firebase
 
-extension User {
+class MinorityInteractor {
 
     static func createMinority(minority: String) {
         let ref = Database.database().reference()
@@ -60,11 +60,8 @@ extension User {
                 
                 completion(minority)
             }
-            
-            
         })
     }
-
     
     static func updateMinority(id: String, type: String) {
         let minorityRef = Database.database().reference().child("minority").child(id)

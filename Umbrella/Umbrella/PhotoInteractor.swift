@@ -11,7 +11,7 @@ import RealmSwift
 import Firebase
 import FirebaseStorage
 
-extension User {
+class PhotoInteractor {
 
     static func createPhoto(image: UIImage, completion comp: @escaping (String?) -> ()) {
         let photo = Photo()
