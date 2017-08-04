@@ -34,9 +34,9 @@ class User: Object {
         return [
             "nickname": nickname,
             "email": email,
-            "birthDate": birth as Any,
-            "idPhoto": idPhoto as Any,
-            "idMinority": idMinority as Any
+            "birthDate": (birth != nil ? birth! : ""),
+            "idPhoto": (idPhoto != nil ? idPhoto! : ""),
+            "idMinority": (idMinority != nil ? idMinority! : "")
         ]
     }
 
