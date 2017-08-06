@@ -22,6 +22,8 @@
 		FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */; };
 		FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7998721F2BB516005FC75D /* MapViewDelegate.swift */; };
 		FB7998791F2BBA85005FC75D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7998781F2BBA85005FC75D /* CoreLocation.framework */; };
+		FBC5823E1F35059C00F6DB1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBC5823D1F35059C00F6DB1A /* GoogleService-Info.plist */; };
+		FBC582401F3512ED00F6DB1A /* CustomUserLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC5823F1F3512ED00F6DB1A /* CustomUserLocationView.swift */; };
 		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarControllerViewController.swift; sourceTree = "<group>"; };
 		FB7998721F2BB516005FC75D /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998781F2BBA85005FC75D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FBC5823D1F35059C00F6DB1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FBC5823F1F3512ED00F6DB1A /* CustomUserLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUserLocationView.swift; sourceTree = "<group>"; };
 		FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 		FBF3C18E1F30F84B00E2F578 /* LFHeatMapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LFHeatMapHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +151,7 @@
 		D4B1E41A1F2A795000308ABB /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				FBC5823D1F35059C00F6DB1A /* GoogleService-Info.plist */,
 				D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */,
 				D4B1E40D1F2A78CF00308ABB /* Info.plist */,
 			);
@@ -189,6 +194,7 @@
 				FB7998721F2BB516005FC75D /* MapViewDelegate.swift */,
 				FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */,
 				FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */,
+				FBC5823F1F3512ED00F6DB1A /* CustomUserLocationView.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -268,6 +274,7 @@
 				D4B1E41F1F2A919900308ABB /* TabBar.storyboard in Resources */,
 				D4B1E40C1F2A78CF00308ABB /* LaunchScreen.storyboard in Resources */,
 				D4B1E4251F2A959B00308ABB /* RegisterReport.storyboard in Resources */,
+				FBC5823E1F35059C00F6DB1A /* GoogleService-Info.plist in Resources */,
 				D4B1E4091F2A78CF00308ABB /* Assets.xcassets in Resources */,
 				D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */,
 				D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */,
@@ -335,6 +342,7 @@
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
+				FBC582401F3512ED00F6DB1A /* CustomUserLocationView.swift in Sources */,
 				FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
 			);

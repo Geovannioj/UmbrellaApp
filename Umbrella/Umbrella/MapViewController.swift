@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Mapbox
 import MapboxGeocoder
+import GoogleMobileAds
 
 class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
     
@@ -17,6 +18,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     let image = UIImage(named: "CustomLocationPIN")
     var locationManager = CLLocationManager()
 
+    @IBOutlet weak var bannerView: GADBannerView!
    // var mapDelegate = MapViewDelegate()
     let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiZWR1YXJkb3RvcnJlcyIsImEiOiJjajVtcHlwczgydTk2MzFsbXlvZDNlM253In0.rVHnntpHbIO6bY3dKv4f6w")
     @IBOutlet weak var mapView: MGLMapView!
@@ -25,6 +27,12 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // utilizado para apps em desenvolvimento para teste.Sem isso a conta pode ser banina.
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID]
+        bannerView.adUnitID = "ca-app-pub-1296835094216265/5601148764"
+        bannerView.rootViewController = self
+        bannerView.load(request)
         
         locationCheck()
         tableViewConstruct()

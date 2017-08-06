@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -55,21 +56,25 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="321" height="44"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </searchBar>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGr-83-76A">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGr-83-76A">
                                                 <rect key="frame" x="321" y="0.0" width="54" height="44"/>
-                                                <state key="normal" title="Perfil"/>
+                                                <state key="normal" image="PerfilIcon"/>
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Czp-Ie-uU2" customClass="GADBannerView">
+                                        <rect key="frame" x="0.0" y="553" width="375" height="113.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.78473385612414526" green="0.97203450289587945" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="pob-Kn-i46" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="KeR-8D-o9l"/>
                                     <constraint firstItem="pob-Kn-i46" firstAttribute="width" secondItem="BAZ-Iw-YaG" secondAttribute="width" id="QvO-dz-MLA"/>
+                                    <constraint firstItem="Czp-Ie-uU2" firstAttribute="height" secondItem="BAZ-Iw-YaG" secondAttribute="height" multiplier="0.17" id="REi-5i-zFb"/>
+                                    <constraint firstAttribute="bottom" secondItem="Czp-Ie-uU2" secondAttribute="bottom" id="cYh-ul-6fZ"/>
+                                    <constraint firstItem="Czp-Ie-uU2" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="xol-jj-3eJ"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="qZ2-lf-tyu" id="GWA-ab-OaD"/>
                                 </connections>
@@ -78,13 +83,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="height" secondItem="seH-bm-Qjz" secondAttribute="height" id="4Zp-qF-Cx9"/>
+                            <constraint firstItem="Czp-Ie-uU2" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" id="RJO-Xs-3TF"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" id="YEM-Z0-jSd"/>
                             <constraint firstItem="pob-Kn-i46" firstAttribute="top" secondItem="8R4-SC-L3W" secondAttribute="bottom" constant="-2" id="djK-Pi-rqa"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="centerX" secondItem="seH-bm-Qjz" secondAttribute="centerX" id="gfC-pM-D4N"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="centerY" secondItem="seH-bm-Qjz" secondAttribute="centerY" id="ov5-bu-zD7"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="bannerView" destination="Czp-Ie-uU2" id="5l1-40-MWU"/>
                         <outlet property="mapView" destination="BAZ-Iw-YaG" id="Ewc-mu-H4Q"/>
                         <outlet property="searchBar" destination="5Pq-8k-jmZ" id="tuH-Xs-Y4S"/>
                     </connections>
@@ -95,4 +104,7 @@
             <point key="canvasLocation" x="-1431.2" y="-627.4362818590705"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PerfilIcon" width="25" height="25"/>
+    </resources>
 </document>

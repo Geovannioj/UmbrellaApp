@@ -25,11 +25,32 @@ extension MapViewController : MGLMapViewDelegate {
 //        super.init()
 //        
 //    }
+    func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
+        // Show the user location here
+        mapView.showsUserLocation = true
+    }
     
-    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+        // Customise the user location annotation view
+        if annotation is MGLUserLocation {
+            var userLocationAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "CustomUserLocationAnnotationViewIdentifier") as? CustomUserLocationView
+            
+            if userLocationAnnotationView == nil {
+                userLocationAnnotationView = CustomUserLocationView(reuseIdentifier: "CustomUserLocationAnnotationViewIdentifier")
+                
+            }
+            
+            // Optional: You can save the annotation object for later use in your app
+           // self.userLocationAnnotation = annotation
+            
+            return userLocationAnnotationView
+        }
+        
+        // Customise your annotation view here...
         
         return nil
     }
+    
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
         
         let view = self.view.subviews.first { (i) -> Bool in
