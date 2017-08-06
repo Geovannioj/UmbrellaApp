@@ -25,16 +25,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAZ-Iw-YaG" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oO2-0R-k1A">
-                                        <rect key="frame" x="313" y="196" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Pin"/>
-                                        <connections>
-                                            <action selector="pinAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="5hh-fJ-clo"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p29-0M-cOK">
-                                        <rect key="frame" x="155" y="196" width="77" height="30"/>
+                                        <rect key="frame" x="128" y="301" width="77" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="AddCenter"/>
                                         <connections>
@@ -42,23 +34,48 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhE-On-wyu">
-                                        <rect key="frame" x="28" y="196" width="63" height="30"/>
+                                        <rect key="frame" x="39" y="301" width="63" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="HeatMap"/>
                                         <connections>
                                             <action selector="heatMapButton:" destination="bb1-H1-beB" eventType="touchUpInside" id="hq1-qj-yxh"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pob-Kn-i46">
-                                        <rect key="frame" x="0.0" y="18" width="375" height="44"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="8WG-Gb-tnC">
+                                        <rect key="frame" x="6.5" y="19" width="362.5" height="127"/>
                                         <subviews>
-                                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="5Pq-8k-jmZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="321" height="44"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </searchBar>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGr-83-76A">
-                                                <rect key="frame" x="321" y="0.0" width="54" height="44"/>
-                                                <state key="normal" image="PerfilIcon"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWo-cy-fPs">
+                                                <rect key="frame" x="0.0" y="0.0" width="362.5" height="44"/>
+                                                <subviews>
+                                                    <searchBar contentMode="redraw" placeholder="Ex: Copacabana" translatesAutoresizingMaskIntoConstraints="NO" id="5Pq-8k-jmZ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="337.5" height="44"/>
+                                                        <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="-8" vertical="0.0"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </searchBar>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGr-83-76A">
+                                                        <rect key="frame" x="337.5" y="0.0" width="25" height="44"/>
+                                                        <state key="normal" image="PerfilIcon"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mapnav" translatesAutoresizingMaskIntoConstraints="NO" id="OlU-ii-JrG">
+                                                <rect key="frame" x="0.0" y="44" width="39" height="83"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQS-2u-VCk">
+                                        <rect key="frame" x="17" y="74" width="19" height="61"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nH-Eh-WU3">
+                                                <rect key="frame" x="0.0" y="0.0" width="19" height="22"/>
+                                                <state key="normal" image="filterIcon"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzI-6q-0dy">
+                                                <rect key="frame" x="0.0" y="39" width="19" height="22"/>
+                                                <state key="normal" image="localizacaoIcon"/>
+                                                <connections>
+                                                    <action selector="locatioButtonAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="8NK-uA-nie"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -66,27 +83,34 @@
                                         <rect key="frame" x="0.0" y="553" width="375" height="113.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oO2-0R-k1A">
+                                        <rect key="frame" x="262" y="300" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Pin"/>
+                                        <connections>
+                                            <action selector="pinAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="5hh-fJ-clo"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.78473385612414526" green="0.97203450289587945" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="pob-Kn-i46" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="KeR-8D-o9l"/>
-                                    <constraint firstItem="pob-Kn-i46" firstAttribute="width" secondItem="BAZ-Iw-YaG" secondAttribute="width" id="QvO-dz-MLA"/>
+                                    <constraint firstItem="CQS-2u-VCk" firstAttribute="centerY" secondItem="OlU-ii-JrG" secondAttribute="centerY" id="3we-ln-QJ6"/>
                                     <constraint firstItem="Czp-Ie-uU2" firstAttribute="height" secondItem="BAZ-Iw-YaG" secondAttribute="height" multiplier="0.17" id="REi-5i-zFb"/>
                                     <constraint firstAttribute="bottom" secondItem="Czp-Ie-uU2" secondAttribute="bottom" id="cYh-ul-6fZ"/>
+                                    <constraint firstItem="8WG-Gb-tnC" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="lYk-ja-aVt"/>
+                                    <constraint firstItem="CQS-2u-VCk" firstAttribute="centerX" secondItem="OlU-ii-JrG" secondAttribute="centerX" id="mOH-lS-iXv"/>
                                     <constraint firstItem="Czp-Ie-uU2" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="xol-jj-3eJ"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="qZ2-lf-tyu" id="GWA-ab-OaD"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="height" secondItem="seH-bm-Qjz" secondAttribute="height" id="4Zp-qF-Cx9"/>
+                            <constraint firstItem="8WG-Gb-tnC" firstAttribute="top" secondItem="8R4-SC-L3W" secondAttribute="bottom" constant="-1" id="HZz-e1-yeQ"/>
                             <constraint firstItem="Czp-Ie-uU2" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" id="RJO-Xs-3TF"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" id="YEM-Z0-jSd"/>
-                            <constraint firstItem="pob-Kn-i46" firstAttribute="top" secondItem="8R4-SC-L3W" secondAttribute="bottom" constant="-2" id="djK-Pi-rqa"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="centerX" secondItem="seH-bm-Qjz" secondAttribute="centerX" id="gfC-pM-D4N"/>
+                            <constraint firstItem="5Pq-8k-jmZ" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" multiplier="0.9" id="obL-f5-PwS"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="centerY" secondItem="seH-bm-Qjz" secondAttribute="centerY" id="ov5-bu-zD7"/>
                         </constraints>
                     </view>
@@ -99,12 +123,31 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2C-Dd-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="qZ2-lf-tyu" customClass="MapViewDelegate" customModule="Umbrella" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="-1431.2" y="-627.4362818590705"/>
+            <point key="canvasLocation" x="-916" y="-653.52323838080963"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="q5z-Rs-DZI">
+            <objects>
+                <viewController id="x1e-V6-p2y" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zDk-z6-NrX"/>
+                        <viewControllerLayoutGuide type="bottom" id="IU9-2C-zpR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jg5-Xh-uaq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fme-XJ-Im7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
         <image name="PerfilIcon" width="25" height="25"/>
+        <image name="filterIcon" width="17" height="16"/>
+        <image name="localizacaoIcon" width="19" height="18"/>
+        <image name="mapnav" width="39" height="83"/>
     </resources>
 </document>

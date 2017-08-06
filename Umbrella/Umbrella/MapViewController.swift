@@ -60,6 +60,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         searchBar.isTranslucent = true
         searchBar.backgroundImage = UIImage()
         searchBar.barTintColor = UIColor.clear
+        //searchBar.layer.cornerRadius = 100
     }
     func locationCheck(){
         locationManager.delegate = self
@@ -68,7 +69,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.locationManager.startUpdatingLocation()
     }
     func tableViewConstruct(){
-        tableView = UITableView(frame: CGRect(x: searchBar.frame.minX, y: searchBar.frame.maxY, width: searchBar.frame.width, height: searchBar.frame.width / 3))
+        tableView = UITableView(frame: CGRect(x: searchBar.frame.minX + 8, y: searchBar.frame.maxY + 8, width: searchBar.frame.width * 0.9, height: searchBar.frame.height * 3))
         tableView.restorationIdentifier = "SearchTableView"
         tableView.delegate = self
         tableView.dataSource = self
@@ -111,6 +112,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         return querryResults.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = UITableViewCell(frame: CGRect(x: searchBar.frame.minX, y: searchBar.frame.minY*CGFloat(indexPath.row), width: searchBar.frame.width, height: searchBar.frame.height))
         
         let label = UILabel(frame: cell.frame)
@@ -161,10 +163,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         addPin()
         
     }
+    @IBAction func locatioButtonAction(_ sender: UIButton) {
+        centerOnUser()
+    }
     
-//    func updateSearchResultsForSearchController(searchController: UISearchController) {
-//        filterContentForSearchText(searchText: searchController.searchBar.text!)
-//    }
     
    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
