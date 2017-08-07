@@ -23,7 +23,7 @@ class RegisterReportViewController: UIViewController  {
     
     
     //Mark: acessories
-    let locationDelegate = LocationManagerDelegate()
+    let locationManager = CLLocationManager()
     var reportLatitude = Double()
     var reportLongitude = Double()
     
@@ -82,7 +82,7 @@ class RegisterReportViewController: UIViewController  {
     
     
     func getLocation (image:UIImage) {
-      violenceLocation.setCenter((locationDelegate.locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
+      violenceLocation.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
         violenceLocation.showsUserLocation = true
         
         let view = self.view.subviews.first { (i) -> Bool in

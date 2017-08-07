@@ -20,6 +20,16 @@
 		FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */; };
 		FB60D7D31F38DD03001E5E51 /* SearchBarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */; };
 		FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */; };
+		FB60D8691F39127E001E5E51 /* CustomUserLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */; };
+		FB60D86A1F39127E001E5E51 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D8601F39127E001E5E51 /* FirebaseManager.swift */; };
+		FB60D86B1F39127E001E5E51 /* RegisterReportFirst.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */; };
+		FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */; };
+		FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D8631F39127E001E5E51 /* RegisterReportSecondViewController.swift */; };
+		FB60D86E1F39127E001E5E51 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D8641F39127E001E5E51 /* Report.swift */; };
+		FB60D86F1F39127E001E5E51 /* SeeReport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8651F39127E001E5E51 /* SeeReport.storyboard */; };
+		FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */; };
+		FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8671F39127E001E5E51 /* ShowReports.storyboard */; };
+		FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */; };
 		FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7998721F2BB516005FC75D /* MapViewDelegate.swift */; };
 		FB7998791F2BBA85005FC75D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7998781F2BBA85005FC75D /* CoreLocation.framework */; };
 		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
@@ -43,6 +53,16 @@
 		FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarControllerViewController.swift; sourceTree = "<group>"; };
 		FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarCellTableViewCell.swift; sourceTree = "<group>"; };
 		FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewControlleTableViewController.swift; sourceTree = "<group>"; };
+		FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUserLocationView.swift; path = Umbrella/CustomUserLocationView.swift; sourceTree = "<group>"; };
+		FB60D8601F39127E001E5E51 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseManager.swift; path = Umbrella/FirebaseManager.swift; sourceTree = "<group>"; };
+		FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RegisterReportFirst.storyboard; path = Umbrella/RegisterReportFirst.storyboard; sourceTree = "<group>"; };
+		FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RegisterReportSecond.storyboard; path = Umbrella/RegisterReportSecond.storyboard; sourceTree = "<group>"; };
+		FB60D8631F39127E001E5E51 /* RegisterReportSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterReportSecondViewController.swift; path = Umbrella/RegisterReportSecondViewController.swift; sourceTree = "<group>"; };
+		FB60D8641F39127E001E5E51 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Report.swift; path = Umbrella/Report.swift; sourceTree = "<group>"; };
+		FB60D8651F39127E001E5E51 /* SeeReport.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SeeReport.storyboard; path = Umbrella/SeeReport.storyboard; sourceTree = "<group>"; };
+		FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeReportViewController.swift; path = Umbrella/SeeReportViewController.swift; sourceTree = "<group>"; };
+		FB60D8671F39127E001E5E51 /* ShowReports.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ShowReports.storyboard; path = Umbrella/ShowReports.storyboard; sourceTree = "<group>"; };
+		FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowReportsViewController.swift; path = Umbrella/ShowReportsViewController.swift; sourceTree = "<group>"; };
 		FB7998721F2BB516005FC75D /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998781F2BBA85005FC75D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FBC5823D1F35059C00F6DB1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -75,6 +95,16 @@
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
+				FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */,
+				FB60D8601F39127E001E5E51 /* FirebaseManager.swift */,
+				FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */,
+				FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */,
+				FB60D8631F39127E001E5E51 /* RegisterReportSecondViewController.swift */,
+				FB60D8641F39127E001E5E51 /* Report.swift */,
+				FB60D8651F39127E001E5E51 /* SeeReport.storyboard */,
+				FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */,
+				FB60D8671F39127E001E5E51 /* ShowReports.storyboard */,
+				FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */,
 				D4B1E4001F2A78CF00308ABB /* Umbrella */,
 				D4B1E41A1F2A795000308ABB /* Others */,
 				D4B1E3FF1F2A78CF00308ABB /* Products */,
@@ -267,10 +297,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB60D86B1F39127E001E5E51 /* RegisterReportFirst.storyboard in Resources */,
 				D4B1E41F1F2A919900308ABB /* TabBar.storyboard in Resources */,
 				D4B1E40C1F2A78CF00308ABB /* LaunchScreen.storyboard in Resources */,
 				D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */,
 				D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */,
+				FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */,
+				FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */,
+				FB60D86F1F39127E001E5E51 /* SeeReport.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,15 +363,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB60D86A1F39127E001E5E51 /* FirebaseManager.swift in Sources */,
 				FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */,
 				FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */,
+				FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */,
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
+				FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
+				FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
+				FB60D86E1F39127E001E5E51 /* Report.swift in Sources */,
 				FB60D7D31F38DD03001E5E51 /* SearchBarCellTableViewCell.swift in Sources */,
 				FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */,
+				FB60D8691F39127E001E5E51 /* CustomUserLocationView.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
