@@ -9,23 +9,15 @@
 import Foundation
 import UIKit
 import Firebase
-
+import Mapbox
 class SeeReportViewController: UIViewController {
     
-    @IBOutlet weak var descriptionLbl: UILabel!
-    @IBOutlet weak var violenceKindLvl: UILabel!
-    @IBOutlet weak var violenceStartTime: UILabel!
-    @IBOutlet weak var violenceFinishTime: UILabel!
-    @IBOutlet weak var latitudeLbl: UILabel!
-    @IBOutlet weak var longitudeLbl: UILabel!
-    @IBOutlet weak var editBtn: UIButton!
-    
     @IBOutlet weak var agression: UILabel!
-    
+    @IBOutlet weak var editReportBtn: UIButton!
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var userPhoto: UIImageView!
-    @IBOutlet weak var violanceLocation: MKMapView!
+    @IBOutlet weak var violanceLocation: MGLMapView!
     @IBOutlet weak var violenceAproximateTime: UILabel!
     
     @IBOutlet weak var violenceDescription: UITextView!
@@ -48,7 +40,22 @@ class SeeReportViewController: UIViewController {
         self.violenceDescription.isEditable = false
         self.username.text = "Joelson"
         self.cityName.text = "Taguayork"
+        self.initiateLocationOnMap(map: self.violanceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
         self.formatDate()
+    }
+    
+    func initiateLocationOnMap(map: MGLMapView,latitude: Double, longitude: Double) {
+        
+      var location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        
+        map.setCenter(location, zoomLevel: 13, animated: true)
+        
+        map.showsUserLocation = false
+
+        let annotation = MGLPointAnnotation()
+        annotation.coordinate = location
+        
+
     }
     
     func formatDate () {
@@ -61,19 +68,23 @@ class SeeReportViewController: UIViewController {
         
         //setting the formated date
         self.violenceAproximateTime.text = dateFormat.string(from: startDate)
-        //self.violenceStartTime.text = dateFormat.string(from: startDate)
-        
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "editReport" {
-//            if let editScreen = segue.destination as? RegisterReportViewController {
-//                editScreen.reportToEdit = self.report
-//            }
-//        }
+        if segue.identifier == "editReport" {
+            if let editScreen = segue.destination as? RegisterReportViewController {
+                editScreen.reportToEdit = self.report
+            }
+        }
     }
+
+    
+//    @IBAction func backAction(_ sender: Any) {
+//        performSegue(withIdentifier: "back", sender: Any?.self)
+//    }
+    
     @IBAction func editReport(_ sender: Any) {
-        //performSegue(withIdentifier: "editReport", sender: Any?.self)
+        performSegue(withIdentifier: "editReport", sender: Any?.self)
     }
     
     @IBAction func deleteReport(_ sender: Any) {

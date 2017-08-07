@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-class ShowReports: UITableViewController {
+class ShowReportsViewController: UITableViewController {
     
     var reports: [Report] = []
     var refReports : DatabaseReference!

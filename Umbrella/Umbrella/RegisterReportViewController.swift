@@ -9,20 +9,21 @@
 import Foundation
 import UIKit
 import Firebase
+import Mapbox
 
 class RegisterReportViewController: UIViewController  {
     
     
     // MARK: - Outlets
     
-    @IBOutlet weak var violenceLocation: MKMapView!
+    @IBOutlet weak var violenceLocation: MGLMapView!
     @IBOutlet weak var violenceTitle: UITextField!
     @IBOutlet weak var violenceAproximatedTime: UIDatePicker!
     @IBOutlet weak var nexttButton: UIButton!
     
     
     //Mark: acessories
-
+    let locationDelegate = LocationManagerDelegate()
     var reportLatitude = Double()
     var reportLongitude = Double()
     
@@ -30,16 +31,17 @@ class RegisterReportViewController: UIViewController  {
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         self.violenceAproximatedTime.setValue(UIColor.white, forKeyPath: "textColor")
-        
+        getLocation(image: UIImage(named: "Shape")!)
         if (reportToEdit != nil) {
             initFieldsToEdit()
         }
         
         self.view.backgroundColor = UIColor.black
 
-        super.viewDidLoad()
+        
         
     }
     
@@ -76,6 +78,37 @@ class RegisterReportViewController: UIViewController  {
                 
             }
         }
+    }
+    
+    
+    func getLocation (image:UIImage) {
+      violenceLocation.setCenter((locationDelegate.locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
+        violenceLocation.showsUserLocation = true
+        
+        let view = self.view.subviews.first { (i) -> Bool in
+            i.restorationIdentifier == "pinPoint"
+        }
+        if view != nil {
+            view?.removeFromSuperview()
+            
+        }else{
+            let imageView = UIImageView(image: image)
+            
+            imageView.center = CGPoint(x: violenceLocation.center.x, y: (violenceLocation.center.y - imageView.frame.height/2))
+            imageView.restorationIdentifier = "pinPoint"
+            self.view.addSubview(imageView)
+        }
+
+
+        let reportPin = MGLPointAnnotation()
+        reportPin.coordinate = CLLocationCoordinate2D(latitude: violenceLocation.camera.centerCoordinate.latitude, longitude: violenceLocation.camera.centerCoordinate.longitude)
+        
+        violenceLocation.addAnnotation(reportPin)
+        
+        self.reportLatitude = violenceLocation.camera.centerCoordinate.latitude
+        self.reportLongitude = violenceLocation.camera.centerCoordinate.longitude
+        print(self.reportLongitude)
+        print(self.reportLatitude)
     }
     
         
