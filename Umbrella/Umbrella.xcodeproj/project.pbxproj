@@ -7,21 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012D6F8A0A5AFB8F63835AE5 /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FDDCB502693F2472FFFCF /* Pods_Umbrella.framework */; };
+		9E1A21761F33C67F00D53E16 /* UIImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1A21751F33C67F00D53E16 /* UIImageHandler.swift */; };
+		9E1A21781F33D80500D53E16 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1A21771F33D80500D53E16 /* SaveManager.swift */; };
+		9ECE54DC1F2BBAD90035913B /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DB1F2BBAD90035913B /* UserEntity.swift */; };
+		9ECE54DE1F2BBCB30035913B /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DD1F2BBCB30035913B /* PhotoEntity.swift */; };
+		9ECE54E01F2BBCC80035913B /* MinorityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DF1F2BBCC80035913B /* MinorityEntity.swift */; };
+		9ECE54E31F2BBEF90035913B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ECE54E11F2BBEF90035913B /* Realm.framework */; };
+		9ECE54E41F2BBEF90035913B /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ECE54E21F2BBEF90035913B /* RealmSwift.framework */; };
+		9ECE54E71F2BC2850035913B /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54E61F2BC2850035913B /* UserInteractor.swift */; };
+		9ECE54EC1F2BEA760035913B /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54E91F2BEA760035913B /* FirebaseManager.swift */; };
+		9ECE54ED1F2BEA760035913B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ECE54EA1F2BEA760035913B /* GoogleService-Info.plist */; };
+		9ECE54EE1F2BEA760035913B /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54EB1F2BEA760035913B /* Report.swift */; };
+		9ECE54F01F2FAC0A0035913B /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54EF1F2FAC0A0035913B /* PhotoInteractor.swift */; };
+		9ECE54F21F2FB4EA0035913B /* MinorityInterector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54F11F2FB4EA0035913B /* MinorityInterector.swift */; };
 		D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
-		D4B1E4041F2A78CF00308ABB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* ViewController.swift */; };
-		D4B1E4071F2A78CF00308ABB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4051F2A78CF00308ABB /* Main.storyboard */; };
+		D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */; };
+		D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4051F2A78CF00308ABB /* Login.storyboard */; };
 		D4B1E4091F2A78CF00308ABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4081F2A78CF00308ABB /* Assets.xcassets */; };
 		D4B1E40C1F2A78CF00308ABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E40A1F2A78CF00308ABB /* LaunchScreen.storyboard */; };
+		D4B1E41F1F2A919900308ABB /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E41E1F2A919900308ABB /* TabBar.storyboard */; };
+		D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4201F2A91B300308ABB /* TabBarViewController.swift */; };
+		D4B1E4251F2A959B00308ABB /* RegisterReport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4241F2A959B00308ABB /* RegisterReport.storyboard */; };
+		D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */; };
+		D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4281F2A96D200308ABB /* Map.storyboard */; };
+		D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C4C6F829752E1D18BE78232 /* Pods-Umbrella.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.debug.xcconfig"; sourceTree = "<group>"; };
+		80FDEC28595ABF030E25AE4C /* Pods-Umbrella.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.release.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.release.xcconfig"; sourceTree = "<group>"; };
+		9E1A21751F33C67F00D53E16 /* UIImageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageHandler.swift; sourceTree = "<group>"; };
+		9E1A21771F33D80500D53E16 /* SaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
+		9ECE54DB1F2BBAD90035913B /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		9ECE54DD1F2BBCB30035913B /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntity.swift; sourceTree = "<group>"; };
+		9ECE54DF1F2BBCC80035913B /* MinorityEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinorityEntity.swift; sourceTree = "<group>"; };
+		9ECE54E11F2BBEF90035913B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
+		9ECE54E21F2BBEF90035913B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
+		9ECE54E61F2BC2850035913B /* UserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInteractor.swift; sourceTree = "<group>"; };
+		9ECE54E81F2BCB350035913B /* Umbrella.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Umbrella.entitlements; sourceTree = "<group>"; };
+		9ECE54E91F2BEA760035913B /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		9ECE54EA1F2BEA760035913B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9ECE54EB1F2BEA760035913B /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		9ECE54EF1F2FAC0A0035913B /* PhotoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInteractor.swift; sourceTree = "<group>"; };
+		9ECE54F11F2FB4EA0035913B /* MinorityInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinorityInterector.swift; sourceTree = "<group>"; };
+		C23FDDCB502693F2472FFFCF /* Pods_Umbrella.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Umbrella.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D4B1E4031F2A78CF00308ABB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D4B1E4061F2A78CF00308ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D4B1E4061F2A78CF00308ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		D4B1E4081F2A78CF00308ABB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B1E40B1F2A78CF00308ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4B1E40D1F2A78CF00308ABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4B1E41E1F2A919900308ABB /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		D4B1E4201F2A91B300308ABB /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		D4B1E4241F2A959B00308ABB /* RegisterReport.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterReport.storyboard; sourceTree = "<group>"; };
+		D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportViewController.swift; sourceTree = "<group>"; };
+		D4B1E4281F2A96D200308ABB /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,18 +72,71 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ECE54E31F2BBEF90035913B /* Realm.framework in Frameworks */,
+				9ECE54E41F2BBEF90035913B /* RealmSwift.framework in Frameworks */,
+				012D6F8A0A5AFB8F63835AE5 /* Pods_Umbrella.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13BA5889C6AF82F29F3DC01D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6C4C6F829752E1D18BE78232 /* Pods-Umbrella.debug.xcconfig */,
+				80FDEC28595ABF030E25AE4C /* Pods-Umbrella.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9ECE54D71F2BB6770035913B /* SaveManager */ = {
+			isa = PBXGroup;
+			children = (
+				9E1A21751F33C67F00D53E16 /* UIImageHandler.swift */,
+				9E1A21771F33D80500D53E16 /* SaveManager.swift */,
+			);
+			name = SaveManager;
+			sourceTree = "<group>";
+		};
+		9ECE54DA1F2BBA9B0035913B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9ECE54DB1F2BBAD90035913B /* UserEntity.swift */,
+				9ECE54DD1F2BBCB30035913B /* PhotoEntity.swift */,
+				9ECE54DF1F2BBCC80035913B /* MinorityEntity.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		9ECE54E51F2BC26B0035913B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9ECE54E61F2BC2850035913B /* UserInteractor.swift */,
+				9ECE54EF1F2FAC0A0035913B /* PhotoInteractor.swift */,
+				9ECE54F11F2FB4EA0035913B /* MinorityInterector.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		BAC9827E76E024B83FA37181 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9ECE54E11F2BBEF90035913B /* Realm.framework */,
+				9ECE54E21F2BBEF90035913B /* RealmSwift.framework */,
+				C23FDDCB502693F2472FFFCF /* Pods_Umbrella.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
 				D4B1E4001F2A78CF00308ABB /* Umbrella */,
 				D4B1E41A1F2A795000308ABB /* Others */,
 				D4B1E3FF1F2A78CF00308ABB /* Products */,
+				13BA5889C6AF82F29F3DC01D /* Pods */,
+				BAC9827E76E024B83FA37181 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,6 +151,7 @@
 		D4B1E4001F2A78CF00308ABB /* Umbrella */ = {
 			isa = PBXGroup;
 			children = (
+				9ECE54E81F2BCB350035913B /* Umbrella.entitlements */,
 				D4B1E4191F2A793E00308ABB /* Entity */,
 				D4B1E4171F2A790B00308ABB /* Interactor */,
 				D4B1E4161F2A790400308ABB /* Router */,
@@ -67,9 +164,11 @@
 		D4B1E4141F2A78E200308ABB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4B1E4231F2A93E900308ABB /* Map */,
+				D4B1E4221F2A93CC00308ABB /* Report */,
+				D4B1E41D1F2A918500308ABB /* TabBar */,
+				D4B1E41C1F2A910300308ABB /* Login */,
 				D4B1E4081F2A78CF00308ABB /* Assets.xcassets */,
-				D4B1E4031F2A78CF00308ABB /* ViewController.swift */,
-				D4B1E4051F2A78CF00308ABB /* Main.storyboard */,
 				D4B1E40A1F2A78CF00308ABB /* LaunchScreen.storyboard */,
 			);
 			name = View;
@@ -92,6 +191,8 @@
 		D4B1E4171F2A790B00308ABB /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				9ECE54E51F2BC26B0035913B /* User */,
+				9ECE54D71F2BB6770035913B /* SaveManager */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -99,6 +200,7 @@
 		D4B1E4191F2A793E00308ABB /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				9ECE54DA1F2BBA9B0035913B /* User */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -106,11 +208,50 @@
 		D4B1E41A1F2A795000308ABB /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				9ECE54E91F2BEA760035913B /* FirebaseManager.swift */,
+				9ECE54EA1F2BEA760035913B /* GoogleService-Info.plist */,
+				9ECE54EB1F2BEA760035913B /* Report.swift */,
 				D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */,
 				D4B1E40D1F2A78CF00308ABB /* Info.plist */,
 			);
 			name = Others;
 			path = Umbrella;
+			sourceTree = "<group>";
+		};
+		D4B1E41C1F2A910300308ABB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D4B1E4051F2A78CF00308ABB /* Login.storyboard */,
+				D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		D4B1E41D1F2A918500308ABB /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D4B1E41E1F2A919900308ABB /* TabBar.storyboard */,
+				D4B1E4201F2A91B300308ABB /* TabBarViewController.swift */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		D4B1E4221F2A93CC00308ABB /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				D4B1E4241F2A959B00308ABB /* RegisterReport.storyboard */,
+				D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */,
+			);
+			name = Report;
+			sourceTree = "<group>";
+		};
+		D4B1E4231F2A93E900308ABB /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				D4B1E4281F2A96D200308ABB /* Map.storyboard */,
+				D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,9 +261,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4B1E4101F2A78CF00308ABB /* Build configuration list for PBXNativeTarget "Umbrella" */;
 			buildPhases = (
+				A31EFC0CD2EB780F53AE1256 /* [CP] Check Pods Manifest.lock */,
 				D4B1E3FA1F2A78CF00308ABB /* Sources */,
 				D4B1E3FB1F2A78CF00308ABB /* Frameworks */,
 				D4B1E3FC1F2A78CF00308ABB /* Resources */,
+				556C5E4114D6CDFB625A3A9A /* [CP] Embed Pods Frameworks */,
+				6391E5DB19BCC6F987B71878 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -145,8 +289,13 @@
 				TargetAttributes = {
 					D4B1E3FD1F2A78CF00308ABB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 7CN8A9X5L6;
+						DevelopmentTeam = XB3C2V95Z9;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -173,33 +322,98 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B1E41F1F2A919900308ABB /* TabBar.storyboard in Resources */,
 				D4B1E40C1F2A78CF00308ABB /* LaunchScreen.storyboard in Resources */,
+				D4B1E4251F2A959B00308ABB /* RegisterReport.storyboard in Resources */,
 				D4B1E4091F2A78CF00308ABB /* Assets.xcassets in Resources */,
-				D4B1E4071F2A78CF00308ABB /* Main.storyboard in Resources */,
+				D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */,
+				D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */,
+				9ECE54ED1F2BEA760035913B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		556C5E4114D6CDFB625A3A9A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6391E5DB19BCC6F987B71878 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A31EFC0CD2EB780F53AE1256 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D4B1E3FA1F2A78CF00308ABB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4B1E4041F2A78CF00308ABB /* ViewController.swift in Sources */,
+				9E1A21761F33C67F00D53E16 /* UIImageHandler.swift in Sources */,
+				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
+				9ECE54E71F2BC2850035913B /* UserInteractor.swift in Sources */,
+				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
+				9ECE54EC1F2BEA760035913B /* FirebaseManager.swift in Sources */,
+				9E1A21781F33D80500D53E16 /* SaveManager.swift in Sources */,
+				9ECE54F21F2FB4EA0035913B /* MinorityInterector.swift in Sources */,
+				9ECE54F01F2FAC0A0035913B /* PhotoInteractor.swift in Sources */,
+				9ECE54E01F2BBCC80035913B /* MinorityEntity.swift in Sources */,
+				9ECE54DE1F2BBCB30035913B /* PhotoEntity.swift in Sources */,
+				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
+				9ECE54DC1F2BBAD90035913B /* UserEntity.swift in Sources */,
+				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
+				9ECE54EE1F2BEA760035913B /* Report.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D4B1E4051F2A78CF00308ABB /* Main.storyboard */ = {
+		D4B1E4051F2A78CF00308ABB /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D4B1E4061F2A78CF00308ABB /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		D4B1E40A1F2A78CF00308ABB /* LaunchScreen.storyboard */ = {
@@ -308,9 +522,11 @@
 		};
 		D4B1E4111F2A78CF00308ABB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C4C6F829752E1D18BE78232 /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7CN8A9X5L6;
+				CODE_SIGN_ENTITLEMENTS = Umbrella/Umbrella.entitlements;
+				DEVELOPMENT_TEAM = XB3C2V95Z9;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;
@@ -321,9 +537,11 @@
 		};
 		D4B1E4121F2A78CF00308ABB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80FDEC28595ABF030E25AE4C /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7CN8A9X5L6;
+				CODE_SIGN_ENTITLEMENTS = Umbrella/Umbrella.entitlements;
+				DEVELOPMENT_TEAM = XB3C2V95Z9;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;
@@ -351,6 +569,7 @@
 				D4B1E4121F2A78CF00308ABB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
