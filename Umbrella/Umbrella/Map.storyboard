@@ -91,11 +91,41 @@
                                             <action selector="pinAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="5hh-fJ-clo"/>
                                         </connections>
                                     </button>
+                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="27" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZqN-dd-ZCS">
+                                        <rect key="frame" x="44" y="53" width="287" height="132"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" rowHeight="27" id="nhC-xf-0iq" customClass="SearchBarCellTableViewCell" customModule="Umbrella" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="287" height="27"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhC-xf-0iq" id="jeB-v1-mhn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="26.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="The-os-8sl">
+                                                            <rect key="frame" x="16" y="3" width="258" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="searchCellLabel" destination="The-os-8sl" id="fFc-wf-aZw"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.78473385612414526" green="0.97203450289587945" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="CQS-2u-VCk" firstAttribute="centerY" secondItem="OlU-ii-JrG" secondAttribute="centerY" id="3we-ln-QJ6"/>
+                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="top" secondItem="5Pq-8k-jmZ" secondAttribute="bottom" constant="-10" id="NGo-a5-JFl"/>
+                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="width" secondItem="5Pq-8k-jmZ" secondAttribute="width" multiplier="0.85" id="O6f-bN-9YG"/>
                                     <constraint firstItem="Czp-Ie-uU2" firstAttribute="height" secondItem="BAZ-Iw-YaG" secondAttribute="height" multiplier="0.17" id="REi-5i-zFb"/>
+                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="height" secondItem="5Pq-8k-jmZ" secondAttribute="height" multiplier="3" id="XbL-4b-sMR"/>
+                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="centerX" secondItem="5Pq-8k-jmZ" secondAttribute="centerX" multiplier="1.07" id="bXr-IU-RJK"/>
                                     <constraint firstAttribute="bottom" secondItem="Czp-Ie-uU2" secondAttribute="bottom" id="cYh-ul-6fZ"/>
                                     <constraint firstItem="8WG-Gb-tnC" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="lYk-ja-aVt"/>
                                     <constraint firstItem="CQS-2u-VCk" firstAttribute="centerX" secondItem="OlU-ii-JrG" secondAttribute="centerX" id="mOH-lS-iXv"/>
@@ -120,6 +150,7 @@
                         <outlet property="bannerView" destination="Czp-Ie-uU2" id="5l1-40-MWU"/>
                         <outlet property="mapView" destination="BAZ-Iw-YaG" id="Ewc-mu-H4Q"/>
                         <outlet property="searchBar" destination="5Pq-8k-jmZ" id="tuH-Xs-Y4S"/>
+                        <outlet property="searchTableView" destination="ZqN-dd-ZCS" id="Ltm-d3-0KT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2C-Dd-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>

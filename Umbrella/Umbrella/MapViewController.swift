@@ -23,8 +23,9 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiZWR1YXJkb3RvcnJlcyIsImEiOiJjajVtcHlwczgydTk2MzFsbXlvZDNlM253In0.rVHnntpHbIO6bY3dKv4f6w")
     @IBOutlet weak var mapView: MGLMapView!
     var querryResults:[GeocodedPlacemark] = []
-    var tableView:UITableView = UITableView()
+    //var tableView:UITableView = UITableView()
     
+    @IBOutlet weak var searchTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // utilizado para apps em desenvolvimento para teste.Sem isso a conta pode ser banina.
@@ -69,13 +70,14 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.locationManager.startUpdatingLocation()
     }
     func tableViewConstruct(){
-        tableView = UITableView(frame: CGRect(x: searchBar.frame.minX + 8, y: searchBar.frame.maxY + 8, width: searchBar.frame.width * 0.9, height: searchBar.frame.height * 3))
-        tableView.restorationIdentifier = "SearchTableView"
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.view.addSubview(tableView)
-        self.tableView.isHidden = true
-        tableView.allowsSelection = false
+        //tableView = UITableView(frame: CGRect(x: searchBar.frame.minX , y: searchBar.frame.maxY , width: searchBar.frame.width * 0.9, height: searchBar.frame.height * 3))
+        //tableView.center = searchBar.centerCGPoint(x: searchBar.center.x, y: (searchBar.center.y + tableView.frame.height/2) )
+        searchTableView.restorationIdentifier = "SearchTableView"
+        searchTableView.delegate = self
+        searchTableView.dataSource = self
+        //self.view.addSubview(tableView)
+        self.searchTableView.isHidden = true
+        searchTableView.allowsSelection = false
     }
     //Objetivo: Função para centrar no usuario quando ocorre o request do GPS.
     func centerOnUser(){
@@ -113,11 +115,12 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(frame: CGRect(x: searchBar.frame.minX, y: searchBar.frame.minY*CGFloat(indexPath.row), width: searchBar.frame.width, height: searchBar.frame.height))
+        let cell = searchTableView.dequeueReusableCell(withIdentifier: "searchCell") as! SearchBarCellTableViewCell
         
-        let label = UILabel(frame: cell.frame)
-        label.text = querryResults[indexPath.row].name
-        cell.addSubview(label)
+//        let label = UILabel(frame: cell.frame)
+//        label.text = querryResults[indexPath.row].name
+//        cell.addSubview(label)
+        cell.searchCellLabel.text = querryResults[indexPath.row].name
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapCel(sender:)))
         cell.addGestureRecognizer(gesture)
@@ -126,10 +129,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     func tapCel(sender:UITapGestureRecognizer)  {
         //using sender, we can get the point in respect to the table view
-        let tapLocation = sender.location(in: self.tableView)
+        let tapLocation = sender.location(in: self.searchTableView)
         
         //using the tapLocation, we retrieve the corresponding indexPath
-        let indexPath = self.tableView.indexPathForRow(at: tapLocation)
+        let indexPath = self.searchTableView.indexPathForRow(at: tapLocation)
         mapView.setCenter(querryResults[(indexPath?.row)! ].location.coordinate, zoomLevel: 10, animated: true)
         searchBar.text = querryResults[(indexPath?.row)! ].name
         
@@ -176,10 +179,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             // self.querryResults = placemarks!
             if(placemarks != nil){
                 self.querryResults = placemarks!
-                self.tableView.reloadData()
-                self.tableView.isHidden = false
+                self.searchTableView.reloadData()
+                self.searchTableView.isHidden = false
             }else{
-                self.tableView.isHidden = true
+                self.searchTableView.isHidden = true
             }
             
         }
