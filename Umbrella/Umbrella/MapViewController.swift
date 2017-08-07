@@ -37,8 +37,8 @@ class MapViewController: UIViewController {
 //        })
 
 //        UserInteractor.createUser(nickname: "Geovanni", email: "geovanni@mail.com", password: "123456", birthDate: formatter.date(from: "08/11/1995"), image: #imageLiteral(resourceName: "turn-off"), idMinority: "-KqTAOwPUvqs0f_sbVeP")
-//        UserInteractor.connectUser(email: "geovanni@mail.com", password: "123456")
-//        PhotoInteractor.updateUserPhoto(image: #imageLiteral(resourceName: "turn-off"))
+        UserInteractor.connectUser(email: "geovanni@mail.com", password: "123456")
+        UserInteractor.deleteUser()
 //        User.createUser(nickname: "Osmala", email: "osmala@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")
 //        User.createUser(nickname: "Marquinhos", email: "marquinhos@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")
         

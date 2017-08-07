@@ -95,7 +95,9 @@ class PhotoInteractor {
 
             let urlRef = Database.database().reference().child("user").child(userId).child("urlPhoto")
             urlRef.observe(.value, with: { (snapshot: DataSnapshot) in
-                if (snapshot.value as! String) == "" {
+                if snapshot.value is NSNull {
+                }
+                else {
                     let photoRef = Storage.storage().reference(forURL: snapshot.value as! String)
                     let idRef = photoRef.name
                     

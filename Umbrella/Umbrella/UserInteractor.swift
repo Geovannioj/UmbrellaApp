@@ -14,7 +14,7 @@ class UserInteractor {
     
     // -TODO: Password cryptography and email validation
     /**
-     Function responsable for creating an authentication for an user and save his data on a server and local database.
+     Function responsable for creating an authentication for an user and save his data on a server and local database and logs the user in if the operation is successful.
      - parameter nickname: user's nickname
      - parameter email: user's email
      - parameter password: user's password
@@ -291,24 +291,32 @@ class UserInteractor {
 //    }
     
 
-    
-    // -TODO: Delete auth user reference
-//    static func deleteUser(id: String) {
-//        let userRef = Database.database().reference().child("user").child(id)
-//        
-//        userRef.observe(.value, with: { (snapshot) in
-//            let userDic = snapshot.value as! [String : Any]
-//            deletePhoto(idPhoto: userDic["idPhoto"] as! String)
-//        })
-//        
-//        userRef.removeValue()
-//        
-//        let user = AppRealm.instance.objects(User.self).filter("id == %s", id).first
-//        
-//        try! AppRealm.instance.write {
-//            AppRealm.instance.delete(user!)
-//        }
-//    }
+    /**
+     Deletes the current user logged in.
+     */
+    static func deleteUser() {
+        if let userId = Auth.auth().currentUser?.uid {
+
+            Auth.auth().currentUser?.delete(completion: { error in
+                if let err = error {
+                    print(err)
+                }
+                    
+                else {
+                    let userRef = Database.database().reference().child("user").child(userId)
+                    PhotoInteractor.deleteUserPhoto()
+                    userRef.removeValue()
+                    
+                    if let user = SaveManager.realm.objects(User.self).filter("id == %s", userId).first {
+                        
+                        try! SaveManager.realm.write {
+                            SaveManager.realm.delete(user)
+                        }
+                    }
+                }
+            })
+        }
+    }
     
     // -TODO: give access to all funccionalities of the app
     /**
@@ -318,6 +326,25 @@ class UserInteractor {
      */
     static func connectUser(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password)
+    }
+    
+    /**
+     Disconnects the currunt logged user of the firebase
+     */
+    static func disconnectUser() {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    
+    // -TODO: Write a formal email verification on firebase options and test this method
+    /**
+     Sends an email verification to the user's email
+    */
+    static func sendEmailVerification() {
+        Auth.auth().currentUser?.sendEmailVerification(completion: nil)
     }
     
 }
