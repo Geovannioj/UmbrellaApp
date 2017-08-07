@@ -35,15 +35,16 @@ class ShowReports: UITableViewController {
                     
                     let id = reportObj?["id"]
                     let userId = reportObj?["userId"]
+                    let title = reportObj?["title"]
                     let description = reportObj?["description"]
                     let violenceKind = reportObj?["violenceKind"]
-                    let userStatus = reportObj?["userStatus"]
-                    let violenceStartTime = reportObj?["violenceStartTime"]
-                    let violenceFinishTime = reportObj?["violenceFinishTime"]
+                    let violenceAproximatedTime = reportObj?["violenceAproximatedTime"]
                     let latitude = reportObj?["latitude"]
                     let longitude = reportObj?["longitude"]
+                    let personGender = reportObj?["personGender"]
                     
-                    let reportAtt = Report(id: id as! String, userId: userId as! String, description: description as! String, violenceKind: violenceKind as! String, userStatus: userStatus as! String, violenceStartTime: violenceStartTime as! Double, violenceFinishTime: violenceFinishTime as! Double, latitude: latitude as! String, longitude: longitude as! String)
+                    let reportAtt = Report(id: id as! String, userId: userId as! String, title: title as! String, description: description as! String, violenceKind: violenceKind as! String, violenceAproximatedTime: violenceAproximatedTime as! Double, latitude: latitude as! Double, longitude: longitude as! Double, personGender: personGender as! String)
+                    
                     
                     self.reports.append(reportAtt)
                     

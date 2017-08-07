@@ -12,27 +12,33 @@ class Report {
     
     var id : String
     var userId : String
+    var title : String
     var description : String
     var violenceKind : String
-    var userStatus : String
-    var violenceStartTime : Double
-    var violenceFinishTime : Double
-    var latitude : String
-    var longitude : String
+    var violenceAproximatedTime : Double
+    var latitude : Double
+    var longitude : Double
+    var personGender : String
     
-    init(id : String, userId: String, description : String, violenceKind : String, userStatus : String,
-         violenceStartTime : Double, violenceFinishTime : Double, latitude : String,
-         longitude : String) {
+    init(id : String,
+         userId: String,
+         title : String,
+         description : String,
+         violenceKind : String,
+         violenceAproximatedTime : Double,
+         latitude : Double,
+         longitude : Double,
+         personGender: String) {
         
         self.id = id
         self.userId = userId
+        self.title = title
         self.description = description
         self.violenceKind = violenceKind
-        self.userStatus = userStatus
-        self.violenceStartTime = violenceStartTime
-        self.violenceFinishTime = violenceFinishTime
+        self.violenceAproximatedTime = violenceAproximatedTime
         self.latitude = latitude
         self.longitude = longitude
+        self.personGender = personGender
         
     }
     
@@ -42,13 +48,13 @@ class Report {
         return [
             "id" : id,
             "userId" : userId,
+            "title" : title,
             "description" : description,
             "violenceKind" : violenceKind,
-            "userStatus" : userStatus,
-            "violenceStartTime" : violenceStartTime,
-            "violenceFinishTime" : violenceFinishTime,
+            "violenceAproximatedTime" : violenceAproximatedTime,
             "latitude" : latitude,
-            "longitude" : longitude
+            "longitude" : longitude,
+            "personGender" : personGender
         ]
     }
 

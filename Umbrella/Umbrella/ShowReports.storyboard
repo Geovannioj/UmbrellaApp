@@ -72,7 +72,7 @@
         <!--RegisterReportViewController-->
         <scene sceneID="B0J-SN-DKb">
             <objects>
-                <viewControllerPlaceholder storyboardName="RegisterReport" referencedIdentifier="RegisterReportViewController" id="I2N-2o-Tvn" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="RegisterReportFirst" referencedIdentifier="RegisterReportViewController" id="I2N-2o-Tvn" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9r-t2-Nv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1910" y="167"/>
