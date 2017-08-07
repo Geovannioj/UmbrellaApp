@@ -13,6 +13,15 @@ import Firebase
 class UserInteractor {
     
     // -TODO: Password cryptography and email validation
+    /**
+     Function responsable for creating an authentication for an user and save his data on a server and local database.
+     - parameter nickname: user's nickname
+     - parameter email: user's email
+     - parameter password: user's password
+     - parameter birthDate: user's birth date
+     - parameter image: user's profile photo
+     - parameter idMinority: user's correspondent minority id
+     */
     static func createUser(nickname: String, email: String,
                            password: String, birthDate: Date?, image: UIImage?,
                             idMinority: String?) {
@@ -33,7 +42,6 @@ class UserInteractor {
             let userRef = Database.database().reference().child("user").child(String(newUser.id))
             
             // Fill an instance of the user with data
-            
             newUser.nickname = nickname
             newUser.email = email
             newUser.password = password
@@ -59,10 +67,18 @@ class UserInteractor {
         }
     }
     
+    /**
+     Returns the current user's email logged on the device.
+     - returns: user's email
+     */
     static func getUserEmail() -> String? {
         return Auth.auth().currentUser?.email
     }
     
+    /**
+     Verifies if there's an user online on the device.
+     - parameter completion: returns true if there's an user connected or false if there is not
+     */
     static func isUserOnline(completion: @escaping (Bool) -> ()) {
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in
@@ -75,6 +91,10 @@ class UserInteractor {
         })
     }
     
+    /**
+     Returns an array of User if there is on the server.
+     - parameter completion: returns an array of User if there is users saved
+     */
     static func getUsers(completion: @escaping ([User]) -> ()) {
         let userRef = Database.database().reference().child("user")
         var users = [User]()
@@ -103,6 +123,11 @@ class UserInteractor {
         })
     }
     
+    /**
+     Returns an User with the id parameter if there is one on the server.
+     - parameter id: id of the user desired
+     - parameter completion: returns an User with the id parameter
+     */
     static func getUser(withId id: String, completion: @escaping (User) -> ()) {
         let userRef = Database.database().reference().child("user").child(id)
         let user = User()
@@ -122,6 +147,11 @@ class UserInteractor {
         
     }
     
+    /**
+     Returns an User with the email parameter if there is one on the server.
+     - parameter email: email of the user desired
+     - parameter completion: returns an User with the email parameter
+     */
     static func getUser(withEmail email: String, completion: @escaping (User) -> ()) {
         let userRef = Database.database().reference().child("user")
         
@@ -143,6 +173,10 @@ class UserInteractor {
         })
     }
     
+    /**
+     Updates the current connected user's nickname
+     - parameter nickname: new user's nickname
+     */
     static func updateUser(nickname: String) {
         if let userId = Auth.auth().currentUser?.uid {
             
@@ -161,6 +195,10 @@ class UserInteractor {
         }
     }
     
+    /**
+     Updates the current connected user's photo
+     - parameter nickname: new user's photo url
+     */
     static func updateUser(urlPhoto: String) {
         if let userId = Auth.auth().currentUser?.uid {
             
@@ -179,6 +217,10 @@ class UserInteractor {
         }
     }
     
+    /**
+     Updates the current connected user's birth date
+     - parameter nickname: new user's birth date
+     */
     static func updateUser(birthDate: Date) {
         if let userId = Auth.auth().currentUser?.uid {
         
@@ -199,6 +241,10 @@ class UserInteractor {
         }
     }
     
+    /**
+     Updates the current connected user's minority
+     - parameter nickname: new user's minority id
+     */
     static func updateUser(idMinority: String) {
         if let userId = Auth.auth().currentUser?.uid {
 
@@ -265,6 +311,11 @@ class UserInteractor {
 //    }
     
     // -TODO: give access to all funccionalities of the app
+    /**
+     Connects an user to the firebase
+     - parameter email: user's email
+     - parameter password: user's password
+     */
     static func connectUser(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password)
     }

@@ -13,6 +13,11 @@ import FirebaseStorage
 
 class PhotoInteractor {
 
+    /**
+     Function responsable for alocate a photo in the server and local database.
+     - parameter image: an UIImage that will be saved on the databases
+     - parameter comp: completion that returns the url of the photo saved
+     */
     static func createPhoto(image: UIImage, completion comp: @escaping (String?) -> ()) {
         let photo = Photo()
         
@@ -69,6 +74,10 @@ class PhotoInteractor {
 //        return photos
 //    }
 
+    /**
+     Function responsable for switching the user's photo in the server and local database with a new one.
+     - parameter image: an UIImage that will be saved on the databases
+     */
     static func updateUserPhoto(image: UIImage) {
         
         deleteUserPhoto()
@@ -78,6 +87,9 @@ class PhotoInteractor {
     }
     
 
+    /**
+     Function responsable for deleting the user's photo in the server and local database.
+     */
     static func deleteUserPhoto() {
         if let userId = Auth.auth().currentUser?.uid {
 
