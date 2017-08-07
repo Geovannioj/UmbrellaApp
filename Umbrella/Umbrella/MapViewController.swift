@@ -14,6 +14,7 @@ import GoogleMobileAds
 
 class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
     
+    @IBOutlet weak var filterTable: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     let image = UIImage(named: "CustomLocationPIN")
     var locationManager = CLLocationManager()
@@ -30,6 +31,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         super.viewDidLoad()
         // utilizado para apps em desenvolvimento para teste.Sem isso a conta pode ser banina.
         let request = GADRequest()
+        filterTable.isHidden = true
         request.testDevices = [kGADSimulatorID]
         bannerView.adUnitID = "ca-app-pub-1296835094216265/5601148764"
         bannerView.rootViewController = self
@@ -170,6 +172,27 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         centerOnUser()
     }
     
+    @IBAction func filterActivate(_ sender: UIButton) {
+//        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+//        let filterTableView = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
+      //  if !sender.isEnabled {
+//            sender.isEnabled = true
+//        let filterView = filterTableView.view
+//        
+//        filterView?.frame = CGRect(x: searchTableView.frame.minX, y: searchTableView.frame.maxY, width: filterTableView.view.frame.width/4, height: filterTableView.view.frame.width/4)
+//            self.view.addSubview(filterView!)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
+        //}else{
+            //sender.isEnabled = false
+           // filterTableView.view.removeFromSuperview()
+      //  }
+        filterTable.isHidden = false
+    }
+    func closeFilter(){
+        filterTable.isHidden = true
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
+        
+    }
     
    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

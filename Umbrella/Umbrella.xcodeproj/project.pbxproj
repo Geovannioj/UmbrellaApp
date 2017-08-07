@@ -21,6 +21,7 @@
 		EF2B14ACC5ED8F8292C207C7 /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9CFC6DEF00297A546C0A6B /* Pods_Umbrella.framework */; };
 		FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */; };
 		FB60D7D31F38DD03001E5E51 /* SearchBarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */; };
+		FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */; };
 		FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7998721F2BB516005FC75D /* MapViewDelegate.swift */; };
 		FB7998791F2BBA85005FC75D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7998781F2BBA85005FC75D /* CoreLocation.framework */; };
 		FBC5823E1F35059C00F6DB1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBC5823D1F35059C00F6DB1A /* GoogleService-Info.plist */; };
@@ -47,6 +48,7 @@
 		D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarControllerViewController.swift; sourceTree = "<group>"; };
 		FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarCellTableViewCell.swift; sourceTree = "<group>"; };
+		FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewControlleTableViewController.swift; sourceTree = "<group>"; };
 		FB7998721F2BB516005FC75D /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998781F2BBA85005FC75D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FBC5823D1F35059C00F6DB1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */,
 				FBC5823F1F3512ED00F6DB1A /* CustomUserLocationView.swift */,
 				FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */,
+				FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */,
+				FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */,
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
