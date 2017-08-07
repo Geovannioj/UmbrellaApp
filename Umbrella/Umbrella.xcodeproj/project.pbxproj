@@ -10,7 +10,6 @@
 		D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
 		D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */; };
 		D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4051F2A78CF00308ABB /* Login.storyboard */; };
-		D4B1E4091F2A78CF00308ABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4081F2A78CF00308ABB /* Assets.xcassets */; };
 		D4B1E40C1F2A78CF00308ABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E40A1F2A78CF00308ABB /* LaunchScreen.storyboard */; };
 		D4B1E41F1F2A919900308ABB /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E41E1F2A919900308ABB /* TabBar.storyboard */; };
 		D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4201F2A91B300308ABB /* TabBarViewController.swift */; };
@@ -25,7 +24,6 @@
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D4B1E4061F2A78CF00308ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
-		D4B1E4081F2A78CF00308ABB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B1E40B1F2A78CF00308ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4B1E40D1F2A78CF00308ABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4B1E41E1F2A919900308ABB /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 				D4B1E4221F2A93CC00308ABB /* Report */,
 				D4B1E41D1F2A918500308ABB /* TabBar */,
 				D4B1E41C1F2A910300308ABB /* Login */,
-				D4B1E4081F2A78CF00308ABB /* Assets.xcassets */,
 				D4B1E40A1F2A78CF00308ABB /* LaunchScreen.storyboard */,
 			);
 			name = View;
@@ -226,7 +223,6 @@
 				D4B1E41F1F2A919900308ABB /* TabBar.storyboard in Resources */,
 				D4B1E40C1F2A78CF00308ABB /* LaunchScreen.storyboard in Resources */,
 				D4B1E4251F2A959B00308ABB /* RegisterReport.storyboard in Resources */,
-				D4B1E4091F2A78CF00308ABB /* Assets.xcassets in Resources */,
 				D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */,
 				D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */,
 			);
