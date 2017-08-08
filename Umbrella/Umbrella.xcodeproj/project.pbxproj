@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D41383691F3A26A000384DCC /* RegisterReportDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41383681F3A26A000384DCC /* RegisterReportDelegate.swift */; };
 		D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
 		D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */; };
 		D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4051F2A78CF00308ABB /* Login.storyboard */; };
@@ -41,6 +42,7 @@
 		42219E97875697CC28DC2A0D /* Pods-Umbrella.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9CFC6DEF00297A546C0A6B /* Pods_Umbrella.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Umbrella.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7A82209A491E5087B8A7EDC /* Pods-Umbrella.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.release.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.release.xcconfig"; sourceTree = "<group>"; };
+		D41383681F3A26A000384DCC /* RegisterReportDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportDelegate.swift; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */,
 				FB60D8671F39127E001E5E51 /* ShowReports.storyboard */,
 				FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */,
+				D41383681F3A26A000384DCC /* RegisterReportDelegate.swift */,
 			);
 			name = Report;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				FB60D7D31F38DD03001E5E51 /* SearchBarCellTableViewCell.swift in Sources */,
 				FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */,
 				FB60D8691F39127E001E5E51 /* CustomUserLocationView.swift in Sources */,
+				D41383691F3A26A000384DCC /* RegisterReportDelegate.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,14 +11,18 @@ import UIKit
 import Mapbox
 import MapboxGeocoder
 import GoogleMobileAds
-
+import Firebase
 class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
     
     @IBOutlet weak var filterTable: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
     let image = UIImage(named: "CustomLocationPIN")
     var locationManager = CLLocationManager()
-
+    var reports: [Report] = []
+    var refReports : DatabaseReference!
+    var reportToSend:Report?
+    
     @IBOutlet weak var bannerView: GADBannerView!
    // var mapDelegate = MapViewDelegate()
     let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiZWR1YXJkb3RvcnJlcyIsImEiOiJjajVtcHlwczgydTk2MzFsbXlvZDNlM253In0.rVHnntpHbIO6bY3dKv4f6w")
@@ -215,6 +219,38 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         }
         
         
+        
+        
+    }
+    
+    func setObserverToFireBaseChanges() {
+        
+        self.refReports.observe(DataEventType.value, with: {(snapshot) in
+            if snapshot.childrenCount > 0 {
+                self.reports.removeAll()
+                
+                for report in snapshot.children.allObjects as![DataSnapshot]{
+                    let reportObj = report.value as? [String: AnyObject]
+                    
+                    let id = reportObj?["id"]
+                    let userId = reportObj?["userId"]
+                    let title = reportObj?["title"]
+                    let description = reportObj?["description"]
+                    let violenceKind = reportObj?["violenceKind"]
+                    let violenceAproximatedTime = reportObj?["violenceAproximatedTime"]
+                    let latitude = reportObj?["latitude"]
+                    let longitude = reportObj?["longitude"]
+                    let personGender = reportObj?["personGender"]
+                    
+                    let reportAtt = Report(id: id as! String, userId: userId as! String, title: title as! String, description: description as! String, violenceKind: violenceKind as! String, violenceAproximatedTime: violenceAproximatedTime as! Double, latitude: latitude as! Double, longitude: longitude as! Double, personGender: personGender as! String)
+                    
+                    
+                    self.reports.append(reportAtt)
+                    
+                }
+                
+            }
+        })
         
         
     }
