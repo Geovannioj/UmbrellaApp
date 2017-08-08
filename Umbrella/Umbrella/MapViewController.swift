@@ -34,6 +34,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         // utilizado para apps em desenvolvimento para teste.Sem isso a conta pode ser banina.
+        self.refReports =  Database.database().reference().child("reports")
+        setObserverToFireBaseChanges()
         let request = GADRequest()
         filterTable.isHidden = true
         request.testDevices = [kGADSimulatorID]
@@ -65,6 +67,19 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        // searchBar.barTintColor = UIColor.clear
+        
+    }
+    func addPin(new:Report){
+        
+            let annotation = MGLPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees.init(new.latitude), longitude: .init(new.longitude))
+            annotation.title = new.title
+            annotation.subtitle = new.violenceKind
+        
+        mapView.addAnnotation(annotation)
+    }
+    func removePins(){
+        mapView.removeAnnotations(mapView.annotations!)
     }
     func searchBarConfig(){
         searchBar.delegate = self
@@ -93,7 +108,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     func centerOnUser(){
         
         mapView.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
-        mapView.showsUserLocation = true
+        //mapView.showsUserLocation = true
     }
     //Objetivo: mover a camera para as coordenadas informadas com o zoom imformado
     func centerOnPoint(latitude:Double,longitude:Double,zoomLevel:Double){
@@ -246,6 +261,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
                     
                     
                     self.reports.append(reportAtt)
+                    self.addPin(new: reportAtt)
                     
                 }
                 

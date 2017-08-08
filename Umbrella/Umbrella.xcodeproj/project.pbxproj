@@ -32,9 +32,10 @@
 		FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */; };
 		FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8671F39127E001E5E51 /* ShowReports.storyboard */; };
 		FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */; };
-		FB60D8B01F39135B001E5E51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8AF1F39135B001E5E51 /* Assets.xcassets */; };
 		FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7998721F2BB516005FC75D /* MapViewDelegate.swift */; };
 		FB7998791F2BBA85005FC75D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7998781F2BBA85005FC75D /* CoreLocation.framework */; };
+		FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */; };
+		FBEFEACD1F3A349100CDC99A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBEFEACC1F3A349100CDC99A /* Assets.xcassets */; };
 		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,9 +69,10 @@
 		FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeReportViewController.swift; sourceTree = "<group>"; };
 		FB60D8671F39127E001E5E51 /* ShowReports.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShowReports.storyboard; sourceTree = "<group>"; };
 		FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowReportsViewController.swift; sourceTree = "<group>"; };
-		FB60D8AF1F39135B001E5E51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Umbrella/Assets.xcassets; sourceTree = "<group>"; };
 		FB7998721F2BB516005FC75D /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998781F2BBA85005FC75D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgressionPinAnnotationView.swift; sourceTree = "<group>"; };
+		FBEFEACC1F3A349100CDC99A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Umbrella/Assets.xcassets; sourceTree = "<group>"; };
 		FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 		FBF3C18E1F30F84B00E2F578 /* LFHeatMapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LFHeatMapHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,8 +102,8 @@
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
+				FBEFEACC1F3A349100CDC99A /* Assets.xcassets */,
 				FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */,
-				FB60D8AF1F39135B001E5E51 /* Assets.xcassets */,
 				FB60D8601F39127E001E5E51 /* FirebaseManager.swift */,
 				D4B1E4001F2A78CF00308ABB /* Umbrella */,
 				D4B1E41A1F2A795000308ABB /* Others */,
@@ -222,12 +224,13 @@
 			children = (
 				D4B1E4281F2A96D200308ABB /* Map.storyboard */,
 				D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */,
+				FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */,
 				FB7998721F2BB516005FC75D /* MapViewDelegate.swift */,
 				FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */,
 				FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */,
 				FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */,
 				FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */,
-				FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */,
+				FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -276,7 +279,7 @@
 				TargetAttributes = {
 					D4B1E3FD1F2A78CF00308ABB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 7CN8A9X5L6;
+						DevelopmentTeam = H6LU9H3DMX;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -308,11 +311,11 @@
 				D4B1E41F1F2A919900308ABB /* TabBar.storyboard in Resources */,
 				D4B1E40C1F2A78CF00308ABB /* LaunchScreen.storyboard in Resources */,
 				D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */,
+				FBEFEACD1F3A349100CDC99A /* Assets.xcassets in Resources */,
 				D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */,
 				FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */,
 				FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */,
 				FB3734101F3914E400FB3213 /* GoogleService-Info.plist in Resources */,
-				FB60D8B01F39135B001E5E51 /* Assets.xcassets in Resources */,
 				FB60D86F1F39127E001E5E51 /* SeeReport.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,6 +384,7 @@
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
+				FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */,
 				FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
 				FB60D86E1F39127E001E5E51 /* Report.swift in Sources */,
@@ -512,7 +516,7 @@
 			baseConfigurationReference = 42219E97875697CC28DC2A0D /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7CN8A9X5L6;
+				DEVELOPMENT_TEAM = H6LU9H3DMX;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;
@@ -527,7 +531,7 @@
 			baseConfigurationReference = C7A82209A491E5087B8A7EDC /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7CN8A9X5L6;
+				DEVELOPMENT_TEAM = H6LU9H3DMX;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;

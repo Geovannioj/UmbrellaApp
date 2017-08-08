@@ -1,15 +1,15 @@
 //
-//  CustomUserLocationView.swift
+//  AgressionPinAnnotationView.swift
 //  Umbrella
 //
-//  Created by Eduardo Pereira on 04/08/17.
+//  Created by Eduardo Pereira on 08/08/17.
 //  Copyright © 2017 Geovanni Oliveira de Jesus. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import Mapbox
 
- class CustomUserLocationView: MGLUserLocationAnnotationView {
+ class AgressionPinAnnotationView: MGLUserLocationAnnotationView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
     }
@@ -32,8 +32,8 @@ import Mapbox
         layer.contentsGravity = kCAGravityCenter
         
         // Use your image here
-        layer.contents = UIImage(named: "UserIndicator")?.cgImage
+        layer.contents = UIImage(named: "indicador_crime")?.cgImage
         
     }
-
+    
 }
