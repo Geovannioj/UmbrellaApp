@@ -13,7 +13,11 @@ import MapboxGeocoder
 import GoogleMobileAds
 import Firebase
 class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
+    @IBOutlet weak var msgsButton: UIButton!
+    @IBOutlet weak var reportButton: UIButton!
+    @IBOutlet weak var perfilButton: UIButton!
     
+    @IBOutlet weak var expandButton: UIButton!
     @IBOutlet weak var filterTable: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -22,6 +26,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     var reports: [Report] = []
     var refReports : DatabaseReference!
     var reportToSend:Report?
+    
+    var msgCenter:CGPoint = CGPoint()
+    var perfilCenter:CGPoint = CGPoint()
+    var reportCenter:CGPoint = CGPoint()
     
     @IBOutlet weak var bannerView: GADBannerView!
    // var mapDelegate = MapViewDelegate()
@@ -33,6 +41,20 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var searchTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.msgCenter = msgsButton.center
+        self.perfilCenter = perfilButton.center
+        self.reportCenter = reportButton.center
+        
+        self.perfilButton.center = self.expandButton.center
+        self.perfilButton.alpha = 0
+        
+        self.reportButton.center = self.expandButton.center
+        self.reportButton.alpha = 0
+        
+        self.msgsButton.center = self.expandButton.center
+        self.msgsButton.alpha = 0
+        
         // utilizado para apps em desenvolvimento para teste.Sem isso a conta pode ser banina.
         self.refReports =  Database.database().reference().child("reports")
         setObserverToFireBaseChanges()
@@ -67,6 +89,39 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        // searchBar.barTintColor = UIColor.clear
+        
+    }
+    func hideButtons(){
+        UIView.animate(withDuration: 1, animations:{
+            
+            self.perfilButton.center = self.expandButton.center
+            self.perfilButton.alpha = 0
+           
+            self.reportButton.center = self.expandButton.center
+            self.reportButton.alpha = 0
+           
+            self.msgsButton.center = self.expandButton.center
+            self.msgsButton.alpha = 0
+            
+            
+            }, completion: nil)
+        
+        
+    }
+    func showButtons(){
+        UIView.animate(withDuration: 1, animations:{
+            
+            self.perfilButton.center = self.perfilCenter
+            self.perfilButton.alpha = 1
+            
+            self.reportButton.center = self.reportCenter
+            self.reportButton.alpha = 1
+            
+            self.msgsButton.center = self.msgCenter
+            self.msgsButton.alpha = 1
+            
+            
+        }, completion: nil)
         
     }
     func addPin(new:Report){
@@ -217,6 +272,15 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
+    @IBAction func expandAction(_ sender: UIButton) {
+        if !sender.isSelected {
+            showButtons()
+            sender.isSelected = true
+        }else{
+            hideButtons()
+            sender.isSelected = false
+        }
+    }
    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
       

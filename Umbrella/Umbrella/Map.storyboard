@@ -25,22 +25,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAZ-Iw-YaG" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p29-0M-cOK">
-                                        <rect key="frame" x="128" y="301" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="AddCenter"/>
-                                        <connections>
-                                            <action selector="addCenterAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="dvO-d1-LEn"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhE-On-wyu">
-                                        <rect key="frame" x="39" y="301" width="63" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="HeatMap"/>
-                                        <connections>
-                                            <action selector="heatMapButton:" destination="bb1-H1-beB" eventType="touchUpInside" id="hq1-qj-yxh"/>
-                                        </connections>
-                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="8WG-Gb-tnC">
                                         <rect key="frame" x="6.5" y="19" width="362.5" height="127"/>
                                         <subviews>
@@ -86,14 +70,6 @@
                                         <rect key="frame" x="0.0" y="553" width="375" height="113.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oO2-0R-k1A">
-                                        <rect key="frame" x="262" y="300" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Pin"/>
-                                        <connections>
-                                            <action selector="pinAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="5hh-fJ-clo"/>
-                                        </connections>
-                                    </button>
                                     <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="27" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZqN-dd-ZCS">
                                         <rect key="frame" x="44" y="53" width="287" height="132"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,6 +103,24 @@
                                             <segue destination="gMT-Gf-mW6" kind="embed" id="xTw-iK-GzZ"/>
                                         </connections>
                                     </containerView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-0y-izz">
+                                        <rect key="frame" x="59" y="477" width="69" height="72"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="msgIcon"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-lB-8Y0">
+                                        <rect key="frame" x="257" y="477" width="57" height="72"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="perfilIcon1"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-hR-1ty">
+                                        <rect key="frame" x="155" y="393" width="65" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="reportIcon"/>
+                                        <connections>
+                                            <segue destination="Qkr-UP-DA5" kind="show" id="BZ4-pX-ogP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.78473385612414526" green="0.97203450289587945" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -142,12 +136,13 @@
                                     <constraint firstItem="Czp-Ie-uU2" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="xol-jj-3eJ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-hR-1ty">
-                                <rect key="frame" x="148" y="511" width="78" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3i-dk-FUm">
+                                <rect key="frame" x="154" y="475" width="66" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Report"/>
+                                <state key="normal" image="expandIcon"/>
+                                <state key="selected" image="expandIconDeselected"/>
                                 <connections>
-                                    <segue destination="Qkr-UP-DA5" kind="show" id="BZ4-pX-ogP"/>
+                                    <action selector="expandAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="u4a-gz-Wz1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -166,8 +161,12 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bannerView" destination="Czp-Ie-uU2" id="5l1-40-MWU"/>
+                        <outlet property="expandButton" destination="Y3i-dk-FUm" id="VVt-zV-nJi"/>
                         <outlet property="filterTable" destination="fTm-dJ-jUz" id="gsY-5I-55X"/>
                         <outlet property="mapView" destination="BAZ-Iw-YaG" id="Ewc-mu-H4Q"/>
+                        <outlet property="msgsButton" destination="CZU-0y-izz" id="QeS-qc-f5z"/>
+                        <outlet property="perfilButton" destination="Ige-lB-8Y0" id="swK-Td-V4p"/>
+                        <outlet property="reportButton" destination="SUe-hR-1ty" id="ZaK-x9-Xg2"/>
                         <outlet property="searchBar" destination="5Pq-8k-jmZ" id="tuH-Xs-Y4S"/>
                         <outlet property="searchTableView" destination="ZqN-dd-ZCS" id="Ltm-d3-0KT"/>
                     </connections>
@@ -352,8 +351,13 @@
         <image name="FIlterButton" width="252" height="44"/>
         <image name="PerfilIcon" width="25" height="25"/>
         <image name="ReturnIcon" width="21" height="24"/>
+        <image name="expandIcon" width="60" height="60"/>
+        <image name="expandIconDeselected" width="46" height="46"/>
         <image name="filterIcon" width="17" height="16"/>
         <image name="localizacaoIcon" width="19" height="18"/>
         <image name="mapnav" width="39" height="83"/>
+        <image name="msgIcon" width="69" height="72"/>
+        <image name="perfilIcon1" width="57" height="72"/>
+        <image name="reportIcon" width="65" height="70"/>
     </resources>
 </document>
