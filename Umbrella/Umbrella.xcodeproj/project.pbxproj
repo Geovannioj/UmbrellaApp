@@ -31,7 +31,6 @@
 		FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */; };
 		FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8671F39127E001E5E51 /* ShowReports.storyboard */; };
 		FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */; };
-		FB60D8B01F39135B001E5E51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8AF1F39135B001E5E51 /* Assets.xcassets */; };
 		FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7998721F2BB516005FC75D /* MapViewDelegate.swift */; };
 		FB7998791F2BBA85005FC75D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7998781F2BBA85005FC75D /* CoreLocation.framework */; };
 		FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */; };
@@ -67,7 +66,6 @@
 		FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeReportViewController.swift; sourceTree = "<group>"; };
 		FB60D8671F39127E001E5E51 /* ShowReports.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShowReports.storyboard; sourceTree = "<group>"; };
 		FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowReportsViewController.swift; sourceTree = "<group>"; };
-		FB60D8AF1F39135B001E5E51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Umbrella/Assets.xcassets; sourceTree = "<group>"; };
 		FB7998721F2BB516005FC75D /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998781F2BBA85005FC75D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgressionPinAnnotationView.swift; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */,
-				FB60D8AF1F39135B001E5E51 /* Assets.xcassets */,
 				FB60D8601F39127E001E5E51 /* FirebaseManager.swift */,
 				D4B1E4001F2A78CF00308ABB /* Umbrella */,
 				D4B1E41A1F2A795000308ABB /* Others */,
@@ -312,7 +309,6 @@
 				FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */,
 				FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */,
 				FB3734101F3914E400FB3213 /* GoogleService-Info.plist in Resources */,
-				FB60D8B01F39135B001E5E51 /* Assets.xcassets in Resources */,
 				FB60D86F1F39127E001E5E51 /* SeeReport.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
