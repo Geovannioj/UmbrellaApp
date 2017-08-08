@@ -19,11 +19,15 @@ class SeeReportViewController: UIViewController {
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var violanceLocation: MGLMapView!
     @IBOutlet weak var violenceAproximateTime: UILabel!
-    
     @IBOutlet weak var violenceDescription: UITextView!
-    var report:Report?
+    @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var deleteBtn: UIButton!
     
+    var report:Report?
+    let map = MapViewController()
+    var refReports: DatabaseReference!
     override func viewDidLoad() {
+        self.refReports =  Database.database().reference().child("reports")
         super.viewDidLoad()
         
         initLabels()
@@ -77,9 +81,6 @@ class SeeReportViewController: UIViewController {
     }
 
     
-//    @IBAction func backAction(_ sender: Any) {
-//        performSegue(withIdentifier: "back", sender: Any?.self)
-//    }
     
     @IBAction func editReport(_ sender: Any) {
         performSegue(withIdentifier: "editReport", sender: Any?.self)
@@ -87,5 +88,39 @@ class SeeReportViewController: UIViewController {
     
     @IBAction func deleteReport(_ sender: Any) {
         
+        let deleteWarning = UIAlertController(title: "Delete",
+                                              message: "Are you sure you want to delete it?",
+                                              preferredStyle: .alert)
+        deleteWarning.addAction(UIAlertAction(title: "Delete", style: .destructive,
+                                              handler: { (action) in
+                                                
+                                                let reportToDelete = self.report?.id
+                                                self.map.reports.remove(at: self.getReportIndexInArray(report: self.report!))
+                                                self.refReports.child(reportToDelete!).setValue(nil)
+        }))
+        
+        
+        deleteWarning.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel,
+                                              handler:nil))
+        
+        self.present(deleteWarning, animated: true, completion: nil)
+
     }
+    
+    func getReportIndexInArray(report: Report) -> Int {
+        
+        var counter = 0
+        
+        for report in self.map.reports {
+            if report.id == self.map.reports[counter].id {
+                return counter
+            } else {
+                counter += 1
+            }
+            
+        }
+        //if there is an error it will crash because the report was not found and a negative value was returned 
+        return -1
+    }
+
 }

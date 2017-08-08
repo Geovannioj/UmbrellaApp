@@ -19,6 +19,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     @IBOutlet weak var violenceDescription: UITextView!
     @IBOutlet weak var violenceKind: UIPickerView!
     @IBOutlet weak var personIdentification: UIPickerView!
+    @IBOutlet weak var addBtn: UIButton!
     
     //options to the picker view
     let violenceKindArray = ["Verbal","Física","Moral","Psicológica","Sexual"]
@@ -109,11 +110,11 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         if (self.reportToEdit != nil) {
             
             editReport(reportToEdit: self.reportToEdit!)
-            self.navigationController?.popToRootViewController(animated: true)
+            performSegue(withIdentifier: "backToMap", sender: Any.self)
         }else {
             
             addReport()
-            self.navigationController?.popToRootViewController(animated: true)
+            performSegue(withIdentifier: "backToMap", sender: Any.self)
         }
         
     }
@@ -124,6 +125,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         self.violenceKind.selectRow(getViolenceKind(report: self.reportToEdit!),
                                     inComponent: 0,
                                     animated: true)
+        self.addBtn.setTitle("Salvar alteração", for: .normal)
         
     }
 
@@ -157,22 +159,16 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     func editReport(reportToEdit: Report){
         
-                let title = self.violenceTitle
-                let description = self.violenceDescription.text
-                let violenceKind = self.violenceKindChosen
-                let violenceAproximatedTime = self.aproximatedTime
-                let latitude = self.latitude
-                let longitude = self.longitude
-        
                 let report =  [
                     "id" : reportToEdit.id,
                     "userId" : reportToEdit.userId,
-                    "title" : title,
-                    "description" : description,
-                    "violenceKind" : violenceKind,
-                    "violenceAproximatedTime" : violenceAproximatedTime,
-                    "latitude" : latitude,
-                    "longitude" : longitude
+                    "title" : self.violenceTitle,
+                    "description" : self.violenceDescription.text,
+                    "violenceKind" : self.violenceKindChosen,
+                    "violenceAproximatedTime" : self.aproximatedTime,
+                    "personGender": self.personIdentificationChosen,
+                    "latitude" : self.latitude,
+                    "longitude" : self.longitude
                 ] as [String : Any]
         
                 self.refReports.child(reportToEdit.id).setValue(report)

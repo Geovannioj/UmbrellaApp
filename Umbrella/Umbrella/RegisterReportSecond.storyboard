@@ -62,7 +62,7 @@
                                     <action selector="registerAction:" destination="yfv-7J-pWA" eventType="touchUpInside" id="15S-rb-xbH"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" text="aaa" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HII-57-waJ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HII-57-waJ">
                                 <rect key="frame" x="16" y="389" width="288" height="96"/>
                                 <color key="backgroundColor" red="0.97043543781725883" green="0.97043543781725883" blue="0.97043543781725883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -102,12 +102,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addBtn" destination="U75-lA-nOf" id="IvC-Rt-wXG"/>
                         <outlet property="descriptionLbl" destination="UZG-8T-Ipb" id="NFY-nE-757"/>
                         <outlet property="personIdentification" destination="2MF-mX-EG6" id="Gaw-f8-HgZ"/>
                         <outlet property="personIdentificationLbl" destination="E7J-yy-oNL" id="gM7-9p-Sip"/>
                         <outlet property="violenceAgressionLbl" destination="NKU-hd-yRm" id="ra8-p3-8mq"/>
                         <outlet property="violenceDescription" destination="HII-57-waJ" id="ZGH-cP-TnZ"/>
                         <outlet property="violenceKind" destination="3dP-XG-rJ0" id="gOQ-OQ-1SQ"/>
+                        <segue destination="Tfa-wt-080" kind="show" identifier="backToMap" id="Elq-kz-O7s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bks-1z-FRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -120,7 +122,15 @@
                 <viewControllerPlaceholder storyboardName="RegisterReportFirst" referencedIdentifier="RegisterReportViewController" id="mmc-tt-cG5" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSv-cx-pyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773" y="73"/>
+            <point key="canvasLocation" x="829" y="50"/>
+        </scene>
+        <!--MapView-->
+        <scene sceneID="aDn-ka-xWK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Map" referencedIdentifier="MapView" id="Tfa-wt-080" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4bj-B5-aSz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="710" y="102"/>
         </scene>
     </scenes>
 </document>

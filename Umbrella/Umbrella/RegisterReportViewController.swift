@@ -106,7 +106,7 @@ class RegisterReportViewController: UIViewController  {
 
             let imageView = UIImageView(image: image)
             
-            imageView.center = CGPoint(x: (violenceLocation.center.x + 16), y: (violenceLocation.center.y + imageView.frame.height/2))
+            imageView.center = CGPoint(x: (violenceLocation.center.x), y: (violenceLocation.center.y ))
             imageView.restorationIdentifier = "pinPoint"
             self.view.addSubview(imageView)
         //}
