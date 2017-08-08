@@ -21,6 +21,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var filterTable: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var verticalStackButtons: UIStackView!
     let image = UIImage(named: "CustomLocationPIN")
     var locationManager = CLLocationManager()
     var reports: [Report] = []
@@ -93,11 +94,13 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     func hideButtons(){
         UIView.animate(withDuration: 1, animations:{
-            
+//            self.expandButton.isSelected = false
+            self.verticalStackButtons.spacing = 0
+           
             self.perfilButton.center = self.expandButton.center
             self.perfilButton.alpha = 0
            
-            self.reportButton.center = self.expandButton.center
+           // self.reportButton.center = self.expandButton.center
             self.reportButton.alpha = 0
            
             self.msgsButton.center = self.expandButton.center
@@ -109,12 +112,15 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     func showButtons(){
+      self.view.layoutIfNeeded()
         UIView.animate(withDuration: 1, animations:{
+            //self.expandButton.isSelected = true
             
             self.perfilButton.center = self.perfilCenter
             self.perfilButton.alpha = 1
             
-            self.reportButton.center = self.reportCenter
+            self.verticalStackButtons.spacing = 28
+           // self.reportButton.center = self.reportCenter
             self.reportButton.alpha = 1
             
             self.msgsButton.center = self.msgCenter
