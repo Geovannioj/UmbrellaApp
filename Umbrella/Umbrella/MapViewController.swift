@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class MapViewController: UIViewController {
     override func viewDidLoad() {
@@ -37,8 +38,15 @@ class MapViewController: UIViewController {
 //        })
 
 //        UserInteractor.createUser(nickname: "Geovanni", email: "geovanni@mail.com", password: "123456", birthDate: formatter.date(from: "08/11/1995"), image: #imageLiteral(resourceName: "turn-off"), idMinority: "-KqTAOwPUvqs0f_sbVeP")
-        UserInteractor.connectUser(email: "geovanni@mail.com", password: "123456")
-        UserInteractor.deleteUser()
+        print(KeychainService.loadPassword(service: "Umbrella-Key", account: "geovanni@mail.com") ?? "fadsfg")
+  //      UserInteractor.disconnectUser()
+//        Database.database().isPersistenceEnabled = true
+//        UserInteractor.connectUser(email: "eduardo2222@mail.com", password: "123456")
+//        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: { _ in
+//            print(Auth.auth().currentUser?.uid ?? "dsfsdf")
+
+//            })
+//        UserInteractor.deleteUser()
 //        User.createUser(nickname: "Osmala", email: "osmala@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")
 //        User.createUser(nickname: "Marquinhos", email: "marquinhos@mail.com", password: "123456", age: 21, photo: photo, idMinority: "-KqTAOwPUvqs0f_sbVeP")
         

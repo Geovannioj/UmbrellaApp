@@ -44,7 +44,7 @@ class UserInteractor {
             // Fill an instance of the user with data
             newUser.nickname = nickname
             newUser.email = email
-            newUser.password = password
+            //newUser.password = password
             if birthDate != nil {
                 newUser.birthDate = birthDate!
             }
@@ -58,9 +58,13 @@ class UserInteractor {
                     // Add user to local database
                     SaveManager.instance.create(newUser)
                     
+                    // Add user to firebase
                     userRef.setValue(newUser.toAnyObject())
                 })
             }
+            
+            // Save the password on the keychain
+            KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
  
             connectUser(email: email, password: password)
             
@@ -177,7 +181,7 @@ class UserInteractor {
      Updates the current connected user's nickname
      - parameter nickname: new user's nickname
      */
-    static func updateUser(nickname: String) {
+    static func updateCurrentUser(nickname: String) {
         if let userId = Auth.auth().currentUser?.uid {
             
             let userRef = Database.database().reference().child("user").child(userId)
@@ -199,7 +203,7 @@ class UserInteractor {
      Updates the current connected user's photo
      - parameter nickname: new user's photo url
      */
-    static func updateUser(urlPhoto: String) {
+    static func updateCurrentUser(urlPhoto: String) {
         if let userId = Auth.auth().currentUser?.uid {
             
             let userRef = Database.database().reference().child("user").child(userId)
@@ -221,7 +225,7 @@ class UserInteractor {
      Updates the current connected user's birth date
      - parameter nickname: new user's birth date
      */
-    static func updateUser(birthDate: Date) {
+    static func updateCurrentUser(birthDate: Date) {
         if let userId = Auth.auth().currentUser?.uid {
         
             let userRef = Database.database().reference().child("user").child(userId)
@@ -245,7 +249,7 @@ class UserInteractor {
      Updates the current connected user's minority
      - parameter nickname: new user's minority id
      */
-    static func updateUser(idMinority: String) {
+    static func updateCurrentUser(idMinority: String) {
         if let userId = Auth.auth().currentUser?.uid {
 
             let userRef = Database.database().reference().child("user").child(userId)
@@ -265,31 +269,9 @@ class UserInteractor {
     }
     
     // -FIXME: Not working
-//    static func updateUser(id: String, password: String) {
-//        let userRef = Database.database().reference().child("user").child(id)
-//        let user = User()
-//        user.id = id
-//        user.password = password
-//        
-//        userRef.observe(.value, with: { (snapshot) in
-//            
-//            let userDic = snapshot.value as! [String : Any]
-//            user.email = userDic["email"] as! String
-//            user.nickname = userDic["nickname"] as! String
-//            user.age = userDic["age"] as! Int
-//            user.idPhoto = userDic["idPhoto"] as? String
-//            user.idMinority = userDic["idMinority"] as? String
-//        })
-//        
-//        userRef.updateChildValues(user.toAnyObject() as! [AnyHashable : Any])
-//        
-//        let userRealm = AppRealm.instance.objects(User.self).filter("id == %s", id).first
-//        
-//        try! AppRealm.instance.write {
-//            userRealm?.password = password
-//        }
-//    }
-    
+    static func updateUser(password: String) {
+        
+    }
 
     /**
      Deletes the current user logged in.
@@ -306,6 +288,8 @@ class UserInteractor {
                     let userRef = Database.database().reference().child("user").child(userId)
                     PhotoInteractor.deleteUserPhoto()
                     userRef.removeValue()
+                    
+                    KeychainService.removePassword(service: "Umbrella-Key", account: userId)
                     
                     if let user = SaveManager.realm.objects(User.self).filter("id == %s", userId).first {
                         

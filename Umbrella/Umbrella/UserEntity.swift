@@ -13,7 +13,7 @@ class User: Object {
     dynamic var id = ""
     dynamic var nickname = ""
     dynamic var email = ""
-    dynamic var password = ""
+    //dynamic var password = ""
     dynamic var birthDate: Date? = nil
     dynamic var urlPhoto: String? = nil
     dynamic var idMinority: String? = nil

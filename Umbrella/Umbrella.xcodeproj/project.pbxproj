@@ -10,6 +10,7 @@
 		012D6F8A0A5AFB8F63835AE5 /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FDDCB502693F2472FFFCF /* Pods_Umbrella.framework */; };
 		9E1A21761F33C67F00D53E16 /* UIImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1A21751F33C67F00D53E16 /* UIImageHandler.swift */; };
 		9E1A21781F33D80500D53E16 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1A21771F33D80500D53E16 /* SaveManager.swift */; };
+		9E2D830D1F3A38C5000FF593 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D830C1F3A38C5000FF593 /* Keychain.swift */; };
 		9ECE54DC1F2BBAD90035913B /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DB1F2BBAD90035913B /* UserEntity.swift */; };
 		9ECE54DE1F2BBCB30035913B /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DD1F2BBCB30035913B /* PhotoEntity.swift */; };
 		9ECE54E01F2BBCC80035913B /* MinorityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DF1F2BBCC80035913B /* MinorityEntity.swift */; };
@@ -39,6 +40,7 @@
 		80FDEC28595ABF030E25AE4C /* Pods-Umbrella.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.release.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.release.xcconfig"; sourceTree = "<group>"; };
 		9E1A21751F33C67F00D53E16 /* UIImageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageHandler.swift; sourceTree = "<group>"; };
 		9E1A21771F33D80500D53E16 /* SaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
+		9E2D830C1F3A38C5000FF593 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		9ECE54DB1F2BBAD90035913B /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		9ECE54DD1F2BBCB30035913B /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntity.swift; sourceTree = "<group>"; };
 		9ECE54DF1F2BBCC80035913B /* MinorityEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinorityEntity.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				9E1A21751F33C67F00D53E16 /* UIImageHandler.swift */,
 				9E1A21771F33D80500D53E16 /* SaveManager.swift */,
+				9E2D830C1F3A38C5000FF593 /* Keychain.swift */,
 			);
 			name = SaveManager;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				9ECE54E71F2BC2850035913B /* UserInteractor.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				9ECE54EC1F2BEA760035913B /* FirebaseManager.swift in Sources */,
+				9E2D830D1F3A38C5000FF593 /* Keychain.swift in Sources */,
 				9E1A21781F33D80500D53E16 /* SaveManager.swift in Sources */,
 				9ECE54F21F2FB4EA0035913B /* MinorityInterector.swift in Sources */,
 				9ECE54F01F2FAC0A0035913B /* PhotoInteractor.swift in Sources */,
