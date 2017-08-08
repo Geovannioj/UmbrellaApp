@@ -54,7 +54,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         self.violenceAgressionLbl.setValue(UIColor.white, forKey: "textColor")
         self.descriptionLbl.setValue(UIColor.white, forKey: "textColor")
         self.personIdentificationLbl.setValue(UIColor.white, forKey: "textColor")

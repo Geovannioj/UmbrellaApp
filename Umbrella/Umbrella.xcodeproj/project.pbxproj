@@ -58,14 +58,14 @@
 		FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewControlleTableViewController.swift; sourceTree = "<group>"; };
 		FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUserLocationView.swift; path = Umbrella/CustomUserLocationView.swift; sourceTree = "<group>"; };
 		FB60D8601F39127E001E5E51 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseManager.swift; path = Umbrella/FirebaseManager.swift; sourceTree = "<group>"; };
-		FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RegisterReportFirst.storyboard; path = Umbrella/RegisterReportFirst.storyboard; sourceTree = "<group>"; };
-		FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RegisterReportSecond.storyboard; path = Umbrella/RegisterReportSecond.storyboard; sourceTree = "<group>"; };
-		FB60D8631F39127E001E5E51 /* RegisterReportSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterReportSecondViewController.swift; path = Umbrella/RegisterReportSecondViewController.swift; sourceTree = "<group>"; };
-		FB60D8641F39127E001E5E51 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Report.swift; path = Umbrella/Report.swift; sourceTree = "<group>"; };
-		FB60D8651F39127E001E5E51 /* SeeReport.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SeeReport.storyboard; path = Umbrella/SeeReport.storyboard; sourceTree = "<group>"; };
-		FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeReportViewController.swift; path = Umbrella/SeeReportViewController.swift; sourceTree = "<group>"; };
-		FB60D8671F39127E001E5E51 /* ShowReports.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ShowReports.storyboard; path = Umbrella/ShowReports.storyboard; sourceTree = "<group>"; };
-		FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowReportsViewController.swift; path = Umbrella/ShowReportsViewController.swift; sourceTree = "<group>"; };
+		FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterReportFirst.storyboard; sourceTree = "<group>"; };
+		FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterReportSecond.storyboard; sourceTree = "<group>"; };
+		FB60D8631F39127E001E5E51 /* RegisterReportSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportSecondViewController.swift; sourceTree = "<group>"; };
+		FB60D8641F39127E001E5E51 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		FB60D8651F39127E001E5E51 /* SeeReport.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SeeReport.storyboard; sourceTree = "<group>"; };
+		FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeReportViewController.swift; sourceTree = "<group>"; };
+		FB60D8671F39127E001E5E51 /* ShowReports.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShowReports.storyboard; sourceTree = "<group>"; };
+		FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowReportsViewController.swift; sourceTree = "<group>"; };
 		FB60D8AF1F39135B001E5E51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Umbrella/Assets.xcassets; sourceTree = "<group>"; };
 		FB7998721F2BB516005FC75D /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998781F2BBA85005FC75D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -102,14 +102,6 @@
 				FB60D8AF1F39135B001E5E51 /* Assets.xcassets */,
 				FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */,
 				FB60D8601F39127E001E5E51 /* FirebaseManager.swift */,
-				FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */,
-				FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */,
-				FB60D8631F39127E001E5E51 /* RegisterReportSecondViewController.swift */,
-				FB60D8641F39127E001E5E51 /* Report.swift */,
-				FB60D8651F39127E001E5E51 /* SeeReport.storyboard */,
-				FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */,
-				FB60D8671F39127E001E5E51 /* ShowReports.storyboard */,
-				FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */,
 				D4B1E4001F2A78CF00308ABB /* Umbrella */,
 				D4B1E41A1F2A795000308ABB /* Others */,
 				D4B1E3FF1F2A78CF00308ABB /* Products */,
@@ -175,6 +167,7 @@
 		D4B1E4191F2A793E00308ABB /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				FB60D8641F39127E001E5E51 /* Report.swift */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -210,7 +203,14 @@
 		D4B1E4221F2A93CC00308ABB /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */,
 				D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */,
+				FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */,
+				FB60D8631F39127E001E5E51 /* RegisterReportSecondViewController.swift */,
+				FB60D8651F39127E001E5E51 /* SeeReport.storyboard */,
+				FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */,
+				FB60D8671F39127E001E5E51 /* ShowReports.storyboard */,
+				FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */,
 			);
 			name = Report;
 			sourceTree = "<group>";
@@ -273,7 +273,7 @@
 				TargetAttributes = {
 					D4B1E3FD1F2A78CF00308ABB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = H6LU9H3DMX;
+						DevelopmentTeam = 7CN8A9X5L6;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -508,7 +508,7 @@
 			baseConfigurationReference = 42219E97875697CC28DC2A0D /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H6LU9H3DMX;
+				DEVELOPMENT_TEAM = 7CN8A9X5L6;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;
@@ -523,7 +523,7 @@
 			baseConfigurationReference = C7A82209A491E5087B8A7EDC /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H6LU9H3DMX;
+				DEVELOPMENT_TEAM = 7CN8A9X5L6;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;

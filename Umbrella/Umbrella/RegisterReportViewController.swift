@@ -24,8 +24,8 @@ class RegisterReportViewController: UIViewController  {
     
     //Mark: acessories
     let locationManager = CLLocationManager()
-    var reportLatitude = Double()
-    var reportLongitude = Double()
+    var reportLatitude: Double = 0.0
+    var reportLongitude: Double = 0.0
     
     var reportToEdit : Report?
     
@@ -34,12 +34,12 @@ class RegisterReportViewController: UIViewController  {
         super.viewDidLoad()
         
         self.violenceAproximatedTime.setValue(UIColor.white, forKeyPath: "textColor")
-        getLocation(image: UIImage(named: "Shape")!)
+        centerCamera(image: UIImage(named: "CustomLocationPIN")!)
         if (reportToEdit != nil) {
             initFieldsToEdit()
         }
         
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
 
         
         
@@ -57,7 +57,9 @@ class RegisterReportViewController: UIViewController  {
     @IBAction func ChangeScreenAction(_ sender: Any) {
         
         if (self.violenceTitle != nil && self.violenceAproximatedTime.date <= Date()) {
-            
+            getLocation()
+            print(self.reportLongitude)
+            print(self.reportLatitude)
             performSegue(withIdentifier: "goToSecondRegisterView", sender: Any.self)
         
         }else {
@@ -80,10 +82,11 @@ class RegisterReportViewController: UIViewController  {
         }
     }
     
-    
-    func getLocation (image:UIImage) {
-      violenceLocation.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
+    func centerCamera(image: UIImage) {
+        
+        violenceLocation.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
         violenceLocation.showsUserLocation = true
+
         
         let view = self.view.subviews.first { (i) -> Bool in
             i.restorationIdentifier == "pinPoint"
@@ -98,17 +101,13 @@ class RegisterReportViewController: UIViewController  {
             imageView.restorationIdentifier = "pinPoint"
             self.view.addSubview(imageView)
         }
-
-
-        let reportPin = MGLPointAnnotation()
-        reportPin.coordinate = CLLocationCoordinate2D(latitude: violenceLocation.camera.centerCoordinate.latitude, longitude: violenceLocation.camera.centerCoordinate.longitude)
         
-        violenceLocation.addAnnotation(reportPin)
+    }
+    func getLocation () {
         
         self.reportLatitude = violenceLocation.camera.centerCoordinate.latitude
         self.reportLongitude = violenceLocation.camera.centerCoordinate.longitude
-        print(self.reportLongitude)
-        print(self.reportLatitude)
+        
     }
     
         

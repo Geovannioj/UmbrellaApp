@@ -30,7 +30,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sip-il-GPk">
                                 <rect key="frame" x="16" y="627" width="343" height="30"/>
-                                <color key="backgroundColor" red="0.56701722081357187" green="0.47724462959390473" blue="0.9993547797203064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -38,12 +37,6 @@
                                     <action selector="ChangeScreenAction:" destination="oZm-PX-jcJ" eventType="touchUpInside" id="2Ty-wf-k0L"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titulo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SaX-rj-EKq">
-                                <rect key="frame" x="16" y="40" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mit-TU-DVZ">
                                 <rect key="frame" x="16" y="120" width="343" height="184"/>
                             </mapView>
@@ -59,6 +52,20 @@
                                     <!--2017-07-28 14:59:12 +0000-->
                                 </date>
                             </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-ex-gx3">
+                                <rect key="frame" x="19" y="28" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Voltar"/>
+                                <connections>
+                                    <segue destination="H3k-aP-lbd" kind="show" id="ZRT-K2-Stn"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titulo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SaX-rj-EKq">
+                                <rect key="frame" x="16" y="57" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -73,10 +80,10 @@
                             <constraint firstAttribute="leadingMargin" secondItem="SaX-rj-EKq" secondAttribute="leading" id="f8c-hE-DsD"/>
                             <constraint firstItem="sip-il-GPk" firstAttribute="top" secondItem="y07-oh-lfV" secondAttribute="bottom" constant="37" id="feY-Al-JZj"/>
                             <constraint firstAttribute="leadingMargin" secondItem="mit-TU-DVZ" secondAttribute="leading" id="g9w-2u-6Hc"/>
-                            <constraint firstItem="SaX-rj-EKq" firstAttribute="top" secondItem="bWT-o5-cA1" secondAttribute="bottom" constant="20" id="hj2-tj-WoS"/>
+                            <constraint firstItem="SaX-rj-EKq" firstAttribute="top" secondItem="bWT-o5-cA1" secondAttribute="bottom" constant="37" id="hj2-tj-WoS"/>
                             <constraint firstAttribute="leadingMargin" secondItem="sip-il-GPk" secondAttribute="leading" id="i5Q-Dw-WWt"/>
                             <constraint firstAttribute="leadingMargin" secondItem="6bk-yY-A8n" secondAttribute="leading" id="kq0-6I-cxm"/>
-                            <constraint firstItem="6bk-yY-A8n" firstAttribute="top" secondItem="SaX-rj-EKq" secondAttribute="bottom" constant="21" id="lZS-zC-Nzm"/>
+                            <constraint firstItem="6bk-yY-A8n" firstAttribute="top" secondItem="SaX-rj-EKq" secondAttribute="bottom" constant="4" id="lZS-zC-Nzm"/>
                             <constraint firstItem="HXJ-UK-ohA" firstAttribute="top" secondItem="mit-TU-DVZ" secondAttribute="bottom" constant="21" id="pyV-b8-MTn"/>
                             <constraint firstAttribute="leadingMargin" secondItem="HXJ-UK-ohA" secondAttribute="leading" id="wpv-jh-8Me"/>
                         </constraints>
@@ -102,13 +109,21 @@
             </objects>
             <point key="canvasLocation" x="-76" y="-161"/>
         </scene>
+        <!--MapView-->
+        <scene sceneID="48x-xk-WSa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Map" referencedIdentifier="MapView" id="H3k-aP-lbd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W6N-rB-h7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-789" y="346"/>
+        </scene>
         <!--MapViewController-->
         <scene sceneID="3QU-j9-avk">
             <objects>
                 <viewControllerPlaceholder storyboardName="Map" referencedIdentifier="MapViewController" id="obm-xU-MYz" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwR-5M-wsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-752" y="289"/>
+            <point key="canvasLocation" x="-710" y="291"/>
         </scene>
     </scenes>
 </document>
