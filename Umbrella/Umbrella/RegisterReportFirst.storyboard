@@ -52,10 +52,10 @@
                                     <!--2017-07-28 14:59:12 +0000-->
                                 </date>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-ex-gx3">
-                                <rect key="frame" x="19" y="28" width="41" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-ex-gx3">
+                                <rect key="frame" x="7" y="32" width="18" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Voltar"/>
+                                <state key="normal" image="Combined Shape"/>
                                 <connections>
                                     <segue destination="H3k-aP-lbd" kind="show" id="ZRT-K2-Stn"/>
                                 </connections>
@@ -126,4 +126,7 @@
             <point key="canvasLocation" x="-710" y="291"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Combined Shape" width="18" height="18"/>
+    </resources>
 </document>
