@@ -56,7 +56,7 @@
 		FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Umbrella/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarCellTableViewCell.swift; sourceTree = "<group>"; };
 		FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewControlleTableViewController.swift; sourceTree = "<group>"; };
-		FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUserLocationView.swift; path = Umbrella/CustomUserLocationView.swift; sourceTree = "<group>"; };
+		FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUserLocationView.swift; sourceTree = "<group>"; };
 		FB60D8601F39127E001E5E51 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseManager.swift; path = Umbrella/FirebaseManager.swift; sourceTree = "<group>"; };
 		FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterReportFirst.storyboard; sourceTree = "<group>"; };
 		FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterReportSecond.storyboard; sourceTree = "<group>"; };
@@ -100,7 +100,6 @@
 			children = (
 				FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */,
 				FB60D8AF1F39135B001E5E51 /* Assets.xcassets */,
-				FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */,
 				FB60D8601F39127E001E5E51 /* FirebaseManager.swift */,
 				D4B1E4001F2A78CF00308ABB /* Umbrella */,
 				D4B1E41A1F2A795000308ABB /* Others */,
@@ -220,6 +219,7 @@
 			children = (
 				D4B1E4281F2A96D200308ABB /* Map.storyboard */,
 				D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */,
+				FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */,
 				FB7998721F2BB516005FC75D /* MapViewDelegate.swift */,
 				FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */,
 				FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */,

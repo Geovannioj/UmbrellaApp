@@ -89,7 +89,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     func centerOnUser(){
         
         mapView.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
-        mapView.showsUserLocation = true
+        //mapView.showsUserLocation = true
     }
     //Objetivo: mover a camera para as coordenadas informadas com o zoom imformado
     func centerOnPoint(latitude:Double,longitude:Double,zoomLevel:Double){

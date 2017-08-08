@@ -37,11 +37,12 @@ extension MapViewController : MGLMapViewDelegate {
             
             if userLocationAnnotationView == nil {
                 userLocationAnnotationView = CustomUserLocationView(reuseIdentifier: "CustomUserLocationAnnotationViewIdentifier")
+                userLocationAnnotationView?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
                 
             }
             
             // Optional: You can save the annotation object for later use in your app
-           // self.userLocationAnnotation = annotation
+            // self.userLocationAnnotation = annotation
             
             return userLocationAnnotationView
         }
