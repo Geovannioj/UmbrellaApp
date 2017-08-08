@@ -35,6 +35,7 @@
 		FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7998721F2BB516005FC75D /* MapViewDelegate.swift */; };
 		FB7998791F2BBA85005FC75D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7998781F2BBA85005FC75D /* CoreLocation.framework */; };
 		FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */; };
+		FBEFEACD1F3A349100CDC99A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBEFEACC1F3A349100CDC99A /* Assets.xcassets */; };
 		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		FB7998721F2BB516005FC75D /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998781F2BBA85005FC75D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgressionPinAnnotationView.swift; sourceTree = "<group>"; };
+		FBEFEACC1F3A349100CDC99A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Umbrella/Assets.xcassets; sourceTree = "<group>"; };
 		FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 		FBF3C18E1F30F84B00E2F578 /* LFHeatMapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LFHeatMapHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +102,7 @@
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
+				FBEFEACC1F3A349100CDC99A /* Assets.xcassets */,
 				FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */,
 				FB60D8601F39127E001E5E51 /* FirebaseManager.swift */,
 				D4B1E4001F2A78CF00308ABB /* Umbrella */,
@@ -308,6 +311,7 @@
 				D4B1E41F1F2A919900308ABB /* TabBar.storyboard in Resources */,
 				D4B1E40C1F2A78CF00308ABB /* LaunchScreen.storyboard in Resources */,
 				D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */,
+				FBEFEACD1F3A349100CDC99A /* Assets.xcassets in Resources */,
 				D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */,
 				FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */,
 				FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */,
