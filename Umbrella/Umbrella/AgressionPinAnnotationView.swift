@@ -9,7 +9,7 @@
 import Foundation
 import Mapbox
 
-final class AgressionPinAnnotationView: MGLUserLocationAnnotationView {
+ class AgressionPinAnnotationView: MGLUserLocationAnnotationView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
     }

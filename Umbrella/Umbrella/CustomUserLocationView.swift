@@ -9,7 +9,7 @@
 import UIKit
 import Mapbox
 
-final class CustomUserLocationView: MGLUserLocationAnnotationView {
+ class CustomUserLocationView: MGLUserLocationAnnotationView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
     }
