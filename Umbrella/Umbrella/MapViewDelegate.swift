@@ -45,11 +45,13 @@ extension MapViewController : MGLMapViewDelegate {
             // self.userLocationAnnotation = annotation
             
             return userLocationAnnotationView
+        }else{
+            let agressionAnoTation  = AgressionPinAnnotationView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            return agressionAnoTation
         }
         
         // Customise your annotation view here...
         
-        return nil
     }
     
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
