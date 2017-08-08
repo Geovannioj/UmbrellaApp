@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oZm-PX-jcJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oZm-PX-jcJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +34,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="ChangeScreenAction:" destination="oZm-PX-jcJ" eventType="touchUpInside" id="2Ty-wf-k0L"/>
+                                    <action selector="ChangeScreenAction:" destination="oZm-PX-jcJ" eventType="touchUpInside" id="gIc-lS-kyJ"/>
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mit-TU-DVZ">
@@ -55,10 +55,10 @@
                                     <!--2017-07-28 14:59:12 +0000-->
                                 </date>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-ex-gx3">
-                                <rect key="frame" x="19" y="28" width="41" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-ex-gx3">
+                                <rect key="frame" x="7" y="32" width="18" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Voltar"/>
+                                <state key="normal" image="Combined Shape"/>
                                 <connections>
                                     <segue destination="H3k-aP-lbd" kind="show" id="ZRT-K2-Stn"/>
                                 </connections>
@@ -69,6 +69,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A data não pode estar no futuro!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ak4-VT-hoO">
+                                <rect key="frame" x="36" y="569" width="248" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="O Título deve ser preenchido" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6N5-g7-5r4">
+                                <rect key="frame" x="191" y="91" width="168" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -92,7 +106,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="nexttButton" destination="sip-il-GPk" id="IBG-Iz-fM5"/>
+                        <outlet property="validateDateError" destination="ak4-VT-hoO" id="3ju-hU-yQH"/>
+                        <outlet property="validateTitleError" destination="6N5-g7-5r4" id="ZQp-qb-6g2"/>
                         <outlet property="violenceAproximatedTime" destination="y07-oh-lfV" id="ejc-xy-XT7"/>
                         <outlet property="violenceLocation" destination="mit-TU-DVZ" id="eO0-Ow-Ckc"/>
                         <outlet property="violenceTitle" destination="SaX-rj-EKq" id="30i-Du-ufu"/>
@@ -129,4 +144,7 @@
             <point key="canvasLocation" x="-710" y="291"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Combined Shape" width="18" height="18"/>
+    </resources>
 </document>

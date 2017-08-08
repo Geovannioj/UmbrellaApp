@@ -20,6 +20,8 @@ class RegisterReportViewController: UIViewController  {
     @IBOutlet weak var violenceTitle: UITextField!
     @IBOutlet weak var violenceAproximatedTime: UIDatePicker!
     @IBOutlet weak var nexttButton: UIButton!
+    @IBOutlet weak var validateTitleError: UILabel!
+    @IBOutlet weak var validateDateError: UILabel!
     
     
     //Mark: acessories
@@ -33,17 +35,34 @@ class RegisterReportViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        //setts the collor background to dark purple
+        self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        
+        // it makes the font color of the datePicker turn to white
+        
         self.violenceAproximatedTime.setValue(UIColor.white, forKeyPath: "textColor")
+        
+        //center the camera on the user location
         centerCamera(image: UIImage(named: "indicador_crime")!)
+        
+        //hides the errors labels and turn their font color to white
+        self.validateDateError.isHidden = true
+        self.validateDateError.setValue(UIColor.white, forKey: "textColor")
+        self.validateTitleError.isHidden = true
+        self.validateTitleError.setValue(UIColor.white, forKey: "textColor")
+        
+        
+        //checks if there is a report to edit or a new one to be created
+        
         if (reportToEdit != nil) {
             initFieldsToEdit()
         }
         
-        self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
     }
     
-        
+    //initiates the fields if there is a report to be edited
     func initFieldsToEdit() {
         
         self.violenceTitle.text = reportToEdit?.title
@@ -54,13 +73,15 @@ class RegisterReportViewController: UIViewController  {
       
     @IBAction func ChangeScreenAction(_ sender: Any) {
         
-        if (self.violenceTitle != nil && self.violenceAproximatedTime.date <= Date()) {
+        if (!(self.violenceTitle.text?.isEmpty)! && self.violenceAproximatedTime.date <= Date()) {
+            
             getLocation()
             performSegue(withIdentifier: "goToSecondRegisterView", sender: Any.self)
         
         }else {
             
-            //apresentar labels de validação
+            self.validateDateError.isHidden = false
+            self.validateTitleError.isHidden = false
         
         }
     }
@@ -85,7 +106,7 @@ class RegisterReportViewController: UIViewController  {
 
             let imageView = UIImageView(image: image)
             
-            imageView.center = CGPoint(x: (violenceLocation.center.x + 16), y: (violenceLocation.center.y + imageView.frame.height/2))
+            imageView.center = CGPoint(x: (violenceLocation.center.x), y: (violenceLocation.center.y ))
             imageView.restorationIdentifier = "pinPoint"
             self.view.addSubview(imageView)
         //}
