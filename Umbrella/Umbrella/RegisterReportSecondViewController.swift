@@ -157,25 +157,25 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     func editReport(reportToEdit: Report){
         
-        //        let title = self.violencetitle.text
-        //        let description = self.violenceDescription.text
-        //        let violenceKind = self.violenceKindChosen
-        //        let violenceAproximatedTime = Double(self.violenceAproximatedTime.date.timeIntervalSince1970)
-        //        let latitude = self.violencelatitude.text!
-        //        let longitude = self.violenceLongitude.text!
-        //
-        //        let report =  [
-        //            "id" : reportToEdit.id,
-        //            "userId" : reportToEdit.userId,
-        //            "title" : title,
-        //            "description" : description,
-        //            "violenceKind" : violenceKind,
-        //            "violenceAproximatedTime" : violenceAproximatedTime,
-        //            "latitude" : latitude,
-        //            "longitude" : longitude
-        //        ] as [String : Any]
-        //
-        //        self.refReports.child(reportToEdit.id).setValue(report)
+                let title = self.violenceTitle
+                let description = self.violenceDescription.text
+                let violenceKind = self.violenceKindChosen
+                let violenceAproximatedTime = self.aproximatedTime
+                let latitude = self.latitude
+                let longitude = self.longitude
+        
+                let report =  [
+                    "id" : reportToEdit.id,
+                    "userId" : reportToEdit.userId,
+                    "title" : title,
+                    "description" : description,
+                    "violenceKind" : violenceKind,
+                    "violenceAproximatedTime" : violenceAproximatedTime,
+                    "latitude" : latitude,
+                    "longitude" : longitude
+                ] as [String : Any]
+        
+                self.refReports.child(reportToEdit.id).setValue(report)
         
         let updateMessage = UIAlertController(title: "Report Updated",
                                               message: "This report has been successfully updated",
