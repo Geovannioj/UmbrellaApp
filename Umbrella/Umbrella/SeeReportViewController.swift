@@ -27,14 +27,11 @@ class SeeReportViewController: UIViewController {
         super.viewDidLoad()
         
         initLabels()
+        self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
     }
     
     func initLabels() {
-        
-//        self.descriptionLbl.text = self.report?.description
-//        self.violenceKindLvl.text = self.report?.violenceKind
-        
         self.agression.text = self.report?.violenceKind
         self.violenceDescription.text = self.report?.description
         self.violenceDescription.isEditable = false
@@ -51,7 +48,7 @@ class SeeReportViewController: UIViewController {
         map.setCenter(location, zoomLevel: 13, animated: true)
         
         map.showsUserLocation = false
-
+        
         let annotation = MGLPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: (self.report?.latitude)!, longitude: (self.report?.longitude)! )
         annotation.title = self.report?.title

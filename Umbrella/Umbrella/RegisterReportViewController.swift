@@ -34,14 +34,12 @@ class RegisterReportViewController: UIViewController  {
         super.viewDidLoad()
         
         self.violenceAproximatedTime.setValue(UIColor.white, forKeyPath: "textColor")
-        centerCamera(image: UIImage(named: "CustomLocationPIN")!)
+        centerCamera(image: UIImage(named: "indicador_crime")!)
         if (reportToEdit != nil) {
             initFieldsToEdit()
         }
         
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
-
-        
         
     }
     
@@ -58,8 +56,6 @@ class RegisterReportViewController: UIViewController  {
         
         if (self.violenceTitle != nil && self.violenceAproximatedTime.date <= Date()) {
             getLocation()
-            print(self.reportLongitude)
-            print(self.reportLatitude)
             performSegue(withIdentifier: "goToSecondRegisterView", sender: Any.self)
         
         }else {
@@ -87,20 +83,12 @@ class RegisterReportViewController: UIViewController  {
         violenceLocation.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
         violenceLocation.showsUserLocation = true
 
-        
-        let view = self.view.subviews.first { (i) -> Bool in
-            i.restorationIdentifier == "pinPoint"
-        }
-        if view != nil {
-            view?.removeFromSuperview()
-            
-        }else{
             let imageView = UIImageView(image: image)
             
-            imageView.center = CGPoint(x: violenceLocation.center.x, y: (violenceLocation.center.y - imageView.frame.height/2))
+            imageView.center = CGPoint(x: (violenceLocation.center.x + 16), y: (violenceLocation.center.y + imageView.frame.height/2))
             imageView.restorationIdentifier = "pinPoint"
             self.view.addSubview(imageView)
-        }
+        //}
         
     }
     func getLocation () {
