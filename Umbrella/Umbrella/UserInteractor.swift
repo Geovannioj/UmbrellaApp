@@ -14,7 +14,7 @@ class UserInteractor {
     
     // -TODO: Password cryptography and email validation
     /**
-     Function responsable for creating an authentication for an user and save his data on a server and local database and logs the user in if the operation is successful.
+     Function responsable for creating an authentication for an user and save his data on a server and local database.
      - parameter nickname: user's nickname
      - parameter email: user's email
      - parameter password: user's password
@@ -44,7 +44,6 @@ class UserInteractor {
             // Fill an instance of the user with data
             newUser.nickname = nickname
             newUser.email = email
-            //newUser.password = password
             if birthDate != nil {
                 newUser.birthDate = birthDate!
             }
@@ -65,8 +64,6 @@ class UserInteractor {
             
             // Save the password on the keychain
             KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
- 
-            connectUser(email: email, password: password)
             
         }
     }
@@ -80,7 +77,7 @@ class UserInteractor {
     }
     
     /**
-     Verifies if there's an user online on the device.
+     Verifies if the device is connected to the firebase.
      - parameter completion: returns true if there's an user connected or false if there is not
      */
     static func isUserOnline(completion: @escaping (Bool) -> ()) {
@@ -268,10 +265,13 @@ class UserInteractor {
         }
     }
     
-    // -FIXME: Not working
-    static func updateUser(password: String) {
-        
-    }
+    // -TODO: Implement
+//    static func updateCurrentUser(password: String) {
+//        if let userId = Auth.auth().currentUser?.uid {
+//            
+//            
+//        }
+//    }
 
     /**
      Deletes the current user logged in.
@@ -304,12 +304,49 @@ class UserInteractor {
     
     // -TODO: give access to all funccionalities of the app
     /**
+     Try to login the user online or offline
+     - parameter email: user's email
+     - parameter password: user's password
+     - parameter completion: returns the state of connection of the user
+     */
+    static func connectUser(email: String, password: String, completion: @escaping (Bool) -> ()) {
+        UserInteractor.isUserOnline(completion: { (connected) -> () in
+            var logged = false
+            
+            if connected == true {
+                UserInteractor.connectUserOnline(email: email, password: password)
+                
+            } else {
+                logged = UserInteractor.connectUserOffline(email: email, password: password)
+            }
+            
+            completion(logged)
+        })
+    }
+    
+    /**
      Connects an user to the firebase
      - parameter email: user's email
      - parameter password: user's password
      */
-    static func connectUser(email: String, password: String) {
+    private static func connectUserOnline(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password)
+    }
+    
+    /**
+     Connects an user on offline mode if his account was already saved on the device.
+     - parameter email: user's email
+     - parameter password: user's password
+     - returns: true is the user's email and password exist and false if they don't
+     */
+    private static func connectUserOffline(email: String, password: String) -> Bool {
+        if let user = SaveManager.realm.objects(User.self).filter("email == %s", email).first {
+            let pass = KeychainService.loadPassword(service: "Umbrella-Key", account: user.id)
+            if pass == password {
+                return true
+            }
+        }
+        return false
     }
     
     /**

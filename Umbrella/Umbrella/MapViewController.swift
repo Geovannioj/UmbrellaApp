@@ -38,7 +38,10 @@ class MapViewController: UIViewController {
 //        })
 
 //        UserInteractor.createUser(nickname: "Geovanni", email: "geovanni@mail.com", password: "123456", birthDate: formatter.date(from: "08/11/1995"), image: #imageLiteral(resourceName: "turn-off"), idMinority: "-KqTAOwPUvqs0f_sbVeP")
-        print(KeychainService.loadPassword(service: "Umbrella-Key", account: "geovanni@mail.com") ?? "fadsfg")
+        UserInteractor.connectUser(email: "geovanni@mail.com", password: "123456", completion: { (logged) -> () in
+            print(logged)
+        })
+        print(KeychainService.loadPassword(service: "Umbrella-Key", account: (Auth.auth().currentUser?.uid)!) ?? "fadsfg")
   //      UserInteractor.disconnectUser()
 //        Database.database().isPersistenceEnabled = true
 //        UserInteractor.connectUser(email: "eduardo2222@mail.com", password: "123456")

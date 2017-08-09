@@ -48,7 +48,12 @@ class PhotoInteractor {
         }
     }
     
-//    static func getPhotos() -> [Photo] {
+//    static func getUserPhoto() -> Photo {
+//        if let userId = Auth.auth().currentUser?.uid {
+//            
+//        }
+//
+//        
 //        let photoRef = Database.database().reference().child("photo")
 //        var photos = [Photo]()
 //        
@@ -82,7 +87,7 @@ class PhotoInteractor {
         
         deleteUserPhoto()
         createPhoto(image: image, completion: {(urlPhoto) -> () in
-            UserInteractor.updateUser(urlPhoto: urlPhoto!)
+            UserInteractor.updateCurrentUser(urlPhoto: urlPhoto!)
         })
     }
     
@@ -106,7 +111,7 @@ class PhotoInteractor {
                             print(err)
                         }
                         else {
-                            UserInteractor.updateUser(urlPhoto: "")
+                            UserInteractor.updateCurrentUser(urlPhoto: "")
                             
                             let photoRealm = SaveManager.realm.objects(Photo.self).filter("id == %s", idRef).first
                             
