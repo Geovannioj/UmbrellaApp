@@ -12,7 +12,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="r0g-de-PaE">
             <objects>
-                <tabBarController id="0Wm-ra-hfN" sceneMemberID="viewController">
+                <tabBarController id="0Wm-ra-hfN" customClass="TabBarController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="0U0-t4-Gwl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

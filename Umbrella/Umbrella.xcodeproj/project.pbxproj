@@ -124,6 +124,7 @@
 		D4B1E4001F2A78CF00308ABB /* Umbrella */ = {
 			isa = PBXGroup;
 			children = (
+				9ECE54E81F2BCB350035913B /* Umbrella.entitlements */,
 				D4B1E4191F2A793E00308ABB /* Entity */,
 				D4B1E4171F2A790B00308ABB /* Interactor */,
 				D4B1E4161F2A790400308ABB /* Router */,
@@ -163,6 +164,8 @@
 		D4B1E4171F2A790B00308ABB /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				9ECE54E51F2BC26B0035913B /* User */,
+				9ECE54D71F2BB6770035913B /* SaveManager */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -178,6 +181,9 @@
 		D4B1E41A1F2A795000308ABB /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				9ECE54E91F2BEA760035913B /* FirebaseManager.swift */,
+				9ECE54EA1F2BEA760035913B /* GoogleService-Info.plist */,
+				9ECE54EB1F2BEA760035913B /* Report.swift */,
 				D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */,
 				D4B1E40D1F2A78CF00308ABB /* Info.plist */,
 			);
@@ -281,6 +287,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = H6LU9H3DMX;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -381,6 +392,7 @@
 				FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */,
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
+				9ECE54E71F2BC2850035913B /* UserInteractor.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
@@ -393,6 +405,7 @@
 				FB60D8691F39127E001E5E51 /* CustomUserLocationView.swift in Sources */,
 				D41383691F3A26A000384DCC /* RegisterReportDelegate.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
+				9ECE54EE1F2BEA760035913B /* Report.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
