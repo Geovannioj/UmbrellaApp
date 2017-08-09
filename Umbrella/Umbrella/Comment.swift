@@ -14,6 +14,7 @@ class Comment {
     var content : String
     var reportId : String
     var userId : String
+    //colocar imagem do usuário que inseriu o comentário
     
     init(commentId : String, content : String, reportId : String, userId : String) {
         self.commentId = commentId

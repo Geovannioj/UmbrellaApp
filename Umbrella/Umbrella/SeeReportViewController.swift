@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 import Firebase
 import Mapbox
-class SeeReportViewController: UIViewController {
+class SeeReportViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //outlets
     @IBOutlet weak var agression: UILabel!
     @IBOutlet weak var editReportBtn: UIButton!
     @IBOutlet weak var cityName: UILabel!
@@ -22,18 +23,47 @@ class SeeReportViewController: UIViewController {
     @IBOutlet weak var violenceDescription: UITextView!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var commentTextView: UITextView!
     
+    
+    //references
     var report:Report?
     let map = MapViewController()
-    var refReports: DatabaseReference!
+    
+    var refReport: DatabaseReference!
+    var refComment: DatabaseReference!
+    
+    //comments to the report
+    var comments:[Comment] = []
+    
+    
     override func viewDidLoad() {
-        self.refReports =  Database.database().reference().child("reports")
+        self.refComment =  Database.database().reference().child("comments")
+        self.refReport =  Database.database().reference().child("reports")
         super.viewDidLoad()
         
-        initLabels()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        
+        view.addGestureRecognizer(tap)
+
+        
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        initLabels()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        setObserverToFireBaseChanges()
+        
         
     }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+
     
     func initLabels() {
         self.agression.text = self.report?.violenceKind
@@ -96,7 +126,7 @@ class SeeReportViewController: UIViewController {
                                                 
                                                 let reportToDelete = self.report?.id
                                                 self.map.reports.remove(at: self.getReportIndexInArray(report: self.report!))
-                                                self.refReports.child(reportToDelete!).setValue(nil)
+                                                self.refReport.child(reportToDelete!).setValue(nil)
         }))
         
         
@@ -123,4 +153,89 @@ class SeeReportViewController: UIViewController {
         return -1
     }
 
+    func setObserverToFireBaseChanges() {
+        
+        self.refComment.observe(DataEventType.value, with: {(snapshot) in
+            if snapshot.childrenCount > 0 {
+                self.comments.removeAll()
+                
+                for comment in snapshot.children.allObjects as![DataSnapshot]{
+                    let commentObj = comment.value as? [String: AnyObject]
+                    
+                    let id = commentObj?["commentId"]
+                    let content = commentObj?["content"]
+                    let reportId = commentObj?["reportId"]
+                    let userId = commentObj?["userId"]
+                    
+                    if (reportId as! String) == self.report?.id {
+                        
+                        let comment = Comment(commentId: id as! String,
+                                          content: content as! String,
+                                          reportId: reportId as! String,
+                                          userId: userId as! String)
+                        self.comments.append(comment)
+                        
+                    } else {
+                        //DOES NOTHING
+                    }
+                }
+                DispatchQueue.main.async {
+                    
+                    self.tableView.reloadData()
+                }
+                
+            }
+        })
+        
+        
+    }
+    
+    @IBAction func sendComment(_ sender: Any) {
+        
+        addComent()
+    
+    }
+    
+    func addComent() {
+        
+        let id = refComment.childByAutoId().key
+        let reportId = self.report?.id
+        let userId = "userIdComing"
+        let content = self.commentTextView.text
+        
+        let comment = Comment(commentId: id, content: content!, reportId: reportId!, userId: userId)
+        
+        print(comment.turnToDictionary())
+        
+        self.refComment.child(id).setValue(comment.turnToDictionary())
+        self.commentTextView.text = ""
+
+    }
+
+}
+
+extension SeeReportViewController {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.comments.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath)
+        let commentTextField = tableView.viewWithTag(2) as! UITextView
+        commentTextField.isEditable = false
+        commentTextField.text = self.comments[indexPath.row].content
+        
+        let userPhoto = tableView.viewWithTag(1) as! UIImageView
+        
+        //colocar imagem do usuário
+        //userPhoto.image =
+        
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
 }

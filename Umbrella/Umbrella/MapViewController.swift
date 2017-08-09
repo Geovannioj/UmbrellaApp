@@ -43,6 +43,9 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
         self.msgCenter = msgsButton.center
         self.perfilCenter = perfilButton.center
         self.reportCenter = reportButton.center
@@ -86,6 +89,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         
         
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

@@ -55,6 +55,8 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
         super.viewDidLoad()
         
+        self.personIdentification.setValue(UIColor.white, forKey: "textColor")
+        self.violenceKind.setValue(UIColor.white, forKey: "textColor")
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
         
@@ -83,13 +85,13 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         self.personIdentification.dataSource = self
         self.personIdentification.delegate = self
         self.personIdentification.accessibilityIdentifier = "personIdentification"
-        self.personIdentification.setValue(UIColor.white, forKey: "textColor")
+        
         
         
         self.violenceKind.dataSource = self
         self.violenceKind.delegate = self
         self.violenceKind.accessibilityIdentifier = "violenceKind"
-        self.violenceKind.setValue(UIColor.white, forKey: "textColor")
+        
     }
     
     
@@ -162,7 +164,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
                                               preferredStyle: .alert)
         saveMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
                                             handler: {(action) in
-                       self.performSegue(withIdentifier: "backToMap", sender: Any.self)                     
+                       self.performSegue(withIdentifier: "backToMap", sender: Any.self)
         }))
         
         self.present(saveMessage, animated: true, completion: nil)
