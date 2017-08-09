@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 import Firebase
 import FirebaseStorage
+import FirebaseAuth
 
 class PhotoInteractor {
 

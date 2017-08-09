@@ -18,6 +18,15 @@
 		D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4281F2A96D200308ABB /* Map.storyboard */; };
 		D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */; };
 		EF2B14ACC5ED8F8292C207C7 /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9CFC6DEF00297A546C0A6B /* Pods_Umbrella.framework */; };
+		FB0144CE1F3B85A7004FFBCC /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144C51F3B85A7004FFBCC /* Keychain.swift */; };
+		FB0144CF1F3B85A7004FFBCC /* MinorityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144C61F3B85A7004FFBCC /* MinorityEntity.swift */; };
+		FB0144D01F3B85A7004FFBCC /* MinorityInterector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144C71F3B85A7004FFBCC /* MinorityInterector.swift */; };
+		FB0144D11F3B85A7004FFBCC /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144C81F3B85A7004FFBCC /* PhotoEntity.swift */; };
+		FB0144D21F3B85A7004FFBCC /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144C91F3B85A7004FFBCC /* PhotoInteractor.swift */; };
+		FB0144D31F3B85A7004FFBCC /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144CA1F3B85A7004FFBCC /* SaveManager.swift */; };
+		FB0144D41F3B85A7004FFBCC /* UIImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144CB1F3B85A7004FFBCC /* UIImageHandler.swift */; };
+		FB0144D51F3B85A7004FFBCC /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144CC1F3B85A7004FFBCC /* UserEntity.swift */; };
+		FB0144D61F3B85A7004FFBCC /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144CD1F3B85A7004FFBCC /* UserInteractor.swift */; };
 		FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */; };
 		FB3734101F3914E400FB3213 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */; };
 		FB60D7D31F38DD03001E5E51 /* SearchBarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */; };
@@ -55,12 +64,21 @@
 		D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportViewController.swift; sourceTree = "<group>"; };
 		D4B1E4281F2A96D200308ABB /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		FB0144C51F3B85A7004FFBCC /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		FB0144C61F3B85A7004FFBCC /* MinorityEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinorityEntity.swift; sourceTree = "<group>"; };
+		FB0144C71F3B85A7004FFBCC /* MinorityInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinorityInterector.swift; sourceTree = "<group>"; };
+		FB0144C81F3B85A7004FFBCC /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntity.swift; sourceTree = "<group>"; };
+		FB0144C91F3B85A7004FFBCC /* PhotoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInteractor.swift; sourceTree = "<group>"; };
+		FB0144CA1F3B85A7004FFBCC /* SaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
+		FB0144CB1F3B85A7004FFBCC /* UIImageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageHandler.swift; sourceTree = "<group>"; };
+		FB0144CC1F3B85A7004FFBCC /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		FB0144CD1F3B85A7004FFBCC /* UserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInteractor.swift; sourceTree = "<group>"; };
 		FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarControllerViewController.swift; sourceTree = "<group>"; };
 		FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Umbrella/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarCellTableViewCell.swift; sourceTree = "<group>"; };
 		FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewControlleTableViewController.swift; sourceTree = "<group>"; };
 		FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUserLocationView.swift; sourceTree = "<group>"; };
-		FB60D8601F39127E001E5E51 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseManager.swift; path = Umbrella/FirebaseManager.swift; sourceTree = "<group>"; };
+		FB60D8601F39127E001E5E51 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterReportFirst.storyboard; sourceTree = "<group>"; };
 		FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterReportSecond.storyboard; sourceTree = "<group>"; };
 		FB60D8631F39127E001E5E51 /* RegisterReportSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportSecondViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +122,6 @@
 			children = (
 				FBEFEACC1F3A349100CDC99A /* Assets.xcassets */,
 				FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */,
-				FB60D8601F39127E001E5E51 /* FirebaseManager.swift */,
 				D4B1E4001F2A78CF00308ABB /* Umbrella */,
 				D4B1E41A1F2A795000308ABB /* Others */,
 				D4B1E3FF1F2A78CF00308ABB /* Products */,
@@ -124,7 +141,7 @@
 		D4B1E4001F2A78CF00308ABB /* Umbrella */ = {
 			isa = PBXGroup;
 			children = (
-				9ECE54E81F2BCB350035913B /* Umbrella.entitlements */,
+				FB0144D81F3B8663004FFBCC /* SaveManager */,
 				D4B1E4191F2A793E00308ABB /* Entity */,
 				D4B1E4171F2A790B00308ABB /* Interactor */,
 				D4B1E4161F2A790400308ABB /* Router */,
@@ -164,8 +181,9 @@
 		D4B1E4171F2A790B00308ABB /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				9ECE54E51F2BC26B0035913B /* User */,
-				9ECE54D71F2BB6770035913B /* SaveManager */,
+				FB0144C71F3B85A7004FFBCC /* MinorityInterector.swift */,
+				FB0144C91F3B85A7004FFBCC /* PhotoInteractor.swift */,
+				FB0144CD1F3B85A7004FFBCC /* UserInteractor.swift */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -173,6 +191,9 @@
 		D4B1E4191F2A793E00308ABB /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				FB0144C61F3B85A7004FFBCC /* MinorityEntity.swift */,
+				FB0144C81F3B85A7004FFBCC /* PhotoEntity.swift */,
+				FB0144CC1F3B85A7004FFBCC /* UserEntity.swift */,
 				FB60D8641F39127E001E5E51 /* Report.swift */,
 			);
 			name = Entity;
@@ -181,9 +202,6 @@
 		D4B1E41A1F2A795000308ABB /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				9ECE54E91F2BEA760035913B /* FirebaseManager.swift */,
-				9ECE54EA1F2BEA760035913B /* GoogleService-Info.plist */,
-				9ECE54EB1F2BEA760035913B /* Report.swift */,
 				D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */,
 				D4B1E40D1F2A78CF00308ABB /* Info.plist */,
 			);
@@ -248,6 +266,17 @@
 				BF9CFC6DEF00297A546C0A6B /* Pods_Umbrella.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB0144D81F3B8663004FFBCC /* SaveManager */ = {
+			isa = PBXGroup;
+			children = (
+				FB60D8601F39127E001E5E51 /* FirebaseManager.swift */,
+				FB0144C51F3B85A7004FFBCC /* Keychain.swift */,
+				FB0144CA1F3B85A7004FFBCC /* SaveManager.swift */,
+				FB0144CB1F3B85A7004FFBCC /* UIImageHandler.swift */,
+			);
+			name = SaveManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,21 +420,28 @@
 				FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */,
 				FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */,
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
+				FB0144D01F3B85A7004FFBCC /* MinorityInterector.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
-				9ECE54E71F2BC2850035913B /* UserInteractor.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
+				FB0144D61F3B85A7004FFBCC /* UserInteractor.swift in Sources */,
 				FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */,
 				FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */,
+				FB0144CE1F3B85A7004FFBCC /* Keychain.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
 				FB60D86E1F39127E001E5E51 /* Report.swift in Sources */,
+				FB0144D11F3B85A7004FFBCC /* PhotoEntity.swift in Sources */,
 				FB60D7D31F38DD03001E5E51 /* SearchBarCellTableViewCell.swift in Sources */,
 				FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */,
 				FB60D8691F39127E001E5E51 /* CustomUserLocationView.swift in Sources */,
 				D41383691F3A26A000384DCC /* RegisterReportDelegate.swift in Sources */,
+				FB0144D21F3B85A7004FFBCC /* PhotoInteractor.swift in Sources */,
+				FB0144D51F3B85A7004FFBCC /* UserEntity.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
-				9ECE54EE1F2BEA760035913B /* Report.swift in Sources */,
+				FB0144D31F3B85A7004FFBCC /* SaveManager.swift in Sources */,
+				FB0144CF1F3B85A7004FFBCC /* MinorityEntity.swift in Sources */,
+				FB0144D41F3B85A7004FFBCC /* UIImageHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
