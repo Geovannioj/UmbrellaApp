@@ -25,6 +25,7 @@ class SeeReportViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var deleteBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
     
     //references
@@ -43,6 +44,12 @@ class SeeReportViewController: UIViewController, UITableViewDelegate, UITableVie
         self.refReport =  Database.database().reference().child("reports")
         super.viewDidLoad()
         
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardNotification(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillChangeFrame,
+                                               object: nil)
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
         view.addGestureRecognizer(tap)
@@ -53,9 +60,43 @@ class SeeReportViewController: UIViewController, UITableViewDelegate, UITableVie
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
         setObserverToFireBaseChanges()
         
+        
+    }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardNotification(notification: NSNotification) {
+        
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let duration: TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            
+            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
+            
+                self.keyboardHeightLayoutConstraint?.constant = 0.0
+            
+            } else {
+             
+                self.keyboardHeightLayoutConstraint?.constant = endFrame?.size.height ?? 0.0
+                
+            }
+            
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded()},
+                           completion: nil)
+        }
         
     }
     
@@ -222,9 +263,15 @@ extension SeeReportViewController {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath)
+        cell.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        //cell.layer.borderWidth = 0.5
+        //cell.layer.borderColor = UIColor.white.cgColor
+        
         let commentTextField = tableView.viewWithTag(2) as! UITextView
         commentTextField.isEditable = false
         commentTextField.text = self.comments[indexPath.row].content
+        commentTextField.textColor = UIColor.white
+        commentTextField.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
         let userPhoto = tableView.viewWithTag(1) as! UIImageView
         
