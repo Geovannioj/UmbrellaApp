@@ -11,8 +11,9 @@ import RealmSwift
 
 class MessageEntity : Object {
     
+    dynamic var id = ""
     dynamic var text = ""
-    dynamic var timeDate : NSNumber? = nil
+    dynamic var timeDate = ""
     dynamic var fromId = ""
     dynamic var toId = ""
     
@@ -24,7 +25,7 @@ class MessageEntity : Object {
         
         return [
             "text": text,
-            "timeDate": timeDate ?? NSNumber(value: 0.0),
+            "timeDate": timeDate,
             "fromId": fromId,
             "toId": toId,
         ]

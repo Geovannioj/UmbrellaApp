@@ -20,7 +20,7 @@ class PhotoInteractor {
      - parameter comp: completion that returns the url of the photo saved
      */
     static func createPhoto(image: UIImage, completion comp: @escaping (String?) -> ()) {
-        let photo = Photo()
+        let photo = PhotoEntity()
         
         photo.id = UUID().uuidString + ".jpg"
         
@@ -100,7 +100,7 @@ class PhotoInteractor {
         if let userId = Auth.auth().currentUser?.uid {
 
             let urlRef = Database.database().reference().child("user").child(userId).child("urlPhoto")
-            urlRef.observe(.value, with: { (snapshot: DataSnapshot) in
+            urlRef.observeSingleEvent(of: .value, with: { (snapshot: DataSnapshot) in
                 if snapshot.value is NSNull {
                 }
                 else {
@@ -114,7 +114,7 @@ class PhotoInteractor {
                         else {
                             UserInteractor.updateCurrentUser(urlPhoto: "")
                             
-                            let photoRealm = SaveManager.realm.objects(Photo.self).filter("id == %s", idRef).first
+                            let photoRealm = SaveManager.realm.objects(PhotoEntity.self).filter("id == %s", idRef).first
                             
                             try! SaveManager.realm.write {
                                 SaveManager.realm.delete(photoRealm!)

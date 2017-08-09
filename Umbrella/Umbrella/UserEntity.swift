@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class User: Object {
+class UserEntity: Object {
     dynamic var id = ""
     dynamic var nickname = ""
     dynamic var email = ""

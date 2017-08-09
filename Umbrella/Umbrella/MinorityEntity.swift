@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Minority {
+class MinorityEntity {
     var id = ""
     var type = ""
     

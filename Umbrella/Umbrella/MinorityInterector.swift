@@ -14,7 +14,7 @@ class MinorityInteractor {
 
     static func createMinority(minority: String) {
         let ref = Database.database().reference()
-        let mino = Minority()
+        let mino = MinorityEntity()
         mino.id = ref.childByAutoId().key
         mino.type = minority
         
@@ -22,9 +22,9 @@ class MinorityInteractor {
         minorityRef.setValue(mino.toAnyObject())
     }
     
-    static func getMinorities(completion: @escaping ([Minority]) -> ()){
+    static func getMinorities(completion: @escaping ([MinorityEntity]) -> ()){
         let minorityRef = Database.database().reference().child("minority")
-        var minorities = [Minority]()
+        var minorities = [MinorityEntity]()
         
         minorityRef.observe(.value, with: { (snapshot) in
             if snapshot.value is NSNull {
@@ -33,7 +33,7 @@ class MinorityInteractor {
             }
                     
             for child in snapshot.children {
-                let minority = Minority()
+                let minority = MinorityEntity()
                 let snap = child as! DataSnapshot
                 let dict = snap.value as! [String : AnyObject]
                 
@@ -45,15 +45,15 @@ class MinorityInteractor {
         })
     }
     
-    static func getMinority(withType type: String, completion: @escaping (Minority) -> ()){
+    static func getMinority(withType type: String, completion: @escaping (MinorityEntity) -> ()){
         let minorityRef = Database.database().reference().child("minority")
         
-        minorityRef.observe(.childAdded, with: { (snapshot: DataSnapshot) in
+        minorityRef.observeSingleEvent(of: .childAdded, with: { (snapshot: DataSnapshot) in
             
             let dict = snapshot.value as! [String : Any]
             if (dict["type"] as? String) != nil && (dict["type"] as! String) == type {
                 
-                let minority = Minority()
+                let minority = MinorityEntity()
                 
                 minority.id = dict["id"] as! String
                 minority.type = dict["type"] as! String
@@ -65,7 +65,7 @@ class MinorityInteractor {
     
     static func updateMinority(id: String, type: String) {
         let minorityRef = Database.database().reference().child("minority").child(id)
-        let minority = Minority()
+        let minority = MinorityEntity()
         minority.id = id
         minority.type = type
         minorityRef.updateChildValues(minority.toAnyObject() as! [AnyHashable : Any])

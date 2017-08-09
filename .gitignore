@@ -68,3 +68,11 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+Umbrella/Podfile
+
+Umbrella/Podfile\.lock
+
+Umbrella/Umbrella\.xcworkspace/contents\.xcworkspacedata
+
+Umbrella/Pods/

@@ -18,7 +18,7 @@ import Firebase
 
 class UserInteractor {
     
-    // -TODO: Password cryptography and email validation
+    // -TODO: Email validation
     /**
      Function responsable for creating an authentication for an user and save his data on a server and local database.
      - parameter nickname: user's nickname
@@ -27,6 +27,7 @@ class UserInteractor {
      - parameter birthDate: user's birth date
      - parameter image: user's profile photo
      - parameter idMinority: user's correspondent minority id
+     - parameter handler: deals with errors and completes login actions
      */
     static func createUser(nickname: String, email: String,
                            password: String, birthDate: Date?, image: UIImage?,
@@ -41,7 +42,7 @@ class UserInteractor {
                 return
             }
             
-            let newUser = User()
+            let newUser = UserEntity()
             newUser.id = (user?.uid)!
             
             // Reference of the user table in firebase
@@ -87,7 +88,7 @@ class UserInteractor {
      Returns the current user's email logged on the device.
      - returns: user's email
      */
-    static func getUserEmail() -> String? {
+    static func getCurrentUserEmail() -> String? {
         return Auth.auth().currentUser?.email
     }
     
@@ -111,9 +112,9 @@ class UserInteractor {
      Returns an array of User if there is on the server.
      - parameter completion: returns an array of User if there is users saved
      */
-    static func getUsers(completion: @escaping ([User]) -> ()) {
+    static func getUsers(completion: @escaping ([UserEntity]) -> ()) {
         let userRef = Database.database().reference().child("user")
-        var users = [User]()
+        var users = [UserEntity]()
         
         userRef.observe(.value, with: { (snapshot) in
             if snapshot.value is NSNull {
@@ -122,7 +123,7 @@ class UserInteractor {
             }
             
             for child in snapshot.children {
-                let user = User()
+                let user = UserEntity()
                 let snap = child as! DataSnapshot
                 let dict = snap.value as! [String : Any]
                 
@@ -144,11 +145,11 @@ class UserInteractor {
      - parameter id: id of the user desired
      - parameter completion: returns an User with the id parameter
      */
-    static func getUser(withId id: String, completion: @escaping (User) -> ()) {
+    static func getUser(withId id: String, completion: @escaping (UserEntity) -> ()) {
         let userRef = Database.database().reference().child("user").child(id)
-        let user = User()
+        let user = UserEntity()
         
-        userRef.observe(.value, with: { (snapshot) in
+        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
             let dict = snapshot.value as! [String : Any]
             user.id = snapshot.key
@@ -168,15 +169,15 @@ class UserInteractor {
      - parameter email: email of the user desired
      - parameter completion: returns an User with the email parameter
      */
-    static func getUser(withEmail email: String, completion: @escaping (User) -> ()) {
+    static func getUser(withEmail email: String, completion: @escaping (UserEntity) -> ()) {
         let userRef = Database.database().reference().child("user")
         
-        userRef.observe(.childAdded, with: { (snapshot: DataSnapshot) in
+        userRef.observeSingleEvent(of: .childAdded, with: { (snapshot: DataSnapshot) in
             
             let dict = snapshot.value as! [String : Any]
             if (dict["email"] as? String) != nil && (dict["email"] as! String) == email {
             
-                let user = User()
+                let user = UserEntity()
                 user.id = snapshot.key
                 user.email = dict["email"] as! String
                 user.nickname = dict["nickname"] as! String
@@ -198,11 +199,11 @@ class UserInteractor {
             
             let userRef = Database.database().reference().child("user").child(userId)
             
-            userRef.observe(.value, with: { (snapshot) in
+            userRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 userRef.updateChildValues(["nickname" : nickname])
                 
-                let userRealm = SaveManager.realm.objects(User.self).filter("id == %s", userId).first
+                let userRealm = SaveManager.realm.objects(UserEntity.self).filter("id == %s", userId).first
                 
                 try! SaveManager.realm.write {
                     userRealm?.nickname = nickname
@@ -220,11 +221,11 @@ class UserInteractor {
             
             let userRef = Database.database().reference().child("user").child(userId)
             
-            userRef.observe(.value, with: { (snapshot) in
+            userRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 userRef.updateChildValues(["urlPhoto" : urlPhoto])
                 
-                let userRealm = SaveManager.realm.objects(User.self).filter("id == %s", userId).first
+                let userRealm = SaveManager.realm.objects(UserEntity.self).filter("id == %s", userId).first
                 
                 try! SaveManager.realm.write {
                     userRealm?.urlPhoto = urlPhoto
@@ -242,12 +243,12 @@ class UserInteractor {
         
             let userRef = Database.database().reference().child("user").child(userId)
 
-            userRef.observe(.value, with: { (snapshot) in
-                let formatter = User().dateConverter()
+            userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                let formatter = UserEntity().dateConverter()
 
                 userRef.updateChildValues(["birthDate" : formatter.string(from: birthDate)])
                 
-                let userRealm = SaveManager.realm.objects(User.self).filter("id == %s", userId).first
+                let userRealm = SaveManager.realm.objects(UserEntity.self).filter("id == %s", userId).first
                 
                 try! SaveManager.realm.write {
                     userRealm?.birthDate = birthDate
@@ -266,11 +267,11 @@ class UserInteractor {
 
             let userRef = Database.database().reference().child("user").child(userId)
             
-            userRef.observe(.value, with: { (snapshot) in
+            userRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 userRef.updateChildValues(["idMinority" : idMinority])
                 
-                let userRealm = SaveManager.realm.objects(User.self).filter("id == %s", userId).first
+                let userRealm = SaveManager.realm.objects(UserEntity.self).filter("id == %s", userId).first
                 
                 try! SaveManager.realm.write {
                     userRealm?.idMinority = idMinority
@@ -306,7 +307,7 @@ class UserInteractor {
                     
                     KeychainService.removePassword(service: "Umbrella-Key", account: userId)
                     
-                    if let user = SaveManager.realm.objects(User.self).filter("id == %s", userId).first {
+                    if let user = SaveManager.realm.objects(UserEntity.self).filter("id == %s", userId).first {
                         
                         try! SaveManager.realm.write {
                             SaveManager.realm.delete(user)
@@ -324,7 +325,7 @@ class UserInteractor {
      - parameter password: user's password
      - parameter completion: returns the state of connection of the user
      */
-    static func connectUser(email: String, password: String, completion: @escaping (Bool) -> ()) {
+    static func connectUser(email: String, password: String, completion: ((Bool) -> ())?) {
         UserInteractor.isUserOnline(completion: { (connected) -> () in
             var logged = false
             
@@ -335,7 +336,7 @@ class UserInteractor {
                 logged = UserInteractor.connectUserOffline(email: email, password: password)
             }
             
-            completion(logged)
+            completion?(logged)
         })
     }
     
@@ -355,7 +356,7 @@ class UserInteractor {
      - returns: true is the user's email and password exist and false if they don't
      */
     private static func connectUserOffline(email: String, password: String) -> Bool {
-        if let user = SaveManager.realm.objects(User.self).filter("email == %s", email).first {
+        if let user = SaveManager.realm.objects(UserEntity.self).filter("email == %s", email).first {
             let pass = KeychainService.loadPassword(service: "Umbrella-Key", account: user.id)
             if pass == password {
                 return true

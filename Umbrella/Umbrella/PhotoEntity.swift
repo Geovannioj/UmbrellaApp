@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Photo: Object {
+class PhotoEntity: Object {
     dynamic var id = ""
     dynamic var url = ""
     dynamic var image: Data?

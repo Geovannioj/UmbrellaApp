@@ -24,13 +24,16 @@ class LoginViewController: UIViewController, UserInteractorCompleteProtocol {
     
     func handleLogin() {
         
-        guard let email = inputs.email.textField.text,
-              let password = inputs.password.textField.text else {
-    
-            return
-        }
+//        guard let email = inputs.email.textField.text,
+//              let password = inputs.password.textField.text else {
+//    
+//            return
+//        }
         
-        UserInteractor.connectUser(email: email, password: password, handler: self)
+        performSegue(withIdentifier: "mapSegue", sender: nil)
+
+//        UserInteractor.connectUser(email: email, password: password, completion: nil)
+    
     }
     
     func completeLogin(user : UserInfo?, error : Error?) {
@@ -42,7 +45,7 @@ class LoginViewController: UIViewController, UserInteractorCompleteProtocol {
                 inputs.email.isValidImput(false)
                 
             case .wrongPassword:
-                inputs.password.isValidImput(false)
+                inputs.email.isValidImput(false)
                 
             default:
                 
@@ -53,7 +56,7 @@ class LoginViewController: UIViewController, UserInteractorCompleteProtocol {
             return
         }
         
-        // Mudar para tela inicial
+        performSegue(withIdentifier: "mapSegue", sender: nil)
     }
 
     func handleNewAccount() {
