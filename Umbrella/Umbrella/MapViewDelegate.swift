@@ -65,10 +65,12 @@ extension MapViewController : MGLMapViewDelegate {
         }
         
     }
-
-    //Entrada: UIimageView
-    //Saída:Nenhuma
-    //Objetivo:Adicionar o mapa termico a UIImageView fornecida.
+    
+    /***
+ 
+     //Objetivo : clicar em um pin, mostrar o relato em seguida
+     
+     ***/
     
     func printHeatmap(imageView:UIImageView){
         var pontos:[CGPoint] = []

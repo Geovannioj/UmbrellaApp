@@ -55,6 +55,10 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
         super.viewDidLoad()
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
+
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         self.violenceAgressionLbl.setValue(UIColor.white, forKey: "textColor")
         self.descriptionLbl.setValue(UIColor.white, forKey: "textColor")
@@ -89,6 +93,11 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     }
     
     
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
     
     func getViolenceKind(report: Report) -> Int {
         
@@ -152,7 +161,9 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
                                               message: "This report has been successfully saved",
                                               preferredStyle: .alert)
         saveMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
-                                              handler: nil))
+                                            handler: {(action) in
+                       self.performSegue(withIdentifier: "backToMap", sender: Any.self)                     
+        }))
         
         self.present(saveMessage, animated: true, completion: nil)
     }
@@ -176,8 +187,13 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         let updateMessage = UIAlertController(title: "Report Updated",
                                               message: "This report has been successfully updated",
                                               preferredStyle: .alert)
+        
         updateMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
-                                              handler: nil))
+                                              handler: { (action) in
+        
+                    self.performSegue(withIdentifier: "backToMap", sender: Any.self)
+        
+        }))
         
         self.present(updateMessage, animated: true, completion: nil)
     }
@@ -187,11 +203,11 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         if (self.reportToEdit != nil) {
             
             editReport(reportToEdit: self.reportToEdit!)
-            self.navigationController?.popToRootViewController(animated: true)
+            performSegue(withIdentifier: "backToMap", sender: Any.self)
         }else {
             
             addReport()
-            self.navigationController?.popToRootViewController(animated: true)
+            performSegue(withIdentifier: "backToMap", sender: Any.self)
         }
 
     }
