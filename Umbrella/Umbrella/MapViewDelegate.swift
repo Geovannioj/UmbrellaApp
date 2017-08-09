@@ -46,8 +46,12 @@ extension MapViewController : MGLMapViewDelegate {
             
             return userLocationAnnotationView
         }else{
-            let agressionAnoTation  = AgressionPinAnnotationView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-            return agressionAnoTation
+            if annotation is MGLPointAnnotation{
+                let agressionAnoTation  = AgressionPinAnnotationView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+                return agressionAnoTation
+            }
+            return nil
+            
         }
         
         // Customise your annotation view here...

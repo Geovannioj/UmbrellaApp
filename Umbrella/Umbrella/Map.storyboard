@@ -26,20 +26,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="8WG-Gb-tnC">
-                                        <rect key="frame" x="6.5" y="19" width="362.5" height="127"/>
+                                        <rect key="frame" x="19" y="19" width="337.5" height="127"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWo-cy-fPs">
-                                                <rect key="frame" x="0.0" y="0.0" width="362.5" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="337.5" height="44"/>
                                                 <subviews>
                                                     <searchBar contentMode="redraw" placeholder="Ex: Copacabana" translatesAutoresizingMaskIntoConstraints="NO" id="5Pq-8k-jmZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="337.5" height="44"/>
                                                         <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="-8" vertical="0.0"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </searchBar>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGr-83-76A">
-                                                        <rect key="frame" x="337.5" y="0.0" width="25" height="44"/>
-                                                        <state key="normal" image="PerfilIcon"/>
-                                                    </button>
                                                 </subviews>
                                             </stackView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mapnav" translatesAutoresizingMaskIntoConstraints="NO" id="OlU-ii-JrG">
@@ -48,7 +44,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQS-2u-VCk">
-                                        <rect key="frame" x="17" y="74" width="19" height="61"/>
+                                        <rect key="frame" x="29.5" y="74" width="19" height="61"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nH-Eh-WU3">
                                                 <rect key="frame" x="0.0" y="0.0" width="19" height="22"/>
@@ -71,7 +67,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="27" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZqN-dd-ZCS">
-                                        <rect key="frame" x="44" y="53" width="287" height="132"/>
+                                        <rect key="frame" x="57.5" y="53" width="287" height="132"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" rowHeight="27" id="nhC-xf-0iq" customClass="SearchBarCellTableViewCell" customModule="Umbrella" customModuleProvider="target">
@@ -103,56 +99,59 @@
                                             <segue destination="gMT-Gf-mW6" kind="embed" id="xTw-iK-GzZ"/>
                                         </connections>
                                     </containerView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="egd-Mj-60q">
-                                        <rect key="frame" x="63.5" y="387" width="248" height="160"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-Ko-PqW">
+                                        <rect key="frame" x="84" y="481" width="206" height="72"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-hR-1ty">
-                                                <rect key="frame" x="91.5" y="0.0" width="65" height="70"/>
-                                                <state key="normal" image="reportIcon"/>
-                                                <connections>
-                                                    <segue destination="Qkr-UP-DA5" kind="show" id="BZ4-pX-ogP"/>
-                                                </connections>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-lB-8Y0">
+                                                <rect key="frame" x="0.0" y="0.0" width="57" height="72"/>
+                                                <state key="normal" image="perfilIcon1"/>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="top" spacing="28" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQ2-Yg-rc5">
-                                                <rect key="frame" x="0.0" y="88" width="248" height="72"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-lB-8Y0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="57" height="72"/>
-                                                        <state key="normal" image="perfilIcon1"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3i-dk-FUm">
-                                                        <rect key="frame" x="91" y="0.0" width="60" height="60"/>
-                                                        <state key="normal" image="expandIcon"/>
-                                                        <state key="selected" image="expandIconDeselected"/>
-                                                        <connections>
-                                                            <action selector="expandAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="u4a-gz-Wz1"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-0y-izz">
-                                                        <rect key="frame" x="179" y="0.0" width="69" height="72"/>
-                                                        <state key="normal" image="msgIcon"/>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-0y-izz">
+                                                <rect key="frame" x="137" y="0.0" width="69" height="72"/>
+                                                <state key="normal" image="msgIcon"/>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.78473385612414526" green="0.97203450289587945" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="egd-Mj-60q" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="3Mb-Ay-4E0"/>
                                     <constraint firstItem="CQS-2u-VCk" firstAttribute="centerY" secondItem="OlU-ii-JrG" secondAttribute="centerY" id="3we-ln-QJ6"/>
+                                    <constraint firstItem="ucJ-Ko-PqW" firstAttribute="centerY" secondItem="BAZ-Iw-YaG" secondAttribute="centerY" multiplier="1.55" id="7aD-eJ-rY0"/>
                                     <constraint firstItem="ZqN-dd-ZCS" firstAttribute="top" secondItem="5Pq-8k-jmZ" secondAttribute="bottom" constant="-10" id="NGo-a5-JFl"/>
                                     <constraint firstItem="ZqN-dd-ZCS" firstAttribute="width" secondItem="5Pq-8k-jmZ" secondAttribute="width" multiplier="0.85" id="O6f-bN-9YG"/>
                                     <constraint firstItem="Czp-Ie-uU2" firstAttribute="height" secondItem="BAZ-Iw-YaG" secondAttribute="height" multiplier="0.17" id="REi-5i-zFb"/>
                                     <constraint firstItem="ZqN-dd-ZCS" firstAttribute="height" secondItem="5Pq-8k-jmZ" secondAttribute="height" multiplier="3" id="XbL-4b-sMR"/>
                                     <constraint firstItem="ZqN-dd-ZCS" firstAttribute="centerX" secondItem="5Pq-8k-jmZ" secondAttribute="centerX" multiplier="1.07" id="bXr-IU-RJK"/>
                                     <constraint firstAttribute="bottom" secondItem="Czp-Ie-uU2" secondAttribute="bottom" id="cYh-ul-6fZ"/>
+                                    <constraint firstItem="ucJ-Ko-PqW" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="fmO-7T-Fov"/>
                                     <constraint firstItem="8WG-Gb-tnC" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="lYk-ja-aVt"/>
                                     <constraint firstItem="CQS-2u-VCk" firstAttribute="centerX" secondItem="OlU-ii-JrG" secondAttribute="centerX" id="mOH-lS-iXv"/>
-                                    <constraint firstItem="egd-Mj-60q" firstAttribute="centerY" secondItem="BAZ-Iw-YaG" secondAttribute="centerY" multiplier="1.4" id="wo2-FA-c7j"/>
                                     <constraint firstItem="Czp-Ie-uU2" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="xol-jj-3eJ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qdf-C9-aH3">
+                                <rect key="frame" x="154" y="376" width="65" height="130"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-hR-1ty">
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="70"/>
+                                        <state key="normal" image="reportIcon"/>
+                                        <connections>
+                                            <segue destination="Qkr-UP-DA5" kind="show" id="BZ4-pX-ogP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3i-dk-FUm">
+                                        <rect key="frame" x="2.5" y="70" width="60" height="60"/>
+                                        <state key="normal" image="expandIcon"/>
+                                        <state key="selected" image="expandIconDeselected"/>
+                                        <connections>
+                                            <action selector="expandAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="u4a-gz-Wz1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -160,14 +159,17 @@
                             <constraint firstItem="8WG-Gb-tnC" firstAttribute="top" secondItem="8R4-SC-L3W" secondAttribute="bottom" constant="-1" id="HZz-e1-yeQ"/>
                             <constraint firstItem="Czp-Ie-uU2" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" id="RJO-Xs-3TF"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" id="YEM-Z0-jSd"/>
+                            <constraint firstItem="ucJ-Ko-PqW" firstAttribute="top" secondItem="Qdf-C9-aH3" secondAttribute="bottom" constant="-25" id="Zte-BP-LK2"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="centerX" secondItem="seH-bm-Qjz" secondAttribute="centerX" id="gfC-pM-D4N"/>
                             <constraint firstItem="5Pq-8k-jmZ" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" multiplier="0.9" id="obL-f5-PwS"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="centerY" secondItem="seH-bm-Qjz" secondAttribute="centerY" id="ov5-bu-zD7"/>
+                            <constraint firstItem="Qdf-C9-aH3" firstAttribute="centerX" secondItem="ucJ-Ko-PqW" secondAttribute="centerX" id="ttk-YR-ib2"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="HorizontalStackButtons" destination="ucJ-Ko-PqW" id="oEj-Nd-73d"/>
                         <outlet property="bannerView" destination="Czp-Ie-uU2" id="5l1-40-MWU"/>
                         <outlet property="expandButton" destination="Y3i-dk-FUm" id="VVt-zV-nJi"/>
                         <outlet property="filterTable" destination="fTm-dJ-jUz" id="gsY-5I-55X"/>
@@ -177,7 +179,6 @@
                         <outlet property="reportButton" destination="SUe-hR-1ty" id="ZaK-x9-Xg2"/>
                         <outlet property="searchBar" destination="5Pq-8k-jmZ" id="tuH-Xs-Y4S"/>
                         <outlet property="searchTableView" destination="ZqN-dd-ZCS" id="Ltm-d3-0KT"/>
-                        <outlet property="verticalStackButtons" destination="egd-Mj-60q" id="GeF-Jt-VMA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2C-Dd-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -358,7 +359,6 @@
         <image name="CheckBoxInactive" width="20" height="20"/>
         <image name="CloseIcon" width="18" height="18"/>
         <image name="FIlterButton" width="252" height="44"/>
-        <image name="PerfilIcon" width="25" height="25"/>
         <image name="ReturnIcon" width="21" height="24"/>
         <image name="expandIcon" width="60" height="60"/>
         <image name="expandIconDeselected" width="46" height="46"/>

@@ -21,13 +21,14 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var filterTable: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    @IBOutlet weak var verticalStackButtons: UIStackView!
+    @IBOutlet weak var HorizontalStackButtons: UIStackView!
     let image = UIImage(named: "CustomLocationPIN")
     var locationManager = CLLocationManager()
     var reports: [Report] = []
     var refReports : DatabaseReference!
     var reportToSend:Report?
     
+    var buttonDistance:CGFloat = CGFloat()
     var msgCenter:CGPoint = CGPoint()
     var perfilCenter:CGPoint = CGPoint()
     var reportCenter:CGPoint = CGPoint()
@@ -42,6 +43,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var searchTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonDistance = HorizontalStackButtons.spacing
         
         self.msgCenter = msgsButton.center
         self.perfilCenter = perfilButton.center
@@ -95,16 +97,19 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     func hideButtons(){
         UIView.animate(withDuration: 1, animations:{
 //            self.expandButton.isSelected = false
-            self.verticalStackButtons.spacing = 0
+          //  self.verticalStackButtons.spacing = 0
            
-            self.perfilButton.center = self.expandButton.center
-            self.perfilButton.alpha = 0
-           
-           // self.reportButton.center = self.expandButton.center
+           // self.perfilButton.center = self.expandButton.center
+
+            
+            self.HorizontalStackButtons.spacing = 0
+            self.reportButton.center = self.expandButton.center
+            
             self.reportButton.alpha = 0
-           
-            self.msgsButton.center = self.expandButton.center
             self.msgsButton.alpha = 0
+            self.perfilButton.alpha = 0
+           // self.msgsButton.center = self.expandButton.center
+            
             
             
             }, completion: nil)
@@ -116,14 +121,14 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         UIView.animate(withDuration: 1, animations:{
             //self.expandButton.isSelected = true
             
-            self.perfilButton.center = self.perfilCenter
+          //  self.perfilButton.center = self.perfilCenter
             self.perfilButton.alpha = 1
-            
-            self.verticalStackButtons.spacing = 28
-           // self.reportButton.center = self.reportCenter
+            self.HorizontalStackButtons.spacing = self.buttonDistance
+           // self.verticalStackButtons.spacing = 28
+            self.reportButton.center = self.reportCenter
             self.reportButton.alpha = 1
             
-            self.msgsButton.center = self.msgCenter
+           // self.msgsButton.center = self.msgCenter
             self.msgsButton.alpha = 1
             
             
