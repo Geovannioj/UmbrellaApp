@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import RealmSwift
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UIApplication.shared.statusBarStyle = .lightContent
+        FirebaseApp.configure()
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-1296835094216265~6175863832")
         return true
     }
 
