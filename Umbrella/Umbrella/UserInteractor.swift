@@ -10,6 +10,12 @@ import Foundation
 import RealmSwift
 import Firebase
 
+@objc protocol UserInteractorCompleteProtocol {
+    
+    @objc optional func completeLogin(user : UserInfo?, error : Error?)
+    @objc optional func completeCreate(user : UserInfo?, error : Error?)
+}
+
 class UserInteractor {
     
     // -TODO: Password cryptography and email validation
@@ -24,14 +30,14 @@ class UserInteractor {
      */
     static func createUser(nickname: String, email: String,
                            password: String, birthDate: Date?, image: UIImage?,
-                            idMinority: String?) {
+                           idMinority: String?, handler : UserInteractorCompleteProtocol) {
         
         // Add user to firebase
         Auth.auth().createUser(withEmail: email, password: password) { user, error in
             
             // Treatment in case of error
             if error != nil {
-                print(error!)
+                handler.completeCreate?(user: user, error: error)
                 return
             }
             
@@ -59,6 +65,7 @@ class UserInteractor {
                     
                     // Add user to firebase
                     userRef.setValue(newUser.toAnyObject())
+                    handler.completeCreate?(user: user, error: error)
                 })
             }
             
@@ -66,6 +73,14 @@ class UserInteractor {
             KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
             
         }
+    }
+    
+    /**
+     Returns the current user's uid logged on the device.
+     - returns: user's uid
+     */
+    static func getCurrentUserUid() -> String? {
+        return Auth.auth().currentUser?.uid
     }
     
     /**
@@ -369,3 +384,10 @@ class UserInteractor {
     }
     
 }
+
+
+
+
+
+
+
