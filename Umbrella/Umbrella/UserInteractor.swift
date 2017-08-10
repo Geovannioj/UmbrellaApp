@@ -27,7 +27,7 @@ class UserInteractor {
      - parameter birthDate: user's birth date
      - parameter image: user's profile photo
      - parameter idMinority: user's correspondent minority id
-     - parameter handler: deals with errors and completes login actions
+     - parameter handler: deals with errors and completes sign in actions
      */
     static func createUser(nickname: String, email: String,
                            password: String, birthDate: Date?, image: UIImage?,
@@ -66,12 +66,13 @@ class UserInteractor {
                     
                     // Add user to firebase
                     userRef.setValue(newUser.toAnyObject())
-                    handler.completeCreate?(user: user, error: error)
                 })
             }
             
+            handler.completeCreate?(user: user, error: error)
+            
             // Save the password on the keychain
-            KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
+            //KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
             
         }
     }
@@ -96,7 +97,7 @@ class UserInteractor {
      Verifies if the device is connected to the firebase.
      - parameter completion: returns true if there's an user connected or false if there is not
      */
-    static func isUserOnline(completion: @escaping (Bool) -> ()) {
+    static func isFirebaseOnline(completion: @escaping (Bool) -> ()) {
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in
             if snapshot.value != nil {
@@ -213,7 +214,7 @@ class UserInteractor {
     }
     
     /**
-     Updates the current connected user's photo
+     Updates the current connected user's photo.
      - parameter nickname: new user's photo url
      */
     static func updateCurrentUser(urlPhoto: String) {
@@ -235,7 +236,7 @@ class UserInteractor {
     }
     
     /**
-     Updates the current connected user's birth date
+     Updates the current connected user's birth date.
      - parameter nickname: new user's birth date
      */
     static func updateCurrentUser(birthDate: Date) {
@@ -259,7 +260,7 @@ class UserInteractor {
     }
     
     /**
-     Updates the current connected user's minority
+     Updates the current connected user's minority.
      - parameter nickname: new user's minority id
      */
     static func updateCurrentUser(idMinority: String) {
@@ -281,23 +282,30 @@ class UserInteractor {
         }
     }
     
-    // -TODO: Implement
-//    static func updateCurrentUser(password: String) {
-//        if let userId = Auth.auth().currentUser?.uid {
-//            
-//            
-//        }
-//    }
+    /**
+     Updates the current connected user's password.
+     - parameter password: new user's password
+     - parameter handler: deals with errors and completes changing password actions
+     */
+    static func updateCurrentUser(password: String, handler: UserInteractorCompleteProtocol) {
+        if ((Auth.auth().currentUser?.uid) != nil) {
+            Auth.auth().currentUser?.updatePassword(to: password, completion: { error in
+                //handler.completeUpdatePassword(error: error)
+            })
+            
+        }
+    }
 
     /**
      Deletes the current user logged in.
+     - parameter handler: deals with errors and completes user deletion actions
      */
-    static func deleteUser() {
+    static func deleteUser(handler : UserInteractorCompleteProtocol) {
         if let userId = Auth.auth().currentUser?.uid {
 
             Auth.auth().currentUser?.delete(completion: { error in
                 if let err = error {
-                    print(err)
+                    //handler.completeDelete(error: err)
                 }
                     
                 else {
@@ -305,7 +313,7 @@ class UserInteractor {
                     PhotoInteractor.deleteUserPhoto()
                     userRef.removeValue()
                     
-                    KeychainService.removePassword(service: "Umbrella-Key", account: userId)
+                    //KeychainService.removePassword(service: "Umbrella-Key", account: userId)
                     
                     if let user = SaveManager.realm.objects(UserEntity.self).filter("id == %s", userId).first {
                         
@@ -318,6 +326,7 @@ class UserInteractor {
         }
     }
     
+    // -FIXME: Not funccional
     // -TODO: give access to all funccionalities of the app
     /**
      Try to login the user online or offline
@@ -325,54 +334,59 @@ class UserInteractor {
      - parameter password: user's password
      - parameter completion: returns the state of connection of the user
      */
-    static func connectUser(email: String, password: String, completion: ((Bool) -> ())?) {
-        UserInteractor.isUserOnline(completion: { (connected) -> () in
-            var logged = false
-            
-            if connected == true {
-                UserInteractor.connectUserOnline(email: email, password: password)
-                
-            } else {
-                logged = UserInteractor.connectUserOffline(email: email, password: password)
-            }
-            
-            completion?(logged)
-        })
-    }
+//    static func connectUser(email: String, password: String, completion: ((Bool) -> ())?) {
+//        UserInteractor.isUserOnline(completion: { (connected) -> () in
+//            var logged = false
+//            
+//            if connected == true {
+//                UserInteractor.connectUserOnline(email: email, password: password)
+//                
+//            } else {
+//                logged = UserInteractor.connectUserOffline(email: email, password: password)
+//            }
+//            
+//            completion?(logged)
+//        })
+//    }
     
     /**
      Connects an user to the firebase
      - parameter email: user's email
      - parameter password: user's password
+     - parameter handler: deals with errors and completes login actions
      */
-    private static func connectUserOnline(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password)
+    static func connectUserOnline(email: String, password: String, handler: UserInteractorCompleteProtocol) {
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+            handler.completeLogin!(user: user, error: error)
+        })
     }
     
-    /**
-     Connects an user on offline mode if his account was already saved on the device.
-     - parameter email: user's email
-     - parameter password: user's password
-     - returns: true is the user's email and password exist and false if they don't
-     */
-    private static func connectUserOffline(email: String, password: String) -> Bool {
-        if let user = SaveManager.realm.objects(UserEntity.self).filter("email == %s", email).first {
-            let pass = KeychainService.loadPassword(service: "Umbrella-Key", account: user.id)
-            if pass == password {
-                return true
-            }
-        }
-        return false
-    }
+    
+//    /**
+//     Connects an user on offline mode if his account was already saved on the device.
+//     - parameter email: user's email
+//     - parameter password: user's password
+//     - returns: true is the user's email and password exist and false if they don't
+//     */
+//    private static func connectUserOffline(email: String, password: String) -> Bool {
+//        if let user = SaveManager.realm.objects(UserEntity.self).filter("email == %s", email).first {
+//            let pass = KeychainService.loadPassword(service: "Umbrella-Key", account: user.id)
+//            if pass == password {
+//                return true
+//            }
+//        }
+//        return false
+//    }
     
     /**
      Disconnects the currunt logged user of the firebase
+     - parameter handler: deals with errors and completes disconnection actions
      */
-    static func disconnectUser() {
+    static func disconnectUser(handler: UserInteractorCompleteProtocol) {
         do {
             try Auth.auth().signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+        } catch let error as NSError {
+            //handler.completeSignOut(error: error)
         }
     }
     
@@ -380,8 +394,10 @@ class UserInteractor {
     /**
      Sends an email verification to the user's email
     */
-    static func sendEmailVerification() {
-        Auth.auth().currentUser?.sendEmailVerification(completion: nil)
+    static func sendEmailVerification(handler: UserInteractorCompleteProtocol) {
+        Auth.auth().currentUser?.sendEmailVerification(completion: { error in
+            // handler.completeEmailVerification(error: error)
+        })
     }
     
 }

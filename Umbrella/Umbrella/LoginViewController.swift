@@ -24,15 +24,15 @@ class LoginViewController: UIViewController, UserInteractorCompleteProtocol {
     
     func handleLogin() {
         
-//        guard let email = inputs.email.textField.text,
-//              let password = inputs.password.textField.text else {
-//    
-//            return
-//        }
+        guard let email = inputs.email.textField.text,
+              let password = inputs.password.textField.text else {
+    
+            return
+        }
         
         performSegue(withIdentifier: "mapSegue", sender: nil)
 
-//        UserInteractor.connectUser(email: email, password: password, completion: nil)
+        UserInteractor.connectUserOnline(email: email, password: password, handler: self)
     
     }
     
