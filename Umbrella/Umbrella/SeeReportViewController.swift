@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import Mapbox
-class SeeReportViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SeeReportViewController: UIViewController {
     
     //outlets
     @IBOutlet weak var agression: UILabel!
@@ -44,19 +44,23 @@ class SeeReportViewController: UIViewController, UITableViewDelegate, UITableVie
         self.refReport =  Database.database().reference().child("reports")
         super.viewDidLoad()
         
-        
+        //observer para quando o teclado aparecer o textViewSubir com ele
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                object: nil)
         
+        //recognizer para sumir o teclado quando o usuário clicar na tela
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        
         view.addGestureRecognizer(tap)
 
         
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        
         initLabels()
+        initTexViewLabel()
+        
+        self.commentTextView.delegate = self
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -115,6 +119,12 @@ class SeeReportViewController: UIViewController, UITableViewDelegate, UITableVie
         self.initiateLocationOnMap(map: self.violanceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
         self.formatDate()
     }
+    
+    func initTexViewLabel() {
+        self.commentTextView.text = "Insira um comentário"
+        self.commentTextView.textColor = UIColor.lightGray
+    }
+    
     
     func initiateLocationOnMap(map: MGLMapView,latitude: Double, longitude: Double) {
         
@@ -255,7 +265,7 @@ class SeeReportViewController: UIViewController, UITableViewDelegate, UITableVie
 
 }
 
-extension SeeReportViewController {
+extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.comments.count
@@ -284,5 +294,27 @@ extension SeeReportViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+
+}
+
+extension SeeReportViewController: UITextViewDelegate {
+ 
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+        
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            
+            textView.text = "Insira seu comentário"
+            textView.textColor = UIColor.lightGray
+            
+        }
     }
 }

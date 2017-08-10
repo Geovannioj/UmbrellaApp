@@ -20,6 +20,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     @IBOutlet weak var violenceKind: UIPickerView!
     @IBOutlet weak var personIdentification: UIPickerView!
     @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var keyBoardConstraint: NSLayoutConstraint!
     
     //options to the picker view
     let violenceKindArray = ["Verbal","Física","Moral","Psicológica","Sexual"]
@@ -55,6 +56,8 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        
         self.personIdentification.setValue(UIColor.white, forKey: "textColor")
         self.violenceKind.setValue(UIColor.white, forKey: "textColor")
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -76,10 +79,10 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         } else {
             
             self.violenceKind.selectRow(2, inComponent: 0, animated: true)
-            self.violenceKindChosen = self.violenceKindArray[0]
+            self.violenceKindChosen = self.violenceKindArray[(violenceKindArray.count - 1)]
             
             self.personIdentification.selectedRow(inComponent: 0)
-            self.personIdentificationChosen = self.victimIdentificationArray[0]
+            self.personIdentificationChosen = self.victimIdentificationArray[(victimIdentificationArray.count - 1)]
         }
         
         self.personIdentification.dataSource = self
@@ -92,8 +95,42 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         self.violenceKind.delegate = self
         self.violenceKind.accessibilityIdentifier = "violenceKind"
         
+        self.violenceDescription.delegate = self
+        self.violenceDescription.text = "Digite a descrição da agressão"
+        self.violenceDescription.textColor = UIColor.lightGray
+        
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            
+            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
+                
+                self.keyBoardConstraint?.constant = 0.0
+                
+            } else {
+                
+                self.keyBoardConstraint?.constant = endFrame?.size.height ?? 0.0
+            }
+            
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+            
+        }
+    }
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
@@ -263,3 +300,25 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
 
     
 }
+
+extension RegisterReportSecondViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+        
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            
+            textView.text = "Insira seu comentário"
+            textView.textColor = UIColor.lightGray
+            
+        }
+    }
+}
+

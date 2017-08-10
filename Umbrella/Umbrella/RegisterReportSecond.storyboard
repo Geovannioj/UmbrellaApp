@@ -104,6 +104,7 @@
                     <connections>
                         <outlet property="addBtn" destination="U75-lA-nOf" id="IvC-Rt-wXG"/>
                         <outlet property="descriptionLbl" destination="UZG-8T-Ipb" id="NFY-nE-757"/>
+                        <outlet property="keyBoardConstraint" destination="9Tt-Na-Nod" id="U9h-VI-s5D"/>
                         <outlet property="personIdentification" destination="2MF-mX-EG6" id="Gaw-f8-HgZ"/>
                         <outlet property="personIdentificationLbl" destination="E7J-yy-oNL" id="gM7-9p-Sip"/>
                         <outlet property="violenceAgressionLbl" destination="NKU-hd-yRm" id="ra8-p3-8mq"/>
