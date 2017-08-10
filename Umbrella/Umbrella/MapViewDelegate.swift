@@ -30,6 +30,10 @@ extension MapViewController : MGLMapViewDelegate {
         mapView.showsUserLocation = true
     }
     
+    func mapView(_ mapView: MGLMapView, didSelect annotationView: MGLAnnotationView) {
+        print("Yey")
+    }
+    
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         // Customise the user location annotation view
         if annotation is MGLUserLocation {
@@ -47,8 +51,18 @@ extension MapViewController : MGLMapViewDelegate {
             return userLocationAnnotationView
         }else{
             if annotation is MGLPointAnnotation{
-                let agressionAnoTation  = AgressionPinAnnotationView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-                return agressionAnoTation
+                let reuseIdentifier = "\(annotation.coordinate.longitude)"
+                
+                // For better performance, always try to reuse existing annotations.
+                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+                
+                // If there’s no reusable annotation view available, initialize a new one.
+                if annotationView == nil {
+                    annotationView = AgressionPinAnnotationView(reuseIdentifier: reuseIdentifier)
+                    annotationView!.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+                    
+                    return annotationView
+                }
             }
             return nil
             
@@ -57,6 +71,7 @@ extension MapViewController : MGLMapViewDelegate {
         // Customise your annotation view here...
         
     }
+ 
     
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
         
