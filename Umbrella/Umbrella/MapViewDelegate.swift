@@ -78,10 +78,15 @@ extension MapViewController : MGLMapViewDelegate {
         let view = self.view.subviews.first { (i) -> Bool in
             i.restorationIdentifier == "heatmap"
         }
-        if view != nil {
+        if view != nil && mapView.zoomLevel >= 12 {
             printHeatmap(imageView: view as! UIImageView)
             
+        }else{
+            if mapView.zoomLevel < 12{
+                heatAction()
+            }
         }
+        
         
     }
 

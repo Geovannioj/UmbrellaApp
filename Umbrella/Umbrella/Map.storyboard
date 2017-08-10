@@ -241,7 +241,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="FIlterButton"/>
                                     <connections>
-                                        <action selector="FilterAction:" destination="gMT-Gf-mW6" eventType="touchUpInside" id="ag6-hH-4rH"/>
+                                        <action selector="FilterAction:" destination="gMT-Gf-mW6" eventType="touchUpInside" id="RYj-hd-7q3"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -350,6 +350,12 @@
                             <outlet property="delegate" destination="gMT-Gf-mW6" id="Wyb-U6-59R"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="physic" destination="3Gh-EA-ZeG" id="yaU-Ch-Ez6"/>
+                        <outlet property="psycologic" destination="c8z-pZ-BWe" id="Mjd-Kj-fvf"/>
+                        <outlet property="sexual" destination="WIq-kZ-LZU" id="iPo-6v-tov"/>
+                        <outlet property="verbal" destination="HNi-Tg-cT5" id="Jpf-EU-7mZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5n-UD-w5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -22,6 +22,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var HorizontalStackButtons: UIStackView!
+    
+    let filtros:[String] = []
     let image = UIImage(named: "CustomLocationPIN")
     var locationManager = CLLocationManager()
     var reports: [Report] = []
@@ -92,6 +94,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        // searchBar.barTintColor = UIColor.clear
+        centerOnUser()
         
     }
     func hideButtons(){
@@ -262,20 +265,27 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     
     @IBAction func filterActivate(_ sender: UIButton) {
-//        let storyboard = UIStoryboard(name: "Map", bundle: nil)
-//        let filterTableView = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
-      //  if !sender.isEnabled {
-//            sender.isEnabled = true
-//        let filterView = filterTableView.view
-//        
-//        filterView?.frame = CGRect(x: searchTableView.frame.minX, y: searchTableView.frame.maxY, width: filterTableView.view.frame.width/4, height: filterTableView.view.frame.width/4)
-//            self.view.addSubview(filterView!)
+
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
-        //}else{
-            //sender.isEnabled = false
-           // filterTableView.view.removeFromSuperview()
-      //  }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
         filterTable.isHidden = false
+    }
+    func filter(){
+       
+        
+        if(!filtros.isEmpty){
+            removePins()
+            for filtro in filtros{
+                for report in reports{
+                    if report.violenceKind == filtro{
+                        addPin(new: report)
+                    }
+                }
+            
+            }
+        }
+        
+        
     }
     func closeFilter(){
         filterTable.isHidden = true
