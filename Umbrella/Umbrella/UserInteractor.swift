@@ -29,21 +29,24 @@ class UserInteractor {
      - parameter nickname: user's nickname
      - parameter email: user's email
      - parameter password: user's password
-     - parameter birthDate: user's birth date
+     - parameter birthDate: user's birth date (optional)
+     - parameter idMinority: user's correspondent minority id (optional)
      - parameter image: user's profile photo
-     - parameter idMinority: user's correspondent minority id
-     - parameter handler: deals with errors and completes sign in actions
+     - parameter userHandler: deals with errors and completes sign in actions
+     - parameter photoHandler: deals with errors and completes photo operation actions
      */
     static func createUser(nickname: String, email: String,
-                           password: String, birthDate: Date?, image: UIImage?,
-                           idMinority: String?, handler : UserInteractorCompleteProtocol) {
+                           password: String, birthDate: Date?,
+                           idMinority: String?, image: UIImage,
+                           userHandler : UserInteractorCompleteProtocol,
+                           photoHandler: PhotoInteractorCompleteProtocol ) {
         
         // Add user to firebase
         Auth.auth().createUser(withEmail: email, password: password) { user, error in
             
-            // Treatment in case of error
+            // Treatment in case of user creation error
             if error != nil {
-                handler.completeCreate?(user: user, error: error)
+                userHandler.completeCreate?(user: user, error: error)
                 return
             }
             
@@ -62,25 +65,76 @@ class UserInteractor {
             if idMinority != nil {
                 newUser.idMinority = idMinority
             }
-            if image != nil {
-                PhotoInteractor.createPhoto(image: image!, completion: { (photo) -> () in
-                    newUser.urlPhoto = photo
-                    
-                    // Add user to local database
-                    SaveManager.instance.create(newUser)
-                    
-                    // Add user to firebase
-                    userRef.setValue(newUser.toAnyObject())
-                })
-            }
+            PhotoInteractor.createPhoto(image: image, photoHandler: photoHandler, completion: { (photo) -> () in
+                newUser.urlPhoto = photo
+                
+                // Add user to local database
+                SaveManager.instance.create(newUser)
+                
+                // Add user to firebase
+                userRef.setValue(newUser.toAnyObject())
+            })
             
-            handler.completeCreate?(user: user, error: error)
+            userHandler.completeCreate?(user: user, error: error)
             
             // Save the password on the keychain
             //KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
             
         }
     }
+    
+    /**
+     Function responsable for creating an authentication for an user and save his data on a server and local database.
+     - parameter nickname: user's nickname
+     - parameter email: user's email
+     - parameter password: user's password
+     - parameter birthDate: user's birth date (optional)
+     - parameter idMinority: user's correspondent minority id (optional)
+     - parameter userHandler: deals with errors and completes sign in actions
+     */
+    static func createUser(nickname: String, email: String,
+                           password: String, birthDate: Date?,
+                           idMinority: String?, userHandler : UserInteractorCompleteProtocol) {
+        
+        // Add user to firebase
+        Auth.auth().createUser(withEmail: email, password: password) { user, error in
+            
+            // Treatment in case of error
+            if error != nil {
+                userHandler.completeCreate?(user: user, error: error)
+                return
+            }
+            
+            let newUser = UserEntity()
+            newUser.id = (user?.uid)!
+            
+            // Reference of the user table in firebase
+            let userRef = Database.database().reference().child("user").child(String(newUser.id))
+            
+            // Fill an instance of the user with data
+            newUser.nickname = nickname
+            newUser.email = email
+            if birthDate != nil {
+                newUser.birthDate = birthDate!
+            }
+            if idMinority != nil {
+                newUser.idMinority = idMinority
+            }
+                
+            // Add user to local database
+            SaveManager.instance.create(newUser)
+            
+            // Add user to firebase
+            userRef.setValue(newUser.toAnyObject())
+            
+            userHandler.completeCreate?(user: user, error: error)
+            
+            // Save the password on the keychain
+            //KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
+            
+        }
+    }
+
     
     /**
      Returns the current user's uid logged on the device.
@@ -148,7 +202,7 @@ class UserInteractor {
     
     /**
      Returns an User with the id parameter if there is one on the server.
-     - parameter id: id of the user desired
+     - parameter id: desired user's id
      - parameter completion: returns an User with the id parameter
      */
     static func getUser(withId id: String, completion: @escaping (UserEntity) -> ()) {
@@ -172,7 +226,7 @@ class UserInteractor {
     
     /**
      Returns an User with the email parameter if there is one on the server.
-     - parameter email: email of the user desired
+     - parameter email: desired user's email
      - parameter completion: returns an User with the email parameter
      */
     static func getUser(withEmail email: String, completion: @escaping (UserEntity) -> ()) {
@@ -201,7 +255,7 @@ class UserInteractor {
      - parameter nickname: new user's nickname
      */
     static func updateCurrentUser(nickname: String) {
-        if let userId = Auth.auth().currentUser?.uid {
+        if let userId = getCurrentUserUid() {
             
             let userRef = Database.database().reference().child("user").child(userId)
             
@@ -223,7 +277,7 @@ class UserInteractor {
      - parameter nickname: new user's photo url
      */
     static func updateCurrentUser(urlPhoto: String) {
-        if let userId = Auth.auth().currentUser?.uid {
+        if let userId = getCurrentUserUid() {
             
             let userRef = Database.database().reference().child("user").child(userId)
             
@@ -245,7 +299,7 @@ class UserInteractor {
      - parameter nickname: new user's birth date
      */
     static func updateCurrentUser(birthDate: Date) {
-        if let userId = Auth.auth().currentUser?.uid {
+        if let userId = getCurrentUserUid() {
         
             let userRef = Database.database().reference().child("user").child(userId)
 
@@ -269,7 +323,7 @@ class UserInteractor {
      - parameter nickname: new user's minority id
      */
     static func updateCurrentUser(idMinority: String) {
-        if let userId = Auth.auth().currentUser?.uid {
+        if let userId = getCurrentUserUid() {
 
             let userRef = Database.database().reference().child("user").child(userId)
             
@@ -287,36 +341,41 @@ class UserInteractor {
         }
     }
     
-    /**
-     Updates the current connected user's password.
-     - parameter password: new user's password
-     - parameter handler: deals with errors and completes changing password actions
-     */
-    static func updateCurrentUser(password: String, handler: UserInteractorCompleteProtocol) {
-        if ((Auth.auth().currentUser?.uid) != nil) {
-            Auth.auth().currentUser?.updatePassword(to: password, completion: { error in
-                handler.completeUpdatePassword!(error: error)
-            })
-            
-        }
-    }
+    // -FIXME: the user need a page to change his password.
+//    /**
+//     Updates the current connected user's password.
+//     - parameter password: new user's password
+//     - parameter handler: deals with errors and completes changing password actions
+//     */
+//    static func updateCurrentUser(password: String, handler: UserInteractorCompleteProtocol) {
+//        if ((Auth.auth().currentUser?.uid) != nil) {
+//            Auth.auth().currentUser?.updatePassword(to: password, completion: { error in
+//                handler.completeUpdatePassword!(error: error)
+//            })
+//            
+//        }
+//    }
 
-    // -TODO: Dont delete, just deactivate
+    // -FIXME: Dont delete, just deactivate the user
     /**
      Deletes the current user logged in.
-     - parameter handler: deals with errors and completes user deletion actions
+     - parameter userHandler: deals with errors and completes user deletion actions
+     - parameter photoHandler: deals with errors and completes photo operation actions
+
      */
-    static func deleteUser(handler : UserInteractorCompleteProtocol) {
-        if let userId = Auth.auth().currentUser?.uid {
+    static func deleteUser(userHandler: UserInteractorCompleteProtocol,
+                           photoHandler: PhotoInteractorCompleteProtocol) {
+        
+        if let userId = getCurrentUserUid() {
 
             Auth.auth().currentUser?.delete(completion: { error in
                 if let err = error {
-                    handler.completeDelete!(error: err)
+                    userHandler.completeDelete!(error: err)
                 }
                     
                 else {
                     let userRef = Database.database().reference().child("user").child(userId)
-                    PhotoInteractor.deleteCurrentUserPhoto()
+                    PhotoInteractor.deleteCurrentUserPhoto(photoHandler: photoHandler)
                     userRef.removeValue()
                     
                     //KeychainService.removePassword(service: "Umbrella-Key", account: userId)
@@ -332,7 +391,7 @@ class UserInteractor {
         }
     }
     
-    // -FIXME: Not funccional
+    // -FIXME: Not useful for the MVP
     // -TODO: give access to all funccionalities of the app
     /**
      Try to login the user online or offline
@@ -359,11 +418,11 @@ class UserInteractor {
      Connects an user to the firebase
      - parameter email: user's email
      - parameter password: user's password
-     - parameter handler: deals with errors and completes login actions
+     - parameter userHandler: deals with errors and completes login actions
      */
-    static func connectUserOnline(email: String, password: String, handler: UserInteractorCompleteProtocol) {
+    static func connectUserOnline(email: String, password: String, userHandler: UserInteractorCompleteProtocol) {
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-            handler.completeLogin!(user: user, error: error)
+            userHandler.completeLogin!(user: user, error: error)
         })
     }
     
@@ -386,23 +445,24 @@ class UserInteractor {
     
     /**
      Disconnects the currunt logged user of the firebase
-     - parameter handler: deals with errors and completes disconnection actions
+     - parameter userHandler: deals with errors and completes disconnection actions
      */
-    static func disconnectUser(handler: UserInteractorCompleteProtocol) {
+    static func disconnectUser(userHandler: UserInteractorCompleteProtocol) {
         do {
             try Auth.auth().signOut()
         } catch let error as NSError {
-            handler.completeSingOut!(error: error)
+            userHandler.completeSingOut!(error: error)
         }
     }
     
     // -TODO: Write a formal email verification on firebase options and test this method
     /**
      Sends an email verification to the user's email
+     - parameter userHandler: deals with errors
     */
-    static func sendEmailVerification(handler: UserInteractorCompleteProtocol) {
+    static func sendEmailVerification(userHandler: UserInteractorCompleteProtocol) {
         Auth.auth().currentUser?.sendEmailVerification(completion: { error in
-             handler.completeEmailVerification!(error: error)
+             userHandler.completeEmailVerification!(error: error)
         })
     }
     

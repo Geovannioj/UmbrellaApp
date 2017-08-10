@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, UserInteractorCompleteProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         presenter = LoginPresenter()
         view.backgroundImage(named: "bkgLoginView")
         setupInputs()
@@ -32,7 +32,7 @@ class LoginViewController: UIViewController, UserInteractorCompleteProtocol {
         
         performSegue(withIdentifier: "mapSegue", sender: nil)
 
-        UserInteractor.connectUserOnline(email: email, password: password, handler: self)
+        UserInteractor.connectUserOnline(email: email, password: password, userHandler: self)
     
     }
     
