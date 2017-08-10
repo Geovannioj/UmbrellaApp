@@ -60,6 +60,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.msgsButton.center = self.expandButton.center
         self.msgsButton.alpha = 0
         
+        mapView.compassView.removeFromSuperview()
+        
         // utilizado para apps em desenvolvimento para teste.Sem isso a conta pode ser banina.
         self.refReports =  Database.database().reference().child("reports")
         setObserverToFireBaseChanges()
@@ -146,6 +148,11 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             annotation.subtitle = new.violenceKind
         
         mapView.addAnnotation(annotation)
+    }
+    func addPins(reports:[Report]){
+        for report in reports {
+            addPin(new: report)
+        }
     }
     func removePins(){
         mapView.removeAnnotations(mapView.annotations!)
@@ -247,19 +254,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    @IBAction func addCenterAction(_ sender: Any) {
-        addPoint(image: UIImage(named: "CustomLocationPIN")!)
-
-    }
-    
-    @IBAction func heatMapButton(_ sender: UIButton) {
-        heatAction()
-        
-    }
-    @IBAction func pinAction(_ sender: UIButton) {
-        addPin()
-        
-    }
+  
+   
     @IBAction func locatioButtonAction(_ sender: UIButton) {
         centerOnUser()
     }

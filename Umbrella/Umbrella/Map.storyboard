@@ -25,7 +25,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAZ-Iw-YaG" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="8WG-Gb-tnC">
+                                    <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="mapNavStack" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="8WG-Gb-tnC">
                                         <rect key="frame" x="19" y="19" width="337.5" height="127"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWo-cy-fPs">
