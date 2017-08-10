@@ -49,44 +49,29 @@ class PhotoInteractor {
         }
     }
     
-//    static func getUserPhoto() -> Photo {
-//        if let userId = Auth.auth().currentUser?.uid {
-//            
-//        }
-//
-//        
-//        let photoRef = Database.database().reference().child("photo")
-//        var photos = [Photo]()
-//        
-//        photoRef.observe(.value, with: { (snapshot) in
-//            if snapshot.value is NSNull {
-//                print("Photos not found")
-//                return
-//            }
-//            
-//            for child in snapshot.children {
-//                let photo = Photo()
-//                let snap = child as! DataSnapshot
-//                let dict = snap.value as! [String : Any]
-//                
-//                photo.id = dict["id"] as! String
-//                photo.image = photosDic["url"] as! String
-//                photos.append(photo)
-//
-//            }
-//            
-//        })
-//        
-//        return photos
-//    }
+    /**
+     Gets user photo from the local database if there is one.
+     */
+    static func getCurrentUserPhoto() -> PhotoEntity? {
+        if let userId = Auth.auth().currentUser?.uid {
+            if let urlPhoto = SaveManager.realm.objects(UserEntity.self).filter("id == %s", userId).first?.urlPhoto {
+                
+                if let photo = SaveManager.realm.objects(PhotoEntity.self).filter("url == %s", urlPhoto).first {
+                    return photo
+                }
+            }
+        }
+
+        return nil
+    }
 
     /**
      Function responsable for switching the user's photo in the server and local database with a new one.
      - parameter image: an UIImage that will be saved on the databases
      */
-    static func updateUserPhoto(image: UIImage) {
+    static func updateCurrentUserPhoto(image: UIImage) {
         
-        deleteUserPhoto()
+        deleteCurrentUserPhoto()
         createPhoto(image: image, completion: {(urlPhoto) -> () in
             UserInteractor.updateCurrentUser(urlPhoto: urlPhoto!)
         })
@@ -96,7 +81,7 @@ class PhotoInteractor {
     /**
      Function responsable for deleting the user's photo in the server and local database.
      */
-    static func deleteUserPhoto() {
+    static func deleteCurrentUserPhoto() {
         if let userId = Auth.auth().currentUser?.uid {
 
             let urlRef = Database.database().reference().child("user").child(userId).child("urlPhoto")

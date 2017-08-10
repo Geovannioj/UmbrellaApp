@@ -14,6 +14,11 @@ import Firebase
     
     @objc optional func completeLogin(user : UserInfo?, error : Error?)
     @objc optional func completeCreate(user : UserInfo?, error : Error?)
+    @objc optional func completeDelete(error : Error?)
+    @objc optional func completeSingOut(error : Error?)
+    @objc optional func completeEmailVerification(error : Error?)
+    @objc optional func completeUpdatePassword(error : Error?)
+
 }
 
 class UserInteractor {
@@ -290,12 +295,13 @@ class UserInteractor {
     static func updateCurrentUser(password: String, handler: UserInteractorCompleteProtocol) {
         if ((Auth.auth().currentUser?.uid) != nil) {
             Auth.auth().currentUser?.updatePassword(to: password, completion: { error in
-                //handler.completeUpdatePassword(error: error)
+                handler.completeUpdatePassword!(error: error)
             })
             
         }
     }
 
+    // -TODO: Dont delete, just deactivate
     /**
      Deletes the current user logged in.
      - parameter handler: deals with errors and completes user deletion actions
@@ -305,12 +311,12 @@ class UserInteractor {
 
             Auth.auth().currentUser?.delete(completion: { error in
                 if let err = error {
-                    //handler.completeDelete(error: err)
+                    handler.completeDelete!(error: err)
                 }
                     
                 else {
                     let userRef = Database.database().reference().child("user").child(userId)
-                    PhotoInteractor.deleteUserPhoto()
+                    PhotoInteractor.deleteCurrentUserPhoto()
                     userRef.removeValue()
                     
                     //KeychainService.removePassword(service: "Umbrella-Key", account: userId)
@@ -386,7 +392,7 @@ class UserInteractor {
         do {
             try Auth.auth().signOut()
         } catch let error as NSError {
-            //handler.completeSignOut(error: error)
+            handler.completeSingOut!(error: error)
         }
     }
     
@@ -396,7 +402,7 @@ class UserInteractor {
     */
     static func sendEmailVerification(handler: UserInteractorCompleteProtocol) {
         Auth.auth().currentUser?.sendEmailVerification(completion: { error in
-            // handler.completeEmailVerification(error: error)
+             handler.completeEmailVerification!(error: error)
         })
     }
     
