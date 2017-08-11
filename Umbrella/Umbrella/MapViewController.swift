@@ -16,20 +16,18 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var msgsButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var perfilButton: UIButton!
-    
     @IBOutlet weak var expandButton: UIButton!
     @IBOutlet weak var filterTable: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var HorizontalStackButtons: UIStackView!
     
-    let filtros:[String] = []
+    var filtros:[String] = []
     let image = UIImage(named: "CustomLocationPIN")
     var locationManager = CLLocationManager()
     var reports: [Report] = []
     var refReports : DatabaseReference!
     var reportToSend:Report?
-    
+    var containerViewController: FilterTableViewControlleTableViewController?
     var buttonDistance:CGFloat = CGFloat()
     var msgCenter:CGPoint = CGPoint()
     var perfilCenter:CGPoint = CGPoint()
@@ -93,6 +91,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        // searchBar.barTintColor = UIColor.clear
@@ -151,11 +150,13 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     func addPins(reports:[Report]){
         for report in reports {
-            addPin(new: report)
+            filter(new: report)
         }
     }
     func removePins(){
+        if mapView.annotations != nil {
         mapView.removeAnnotations(mapView.annotations!)
+        }
     }
     func searchBarConfig(){
         searchBar.delegate = self
@@ -240,6 +241,12 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "containerViewSegue" {
+            containerViewController = segue.destination as? FilterTableViewControlleTableViewController
+            containerViewController!.containerToMaster = self
+        }
+    }
    
 
 
@@ -264,22 +271,29 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBAction func filterActivate(_ sender: UIButton) {
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
+        
+        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
+        
+//        NotificationCenter.default.addObserver(controller, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
         filterTable.isHidden = false
     }
-    func filter(){
+    func filter(new:Report){
        
         
         if(!filtros.isEmpty){
-            removePins()
+            
+          //  removePins()
             for filtro in filtros{
-                for report in reports{
-                    if report.violenceKind == filtro{
-                        addPin(new: report)
+               // for report in reports{
+                    if new.violenceKind.lowercased() == filtro.lowercased(){
+                        addPin(new: new)
                     }
-                }
+               // }
             
             }
+        }else{
+           addPin(new: new)
         }
         
         
@@ -343,8 +357,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
                     
                     
                     self.reports.append(reportAtt)
-                    self.addPin(new: reportAtt)
-                    
+                    self.filter(new: reportAtt)
+                   // self.filter()
                 }
                 
             }

@@ -19,6 +19,7 @@ class FilterTableViewControlleTableViewController: UITableViewController {
     @IBOutlet weak var sexual: UIButton!
     
     var desirables:[String] = []
+    var containerToMaster:MapViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,14 @@ class FilterTableViewControlleTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func setSelect(_ sender: UIButton) {
+        if sender.isSelected{
+            sender.isSelected = false
+        }else{
+            sender.isSelected = true
+        }
     }
   
     @IBAction func closeAction(_ sender: Any) {
@@ -62,12 +71,28 @@ class FilterTableViewControlleTableViewController: UITableViewController {
             print("sexual")
             desirables.append("sexual")
         }
-        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "Filtros"), object: desirables)
+       // NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "Filter"), object: desirables)
+        //performSegue(withIdentifier: "filterAction", sender: self)
+        containerToMaster?.filtros = desirables
+        containerToMaster?.removePins()
+        containerToMaster?.addPins(reports: (containerToMaster?.reports)!)
+         NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
+        
         
     }
     @IBAction func undoAction(_ sender: UIButton) {
+        sexual.isSelected = false
+        physic.isSelected = false
+        psycologic.isSelected = false
+        verbal.isSelected = false
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "filterAction"{
+            let  controller = segue.destination as? MapViewController
+            controller?.filtros = desirables
+        }
+        
+    }
     // MARK: - Table view data source
 
    

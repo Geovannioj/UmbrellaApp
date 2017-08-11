@@ -149,6 +149,7 @@ extension MapViewController : MGLMapViewDelegate {
         
         
     }
+    
     //Entrada:2 valores Double
     //Saída:Distancia entre esses valores
     func distance(d1:CGFloat,d2:CGFloat)->CGFloat{

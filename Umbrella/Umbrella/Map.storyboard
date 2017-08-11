@@ -67,7 +67,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="27" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZqN-dd-ZCS">
-                                        <rect key="frame" x="20" y="53" width="320.5" height="132"/>
+                                        <rect key="frame" x="19" y="53" width="320.5" height="132"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" rowHeight="27" id="nhC-xf-0iq" customClass="SearchBarCellTableViewCell" customModule="Umbrella" customModuleProvider="target">
@@ -96,7 +96,7 @@
                                         <rect key="frame" x="8" y="63" width="312" height="380"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <connections>
-                                            <segue destination="gMT-Gf-mW6" kind="embed" id="xTw-iK-GzZ"/>
+                                            <segue destination="gMT-Gf-mW6" kind="embed" identifier="containerViewSegue" id="xTw-iK-GzZ"/>
                                         </connections>
                                     </containerView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-Ko-PqW">
@@ -262,6 +262,10 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="CheckBoxInactive"/>
                                                     <state key="disabled" image="CheckBoxInactive"/>
+                                                    <state key="selected" backgroundImage="CloseIcon"/>
+                                                    <connections>
+                                                        <action selector="setSelect:" destination="gMT-Gf-mW6" eventType="touchUpInside" id="H65-vd-QKm"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Violência Psicológica" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-q9-3h4">
                                                     <rect key="frame" x="112" y="11" width="165" height="21"/>
@@ -285,6 +289,10 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="CheckBoxInactive"/>
                                                     <state key="disabled" image="CheckBoxInactive"/>
+                                                    <state key="selected" backgroundImage="CloseIcon"/>
+                                                    <connections>
+                                                        <action selector="setSelect:" destination="gMT-Gf-mW6" eventType="touchUpInside" id="35f-bc-U0S"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Violência Verbal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npz-4T-bMV">
                                                     <rect key="frame" x="112" y="11" width="159" height="21"/>
@@ -306,8 +314,12 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Gh-EA-ZeG">
                                                     <rect key="frame" x="25" y="10" width="20" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="CheckBoxInactive"/>
+                                                    <state key="normal" backgroundImage="CheckBoxInactive"/>
                                                     <state key="disabled" image="CheckBoxInactive"/>
+                                                    <state key="selected" backgroundImage="CloseIcon"/>
+                                                    <connections>
+                                                        <action selector="setSelect:" destination="gMT-Gf-mW6" eventType="touchUpInside" id="ibi-WK-pzS"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Violência Física" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1v-CV-8G1">
                                                     <rect key="frame" x="112" y="11" width="152" height="21"/>
@@ -331,6 +343,10 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="CheckBoxInactive"/>
                                                     <state key="disabled" image="CheckBoxInactive"/>
+                                                    <state key="selected" backgroundImage="CloseIcon"/>
+                                                    <connections>
+                                                        <action selector="setSelect:" destination="gMT-Gf-mW6" eventType="touchUpInside" id="rrs-41-d1W"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Violência Sexual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoF-oB-OW7">
                                                     <rect key="frame" x="112" y="11" width="152" height="21"/>
