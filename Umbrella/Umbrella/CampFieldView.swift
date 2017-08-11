@@ -12,11 +12,11 @@ class CampFieldView: UIView {
     
     let campView: UIView = {
         let camp = UIView()
+        camp.backgroundColor = UIColor.white
         camp.layer.borderColor = UIColor.lightGray.cgColor
         camp.layer.borderWidth = 1
         camp.layer.cornerRadius = 5
         camp.layer.masksToBounds = true
-        camp.backgroundColor = UIColor.white
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
     }()
