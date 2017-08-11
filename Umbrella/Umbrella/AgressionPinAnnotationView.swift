@@ -9,18 +9,8 @@
 import Foundation
 import Mapbox
 
- class AgressionPinAnnotationView: MGLUserLocationAnnotationView {
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+ class AgressionPinAnnotationView: MGLAnnotationView {
+   
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -28,11 +18,20 @@ import Mapbox
         // Force the annotation view to maintain a constant size when the map is tilted.
         scalesWithViewingDistance = false
         
-        layer.contentsScale = UIScreen.main.scale
-        layer.contentsGravity = kCAGravityCenter
-        
-        // Use your image here
+        // Use CALayer’s corner radius to turn this view into a circle.
+
         layer.contents = UIImage(named: "indicador_crime")?.cgImage
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Animate the border width in/out, creating an iris effect.
+//        let animation = CABasicAnimation(keyPath: "borderWidth")
+//        animation.duration = 0.1
+//        layer.borderWidth = selected ? frame.width / 4 : 2
+//        layer.add(animation, forKey: "borderWidth")
+        
         
     }
     

@@ -29,6 +29,10 @@ extension MapViewController : MGLMapViewDelegate {
         // Show the user location here
         mapView.showsUserLocation = true
     }
+    //Funcao acionada quando o pin e selecionado
+    func mapView(_ mapView: MGLMapView, didSelect annotationView: MGLAnnotationView) {
+        
+    }
     
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         // Customise the user location annotation view
@@ -46,23 +50,51 @@ extension MapViewController : MGLMapViewDelegate {
             
             return userLocationAnnotationView
         }else{
-            let agressionAnoTation  = AgressionPinAnnotationView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-            return agressionAnoTation
+            if annotation is MGLPointAnnotation{
+                let reuseIdentifier = "\(annotation.coordinate.longitude)"
+                
+                // For better performance, always try to reuse existing annotations.
+                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+                
+                // If there’s no reusable annotation view available, initialize a new one.
+                if annotationView == nil {
+                    annotationView = AgressionPinAnnotationView(reuseIdentifier: reuseIdentifier)
+                    annotationView!.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+                    
+                    return annotationView
+                }
+            }
+            return nil
+            
         }
         
         // Customise your annotation view here...
         
     }
+ 
     
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
-        
-        let view = self.view.subviews.first { (i) -> Bool in
+        let view = mapView.subviews.first { (i) -> Bool in
             i.restorationIdentifier == "heatmap"
         }
-        if view != nil {
-            printHeatmap(imageView: view as! UIImageView)
-            
+        if   !reports.isEmpty {
+            if   mapView.zoomLevel < 12 && mapView.zoomLevel > 9{
+                
+                if view != nil{
+                    printHeatmap(imageView: view as! UIImageView)
+                }else{
+                    heatAction()
+                }
+                
+            }else{
+                addPins(reports: self.reports)
+                view?.removeFromSuperview()
+                
+                
+            }
         }
+        
+        
         
     }
     
@@ -80,13 +112,17 @@ extension MapViewController : MGLMapViewDelegate {
         
         let yDistanceAll = distance(d1: (CGFloat(mapView.visibleCoordinateBounds.ne.latitude)), d2: (CGFloat(mapView.visibleCoordinateBounds.sw.latitude)))
 
-        if  mapView.visibleAnnotations != nil {
-            
-            for i in mapView.visibleAnnotations! {
+       // if  mapView.visibleAnnotations != nil {
+        if mapView.annotations != nil{
+            removePins()
+
+        }
+        
+            for i in reports {
                 
                 
-                let pinXDistance = distance(d1:CGFloat((i.coordinate.longitude)), d2: CGFloat((mapView.visibleCoordinateBounds.sw.longitude)))
-                let pinYDistance = distance(d1:CGFloat(i.coordinate.latitude), d2: CGFloat(mapView.visibleCoordinateBounds.ne.latitude))
+                let pinXDistance = distance(d1:CGFloat(i.longitude), d2: CGFloat((mapView.visibleCoordinateBounds.sw.longitude)))
+                let pinYDistance = distance(d1:CGFloat(i.latitude), d2: CGFloat(mapView.visibleCoordinateBounds.ne.latitude))
                 
                 
                 let x = (CGFloat(mapView.frame.width) * pinXDistance)/xDistanceAll
@@ -97,7 +133,7 @@ extension MapViewController : MGLMapViewDelegate {
                 //Peso dos ponto a ser testado
                 weights.append(10)
             }
-        }
+        
         
         let rect = CGRect(x: mapView.frame.minX, y: mapView.frame.minY, width: mapView.frame.width * 2 , height: mapView.frame.height * 2 )
         
@@ -130,7 +166,7 @@ extension MapViewController : MGLMapViewDelegate {
     //Objetivo:Instanciar UIImageView e printar mapa de calor
     func heatAction() {
         
-        let view = self.view.subviews.first { (i) -> Bool in
+        let view = self.mapView.subviews.first { (i) -> Bool in
             i.restorationIdentifier == "heatmap"
         }
         if view != nil {
@@ -143,18 +179,15 @@ extension MapViewController : MGLMapViewDelegate {
             let heatView = UIImageView(frame: CGRect(x: mapView.frame.minX, y: mapView.frame.minY, width: mapView.frame.width * 2 , height: mapView.frame.height * 2))
             heatView.restorationIdentifier = "heatmap"
             printHeatmap(imageView: heatView)
-            self.view.addSubview(heatView)
+            let viewAbove = self.mapView.subviews.first { (i) -> Bool in
+                i.restorationIdentifier == "mapNavStack"
+            }
+            self.mapView.insertSubview(heatView, belowSubview: viewAbove!)
             
         }
         
     }
-    func addPin() {
-        let annotation = MGLPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: mapView.camera.centerCoordinate.latitude, longitude: mapView.camera.centerCoordinate.longitude)
-        annotation.title = "teste"
-        annotation.subtitle = "ënois"
-        mapView.addAnnotation(annotation)
-    }
+   
     
     
 

@@ -10,9 +10,21 @@ import UIKit
 
 class FilterTableViewControlleTableViewController: UITableViewController {
 
+    @IBOutlet weak var psycologic: UIButton!
+    
+    @IBOutlet weak var verbal: UIButton!
+    
+    @IBOutlet weak var physic: UIButton!
+    
+    @IBOutlet weak var sexual: UIButton!
+    
+    var desirables:[String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tableView.allowsSelection = false
+        psycologic.isSelected = true
+        sexual.isSelected = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -24,15 +36,34 @@ class FilterTableViewControlleTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func FilterAction(_ sender: UIButton) {
-    }
-
+  
     @IBAction func closeAction(_ sender: Any) {
        // self.view.removeFromSuperview()
         //self.removeFromParentViewController()
        // self.view.isHidden = true
         NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
 
+    }
+    @IBAction func FilterAction(_ sender: UIButton) {
+        
+        if psycologic.isSelected{
+            print("psicológica")
+            desirables.append("psicológica")
+        }
+        if verbal.isSelected{
+            print("verbal")
+            desirables.append("verbal")
+        }
+        if physic.isSelected{
+            print("física")
+            desirables.append("física")
+        }
+        if sexual.isSelected{
+            print("sexual")
+            desirables.append("sexual")
+        }
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "Filtros"), object: desirables)
+        
     }
     @IBAction func undoAction(_ sender: UIButton) {
     }

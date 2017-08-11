@@ -21,13 +21,16 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var filterTable: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    @IBOutlet weak var verticalStackButtons: UIStackView!
+    @IBOutlet weak var HorizontalStackButtons: UIStackView!
+    
+    let filtros:[String] = []
     let image = UIImage(named: "CustomLocationPIN")
     var locationManager = CLLocationManager()
     var reports: [Report] = []
     var refReports : DatabaseReference!
     var reportToSend:Report?
     
+    var buttonDistance:CGFloat = CGFloat()
     var msgCenter:CGPoint = CGPoint()
     var perfilCenter:CGPoint = CGPoint()
     var reportCenter:CGPoint = CGPoint()
@@ -42,6 +45,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var searchTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonDistance = HorizontalStackButtons.spacing
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
@@ -58,6 +62,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         self.msgsButton.center = self.expandButton.center
         self.msgsButton.alpha = 0
+        
+        mapView.compassView.removeFromSuperview()
         
         // utilizado para apps em desenvolvimento para teste.Sem isso a conta pode ser banina.
         self.refReports =  Database.database().reference().child("reports")
@@ -97,21 +103,25 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        // searchBar.barTintColor = UIColor.clear
+        centerOnUser()
         
     }
     func hideButtons(){
         UIView.animate(withDuration: 1, animations:{
 //            self.expandButton.isSelected = false
-            self.verticalStackButtons.spacing = 0
+          //  self.verticalStackButtons.spacing = 0
            
-            self.perfilButton.center = self.expandButton.center
-            self.perfilButton.alpha = 0
-           
-           // self.reportButton.center = self.expandButton.center
+           // self.perfilButton.center = self.expandButton.center
+
+            
+            self.HorizontalStackButtons.spacing = 0
+            self.reportButton.center = self.expandButton.center
+            
             self.reportButton.alpha = 0
-           
-            self.msgsButton.center = self.expandButton.center
             self.msgsButton.alpha = 0
+            self.perfilButton.alpha = 0
+           // self.msgsButton.center = self.expandButton.center
+            
             
             
             }, completion: nil)
@@ -123,14 +133,14 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         UIView.animate(withDuration: 1, animations:{
             //self.expandButton.isSelected = true
             
-            self.perfilButton.center = self.perfilCenter
+          //  self.perfilButton.center = self.perfilCenter
             self.perfilButton.alpha = 1
-            
-            self.verticalStackButtons.spacing = 28
-           // self.reportButton.center = self.reportCenter
+            self.HorizontalStackButtons.spacing = self.buttonDistance
+           // self.verticalStackButtons.spacing = 28
+            self.reportButton.center = self.reportCenter
             self.reportButton.alpha = 1
             
-            self.msgsButton.center = self.msgCenter
+           // self.msgsButton.center = self.msgCenter
             self.msgsButton.alpha = 1
             
             
@@ -145,6 +155,11 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             annotation.subtitle = new.violenceKind
         
         mapView.addAnnotation(annotation)
+    }
+    func addPins(reports:[Report]){
+        for report in reports {
+            addPin(new: report)
+        }
     }
     func removePins(){
         mapView.removeAnnotations(mapView.annotations!)
@@ -246,38 +261,34 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    @IBAction func addCenterAction(_ sender: Any) {
-        addPoint(image: UIImage(named: "CustomLocationPIN")!)
-
-    }
-    
-    @IBAction func heatMapButton(_ sender: UIButton) {
-        heatAction()
-        
-    }
-    @IBAction func pinAction(_ sender: UIButton) {
-        addPin()
-        
-    }
+  
+   
     @IBAction func locatioButtonAction(_ sender: UIButton) {
         centerOnUser()
     }
     
     @IBAction func filterActivate(_ sender: UIButton) {
-//        let storyboard = UIStoryboard(name: "Map", bundle: nil)
-//        let filterTableView = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
-      //  if !sender.isEnabled {
-//            sender.isEnabled = true
-//        let filterView = filterTableView.view
-//        
-//        filterView?.frame = CGRect(x: searchTableView.frame.minX, y: searchTableView.frame.maxY, width: filterTableView.view.frame.width/4, height: filterTableView.view.frame.width/4)
-//            self.view.addSubview(filterView!)
+
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
-        //}else{
-            //sender.isEnabled = false
-           // filterTableView.view.removeFromSuperview()
-      //  }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
         filterTable.isHidden = false
+    }
+    func filter(){
+       
+        
+        if(!filtros.isEmpty){
+            removePins()
+            for filtro in filtros{
+                for report in reports{
+                    if report.violenceKind == filtro{
+                        addPin(new: report)
+                    }
+                }
+            
+            }
+        }
+        
+        
     }
     func closeFilter(){
         filterTable.isHidden = true
