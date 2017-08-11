@@ -151,15 +151,17 @@ class UserInteractor {
         
         userRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let dict = snapshot.value as! [String : Any]
-            user.id = snapshot.key
-            user.email = dict["email"] as! String
-            user.nickname = dict["nickname"] as! String
-            user.birthDate = dict["birthDate"] as? Date
-            user.urlPhoto = dict["urlPhoto"] as? String
-            user.idMinority = dict["idMinority"] as? String
-            
-            completion(user)
+            if let dict = snapshot.value as? [String : Any] {
+
+                user.id = snapshot.key
+                user.email = dict["email"] as! String
+                user.nickname = dict["nickname"] as! String
+                user.birthDate = dict["birthDate"] as? Date
+                user.urlPhoto = dict["urlPhoto"] as? String
+                user.idMinority = dict["idMinority"] as? String
+                
+                completion(user)
+            }
         })
         
     }

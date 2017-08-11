@@ -13,12 +13,17 @@ class MessageEntity : Object {
     
     dynamic var id = ""
     dynamic var text = ""
-    dynamic var timeDate = ""
+    dynamic var timeDate : Double = 0
     dynamic var fromId = ""
     dynamic var toId = ""
     
-    override static func primaryKey() -> String? {
-        return "id"
+    convenience init(text: String, timeDate: Double, fromId : String, toId : String) {
+        self.init()
+        
+        self.text = text
+        self.timeDate = timeDate
+        self.fromId = fromId
+        self.toId = toId
     }
     
     func toAnyObject() -> Any {

@@ -55,6 +55,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.reportButton.center = self.expandButton.center
         self.reportButton.alpha = 0
         
+        self.msgsButton.addTarget(self, action: #selector(handleMsgsButtonAction), for: .touchUpInside)
         self.msgsButton.center = self.expandButton.center
         self.msgsButton.alpha = 0
         
@@ -242,6 +243,12 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
                 }
         
         
+    }
+    
+    func handleMsgsButtonAction(){
+        
+        let navigation = UINavigationController(rootViewController: MessagesTableViewController())
+        present(navigation, animated: true, completion: nil)
     }
     
     @IBAction func addCenterAction(_ sender: Any) {

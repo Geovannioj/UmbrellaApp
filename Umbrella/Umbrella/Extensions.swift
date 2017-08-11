@@ -37,3 +37,38 @@ extension UIView {
         self.sendSubview(toBack: imageView)
     }
 }
+
+extension UITextField {
+    
+    func estimateFrame(width : CGFloat) -> CGRect {
+        
+        let size = CGSize(width: width, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        
+        return NSString(string: self.text!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName : self.font!.pointSize], context: nil)
+        
+    }
+}
+
+extension String {
+    
+    func estimateFrame(width : CGFloat, sizeFont : CGFloat) -> CGRect {
+        
+        let size = CGSize(width: width, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+
+        return NSString(string: self).boundingRect(with: size, options: options, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: sizeFont)], context: nil)
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
