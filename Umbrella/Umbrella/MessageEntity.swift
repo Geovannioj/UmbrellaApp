@@ -36,6 +36,10 @@ class MessageEntity : Object {
         ]
     }
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
     func chatPartenerId() -> String? {
         return fromId == UserInteractor.getCurrentUserUid() ? toId : fromId
     }

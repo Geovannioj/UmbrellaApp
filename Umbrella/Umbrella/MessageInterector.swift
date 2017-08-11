@@ -34,9 +34,9 @@ class MessageInterector {
                 if let dictionary = snapshot.value as? [String : Any] {
                  
                     let message = MessageEntity(text: dictionary["text"] as! String,
-                                                timeDate: dictionary["fromId"] as! Double,
-                                                fromId: dictionary["toId"] as! String,
-                                                toId: dictionary["timeDate"] as! String)
+                                                timeDate: dictionary["timeDate"] as! Double,
+                                                fromId: dictionary["fromId"] as! String,
+                                                toId: dictionary["toId"] as! String)
                     completion(message)
                 }
             })

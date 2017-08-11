@@ -30,10 +30,7 @@ class LoginViewController: UIViewController, UserInteractorCompleteProtocol {
             return
         }
         
-        performSegue(withIdentifier: "mapSegue", sender: nil)
-
         UserInteractor.connectUserOnline(email: email, password: password, userHandler: self)
-    
     }
     
     func completeLogin(user : UserInfo?, error : Error?) {
