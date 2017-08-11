@@ -10,19 +10,19 @@ import Foundation
 import UIKit
 import Firebase
 import Mapbox
+
 class SeeReportViewController: UIViewController {
     
     //outlets
+    
+    @IBOutlet weak var secondView: UIView!
     @IBOutlet weak var agression: UILabel!
-    @IBOutlet weak var editReportBtn: UIButton!
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var violanceLocation: MGLMapView!
     @IBOutlet weak var violenceAproximateTime: UILabel!
     @IBOutlet weak var violenceDescription: UITextView!
-    @IBOutlet weak var editBtn: UIButton!
-    @IBOutlet weak var deleteBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint?
@@ -40,8 +40,10 @@ class SeeReportViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        //database reference
         self.refComment =  Database.database().reference().child("comments")
         self.refReport =  Database.database().reference().child("reports")
+
         super.viewDidLoad()
         
         //observer para quando o teclado aparecer o textViewSubir com ele
@@ -54,20 +56,25 @@ class SeeReportViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
 
-        
+        //change the background color for the two views
+        self.secondView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
+        //init the components of the screen
         initLabels()
         initTexViewLabel()
         
+        // sets the delegate to textView and tableView
         self.commentTextView.delegate = self
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        //sets the color of the table to the same as the view
         self.tableView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
+        //observes the changes on the database
         setObserverToFireBaseChanges()
-        
         
     }
     
@@ -76,6 +83,7 @@ class SeeReportViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    //makes the keyboard go up and the textView goes with it
     @objc func keyboardNotification(notification: NSNotification) {
         
         if let userInfo = notification.userInfo {
@@ -128,7 +136,7 @@ class SeeReportViewController: UIViewController {
     
     func initiateLocationOnMap(map: MGLMapView,latitude: Double, longitude: Double) {
         
-      var location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+      let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
         
         map.setCenter(location, zoomLevel: 13, animated: true)
         

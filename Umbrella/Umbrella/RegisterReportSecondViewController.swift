@@ -60,11 +60,13 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
         self.personIdentification.setValue(UIColor.white, forKey: "textColor")
         self.violenceKind.setValue(UIColor.white, forKey: "textColor")
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterReportSecondViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
 
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        
         self.violenceAgressionLbl.setValue(UIColor.white, forKey: "textColor")
         self.descriptionLbl.setValue(UIColor.white, forKey: "textColor")
         self.personIdentificationLbl.setValue(UIColor.white, forKey: "textColor")

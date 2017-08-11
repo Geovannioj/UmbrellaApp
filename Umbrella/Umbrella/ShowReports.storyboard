@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vse-cI-W7Y" id="AxK-BX-TFn">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irI-IQ-dPc">
@@ -44,12 +44,12 @@
                     <navigationItem key="navigationItem" id="aHM-kg-osX">
                         <barButtonItem key="leftBarButtonItem" title="mapa" id="oIB-Kv-MME">
                             <connections>
-                                <segue destination="0DV-g6-XZG" kind="show" id="PCO-fu-jIT"/>
+                                <segue destination="0DV-g6-XZG" kind="show" id="dwV-R6-JF1"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0ur-AZ-9Kf">
                             <connections>
-                                <segue destination="I2N-2o-Tvn" kind="show" id="tOo-oH-GPA"/>
+                                <segue destination="I2N-2o-Tvn" kind="show" id="F6I-5W-ggp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
