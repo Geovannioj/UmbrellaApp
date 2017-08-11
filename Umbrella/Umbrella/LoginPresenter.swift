@@ -10,7 +10,7 @@ import UIKit
 
 class LoginPresenter {
     
-    func loginUser(With email : String, password: String, handler : UserInteractorCompleteProtocol){
+    func loginUser(With email : String, password: String, handler : InteractorCompleteProtocol){
         
 //        UserInteractor.connectUser(email: email, password: password, handle: handler)
     }

@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController, UserInteractorCompleteProtocol {
+class LoginViewController: UIViewController, InteractorCompleteProtocol {
     
     @IBOutlet weak var inputs: LoginView!
     weak var presenter : LoginPresenter?
@@ -32,7 +32,7 @@ class LoginViewController: UIViewController, UserInteractorCompleteProtocol {
         
         performSegue(withIdentifier: "mapSegue", sender: nil)
 
-        UserInteractor.connectUserOnline(email: email, password: password, userHandler: self)
+        UserInteractor.connectUserOnline(email: email, password: password, handler: self)
     
     }
     

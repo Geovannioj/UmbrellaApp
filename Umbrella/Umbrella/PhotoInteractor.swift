@@ -12,21 +12,15 @@ import Firebase
 import FirebaseStorage
 import FirebaseAuth
 
-@objc protocol PhotoInteractorCompleteProtocol {
-    
-    @objc optional func completePhotoOperation(error : Error?)
-    
-}
-
 class PhotoInteractor {
 
     /**
      Function responsable for alocate a photo in the server and local database.
      - parameter image: an UIImage that will be saved on the databases
-     - parameter photoHandler: deals with errors and completes photo operation actions
+     - parameter handler: deals with errors and completes photo operation actions
      - parameter completion: completion that returns the url of the photo saved
      */
-    static func createPhoto(image: UIImage, photoHandler: PhotoInteractorCompleteProtocol, completion completionHandler: @escaping (String?) -> ()) {
+    static func createPhoto(image: UIImage, handler: InteractorCompleteProtocol, completion completionHandler: @escaping (String?) -> ()) {
         let photo = PhotoEntity()
         
         photo.id = UUID().uuidString + ".jpg"
@@ -38,7 +32,7 @@ class PhotoInteractor {
                 
                 // Treatment in case of photo alocation error
                 if error != nil {
-                    photoHandler.completePhotoOperation!(error: error)
+                    handler.completePhotoOperation!(error: error)
                     return
                 }
                 
@@ -75,12 +69,12 @@ class PhotoInteractor {
     /**
      Function responsable for switching the user's photo in the server and local database with a new one.
      - parameter image: an UIImage that will be saved on the databases
-     - parameter photoHandler: deals with errors and completes photo operation actions
+     - parameter handler: deals with errors and completes photo operation actions
      */
-    static func updateCurrentUserPhoto(image: UIImage, photoHandler: PhotoInteractorCompleteProtocol) {
+    static func updateCurrentUserPhoto(image: UIImage, handler: InteractorCompleteProtocol) {
         
-        deleteCurrentUserPhoto(photoHandler: photoHandler)
-        createPhoto(image: image, photoHandler: photoHandler, completion: {(urlPhoto) -> () in
+        deleteCurrentUserPhoto(handler: handler)
+        createPhoto(image: image, handler: handler, completion: {(urlPhoto) -> () in
             UserInteractor.updateCurrentUser(urlPhoto: urlPhoto!)
         })
     }
@@ -90,7 +84,7 @@ class PhotoInteractor {
      Function responsable for deleting the user's photo in the server and local database.
      - parameter photoHandler: deals with errors and completes photo operation actions
      */
-    static func deleteCurrentUserPhoto(photoHandler: PhotoInteractorCompleteProtocol) {
+    static func deleteCurrentUserPhoto(handler: InteractorCompleteProtocol) {
         if let userId = UserInteractor.getCurrentUserUid() {
 
             let urlRef = Database.database().reference().child("user").child(userId).child("urlPhoto")
@@ -103,7 +97,7 @@ class PhotoInteractor {
                     
                     photoRef.delete(completion: { (error) in
                         if let err = error {
-                            photoHandler.completePhotoOperation!(error: err)
+                            handler.completePhotoOperation!(error: err)
                         }
                         else {
                             UserInteractor.updateCurrentUser(urlPhoto: "")
