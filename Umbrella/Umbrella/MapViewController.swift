@@ -262,8 +262,25 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
-  
-   
+    func handleMsgsButtonAction(){
+        
+        let navigation = UINavigationController(rootViewController: MessagesTableViewController())
+        present(navigation, animated: true, completion: nil)
+    }
+    
+    @IBAction func addCenterAction(_ sender: Any) {
+        addPoint(image: UIImage(named: "CustomLocationPIN")!)
+
+    }
+    
+    @IBAction func heatMapButton(_ sender: UIButton) {
+        heatAction()
+        
+    }
+    @IBAction func pinAction(_ sender: UIButton) {
+        addPin(new: <#Report#>)
+        
+    }
     @IBAction func locatioButtonAction(_ sender: UIButton) {
         centerOnUser()
     }
