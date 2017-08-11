@@ -67,14 +67,14 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="27" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZqN-dd-ZCS">
-                                        <rect key="frame" x="57.5" y="53" width="287" height="132"/>
+                                        <rect key="frame" x="20" y="53" width="320.5" height="132"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" rowHeight="27" id="nhC-xf-0iq" customClass="SearchBarCellTableViewCell" customModule="Umbrella" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="287" height="27"/>
+                                                <rect key="frame" x="0.0" y="28" width="320.5" height="27"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhC-xf-0iq" id="jeB-v1-mhn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="26.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320.5" height="26.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="The-os-8sl">
@@ -118,10 +118,10 @@
                                     <constraint firstItem="CQS-2u-VCk" firstAttribute="centerY" secondItem="OlU-ii-JrG" secondAttribute="centerY" id="3we-ln-QJ6"/>
                                     <constraint firstItem="ucJ-Ko-PqW" firstAttribute="centerY" secondItem="BAZ-Iw-YaG" secondAttribute="centerY" multiplier="1.55" id="7aD-eJ-rY0"/>
                                     <constraint firstItem="ZqN-dd-ZCS" firstAttribute="top" secondItem="5Pq-8k-jmZ" secondAttribute="bottom" constant="-10" id="NGo-a5-JFl"/>
-                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="width" secondItem="5Pq-8k-jmZ" secondAttribute="width" multiplier="0.85" id="O6f-bN-9YG"/>
+                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="width" secondItem="5Pq-8k-jmZ" secondAttribute="width" multiplier="0.95" id="O6f-bN-9YG"/>
                                     <constraint firstItem="Czp-Ie-uU2" firstAttribute="height" secondItem="BAZ-Iw-YaG" secondAttribute="height" multiplier="0.17" id="REi-5i-zFb"/>
                                     <constraint firstItem="ZqN-dd-ZCS" firstAttribute="height" secondItem="5Pq-8k-jmZ" secondAttribute="height" multiplier="3" id="XbL-4b-sMR"/>
-                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="centerX" secondItem="5Pq-8k-jmZ" secondAttribute="centerX" multiplier="1.07" id="bXr-IU-RJK"/>
+                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="centerX" secondItem="5Pq-8k-jmZ" secondAttribute="centerX" multiplier="0.96" id="bXr-IU-RJK"/>
                                     <constraint firstAttribute="bottom" secondItem="Czp-Ie-uU2" secondAttribute="bottom" id="cYh-ul-6fZ"/>
                                     <constraint firstItem="ucJ-Ko-PqW" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="fmO-7T-Fov"/>
                                     <constraint firstItem="8WG-Gb-tnC" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="lYk-ja-aVt"/>

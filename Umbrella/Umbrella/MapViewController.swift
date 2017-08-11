@@ -179,6 +179,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         //self.view.addSubview(tableView)
         self.searchTableView.isHidden = true
         searchTableView.allowsSelection = false
+        searchTableView.layer.cornerRadius = 10
     }
     //Objetivo: Função para centrar no usuario quando ocorre o request do GPS.
     func centerOnUser(){
