@@ -183,7 +183,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     func addReport() {
         
                 let id = refReports.childByAutoId().key
-                let userId = "userIdComing"
+                let userId = UserInteractor.getCurrentUserUid()
                 let title = self.violenceTitle
                 let description = self.violenceDescription.text
                 let violenceKind = self.violenceKindChosen
@@ -193,7 +193,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
                 let latitude = self.latitude
                 let longitude = self.longitude
         
-                let report = Report(id: id, userId: userId, title: title!, description: description!, violenceKind: violenceKind, violenceAproximatedTime: Double(violenceAproximatedTime!), latitude: latitude!, longitude: longitude!, personGender: personGender)
+                let report = Report(id: id, userId: userId!, title: title!, description: description!, violenceKind: violenceKind, violenceAproximatedTime: Double(violenceAproximatedTime!), latitude: latitude!, longitude: longitude!, personGender: personGender)
         print(report.turnToDictionary())
         
                self.refReports.child(id).setValue(report.turnToDictionary())

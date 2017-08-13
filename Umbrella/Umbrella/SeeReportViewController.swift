@@ -119,10 +119,19 @@ class SeeReportViewController: UIViewController {
 
     
     func initLabels() {
+        
+        UserInteractor.getUser(withId: UserInteractor.getCurrentUserUid()!, completion: { (user) in
+            
+            self.username.text = user.nickname
+            
+            //UIImage()
+            //self.userPhoto.image = user.
+            
+        })
+        
         self.agression.text = self.report?.violenceKind
         self.violenceDescription.text = self.report?.description
         self.violenceDescription.isEditable = false
-        self.username.text = "Joelson"
         self.cityName.text = "Taguayork"
         self.initiateLocationOnMap(map: self.violanceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
         self.formatDate()

@@ -187,6 +187,48 @@ extension MapViewController : MGLMapViewDelegate {
         }
         
     }
+    
+    func getAnnotationById(reportId: String, reports: [Report]) -> Report {
+        
+        var counter = 0
+        
+        for report in reports {
+            
+            if report.id == reportId {
+                return report
+            }else{
+                //keep going
+            }
+            
+            counter += 1
+        }
+        return Report()
+    }
+    
+    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        
+        return true
+    
+    }
+    
+    func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> MGLCalloutView? {
+        
+        
+        self.reportToSend = getAnnotationById(reportId: annotation.title!!, reports: self.reports)
+        performSegue(withIdentifier: "seeReport", sender: Any.self)
+ 
+        return nil
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "seeReport"{
+            if let seeScreen = segue.destination as? SeeReportViewController {
+                seeScreen.report = self.reportToSend
+            }
+    }
+    
+    
+    }
+    
    
     
     

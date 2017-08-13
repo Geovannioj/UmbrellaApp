@@ -42,7 +42,17 @@ class Report {
         
     }
     
-
+    init() {
+        self.id = "No Id"
+        self.userId = "No User"
+        self.title = "No title"
+        self.description = "No description"
+        self.violenceKind = "No violence"
+        self.violenceAproximatedTime = 123
+        self.latitude = 0.0
+        self.longitude = 0.0
+        self.personGender = "nO gender"
+    }
     func turnToDictionary() -> Any {
         
         return [

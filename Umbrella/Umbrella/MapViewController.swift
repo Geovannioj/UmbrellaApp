@@ -152,7 +152,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
             let annotation = MGLPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees.init(new.latitude), longitude: .init(new.longitude))
-            annotation.title = new.title
+            annotation.title = new.id
             annotation.subtitle = new.violenceKind
         
         mapView.addAnnotation(annotation)
@@ -268,23 +268,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         present(navigation, animated: true, completion: nil)
     }
     
-    @IBAction func addCenterAction(_ sender: Any) {
-        addPoint(image: UIImage(named: "CustomLocationPIN")!)
 
-    }
-    
-    @IBAction func heatMapButton(_ sender: UIButton) {
-        heatAction()
-        
-    }
-    @IBAction func pinAction(_ sender: UIButton) {
-        addPin(new: <#Report#>)
-        
-    }
-    @IBAction func locatioButtonAction(_ sender: UIButton) {
-        centerOnUser()
-    }
-    
     @IBAction func filterActivate(_ sender: UIButton) {
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)

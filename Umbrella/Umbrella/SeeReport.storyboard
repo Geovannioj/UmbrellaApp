@@ -13,7 +13,7 @@
         <!--See Report View Controller-->
         <scene sceneID="ukP-kd-VjB">
             <objects>
-                <viewController id="6r0-TU-Uhr" customClass="SeeReportViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SeeReportViewController" id="6r0-TU-Uhr" customClass="SeeReportViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9de-qj-40i"/>
                         <viewControllerLayoutGuide type="bottom" id="Z5T-qo-487"/>
