@@ -13,6 +13,8 @@
 		A168730C1F3CD76C00E309D7 /* ChatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168730B1F3CD76C00E309D7 /* ChatCollectionViewController.swift */; };
 		A168730E1F3CD8CC00E309D7 /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168730D1F3CD8CC00E309D7 /* ChatCollectionViewCell.swift */; };
 		A16873121F3CF82F00E309D7 /* InputChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168730F1F3CDEB400E309D7 /* InputChatView.swift */; };
+		A16873161F4105FE00E309D7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16873151F4105FE00E309D7 /* ProfileViewController.swift */; };
+		A16873181F41067C00E309D7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16873171F41067C00E309D7 /* ProfileView.swift */; };
 		A17737C21F3BA83700E42C4D /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DB1F2BBAD90035913B /* UserEntity.swift */; };
 		A17737C51F3BC24500E42C4D /* MessagesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17737C41F3BC24500E42C4D /* MessagesPresenter.swift */; };
 		A17737C71F3BC6A200E42C4D /* MessageInterector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17737C61F3BC6A200E42C4D /* MessageInterector.swift */; };
@@ -73,6 +75,8 @@
 		A168730B1F3CD76C00E309D7 /* ChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewController.swift; sourceTree = "<group>"; };
 		A168730D1F3CD8CC00E309D7 /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		A168730F1F3CDEB400E309D7 /* InputChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputChatView.swift; sourceTree = "<group>"; };
+		A16873151F4105FE00E309D7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A16873171F41067C00E309D7 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A17737C41F3BC24500E42C4D /* MessagesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesPresenter.swift; sourceTree = "<group>"; };
 		A17737C61F3BC6A200E42C4D /* MessageInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInterector.swift; sourceTree = "<group>"; };
 		A1BB53381F38E5800060649C /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -166,6 +170,23 @@
 				A1BB534F1F3B88CA0060649C /* UserMessageCell.swift */,
 			);
 			name = Messages;
+			sourceTree = "<group>";
+		};
+		A16873131F40F15A00E309D7 /* Geral */ = {
+			isa = PBXGroup;
+			children = (
+				A1BB533A1F38E6170060649C /* CampFieldView.swift */,
+			);
+			name = Geral;
+			sourceTree = "<group>";
+		};
+		A16873141F4105EF00E309D7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A16873151F4105FE00E309D7 /* ProfileViewController.swift */,
+				A16873171F41067C00E309D7 /* ProfileView.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		A17737C31F3BC22900E42C4D /* Messages */ = {
@@ -267,6 +288,7 @@
 		D4B1E4141F2A78E200308ABB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A16873141F4105EF00E309D7 /* Profile */,
 				A11960FD1F3CAB6A009A699B /* Messages */,
 				A1BB534C1F3B87220060649C /* Chat */,
 				D4B1E4231F2A93E900308ABB /* Map */,
@@ -274,7 +296,7 @@
 				D4B1E41D1F2A918500308ABB /* TabBar */,
 				D4B1E41C1F2A910300308ABB /* Login */,
 				A1BB53421F3906DF0060649C /* Register */,
-				A1BB533A1F38E6170060649C /* CampFieldView.swift */,
+				A16873131F40F15A00E309D7 /* Geral */,
 				D4B1E40A1F2A78CF00308ABB /* LaunchScreen.storyboard */,
 			);
 			name = View;
@@ -548,6 +570,8 @@
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
 				A1BB53411F38E65B0060649C /* LoginPresenter.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
+				A16873161F4105FE00E309D7 /* ProfileViewController.swift in Sources */,
+				A16873181F41067C00E309D7 /* ProfileView.swift in Sources */,
 				FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */,
 				A1BB533B1F38E6170060649C /* CampFieldView.swift in Sources */,
 				A17737C71F3BC6A200E42C4D /* MessageInterector.swift in Sources */,

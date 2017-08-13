@@ -10,29 +10,49 @@ import UIKit
 
 class ChatCollectionViewController: UICollectionViewController {
     
-    var user  : UserEntity?
+    var partner  : UserEntity? {
+        didSet {
+            observeMessages()
+        }
+    }
+    
     var messages = [MessageEntity]()
+    let inputChatView = InputChatView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        messages.append(MessageEntity(text: "mensagem1", timeDate: 10, fromId: "fromId", toId: "toId"))
-        messages.append(MessageEntity(text: "mensagem2", timeDate: 11, fromId: "fromId", toId: "toId"))
-        messages.append(MessageEntity(text: "mensagem3", timeDate: 12, fromId: "fromId", toId: "toId"))
-        
-        collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 60, right: 0)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
-        collectionView?.alwaysBounceVertical = true
-        collectionView?.backgroundColor = UIColor.white
-        collectionView?.keyboardDismissMode = .interactive
-        collectionView?.register(ChatCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
-        
+        setupCollectionView()
         setupInputView()
     }
     
-    func setupInputView() {
+    func observeMessages() {
         
-        let inputChatView = InputChatView()
+        guard let partnerId = partner?.id else {
+            return
+        }
+        
+        MessageInterector.observeMessagesWith(partnerId: partnerId, { (message) in
+            
+            self.messages.append(message)
+            DispatchQueue.main.async {
+                self.collectionView?.reloadData()
+            }
+        })
+    }
+    
+    func setupCollectionView(){
+        
+        view?.backgroundColor = UIColor(patternImage: UIImage(named: "bkgChatView")!)
+        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        collectionView?.alwaysBounceVertical = true
+        collectionView?.backgroundColor = UIColor.clear
+        collectionView?.keyboardDismissMode = .interactive
+        collectionView?.register(ChatCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+    }
+    
+    func setupInputView() {
         
         view.addSubview(inputChatView)
         
@@ -42,6 +62,7 @@ class ChatCollectionViewController: UICollectionViewController {
         inputChatView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         inputChatView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
+        inputChatView.textField.delegate = self
         inputChatView.fileIcon.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapFileIcon)))
     }
     
@@ -61,40 +82,50 @@ extension ChatCollectionViewController {
         let message = messages[indexPath.item]
         cell.textView.text = message.text
 
-//        setupCell(cell, withMessage: message)
+        setupCell(cell, withMessage: message)
         
         return cell
     }
     
     func setupCell(_ cell : ChatCollectionViewCell, withMessage msg : MessageEntity) {
         
-        if msg.fromId == UserInteractor.getCurrentUserUid() {
-            
-            cell.textView.textColor = UIColor.white
-            cell.bubbleView.backgroundColor = UIColor.blue
-        } else {
-            
-            cell.textView.textColor = UIColor.black
-            cell.bubbleView.backgroundColor = UIColor.white
-        }
+        let isCurrentUser = msg.fromId == UserInteractor.getCurrentUserUid()
+        
+        cell.bubbleWidthAnchor?.constant = msg.text.estimateFrame(width: view.frame.size.width - 100, sizeFont: 16).width + 32
+        cell.bubbleRightAnchor?.isActive = isCurrentUser ? true : false
+        cell.bubbleLeftAnchor?.isActive = isCurrentUser ? false : true
+        cell.textView.textColor = isCurrentUser ? UIColor.white : UIColor.black
+        cell.bubbleView.backgroundColor = isCurrentUser ? UIColor.blue : UIColor.white
     }
-    
 }
-
 
 extension ChatCollectionViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let height = messages[indexPath.item].text.estimateFrame(width: collectionView.frame.width, sizeFont: 16).height + 20
+        let height = messages[indexPath.row].text.estimateFrame(width: collectionView.frame.width - 100, sizeFont: 16).height + 20
         return CGSize(width: collectionView.frame.width, height: height)
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView?.collectionViewLayout.invalidateLayout()
+        collectionView?.reloadData()
+    }
 }
 
 extension ChatCollectionViewController : UITextFieldDelegate {
     
+    func handleSend(){
+        
+        if let message = inputChatView.textField.text {
+            MessageInterector.sendMessage(message, toId: partner!.id)
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        handleSend()
         
         return true
     }

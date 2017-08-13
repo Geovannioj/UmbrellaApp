@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessagesTableViewController: UITableViewController {
+class MessagesTableViewController: UITableViewController{
     
     var userMessages = [String : MessageEntity]()
     var messages = [MessageEntity]()
@@ -19,11 +19,9 @@ class MessagesTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(handleReturnHome))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Editar", style: .plain, target: self, action: #selector(handleEditCells))
         
-        messages.append(MessageEntity(text: "mensagem1", timeDate: 10, fromId: "fromId", toId: "toId"))
-        messages.append(MessageEntity(text: "mensagem2", timeDate: 11, fromId: "fromId", toId: "toId"))
-        messages.append(MessageEntity(text: "mensagem3", timeDate: 12, fromId: "fromId", toId: "toId"))
-        
         tableView.register(UserMessageCell.self, forCellReuseIdentifier: "cellId")
+        
+        obseverUserMessages()
     }
 
     func obseverUserMessages() {
@@ -55,6 +53,11 @@ class MessagesTableViewController: UITableViewController {
         //Editar celulas
         //Remover celulas
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        tableView.reloadData()
+    }
 }
 
 extension MessagesTableViewController {
@@ -77,17 +80,15 @@ extension MessagesTableViewController {
         let message = messages[indexPath.row]
         
         guard let id = message.chatPartenerId() else {
-            return // Retorna erro de id para o usuario
+            return // Retornar erro de id para o usuario
         }
         
-//        UserInteractor.getUser(withId: id, completion: { (user) in
+        UserInteractor.getUser(withId: id, completion: { (partener) in
             
-            // ChatLogController
             let chatController = ChatCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-//            chatController.user = UserEntity()
+            chatController.partner = partener
             self.navigationController?.pushViewController(chatController, animated: true)
-            // Presenter for user
-//        })
+        })
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
