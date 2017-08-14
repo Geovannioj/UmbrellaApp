@@ -18,6 +18,7 @@
 		D415197C1F3E3A4700F0C490 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41519761F3E3A4700F0C490 /* MessagesTableViewController.swift */; };
 		D48EE17B1F40EB09002D3C78 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48EE17A1F40EB09002D3C78 /* Profile.storyboard */; };
 		D48EE17D1F40F5C6002D3C78 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48EE17C1F40F5C6002D3C78 /* ProfileViewController.swift */; };
+		D48EE17F1F41568A002D3C78 /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */; };
 		D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
 		D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */; };
 		D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4051F2A78CF00308ABB /* Login.storyboard */; };
@@ -80,6 +81,7 @@
 		D41519761F3E3A4700F0C490 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesTableViewController.swift; path = Umbrella/MessagesTableViewController.swift; sourceTree = "<group>"; };
 		D48EE17A1F40EB09002D3C78 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		D48EE17C1F40F5C6002D3C78 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			children = (
 				D48EE17A1F40EB09002D3C78 /* Profile.storyboard */,
 				D48EE17C1F40F5C6002D3C78 /* ProfileViewController.swift */,
+				D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				D41519791F3E3A4700F0C490 /* InputChatView.swift in Sources */,
 				D4E91E2B1F3E30C9004895B7 /* PhotoEntity.swift in Sources */,
 				D4E91E321F3E30C9004895B7 /* UserMessageCell.swift in Sources */,
+				D48EE17F1F41568A002D3C78 /* ReportTableViewController.swift in Sources */,
 				D4E91E2E1F3E30C9004895B7 /* RegisterPresenter.swift in Sources */,
 				FB60D7D31F38DD03001E5E51 /* SearchBarCellTableViewCell.swift in Sources */,
 				FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */,

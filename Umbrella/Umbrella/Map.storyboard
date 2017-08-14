@@ -105,6 +105,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-lB-8Y0">
                                                 <rect key="frame" x="0.0" y="0.0" width="57" height="72"/>
                                                 <state key="normal" image="perfilIcon1"/>
+                                                <connections>
+                                                    <segue destination="UJ0-pR-3aq" kind="show" id="0YR-Om-B9u"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-0y-izz">
                                                 <rect key="frame" x="137" y="0.0" width="69" height="72"/>
@@ -194,6 +197,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cbz-F7-9Fw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-690" y="-209"/>
+        </scene>
+        <!--ProfileViewController-->
+        <scene sceneID="eVt-oe-ea3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileViewController" id="UJ0-pR-3aq" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JRW-6z-FEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-916" y="-166"/>
         </scene>
         <!--RegisterReportViewController-->
         <scene sceneID="rJX-ZX-nDl">

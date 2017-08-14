@@ -43,6 +43,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     //database reference
     var refReports: DatabaseReference!
+    var refMessageReport: DatabaseReference!
     
     //atributes from the frist string
     var violenceTitle: String?
@@ -53,6 +54,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     override func viewDidLoad() {
         self.refReports =  Database.database().reference().child("reports")
+        self.refMessageReport = Database.database().reference().child("user-reports")
         
         super.viewDidLoad()
         
@@ -179,6 +181,11 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
     }
 
+    func addUserReportMessage() {
+        
+      
+        
+    }
     
     func addReport() {
         
@@ -198,6 +205,10 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
                self.refReports.child(id).setValue(report.turnToDictionary())
        
+                let ref = self.refMessageReport.child(userId!)
+                
+                ref.updateChildValues([id : 1])
+        
         let saveMessage = UIAlertController(title: "Report saved",
                                               message: "This report has been successfully saved",
                                               preferredStyle: .alert)
