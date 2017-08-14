@@ -49,9 +49,6 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nH-Eh-WU3">
                                                 <rect key="frame" x="0.0" y="0.0" width="19" height="22"/>
                                                 <state key="normal" image="filterIcon"/>
-                                                <connections>
-                                                    <action selector="filterActivate:" destination="bb1-H1-beB" eventType="touchUpInside" id="WfI-Iq-XQc"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzI-6q-0dy">
                                                 <rect key="frame" x="0.0" y="39" width="19" height="22"/>
@@ -67,14 +64,14 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="27" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZqN-dd-ZCS">
-                                        <rect key="frame" x="57.5" y="53" width="287" height="132"/>
+                                        <rect key="frame" x="20.5" y="53" width="320.5" height="132"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" rowHeight="27" id="nhC-xf-0iq" customClass="SearchBarCellTableViewCell" customModule="Umbrella" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="287" height="27"/>
+                                                <rect key="frame" x="0.0" y="28" width="321" height="27"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhC-xf-0iq" id="jeB-v1-mhn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="27"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="321" height="27"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="The-os-8sl">
@@ -96,22 +93,26 @@
                                         <rect key="frame" x="8" y="63" width="312" height="380"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <connections>
-                                            <segue destination="gMT-Gf-mW6" kind="embed" id="xTw-iK-GzZ"/>
+                                            <segue destination="gMT-Gf-mW6" kind="embed" identifier="containerViewSegue" id="xTw-iK-GzZ"/>
                                         </connections>
                                     </containerView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-Ko-PqW">
                                         <rect key="frame" x="84" y="481" width="206" height="72"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-lB-8Y0">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-lB-8Y0">
                                                 <rect key="frame" x="0.0" y="0.0" width="57" height="72"/>
                                                 <state key="normal" image="perfilIcon1"/>
                                                 <connections>
-                                                    <segue destination="UJ0-pR-3aq" kind="show" id="0YR-Om-B9u"/>
+                                                    <action selector="profileButtonAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="XBB-sE-5SQ"/>
+                                                    <segue destination="466-Hr-uEo" kind="show" identifier="ProfileSegue" id="6dn-IP-VOF"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-0y-izz">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-0y-izz">
                                                 <rect key="frame" x="137" y="0.0" width="69" height="72"/>
                                                 <state key="normal" image="msgIcon"/>
+                                                <connections>
+                                                    <action selector="messageButtonAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="Rnz-0a-GTo"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -121,10 +122,10 @@
                                     <constraint firstItem="CQS-2u-VCk" firstAttribute="centerY" secondItem="OlU-ii-JrG" secondAttribute="centerY" id="3we-ln-QJ6"/>
                                     <constraint firstItem="ucJ-Ko-PqW" firstAttribute="centerY" secondItem="BAZ-Iw-YaG" secondAttribute="centerY" multiplier="1.55" id="7aD-eJ-rY0"/>
                                     <constraint firstItem="ZqN-dd-ZCS" firstAttribute="top" secondItem="5Pq-8k-jmZ" secondAttribute="bottom" constant="-10" id="NGo-a5-JFl"/>
-                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="width" secondItem="5Pq-8k-jmZ" secondAttribute="width" multiplier="0.85" id="O6f-bN-9YG"/>
+                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="width" secondItem="5Pq-8k-jmZ" secondAttribute="width" multiplier="0.95" id="O6f-bN-9YG"/>
                                     <constraint firstItem="Czp-Ie-uU2" firstAttribute="height" secondItem="BAZ-Iw-YaG" secondAttribute="height" multiplier="0.17" id="REi-5i-zFb"/>
                                     <constraint firstItem="ZqN-dd-ZCS" firstAttribute="height" secondItem="5Pq-8k-jmZ" secondAttribute="height" multiplier="3" id="XbL-4b-sMR"/>
-                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="centerX" secondItem="5Pq-8k-jmZ" secondAttribute="centerX" multiplier="1.07" id="bXr-IU-RJK"/>
+                                    <constraint firstItem="ZqN-dd-ZCS" firstAttribute="centerX" secondItem="5Pq-8k-jmZ" secondAttribute="centerX" multiplier="0.96" id="bXr-IU-RJK"/>
                                     <constraint firstAttribute="bottom" secondItem="Czp-Ie-uU2" secondAttribute="bottom" id="cYh-ul-6fZ"/>
                                     <constraint firstItem="ucJ-Ko-PqW" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="fmO-7T-Fov"/>
                                     <constraint firstItem="8WG-Gb-tnC" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="lYk-ja-aVt"/>
@@ -134,24 +135,25 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="NO"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsTilting" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/helenasimoes/cj6405sh04wgb2rmpbqp0kz87"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qdf-C9-aH3">
                                 <rect key="frame" x="154" y="376" width="65" height="130"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-hR-1ty">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-hR-1ty">
                                         <rect key="frame" x="0.0" y="0.0" width="65" height="70"/>
                                         <state key="normal" image="reportIcon"/>
                                         <connections>
                                             <segue destination="Qkr-UP-DA5" kind="show" id="BZ4-pX-ogP"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3i-dk-FUm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3i-dk-FUm">
                                         <rect key="frame" x="2.5" y="70" width="60" height="60"/>
                                         <state key="normal" image="expandIcon"/>
                                         <state key="selected" image="expandIconDeselected"/>
                                         <connections>
-                                            <action selector="expandAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="u4a-gz-Wz1"/>
+                                            <action selector="expandAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="ABn-ua-CG0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -183,28 +185,20 @@
                         <outlet property="reportButton" destination="SUe-hR-1ty" id="ZaK-x9-Xg2"/>
                         <outlet property="searchBar" destination="5Pq-8k-jmZ" id="tuH-Xs-Y4S"/>
                         <outlet property="searchTableView" destination="ZqN-dd-ZCS" id="Ltm-d3-0KT"/>
-                        <segue destination="WWB-5s-SFa" kind="show" identifier="seeReport" id="0fd-MU-x8z"/>
+                        <segue destination="SJ0-z9-rcG" kind="show" identifier="goToLogin" id="y3J-LK-035"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2C-Dd-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-916" y="-653.52323838080963"/>
         </scene>
-        <!--SeeReportViewController-->
-        <scene sceneID="f0J-Ap-HkV">
+        <!--Login-->
+        <scene sceneID="Ql3-Tw-4fh">
             <objects>
-                <viewControllerPlaceholder storyboardName="SeeReport" referencedIdentifier="SeeReportViewController" id="WWB-5s-SFa" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cbz-F7-9Fw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="Login" storyboardName="Login" id="SJ0-z9-rcG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ue3-7Q-nV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-690" y="-209"/>
-        </scene>
-        <!--ProfileViewController-->
-        <scene sceneID="eVt-oe-ea3">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileViewController" id="UJ0-pR-3aq" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JRW-6z-FEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-916" y="-166"/>
+            <point key="canvasLocation" x="-470" y="-241"/>
         </scene>
         <!--RegisterReportViewController-->
         <scene sceneID="rJX-ZX-nDl">
@@ -212,7 +206,15 @@
                 <viewControllerPlaceholder storyboardIdentifier="MapViewController" storyboardName="RegisterReportFirst" referencedIdentifier="RegisterReportViewController" id="Qkr-UP-DA5" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1IW-4g-u4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1200" y="-208"/>
+            <point key="canvasLocation" x="-872" y="-161"/>
+        </scene>
+        <!--ProfileManagerViewController-->
+        <scene sceneID="8im-Jc-kCn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileManager" referencedIdentifier="ProfileManagerViewController" id="466-Hr-uEo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Cz-Dv-ACS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1459" y="-230"/>
         </scene>
         <!--Filter Table View Controlle Table View Controller-->
         <scene sceneID="sZO-1E-aDb">
@@ -282,6 +284,10 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="CheckBoxInactive"/>
                                                     <state key="disabled" image="CheckBoxInactive"/>
+                                                    <state key="selected" backgroundImage="CloseIcon"/>
+                                                    <connections>
+                                                        <action selector="setSelect:" destination="gMT-Gf-mW6" eventType="touchUpInside" id="H65-vd-QKm"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Violência Psicológica" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-q9-3h4">
                                                     <rect key="frame" x="112" y="11" width="165" height="21"/>
@@ -305,6 +311,10 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="CheckBoxInactive"/>
                                                     <state key="disabled" image="CheckBoxInactive"/>
+                                                    <state key="selected" backgroundImage="CloseIcon"/>
+                                                    <connections>
+                                                        <action selector="setSelect:" destination="gMT-Gf-mW6" eventType="touchUpInside" id="35f-bc-U0S"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Violência Verbal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npz-4T-bMV">
                                                     <rect key="frame" x="112" y="11" width="159" height="21"/>
@@ -326,8 +336,12 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Gh-EA-ZeG">
                                                     <rect key="frame" x="25" y="10" width="20" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="CheckBoxInactive"/>
+                                                    <state key="normal" backgroundImage="CheckBoxInactive"/>
                                                     <state key="disabled" image="CheckBoxInactive"/>
+                                                    <state key="selected" backgroundImage="CloseIcon"/>
+                                                    <connections>
+                                                        <action selector="setSelect:" destination="gMT-Gf-mW6" eventType="touchUpInside" id="ibi-WK-pzS"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Violência Física" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1v-CV-8G1">
                                                     <rect key="frame" x="112" y="11" width="152" height="21"/>
@@ -351,6 +365,10 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="CheckBoxInactive"/>
                                                     <state key="disabled" image="CheckBoxInactive"/>
+                                                    <state key="selected" backgroundImage="CloseIcon"/>
+                                                    <connections>
+                                                        <action selector="setSelect:" destination="gMT-Gf-mW6" eventType="touchUpInside" id="rrs-41-d1W"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Violência Sexual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoF-oB-OW7">
                                                     <rect key="frame" x="112" y="11" width="152" height="21"/>

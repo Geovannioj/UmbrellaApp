@@ -16,20 +16,18 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var msgsButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var perfilButton: UIButton!
-    
     @IBOutlet weak var expandButton: UIButton!
     @IBOutlet weak var filterTable: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var HorizontalStackButtons: UIStackView!
     
-    let filtros:[String] = []
+    var filtros:[String] = []
     let image = UIImage(named: "CustomLocationPIN")
     var locationManager = CLLocationManager()
     var reports: [Report] = []
     var refReports : DatabaseReference!
     var reportToSend:Report?
-    
+    var containerViewController: FilterTableViewControlleTableViewController?
     var buttonDistance:CGFloat = CGFloat()
     var msgCenter:CGPoint = CGPoint()
     var perfilCenter:CGPoint = CGPoint()
@@ -37,7 +35,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     
     @IBOutlet weak var bannerView: GADBannerView!
    // var mapDelegate = MapViewDelegate()
-    let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiZWR1YXJkb3RvcnJlcyIsImEiOiJjajVtcHlwczgydTk2MzFsbXlvZDNlM253In0.rVHnntpHbIO6bY3dKv4f6w")
+    let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiaGVsZW5hc2ltb2VzIiwiYSI6ImNqNWp4bDBicDJpOTczMm9kaDJqemprbDcifQ.vdd9cfGAwcSXh1I7pq1mvA")
     @IBOutlet weak var mapView: MGLMapView!
     var querryResults:[GeocodedPlacemark] = []
     //var tableView:UITableView = UITableView()
@@ -60,7 +58,6 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.reportButton.center = self.expandButton.center
         self.reportButton.alpha = 0
         
-        self.msgsButton.addTarget(self, action: #selector(handleMsgsButtonAction), for: .touchUpInside)
         self.msgsButton.center = self.expandButton.center
         self.msgsButton.alpha = 0
         
@@ -107,6 +104,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         centerOnUser()
         
     }
+    //MARK: Buttons functions
     func hideButtons(){
         UIView.animate(withDuration: 1, animations:{
 //            self.expandButton.isSelected = false
@@ -148,23 +146,22 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         }, completion: nil)
         
     }
-    func addPin(new:Report){
+
+    @IBAction func profileButtonAction(_ sender: Any) {
         
-            let annotation = MGLPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees.init(new.latitude), longitude: .init(new.longitude))
-            annotation.title = new.id
-            annotation.subtitle = new.violenceKind
+        performSegue(withIdentifier: "ProfileSegue", sender: nil)
+    }
+    
+    @IBAction func messageButtonAction(_ sender: Any) {
         
-        mapView.addAnnotation(annotation)
+        let navigation = UINavigationController(rootViewController: MessagesTableViewController())
+        present(navigation, animated: true, completion: nil)
     }
-    func addPins(reports:[Report]){
-        for report in reports {
-            addPin(new: report)
-        }
+    
+    @IBAction func locatioButtonAction(_ sender: UIButton) {
+        centerOnUser()
     }
-    func removePins(){
-        mapView.removeAnnotations(mapView.annotations!)
-    }
+    //MARK: config functions
     func searchBarConfig(){
         searchBar.delegate = self
         searchBar.isTranslucent = true
@@ -187,37 +184,12 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         //self.view.addSubview(tableView)
         self.searchTableView.isHidden = true
         searchTableView.allowsSelection = false
+        searchTableView.layer.cornerRadius = 10
     }
+    // MARK:Table VIew Delegate (searchBarResults)
+    
     //Objetivo: Função para centrar no usuario quando ocorre o request do GPS.
-    func centerOnUser(){
-        
-        mapView.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
-        //mapView.showsUserLocation = true
-    }
-    //Objetivo: mover a camera para as coordenadas informadas com o zoom imformado
-    func centerOnPoint(latitude:Double,longitude:Double,zoomLevel:Double){
-        let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
-        mapView.setCenter(location, zoomLevel: zoomLevel, animated: true)
-        
-    }
-    //Objetivo:Instanciar uma view com a imagem fornecida no centro do mapa .
-    func addPoint(image:UIImage) {
-        let view = self.view.subviews.first { (i) -> Bool in
-            i.restorationIdentifier == "pinPoint"
-        }
-        if view != nil {
-            view?.removeFromSuperview()
-            
-        }else{
-            let imageView = UIImageView(image: image)
-            
-            imageView.center = CGPoint(x: mapView.center.x, y: (mapView.center.y - imageView.frame.height/2))
-            imageView.restorationIdentifier = "pinPoint"
-            self.view.addSubview(imageView)
-        }
-        
-  
-    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return querryResults.count
@@ -247,6 +219,18 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "containerViewSegue" {
+            containerViewController = segue.destination as? FilterTableViewControlleTableViewController
+            containerViewController!.containerToMaster = self
+        } else if segue.identifier == "seeReport"{
+            if let seeScreen = segue.destination as? SeeReportViewController {
+                seeScreen.report = self.reportToSend
+            }
+
+        }
+    }
    
 
 
@@ -267,45 +251,81 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         let navigation = UINavigationController(rootViewController: MessagesTableViewController())
         present(navigation, animated: true, completion: nil)
     }
-    
+        
+    func closeFilter(){
+        filterTable.isHidden = true
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
+            
+    }
+
 
     @IBAction func filterActivate(_ sender: UIButton) {
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
+        
+        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
+        
+//        NotificationCenter.default.addObserver(controller, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
         filterTable.isHidden = false
     }
-    func filter(){
+        
+    func filter(new:Report){
        
         
         if(!filtros.isEmpty){
-            removePins()
-            for filtro in filtros{
-                for report in reports{
-                    if report.violenceKind == filtro{
-                        addPin(new: report)
-                    }
-                }
             
+          //  removePins()
+            for filtro in filtros{
+               // for report in reports{
+                    if new.violenceKind.lowercased() == filtro.lowercased(){
+                        addPin(new: new)
+                    }
+               // }
+            
+            }
+        }else{
+           addPin(new: new)
+        }
+        
+        
+    }
+       
+    @IBAction func expandAction(_ sender: UIButton) {
+        
+        if UserInteractor.getCurrentUserUid() == nil {
+            let alertControler = UIAlertController(title: "Por favor faça o login para poder acessar as opçoes de relato", message: nil, preferredStyle: .alert)
+            
+            alertControler.addAction(UIAlertAction(title: "Logar", style: .default, handler: { (UIAlertAction) in
+                
+            self.performSegue(withIdentifier: "goToLogin", sender: nil)
+                
+              
+                
+            }))
+            alertControler.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (UIAlertAction) in
+                
+               
+                
+                
+                
+            }))
+            // Perguntar pro usuario pra logar
+            // Sim -> mandar tela de login
+            
+            self.present(alertControler, animated: true, completion: nil)
+        }else{
+            if !sender.isSelected {
+                showButtons()
+                sender.isSelected = true
+            }else{
+                hideButtons()
+                sender.isSelected = false
             }
         }
         
         
-    }
-    func closeFilter(){
-        filterTable.isHidden = true
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
         
-    }
-    
-    @IBAction func expandAction(_ sender: UIButton) {
-        if !sender.isSelected {
-            showButtons()
-            sender.isSelected = true
-        }else{
-            hideButtons()
-            sender.isSelected = false
-        }
     }
    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -333,7 +353,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.refReports.observe(DataEventType.value, with: {(snapshot) in
             if snapshot.childrenCount > 0 {
                 self.reports.removeAll()
-                
+                self.removePins()
                 for report in snapshot.children.allObjects as![DataSnapshot]{
                     let reportObj = report.value as? [String: AnyObject]
                     
@@ -351,8 +371,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
                     
                     
                     self.reports.append(reportAtt)
-                    self.addPin(new: reportAtt)
-                    
+                    self.filter(new: reportAtt)
+                   // self.filter()
                 }
                 
             }
@@ -362,8 +382,3 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     
 }
-
-
-    
-    
-
