@@ -305,13 +305,40 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     
     @IBAction func expandAction(_ sender: UIButton) {
-        if !sender.isSelected {
-            showButtons()
-            sender.isSelected = true
+        
+        if UserInteractor.getCurrentUserUid() == nil {
+            let alertControler = UIAlertController(title: "Por favor faça o login para poder acessar as opçoes de relato", message: nil, preferredStyle: .alert)
+            
+            alertControler.addAction(UIAlertAction(title: "Logar", style: .default, handler: { (UIAlertAction) in
+                
+            self.performSegue(withIdentifier: "goToLogin", sender: nil)
+                
+              
+                
+            }))
+            alertControler.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (UIAlertAction) in
+                
+               
+                
+                
+                
+            }))
+            // Perguntar pro usuario pra logar
+            // Sim -> mandar tela de login
+            
+            self.present(alertControler, animated: true, completion: nil)
         }else{
-            hideButtons()
-            sender.isSelected = false
+            if !sender.isSelected {
+                showButtons()
+                sender.isSelected = true
+            }else{
+                hideButtons()
+                sender.isSelected = false
+            }
         }
+        
+        
+        
     }
    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

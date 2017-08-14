@@ -181,11 +181,20 @@
                         <outlet property="reportButton" destination="SUe-hR-1ty" id="ZaK-x9-Xg2"/>
                         <outlet property="searchBar" destination="5Pq-8k-jmZ" id="tuH-Xs-Y4S"/>
                         <outlet property="searchTableView" destination="ZqN-dd-ZCS" id="Ltm-d3-0KT"/>
+                        <segue destination="SJ0-z9-rcG" kind="show" identifier="goToLogin" id="y3J-LK-035"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2C-Dd-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-916" y="-653.52323838080963"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="Ql3-Tw-4fh">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Login" storyboardName="Login" id="SJ0-z9-rcG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ue3-7Q-nV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-470" y="-241"/>
         </scene>
         <!--RegisterReportViewController-->
         <scene sceneID="rJX-ZX-nDl">
