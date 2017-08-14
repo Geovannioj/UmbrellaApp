@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
         FirebaseApp.configure()
         GADMobileAds.configure(withApplicationID: "ca-app-pub-1296835094216265~6175863832")
+        
+        Database.database().isPersistenceEnabled = true
+        
         return true
     }
 

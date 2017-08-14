@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class RegisterController: UIViewController, UserInteractorCompleteProtocol {
+class RegisterController: UIViewController, UserInteractorCompleteProtocol, PhotoInteractorCompleteProtocol {
     
     @IBOutlet weak var inputs: RegisterView!
     weak var presenter : RegisterPresenter?
@@ -27,13 +27,25 @@ class RegisterController: UIViewController, UserInteractorCompleteProtocol {
     
     func handleRegister(){
         
-        UserInteractor.createUser(nickname: inputs.username.textField.text!,
-                                  email: inputs.email.textField.text!,
-                                  password: inputs.password.textField.text!,
-                                  birthDate: nil,
-                                  image: inputs.profileImage.image,
-                                  idMinority: nil,
-                                  handler: self)
+        if let image = inputs.profileImage.image {
+            UserInteractor.createUser(nickname: inputs.username.textField.text!,
+                                      email: inputs.email.textField.text!,
+                                      password: inputs.password.textField.text!,
+                                      birthDate: nil,
+                                      idMinority: nil,
+                                      image: image,
+                                      userHandler: self,
+                                      photoHandler: self)
+        }
+        else {
+            UserInteractor.createUser(nickname: inputs.username.textField.text!,
+                                      email: inputs.email.textField.text!,
+                                      password: inputs.password.textField.text!,
+                                      birthDate: nil,
+                                      idMinority: nil,
+                                      userHandler: self)
+        }
+        
     }
     
     func completeCreate(user: UserInfo?, error: Error?) {

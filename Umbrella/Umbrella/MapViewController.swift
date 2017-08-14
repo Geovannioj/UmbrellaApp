@@ -254,8 +254,30 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
-  
-   
+    @IBAction func profileButtonAction(_ sender: Any) {
+        
+        performSegue(withIdentifier: "ProfileSegue", sender: nil)
+    }
+    
+    @IBAction func messageButtonAction(_ sender: Any) {
+        
+        let navigation = UINavigationController(rootViewController: MessagesTableViewController())
+        present(navigation, animated: true, completion: nil)
+    }
+    
+    @IBAction func addCenterAction(_ sender: Any) {
+        addPoint(image: UIImage(named: "CustomLocationPIN")!)
+
+    }
+    
+    @IBAction func heatMapButton(_ sender: UIButton) {
+        heatAction()
+        
+    }
+    @IBAction func pinAction(_ sender: UIButton) {
+        addPin()
+        
+    }
     @IBAction func locatioButtonAction(_ sender: UIButton) {
         centerOnUser()
     }
