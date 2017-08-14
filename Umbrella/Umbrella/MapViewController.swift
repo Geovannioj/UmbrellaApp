@@ -98,6 +98,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         centerOnUser()
         
     }
+    //MARK: Buttons functions
     func hideButtons(){
         UIView.animate(withDuration: 1, animations:{
 //            self.expandButton.isSelected = false
@@ -139,25 +140,21 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         }, completion: nil)
         
     }
-    func addPin(new:Report){
+    @IBAction func profileButtonAction(_ sender: Any) {
         
-            let annotation = MGLPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees.init(new.latitude), longitude: .init(new.longitude))
-            annotation.title = new.title
-            annotation.subtitle = new.violenceKind
+        performSegue(withIdentifier: "ProfileSegue", sender: nil)
+    }
+    
+    @IBAction func messageButtonAction(_ sender: Any) {
         
-        mapView.addAnnotation(annotation)
+        let navigation = UINavigationController(rootViewController: MessagesTableViewController())
+        present(navigation, animated: true, completion: nil)
     }
-    func addPins(reports:[Report]){
-        for report in reports {
-            filter(new: report)
-        }
+    
+    @IBAction func locatioButtonAction(_ sender: UIButton) {
+        centerOnUser()
     }
-    func removePins(){
-        if mapView.annotations != nil {
-        mapView.removeAnnotations(mapView.annotations!)
-        }
-    }
+    //MARK: config functions
     func searchBarConfig(){
         searchBar.delegate = self
         searchBar.isTranslucent = true
@@ -182,36 +179,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         searchTableView.allowsSelection = false
         searchTableView.layer.cornerRadius = 10
     }
+    // MARK:Table VIew Delegate (searchBarResults)
+    
     //Objetivo: Função para centrar no usuario quando ocorre o request do GPS.
-    func centerOnUser(){
-        
-        mapView.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
-        //mapView.showsUserLocation = true
-    }
-    //Objetivo: mover a camera para as coordenadas informadas com o zoom imformado
-    func centerOnPoint(latitude:Double,longitude:Double,zoomLevel:Double){
-        let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
-        mapView.setCenter(location, zoomLevel: zoomLevel, animated: true)
-        
-    }
-    //Objetivo:Instanciar uma view com a imagem fornecida no centro do mapa .
-    func addPoint(image:UIImage) {
-        let view = self.view.subviews.first { (i) -> Bool in
-            i.restorationIdentifier == "pinPoint"
-        }
-        if view != nil {
-            view?.removeFromSuperview()
-            
-        }else{
-            let imageView = UIImageView(image: image)
-            
-            imageView.center = CGPoint(x: mapView.center.x, y: (mapView.center.y - imageView.frame.height/2))
-            imageView.restorationIdentifier = "pinPoint"
-            self.view.addSubview(imageView)
-        }
-        
-  
-    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return querryResults.count
@@ -262,20 +233,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    @IBAction func profileButtonAction(_ sender: Any) {
-        
-        performSegue(withIdentifier: "ProfileSegue", sender: nil)
-    }
     
-    @IBAction func messageButtonAction(_ sender: Any) {
-        
-        let navigation = UINavigationController(rootViewController: MessagesTableViewController())
-        present(navigation, animated: true, completion: nil)
-    }
-    
-    @IBAction func locatioButtonAction(_ sender: UIButton) {
-        centerOnUser()
-    }
     
     @IBAction func filterActivate(_ sender: UIButton) {
 

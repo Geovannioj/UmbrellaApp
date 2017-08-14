@@ -6,4 +6,4 @@
 //  Copyright © 2017 Geovanni Oliveira de Jesus. All rights reserved.
 //
 
-#import <LFHeatMap/LFHeatMap-umbrella.h>
+//#import <LFHeatMap/LFHeatMap-umbrella.h>
