@@ -265,19 +265,6 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         present(navigation, animated: true, completion: nil)
     }
     
-    @IBAction func addCenterAction(_ sender: Any) {
-        addPoint(image: UIImage(named: "CustomLocationPIN")!)
-
-    }
-    
-    @IBAction func heatMapButton(_ sender: UIButton) {
-        heatAction()
-        
-    }
-    @IBAction func pinAction(_ sender: UIButton) {
-        addPin()
-        
-    }
     @IBAction func locatioButtonAction(_ sender: UIButton) {
         centerOnUser()
     }
