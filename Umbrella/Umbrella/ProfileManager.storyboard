@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile View Controller-->
+        <!--Profile Manager View Controller-->
         <scene sceneID="YE1-wX-Y2B">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" id="YWp-Et-oJs" customClass="ProfileViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="YWp-Et-oJs" customClass="ProfileManagerViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L56-KO-noU"/>
                         <viewControllerLayoutGuide type="bottom" id="x2q-iR-5kg"/>
@@ -109,6 +109,10 @@
         <scene sceneID="WF6-wl-CyT">
             <objects>
                 <viewController id="wEL-2o-miT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YBI-Qh-lN8"/>
+                        <viewControllerLayoutGuide type="bottom" id="9p1-8e-nj9"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2aU-nZ-iOn">
                         <rect key="frame" x="0.0" y="0.0" width="373" height="521"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,6 +136,10 @@
         <scene sceneID="aFz-k7-Cx6">
             <objects>
                 <viewController id="iO8-b3-gMw" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fC0-Z9-7to"/>
+                        <viewControllerLayoutGuide type="bottom" id="wVC-CY-Gyf"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6zX-cF-NS1">
                         <rect key="frame" x="0.0" y="0.0" width="374" height="522"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,6 +163,10 @@
         <scene sceneID="PNG-op-VGs">
             <objects>
                 <viewController storyboardIdentifier="ReportTableViewController" id="RZl-e3-iXb" customClass="ReportTableViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LUk-IC-qig"/>
+                        <viewControllerLayoutGuide type="bottom" id="w4U-SG-x8t"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rZH-4v-0gA">
                         <rect key="frame" x="0.0" y="0.0" width="374" height="522"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

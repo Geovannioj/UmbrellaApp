@@ -16,8 +16,8 @@
 		D415197A1F3E3A4700F0C490 /* MessageInterector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41519741F3E3A4700F0C490 /* MessageInterector.swift */; };
 		D415197B1F3E3A4700F0C490 /* MessagesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41519751F3E3A4700F0C490 /* MessagesPresenter.swift */; };
 		D415197C1F3E3A4700F0C490 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41519761F3E3A4700F0C490 /* MessagesTableViewController.swift */; };
-		D48EE17B1F40EB09002D3C78 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48EE17A1F40EB09002D3C78 /* Profile.storyboard */; };
-		D48EE17D1F40F5C6002D3C78 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48EE17C1F40F5C6002D3C78 /* ProfileViewController.swift */; };
+		D48EE17B1F40EB09002D3C78 /* ProfileManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48EE17A1F40EB09002D3C78 /* ProfileManager.storyboard */; };
+		D48EE17D1F40F5C6002D3C78 /* ProfileManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48EE17C1F40F5C6002D3C78 /* ProfileManagerViewController.swift */; };
 		D48EE17F1F41568A002D3C78 /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */; };
 		D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
 		D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */; };
@@ -79,8 +79,8 @@
 		D41519741F3E3A4700F0C490 /* MessageInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageInterector.swift; path = Umbrella/MessageInterector.swift; sourceTree = "<group>"; };
 		D41519751F3E3A4700F0C490 /* MessagesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesPresenter.swift; path = Umbrella/MessagesPresenter.swift; sourceTree = "<group>"; };
 		D41519761F3E3A4700F0C490 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesTableViewController.swift; path = Umbrella/MessagesTableViewController.swift; sourceTree = "<group>"; };
-		D48EE17A1F40EB09002D3C78 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		D48EE17C1F40F5C6002D3C78 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D48EE17A1F40EB09002D3C78 /* ProfileManager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileManager.storyboard; sourceTree = "<group>"; };
+		D48EE17C1F40F5C6002D3C78 /* ProfileManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManagerViewController.swift; sourceTree = "<group>"; };
 		D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -227,8 +227,8 @@
 		D48EE1791F40EAF2002D3C78 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D48EE17A1F40EB09002D3C78 /* Profile.storyboard */,
-				D48EE17C1F40F5C6002D3C78 /* ProfileViewController.swift */,
+				D48EE17A1F40EB09002D3C78 /* ProfileManager.storyboard */,
+				D48EE17C1F40F5C6002D3C78 /* ProfileManagerViewController.swift */,
 				D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */,
 			);
 			name = Profile;
@@ -514,7 +514,7 @@
 				D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */,
 				FBEFEACD1F3A349100CDC99A /* Assets.xcassets in Resources */,
 				D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */,
-				D48EE17B1F40EB09002D3C78 /* Profile.storyboard in Resources */,
+				D48EE17B1F40EB09002D3C78 /* ProfileManager.storyboard in Resources */,
 				D4E91E2C1F3E30C9004895B7 /* Register.storyboard in Resources */,
 				FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */,
 				FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */,
@@ -584,7 +584,7 @@
 				D4E91E2D1F3E30C9004895B7 /* RegisterController.swift in Sources */,
 				FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */,
 				FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */,
-				D48EE17D1F40F5C6002D3C78 /* ProfileViewController.swift in Sources */,
+				D48EE17D1F40F5C6002D3C78 /* ProfileManagerViewController.swift in Sources */,
 				FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */,
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
 				FB0144D01F3B85A7004FFBCC /* MinorityInterector.swift in Sources */,

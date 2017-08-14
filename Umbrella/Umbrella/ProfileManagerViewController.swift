@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileManagerViewController: UIViewController {
     
     @IBOutlet weak var profile: UIView!
     @IBOutlet weak var settings: UIView!
