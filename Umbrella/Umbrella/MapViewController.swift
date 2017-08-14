@@ -35,7 +35,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     
     @IBOutlet weak var bannerView: GADBannerView!
    // var mapDelegate = MapViewDelegate()
-    let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiZWR1YXJkb3RvcnJlcyIsImEiOiJjajVtcHlwczgydTk2MzFsbXlvZDNlM253In0.rVHnntpHbIO6bY3dKv4f6w")
+    let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiaGVsZW5hc2ltb2VzIiwiYSI6ImNqNWp4bDBicDJpOTczMm9kaDJqemprbDcifQ.vdd9cfGAwcSXh1I7pq1mvA")
     @IBOutlet weak var mapView: MGLMapView!
     var querryResults:[GeocodedPlacemark] = []
     //var tableView:UITableView = UITableView()
@@ -339,7 +339,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.refReports.observe(DataEventType.value, with: {(snapshot) in
             if snapshot.childrenCount > 0 {
                 self.reports.removeAll()
-                
+                self.removePins()
                 for report in snapshot.children.allObjects as![DataSnapshot]{
                     let reportObj = report.value as? [String: AnyObject]
                     

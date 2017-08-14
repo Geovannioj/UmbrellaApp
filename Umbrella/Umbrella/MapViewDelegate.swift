@@ -50,7 +50,7 @@ extension MapViewController : MGLMapViewDelegate {
             
             return userLocationAnnotationView
         }else{
-            if annotation is MGLPointAnnotation{
+            
                 let reuseIdentifier = "\(annotation.coordinate.longitude)"
                 
                 // For better performance, always try to reuse existing annotations.
@@ -61,10 +61,12 @@ extension MapViewController : MGLMapViewDelegate {
                     annotationView = AgressionPinAnnotationView(reuseIdentifier: reuseIdentifier)
                     annotationView!.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
                     
-                    return annotationView
+                   
                 }
-            }
-            return nil
+                 return annotationView
+            
+            
+            
             
         }
         
@@ -74,25 +76,25 @@ extension MapViewController : MGLMapViewDelegate {
  
     
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
-        let view = mapView.subviews.first { (i) -> Bool in
-            i.restorationIdentifier == "heatmap"
-        }
-        if   !reports.isEmpty {
-            if   mapView.zoomLevel < 12 && mapView.zoomLevel > 9{
-                
-                if view != nil{
-                    printHeatmap(imageView: view as! UIImageView)
-                }else{
-                    heatAction()
-                }
-                
-            }else{
-                addPins(reports: self.reports)
-                view?.removeFromSuperview()
-                
-                
-            }
-        }
+//        let view = mapView.subviews.first { (i) -> Bool in
+//            i.restorationIdentifier == "heatmap"
+//        }
+//        if   !reports.isEmpty {
+//            if   mapView.zoomLevel < 12 && mapView.zoomLevel > 9{
+//                
+//                if view != nil{
+//                    printHeatmap(imageView: view as! UIImageView)
+//                }else{
+//                    heatAction()
+//                }
+//                
+//            }else{
+//                addPins(reports: self.reports)
+//                view?.removeFromSuperview()
+//                
+//                
+//            }
+//        }
         
         
         
