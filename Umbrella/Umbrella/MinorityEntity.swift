@@ -14,7 +14,6 @@ class MinorityEntity {
     
     func toAnyObject() -> Any {
         return [
-            "id": id,
             "type": type
         ]
     }

@@ -421,6 +421,15 @@ class UserInteractor {
         })
     }
     
+    /**
+     Returns true if the user is online or false if it`s not.
+     */
+    static func isUserOnline() -> Bool{
+        if Auth.auth().currentUser != nil {
+            return true
+        }
+        return false
+    }
 }
 
 

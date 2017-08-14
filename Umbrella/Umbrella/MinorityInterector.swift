@@ -66,7 +66,6 @@ class MinorityInteractor {
     static func updateMinority(id: String, type: String) {
         let minorityRef = Database.database().reference().child("minority").child(id)
         let minority = MinorityEntity()
-        minority.id = id
         minority.type = type
         minorityRef.updateChildValues(minority.toAnyObject() as! [AnyHashable : Any])
     }
