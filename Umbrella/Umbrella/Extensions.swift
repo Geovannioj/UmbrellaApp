@@ -8,6 +8,38 @@
 
 import UIKit
 
+let imageCache = NSCache<AnyObject, AnyObject>()
+
+extension UIImageView {
+    
+    func loadCacheImage(_ url: String){
+        
+        self.image = nil
+        
+        if let cache = imageCache.object(forKey: url as AnyObject) as? UIImage {
+            self.image = cache
+            return
+        }
+        
+        let realUrl = URL(string: url)
+        URLSession.shared.dataTask(with: realUrl!, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                return // Tratar erros
+            }
+            
+            DispatchQueue.main.async {
+                
+                if let dowload = UIImage(data: data!) {
+                    
+                    self.image = dowload
+                    imageCache.setObject(dowload, forKey: url as AnyObject)
+                }
+            }
+        }).resume()
+    }
+}
+
 extension UIColor {
     
     convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {

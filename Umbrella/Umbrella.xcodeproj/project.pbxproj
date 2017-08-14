@@ -15,6 +15,7 @@
 		A16873121F3CF82F00E309D7 /* InputChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168730F1F3CDEB400E309D7 /* InputChatView.swift */; };
 		A16873161F4105FE00E309D7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16873151F4105FE00E309D7 /* ProfileViewController.swift */; };
 		A16873181F41067C00E309D7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16873171F41067C00E309D7 /* ProfileView.swift */; };
+		A168731A1F4108B900E309D7 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A16873191F4108B900E309D7 /* Profile.storyboard */; };
 		A17737C21F3BA83700E42C4D /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DB1F2BBAD90035913B /* UserEntity.swift */; };
 		A17737C51F3BC24500E42C4D /* MessagesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17737C41F3BC24500E42C4D /* MessagesPresenter.swift */; };
 		A17737C71F3BC6A200E42C4D /* MessageInterector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17737C61F3BC6A200E42C4D /* MessageInterector.swift */; };
@@ -77,6 +78,7 @@
 		A168730F1F3CDEB400E309D7 /* InputChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputChatView.swift; sourceTree = "<group>"; };
 		A16873151F4105FE00E309D7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A16873171F41067C00E309D7 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A16873191F4108B900E309D7 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		A17737C41F3BC24500E42C4D /* MessagesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesPresenter.swift; sourceTree = "<group>"; };
 		A17737C61F3BC6A200E42C4D /* MessageInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInterector.swift; sourceTree = "<group>"; };
 		A1BB53381F38E5800060649C /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				A16873151F4105FE00E309D7 /* ProfileViewController.swift */,
 				A16873171F41067C00E309D7 /* ProfileView.swift */,
+				A16873191F4108B900E309D7 /* Profile.storyboard */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */,
 				FBEFEACD1F3A349100CDC99A /* Assets.xcassets in Resources */,
 				D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */,
+				A168731A1F4108B900E309D7 /* Profile.storyboard in Resources */,
 				A1BB53481F3907790060649C /* Register.storyboard in Resources */,
 				FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */,
 				FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */,

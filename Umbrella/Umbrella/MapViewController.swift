@@ -55,7 +55,6 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.reportButton.center = self.expandButton.center
         self.reportButton.alpha = 0
         
-        self.msgsButton.addTarget(self, action: #selector(handleMsgsButtonAction), for: .touchUpInside)
         self.msgsButton.center = self.expandButton.center
         self.msgsButton.alpha = 0
         
@@ -245,7 +244,12 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    func handleMsgsButtonAction(){
+    @IBAction func profileButtonAction(_ sender: Any) {
+        
+        performSegue(withIdentifier: "ProfileSegue", sender: nil)
+    }
+    
+    @IBAction func messageButtonAction(_ sender: Any) {
         
         let navigation = UINavigationController(rootViewController: MessagesTableViewController())
         present(navigation, animated: true, completion: nil)

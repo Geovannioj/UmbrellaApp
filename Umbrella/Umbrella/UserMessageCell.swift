@@ -38,18 +38,16 @@ class UserMessageCell: UITableViewCell {
         return image
     }()
     
-    let nameLabel : UITextField  = {
-        let text = UITextField()
-        text.placeholder = ""
+    let nameLabel : UILabel  = {
+        let text = UILabel()
         text.font = UIFont.systemFont(ofSize: 14)
         text.textColor = UIColor.purple
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
     
-    let messageLabel : UITextField  = {
-        let text = UITextField()
-        text.placeholder = ""
+    let messageLabel : UILabel  = {
+        let text = UILabel()
         text.font = UIFont.systemFont(ofSize: 14)
         text.textColor = UIColor.lightGray
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +85,9 @@ class UserMessageCell: UITableViewCell {
             UserInteractor.getUser(withId: id, completion: {(user) in
             
                 self.nameLabel.text = user.nickname
-//                self.profileImageView.loadImageUsingCacheWithUrlString(user.urlPhoto)
+                if let url = user.urlPhoto {
+                    self.profileImage.loadCacheImage(url)
+                }
             })
         }
     }
@@ -104,7 +104,6 @@ class UserMessageCell: UITableViewCell {
         
         nameLabel.topAnchor.constraint(equalTo: profileImage.topAnchor).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 10).isActive = true
-//        nameLabel.rightAnchor.constraint(equalTo: timeLabel.leftAnchor, constant: 10).isActive = true
     }
     
     func setupMessageLabel() {

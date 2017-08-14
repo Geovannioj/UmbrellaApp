@@ -42,6 +42,21 @@ class ProfileView: UIView {
         return camp
     }()
     
+    let birthDate : CampFieldView = {
+        let camp = CampFieldView()
+        camp.titleLabel.text = "Data de nascimento"
+        camp.translatesAutoresizingMaskIntoConstraints = false
+        return camp
+    }()
+    
+    let minority : CampFieldView = {
+        let camp = CampFieldView()
+        camp.titleLabel.text = "Minoria"
+        camp.textField.isSecureTextEntry = true
+        camp.translatesAutoresizingMaskIntoConstraints = false
+        return camp
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
@@ -60,11 +75,15 @@ class ProfileView: UIView {
         addSubview(username)
         addSubview(email)
         addSubview(password)
+        addSubview(birthDate)
+        addSubview(minority)
         
         setupProfileImageView()
         setupUsernameField()
         setupEmailField()
         setupPasswordField()
+        setupBirthDateField()
+        setupMinorityField()
     }
 
     func setupProfileImageView() {
@@ -98,6 +117,21 @@ class ProfileView: UIView {
         password.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         password.heightAnchor.constraint(equalToConstant: 70).isActive = true
     }
+    
+    func setupBirthDateField(){
+        
+        birthDate.topAnchor.constraint(equalTo: password.bottomAnchor, constant: 15).isActive = true
+        birthDate.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        birthDate.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        birthDate.heightAnchor.constraint(equalToConstant: 70).isActive = true
+    }
 
+    func setupMinorityField(){
+        
+        minority.topAnchor.constraint(equalTo: birthDate.bottomAnchor, constant: 15).isActive = true
+        minority.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        minority.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        minority.heightAnchor.constraint(equalToConstant: 70).isActive = true
+    }
 
 }

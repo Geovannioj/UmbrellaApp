@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="8WG-Gb-tnC">
-                                        <rect key="frame" x="19" y="19" width="337.5" height="127"/>
+                                        <rect key="frame" x="19.5" y="19" width="337.5" height="127"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWo-cy-fPs">
                                                 <rect key="frame" x="0.0" y="0.0" width="337.5" height="44"/>
@@ -44,7 +44,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQS-2u-VCk">
-                                        <rect key="frame" x="29.5" y="74" width="19" height="61"/>
+                                        <rect key="frame" x="30" y="74" width="19" height="61"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nH-Eh-WU3">
                                                 <rect key="frame" x="0.0" y="0.0" width="19" height="22"/>
@@ -105,10 +105,17 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-lB-8Y0">
                                                 <rect key="frame" x="0.0" y="0.0" width="57" height="72"/>
                                                 <state key="normal" image="perfilIcon1"/>
+                                                <connections>
+                                                    <action selector="profileButtonAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="XBB-sE-5SQ"/>
+                                                    <segue destination="466-Hr-uEo" kind="show" identifier="ProfileSegue" id="6dn-IP-VOF"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-0y-izz">
                                                 <rect key="frame" x="137" y="0.0" width="69" height="72"/>
                                                 <state key="normal" image="msgIcon"/>
+                                                <connections>
+                                                    <action selector="messageButtonAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="Rnz-0a-GTo"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -191,7 +198,15 @@
                 <viewControllerPlaceholder storyboardIdentifier="MapViewController" storyboardName="RegisterReportFirst" referencedIdentifier="RegisterReportViewController" id="Qkr-UP-DA5" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1IW-4g-u4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-917" y="-155"/>
+            <point key="canvasLocation" x="-872" y="-161"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="8im-Jc-kCn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="466-Hr-uEo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Cz-Dv-ACS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1459" y="-230"/>
         </scene>
         <!--Filter Table View Controlle Table View Controller-->
         <scene sceneID="sZO-1E-aDb">
