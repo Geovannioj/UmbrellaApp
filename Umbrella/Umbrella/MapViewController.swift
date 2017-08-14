@@ -262,8 +262,17 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
-  
-   
+    @IBAction func profileButtonAction(_ sender: Any) {
+        
+        performSegue(withIdentifier: "ProfileSegue", sender: nil)
+    }
+    
+    @IBAction func messageButtonAction(_ sender: Any) {
+        
+        let navigation = UINavigationController(rootViewController: MessagesTableViewController())
+        present(navigation, animated: true, completion: nil)
+    }
+    
     @IBAction func locatioButtonAction(_ sender: UIButton) {
         centerOnUser()
     }
