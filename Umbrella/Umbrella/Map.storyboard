@@ -74,7 +74,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="321" height="27"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhC-xf-0iq" id="jeB-v1-mhn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320.5" height="26.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="321" height="27"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="The-os-8sl">
@@ -189,6 +189,7 @@
                         <outlet property="searchBar" destination="5Pq-8k-jmZ" id="tuH-Xs-Y4S"/>
                         <outlet property="searchTableView" destination="ZqN-dd-ZCS" id="Ltm-d3-0KT"/>
                         <segue destination="SJ0-z9-rcG" kind="show" identifier="goToLogin" id="y3J-LK-035"/>
+                        <segue destination="TtV-i6-T5O" kind="show" identifier="seeReport" id="Mjz-mR-5zK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2C-Dd-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -201,7 +202,15 @@
                 <viewControllerPlaceholder storyboardIdentifier="Login" storyboardName="Login" id="SJ0-z9-rcG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ue3-7Q-nV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-470" y="-241"/>
+            <point key="canvasLocation" x="-460" y="-205"/>
+        </scene>
+        <!--SeeReportViewController-->
+        <scene sceneID="9iY-GZ-pcy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SeeReport" referencedIdentifier="SeeReportViewController" id="TtV-i6-T5O" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xuU-IN-eEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-75" y="-292"/>
         </scene>
         <!--RegisterReportViewController-->
         <scene sceneID="rJX-ZX-nDl">
@@ -209,7 +218,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="MapViewController" storyboardName="RegisterReportFirst" referencedIdentifier="RegisterReportViewController" id="Qkr-UP-DA5" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1IW-4g-u4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-872" y="-161"/>
+            <point key="canvasLocation" x="-917" y="-161"/>
         </scene>
         <!--ProfileManagerViewController-->
         <scene sceneID="8im-Jc-kCn">
@@ -217,7 +226,7 @@
                 <viewControllerPlaceholder storyboardName="ProfileManager" referencedIdentifier="ProfileManagerViewController" id="466-Hr-uEo" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Cz-Dv-ACS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1459" y="-230"/>
+            <point key="canvasLocation" x="-1460" y="-205"/>
         </scene>
         <!--Filter Table View Controlle Table View Controller-->
         <scene sceneID="sZO-1E-aDb">
@@ -400,7 +409,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5n-UD-w5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53.600000000000001" y="-693.10344827586209"/>
+            <point key="canvasLocation" x="53" y="-654"/>
         </scene>
     </scenes>
     <resources>

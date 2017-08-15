@@ -197,7 +197,7 @@ extension MapViewController : MGLMapViewDelegate {
         
         let annotation = MGLPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees.init(new.latitude), longitude: .init(new.longitude))
-        annotation.title = new.title
+        annotation.title = new.id
         annotation.subtitle = new.violenceKind
         
         mapView.addAnnotation(annotation)
