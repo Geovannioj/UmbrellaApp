@@ -43,6 +43,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var searchTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         buttonDistance = HorizontalStackButtons.spacing
         
         self.msgCenter = msgsButton.center

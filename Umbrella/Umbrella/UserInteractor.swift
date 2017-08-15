@@ -19,6 +19,8 @@ import Firebase
     @objc optional func completeEmailVerification(error : Error?)
     @objc optional func completeUpdatePassword(error : Error?)
     
+    @objc optional func completeSendPasswordResetEmail(error: Error?)
+
     @objc optional func completePhotoOperation(error : Error?)
 
 }
@@ -298,20 +300,34 @@ class UserInteractor {
         }
     }
     
-    // -FIXME: the user need a page to change his password.
-//    /**
-//     Updates the current connected user's password.
-//     - parameter password: new user's password
-//     - parameter handler: deals with errors and completes changing password actions
-//     */
-//    static func updateCurrentUser(password: String, handler: UserInteractorCompleteProtocol) {
-//        if ((Auth.auth().currentUser?.uid) != nil) {
-//            Auth.auth().currentUser?.updatePassword(to: password, completion: { error in
-//                handler.completeUpdatePassword!(error: error)
-//            })
-//            
-//        }
-//    }
+    // -TODO: implement errors handler
+    /**
+     Sends an email with a link to change the current user's password.
+     - parameter handler: deals with errors
+     */
+    static func sendPasswordResetEmail(email: String, handler: InteractorCompleteProtocol) {
+        Auth.auth().sendPasswordReset(withEmail: getCurrentUserEmail()!, completion: { error in
+            if error != nil {
+                handler.completeSendPasswordResetEmail!(error: error)
+            }
+        })
+    }
+    
+    /**
+     Updates the current connected user's password.
+     - parameter password: new user's password
+     - parameter handler: deals with errors and completes changing password actions
+     */
+    static func updateCurrentUser(password: String, handler: InteractorCompleteProtocol) {
+        if ((Auth.auth().currentUser?.uid) != nil) {
+            Auth.auth().currentUser?.updatePassword(to: password, completion: { error in
+                if error != nil {
+                    handler.completeUpdatePassword!(error: error)
+                }
+            })
+            
+        }
+    }
 
     // -FIXME: Dont delete, just deactivate the user
     /**
@@ -417,7 +433,9 @@ class UserInteractor {
     */
     static func sendEmailVerification(handler: InteractorCompleteProtocol) {
         Auth.auth().currentUser?.sendEmailVerification(completion: { error in
-             handler.completeEmailVerification!(error: error)
+            if error != nil {
+                handler.completeEmailVerification!(error: error)
+            }
         })
     }
     

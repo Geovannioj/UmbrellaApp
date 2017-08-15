@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         presenter = LoginPresenter()
         view.backgroundImage(named: "bkgLoginView")
         setupInputs()
@@ -30,11 +30,10 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
             return
         }
         
-        performSegue(withIdentifier: "mapSegue", sender: nil)
-
         UserInteractor.connectUserOnline(email: email, password: password, handler: self)
     
     }
+    
     
     func completeLogin(user : UserInfo?, error : Error?) {
         
@@ -47,16 +46,25 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
             case .wrongPassword:
                 inputs.email.isValidImput(false)
                 
-            default:
+            case .userDisabled:
+                AlertViewController.showAlert(viewController: self, title: "Alerta!!", message: "Essa conta de usuário está desativada.", confirmButton: nil, cancelButton: "OK")
                 
-                let alert = UIAlertController(title: "Alert!!", message: "Error has occurred, please try again later", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+            default:
+                AlertViewController.showAlert(viewController: self, title: "Alerta!!", message: "Ocorreu um erro, por favor tente novamente mais tarde.", confirmButton: nil, cancelButton: "OK")
             }
             return
         }
+        else{
+            if (Auth.auth().currentUser?.isEmailVerified)! {
+                performSegue(withIdentifier: "mapSegue", sender: nil)
+            }
+            else {
+                AlertViewController.showAlert(viewController: self, title: "Alerta!!", message: "Verifique sua conta antes de fazer o login. Deseja que enviemos outro e-mail de verificação?", confirmButton: "Sim", cancelButton: "Não", onAffirmation: {
+                    UserInteractor.sendEmailVerification(handler: self)
+                })
+            }
+        }
         
-        performSegue(withIdentifier: "mapSegue", sender: nil)
     }
 
     func handleNewAccount() {
@@ -65,8 +73,19 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
     }
     
     func handleForgotPassword() {
-        
-        // Ajudar usuario a recuperar a senha
+        let email = inputs.email.textField.text
+        if ((email?.isEmpty)!) || !Validation.isValidEmailAddress(emailAddressString: email!) {
+            AlertViewController.showAlert(viewController: self, title: "Ei!", message: "Coloque um e-mail valido para que possamos fazer a verificação.", confirmButton: nil, cancelButton: "OK")
+            
+        }
+        else {
+            AlertViewController.showAlert(viewController: self, title: "Olá!", message: "Te enviaremos um e-mail com um link para que você crie uma nova senha. \(email!) é o e-mail do seu cadastro?", confirmButton: "Sim", cancelButton: "Não", onAffirmation: {
+                
+                UserInteractor.sendPasswordResetEmail(email: email!, handler: self)
+                AlertViewController.showAlert(viewController: self, title: "Ótimo!", message: "Verifique se o e-mail chegou corretamente para você.", confirmButton: nil, cancelButton: "OK")
+                
+            })
+        }
     }
     
     func handleFacebookLogin() {

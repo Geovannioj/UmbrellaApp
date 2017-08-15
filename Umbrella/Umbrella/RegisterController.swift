@@ -47,20 +47,24 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
                 
             case .emailAlreadyInUse:
                 
-                let alert = UIAlertController(title: "Alert!!", message: "Email already in Use", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                AlertViewController.showAlert(viewController: self, title: "Alerta!!", message: "Este e-mail já está sendo usado.", confirmButton: nil, cancelButton: "OK")
+                
+            case .weakPassword:
+                
+                AlertViewController.showAlert(viewController: self, title: "Alerta!!", message: "Cadastre uma senha de pelo menos 6 caracteres.", confirmButton: nil, cancelButton: "OK")
                 
             default:
                 
-                let alert = UIAlertController(title: "Alert!!", message: "Error has occurred, please try again later", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                AlertViewController.showAlert(viewController: self, title: "Alerta!!", message: "Ocorreu um erro, por favor tente novamente mais tarde.", confirmButton: nil, cancelButton: "OK")
             }
             return
         }
+        else {
+            UserInteractor.connectUserOnline(email: inputs.email.textField.text!, password: inputs.password.textField.text!, handler: self)
+            UserInteractor.sendEmailVerification(handler: self)
+            handleReturn()
+        }
         
-        handleReturn()
     }
     
     func handleReturn() {

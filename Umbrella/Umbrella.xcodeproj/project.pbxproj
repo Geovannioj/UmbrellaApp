@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		31968255E613E61526173C55 /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C72F32C3D0EFE8BB01895E /* Pods_Umbrella.framework */; };
+		9E2D83241F436A01000FF593 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D83231F436A01000FF593 /* AlertViewController.swift */; };
+		9E6065FF1F438C80002C5281 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6065FE1F438C7F002C5281 /* Validations.swift */; };
 		9ECE54DE1F2BBCB30035913B /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DD1F2BBCB30035913B /* PhotoEntity.swift */; };
 		9ECE54E01F2BBCC80035913B /* MinorityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DF1F2BBCC80035913B /* MinorityEntity.swift */; };
 		A17737C21F3BA83700E42C4D /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE54DB1F2BBAD90035913B /* UserEntity.swift */; };
@@ -62,6 +64,8 @@
 /* Begin PBXFileReference section */
 		1A1AAF8F07485BB6C21C7AE6 /* Pods-Umbrella.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.release.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.release.xcconfig"; sourceTree = "<group>"; };
 		2BD6F87A2891096DDEB27EA6 /* Pods-Umbrella.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.debug.xcconfig"; sourceTree = "<group>"; };
+		9E2D83231F436A01000FF593 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		9E6065FE1F438C7F002C5281 /* Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		9ECE54DB1F2BBAD90035913B /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		9ECE54DD1F2BBCB30035913B /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntity.swift; sourceTree = "<group>"; };
 		9ECE54DF1F2BBCC80035913B /* MinorityEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinorityEntity.swift; sourceTree = "<group>"; };
@@ -137,6 +141,22 @@
 				1A1AAF8F07485BB6C21C7AE6 /* Pods-Umbrella.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9E2D83251F437122000FF593 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D83231F436A01000FF593 /* AlertViewController.swift */,
+			);
+			name = AlertView;
+			sourceTree = "<group>";
+		};
+		9E6066001F438FA1002C5281 /* Validations */ = {
+			isa = PBXGroup;
+			children = (
+				9E6065FE1F438C7F002C5281 /* Validations.swift */,
+			);
+			name = Validations;
 			sourceTree = "<group>";
 		};
 		9ECE54DA1F2BBA9B0035913B /* User */ = {
@@ -254,6 +274,8 @@
 		D4B1E4151F2A78F700308ABB /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				9E6066001F438FA1002C5281 /* Validations */,
+				9E2D83251F437122000FF593 /* AlertView */,
 				A1BB533F1F38E64E0060649C /* Login */,
 				A1BB53491F390AAA0060649C /* Register */,
 			);
@@ -508,6 +530,8 @@
 				FB60D86A1F39127E001E5E51 /* FirebaseManager.swift in Sources */,
 				FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */,
 				FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */,
+				9E2D83241F436A01000FF593 /* AlertViewController.swift in Sources */,
+				9E6065FF1F438C80002C5281 /* Validations.swift in Sources */,
 				FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */,
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
 				FB0144D01F3B85A7004FFBCC /* MinorityInterector.swift in Sources */,
