@@ -23,16 +23,17 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         self.userId = UserInteractor.getCurrentUserUid()
         self.refUserReport = Database.database().reference().child("user-reports").child(userId!)
+        
         self.tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
         super.viewDidLoad()
-        
         setObserverToFireBaseChanges()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,12 +48,12 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         let description = tableView.viewWithTag(4) as! UILabel
         description.text = self.userReports[indexPath.row].description
         
-//        let location = tableView.viewWithTag(5) as! MGLMapView
-//        
-//        let latitude = self.userReports[indexPath.row].latitude
-//        let longitude = self.userReports[indexPath.row].longitude
-//        
-//        self.seeReport.initiateLocationOnMap(map: location, latitude: latitude, longitude: longitude)
+        let location = tableView.viewWithTag(5) as! MGLMapView
+        
+        let latitude = self.userReports[indexPath.row].latitude
+        let longitude = self.userReports[indexPath.row].longitude
+        
+        self.seeReport.initiateLocationOnMap(map: location, latitude: latitude, longitude: longitude)
         
         
         return cell

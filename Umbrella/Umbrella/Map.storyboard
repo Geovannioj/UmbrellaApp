@@ -49,6 +49,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nH-Eh-WU3">
                                                 <rect key="frame" x="0.0" y="0.0" width="19" height="22"/>
                                                 <state key="normal" image="filterIcon"/>
+                                                <connections>
+                                                    <action selector="filterActivate:" destination="bb1-H1-beB" eventType="touchUpInside" id="uvb-NN-XlI"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzI-6q-0dy">
                                                 <rect key="frame" x="0.0" y="39" width="19" height="22"/>
@@ -71,7 +74,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="321" height="27"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhC-xf-0iq" id="jeB-v1-mhn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="321" height="27"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320.5" height="26.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="The-os-8sl">
