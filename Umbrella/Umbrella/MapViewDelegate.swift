@@ -63,6 +63,7 @@ extension MapViewController : MGLMapViewDelegate {
                     
                    
                 }
+            annotationView?.contentMode = .scaleAspectFit
                  return annotationView
             
             

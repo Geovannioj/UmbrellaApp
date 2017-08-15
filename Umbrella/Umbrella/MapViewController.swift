@@ -263,8 +263,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
         
-        let storyboard = UIStoryboard(name: "Map", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
+//        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+//        let controller = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
         
 //        NotificationCenter.default.addObserver(controller, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
         filterTable.isHidden = false
@@ -294,7 +294,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBAction func expandAction(_ sender: UIButton) {
         
         if UserInteractor.getCurrentUserUid() == nil {
-            let alertControler = UIAlertController(title: "Por favor faça o login para poder acessar as opçoes de relato", message: nil, preferredStyle: .alert)
+            let alertControler = UIAlertController(title: "Atenção", message: "Por favor faça o login para poder acessar as opçoes de relato.", preferredStyle: .alert)
             
             alertControler.addAction(UIAlertAction(title: "Logar", style: .default, handler: { (UIAlertAction) in
                 
