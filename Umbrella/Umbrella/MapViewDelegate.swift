@@ -99,10 +99,12 @@ extension MapViewController : MGLMapViewDelegate {
         
         
     }
-
-    //Entrada: UIimageView
-    //Saída:Nenhuma
-    //Objetivo:Adicionar o mapa termico a UIImageView fornecida.
+    
+    /***
+ 
+     //Objetivo : clicar em um pin, mostrar o relato em seguida
+     
+     ***/
     
 //    func printHeatmap(imageView:UIImageView){
 //        var pontos:[CGPoint] = []
@@ -239,9 +241,37 @@ extension MapViewController : MGLMapViewDelegate {
         mapView.setCenter(location, zoomLevel: zoomLevel, animated: true)
         
     }
-    //Objetivo:Instanciar uma view com a imagem fornecida no centro do mapa .
-   
     
+    func getAnnotationById(reportId: String, reports: [Report]) -> Report {
+        
+        var counter = 0
+        
+        for report in reports {
+            
+            if report.id == reportId {
+                return report
+            }else{
+                //keep going
+            }
+            
+            counter += 1
+        }
+        return Report()
+    }
     
+    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        
+        return true
+    
+    }
+    
+    func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> MGLCalloutView? {
+        
+        
+        self.reportToSend = getAnnotationById(reportId: annotation.title!!, reports: self.reports)
+        performSegue(withIdentifier: "seeReport", sender: Any.self)
+ 
+        return nil
+    }
 
 }

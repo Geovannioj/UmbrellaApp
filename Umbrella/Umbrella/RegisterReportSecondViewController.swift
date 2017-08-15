@@ -20,6 +20,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     @IBOutlet weak var violenceKind: UIPickerView!
     @IBOutlet weak var personIdentification: UIPickerView!
     @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var keyBoardConstraint: NSLayoutConstraint!
     
     //options to the picker view
     let violenceKindArray = ["Verbal","Física","Moral","Psicológica","Sexual"]
@@ -42,6 +43,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     //database reference
     var refReports: DatabaseReference!
+    var refMessageReport: DatabaseReference!
     
     //atributes from the frist string
     var violenceTitle: String?
@@ -52,10 +54,21 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     override func viewDidLoad() {
         self.refReports =  Database.database().reference().child("reports")
+        self.refMessageReport = Database.database().reference().child("user-reports")
         
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        
+        self.personIdentification.setValue(UIColor.white, forKey: "textColor")
+        self.violenceKind.setValue(UIColor.white, forKey: "textColor")
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterReportSecondViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        
         self.violenceAgressionLbl.setValue(UIColor.white, forKey: "textColor")
         self.descriptionLbl.setValue(UIColor.white, forKey: "textColor")
         self.personIdentificationLbl.setValue(UIColor.white, forKey: "textColor")
@@ -70,25 +83,64 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         } else {
             
             self.violenceKind.selectRow(2, inComponent: 0, animated: true)
-            self.violenceKindChosen = self.violenceKindArray[0]
+            self.violenceKindChosen = self.violenceKindArray[(violenceKindArray.count - 1)]
             
             self.personIdentification.selectedRow(inComponent: 0)
-            self.personIdentificationChosen = self.victimIdentificationArray[0]
+            self.personIdentificationChosen = self.victimIdentificationArray[(victimIdentificationArray.count - 1)]
         }
         
         self.personIdentification.dataSource = self
         self.personIdentification.delegate = self
         self.personIdentification.accessibilityIdentifier = "personIdentification"
-        self.personIdentification.setValue(UIColor.white, forKey: "textColor")
+        
         
         
         self.violenceKind.dataSource = self
         self.violenceKind.delegate = self
         self.violenceKind.accessibilityIdentifier = "violenceKind"
-        self.violenceKind.setValue(UIColor.white, forKey: "textColor")
+        
+        self.violenceDescription.delegate = self
+        self.violenceDescription.text = "Digite a descrição da agressão"
+        self.violenceDescription.textColor = UIColor.lightGray
+        
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
+    @objc func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            
+            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
+                
+                self.keyBoardConstraint?.constant = 0.0
+                
+            } else {
+                
+                self.keyBoardConstraint?.constant = endFrame?.size.height ?? 0.0
+            }
+            
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+            
+        }
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
     
     func getViolenceKind(report: Report) -> Int {
         
@@ -129,11 +181,16 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
     }
 
+    func addUserReportMessage() {
+        
+      
+        
+    }
     
     func addReport() {
         
                 let id = refReports.childByAutoId().key
-                let userId = "userIdComing"
+                let userId = UserInteractor.getCurrentUserUid()
                 let title = self.violenceTitle
                 let description = self.violenceDescription.text
                 let violenceKind = self.violenceKindChosen
@@ -143,16 +200,22 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
                 let latitude = self.latitude
                 let longitude = self.longitude
         
-                let report = Report(id: id, userId: userId, title: title!, description: description!, violenceKind: violenceKind, violenceAproximatedTime: Double(violenceAproximatedTime!), latitude: latitude!, longitude: longitude!, personGender: personGender)
+                let report = Report(id: id, userId: userId!, title: title!, description: description!, violenceKind: violenceKind, violenceAproximatedTime: Double(violenceAproximatedTime!), latitude: latitude!, longitude: longitude!, personGender: personGender)
         print(report.turnToDictionary())
         
                self.refReports.child(id).setValue(report.turnToDictionary())
        
+                let ref = self.refMessageReport.child(userId!)
+                
+                ref.updateChildValues([id : 1])
+        
         let saveMessage = UIAlertController(title: "Report saved",
                                               message: "This report has been successfully saved",
                                               preferredStyle: .alert)
         saveMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
-                                              handler: nil))
+                                            handler: {(action) in
+                       self.performSegue(withIdentifier: "backToMap", sender: Any.self)
+        }))
         
         self.present(saveMessage, animated: true, completion: nil)
     }
@@ -176,8 +239,13 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         let updateMessage = UIAlertController(title: "Report Updated",
                                               message: "This report has been successfully updated",
                                               preferredStyle: .alert)
+        
         updateMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
-                                              handler: nil))
+                                              handler: { (action) in
+        
+                    self.performSegue(withIdentifier: "backToMap", sender: Any.self)
+        
+        }))
         
         self.present(updateMessage, animated: true, completion: nil)
     }
@@ -187,11 +255,11 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         if (self.reportToEdit != nil) {
             
             editReport(reportToEdit: self.reportToEdit!)
-            self.navigationController?.popToRootViewController(animated: true)
+            performSegue(withIdentifier: "backToMap", sender: Any.self)
         }else {
             
             addReport()
-            self.navigationController?.popToRootViewController(animated: true)
+            performSegue(withIdentifier: "backToMap", sender: Any.self)
         }
 
     }
@@ -245,3 +313,25 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
 
     
 }
+
+extension RegisterReportSecondViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+        
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            
+            textView.text = "Insira seu comentário"
+            textView.textColor = UIColor.lightGray
+            
+        }
+    }
+}
+

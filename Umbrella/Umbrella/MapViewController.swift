@@ -45,6 +45,9 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         super.viewDidLoad()
         buttonDistance = HorizontalStackButtons.spacing
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
         self.msgCenter = msgsButton.center
         self.perfilCenter = perfilButton.center
         self.reportCenter = reportButton.center
@@ -92,6 +95,9 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        // searchBar.barTintColor = UIColor.clear
@@ -140,6 +146,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         }, completion: nil)
         
     }
+
     @IBAction func profileButtonAction(_ sender: Any) {
         
         performSegue(withIdentifier: "ProfileSegue", sender: nil)
@@ -212,10 +219,16 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "containerViewSegue" {
             containerViewController = segue.destination as? FilterTableViewControlleTableViewController
             containerViewController!.containerToMaster = self
+        } else if segue.identifier == "seeReport"{
+            if let seeScreen = segue.destination as? SeeReportViewController {
+                seeScreen.report = self.reportToSend
+            }
+
         }
     }
    
@@ -233,8 +246,19 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    
-    
+    func handleMsgsButtonAction(){
+        
+        let navigation = UINavigationController(rootViewController: MessagesTableViewController())
+        present(navigation, animated: true, completion: nil)
+    }
+        
+    func closeFilter(){
+        filterTable.isHidden = true
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
+            
+    }
+
+
     @IBAction func filterActivate(_ sender: UIButton) {
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
@@ -245,6 +269,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
 //        NotificationCenter.default.addObserver(controller, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
         filterTable.isHidden = false
     }
+        
     func filter(new:Report){
        
         
@@ -265,12 +290,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         
     }
-    func closeFilter(){
-        filterTable.isHidden = true
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
-        
-    }
-    
+       
     @IBAction func expandAction(_ sender: UIButton) {
         
         if UserInteractor.getCurrentUserUid() == nil {
@@ -362,8 +382,3 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     
 }
-
-
-    
-    
-

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bb1-H1-beB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bb1-H1-beB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="mapNavStack" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="8WG-Gb-tnC">
-                                        <rect key="frame" x="19" y="19" width="337.5" height="127"/>
+                                        <rect key="frame" x="19.5" y="19" width="337.5" height="127"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWo-cy-fPs">
                                                 <rect key="frame" x="0.0" y="0.0" width="337.5" height="44"/>
@@ -49,9 +49,6 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nH-Eh-WU3">
                                                 <rect key="frame" x="0.0" y="0.0" width="19" height="22"/>
                                                 <state key="normal" image="filterIcon"/>
-                                                <connections>
-                                                    <action selector="filterActivate:" destination="bb1-H1-beB" eventType="touchUpInside" id="WfI-Iq-XQc"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzI-6q-0dy">
                                                 <rect key="frame" x="0.0" y="39" width="19" height="22"/>
@@ -67,14 +64,14 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="27" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZqN-dd-ZCS">
-                                        <rect key="frame" x="19" y="53" width="320.5" height="132"/>
+                                        <rect key="frame" x="20.5" y="53" width="320.5" height="132"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" rowHeight="27" id="nhC-xf-0iq" customClass="SearchBarCellTableViewCell" customModule="Umbrella" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="320.5" height="27"/>
+                                                <rect key="frame" x="0.0" y="28" width="321" height="27"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhC-xf-0iq" id="jeB-v1-mhn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320.5" height="26.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="321" height="27"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="The-os-8sl">
@@ -156,7 +153,7 @@
                                         <state key="normal" image="expandIcon"/>
                                         <state key="selected" image="expandIconDeselected"/>
                                         <connections>
-                                            <action selector="expandAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="u4a-gz-Wz1"/>
+                                            <action selector="expandAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="ABn-ua-CG0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -211,10 +208,10 @@
             </objects>
             <point key="canvasLocation" x="-872" y="-161"/>
         </scene>
-        <!--Profile-->
+        <!--ProfileManagerViewController-->
         <scene sceneID="8im-Jc-kCn">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="466-Hr-uEo" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ProfileManager" referencedIdentifier="ProfileManagerViewController" id="466-Hr-uEo" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Cz-Dv-ACS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1459" y="-230"/>
