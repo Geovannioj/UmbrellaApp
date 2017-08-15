@@ -12,11 +12,11 @@ class CampFieldView: UIView {
     
     let campView: UIView = {
         let camp = UIView()
+        camp.backgroundColor = UIColor.white
         camp.layer.borderColor = UIColor.lightGray.cgColor
         camp.layer.borderWidth = 1
         camp.layer.cornerRadius = 5
         camp.layer.masksToBounds = true
-        camp.backgroundColor = UIColor.white
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
     }()
@@ -51,7 +51,6 @@ class CampFieldView: UIView {
     
     let iconImage : UIImageView = {
         let icon = UIImageView()
-        icon.image = UIImage(named: "umbrella")
         icon.contentMode = .scaleAspectFill
         icon.isUserInteractionEnabled = false
         icon.translatesAutoresizingMaskIntoConstraints = false
@@ -110,12 +109,12 @@ class CampFieldView: UIView {
         
         iconImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         iconImage.centerYAnchor.constraint(equalTo: campView.centerYAnchor).isActive = true
-        iconImage.heightAnchor.constraint(equalToConstant: 20).isActive = true
         iconImage.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        iconImage.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
     func setupTextField() {
-        
+  
         textField.leftAnchor.constraint(equalTo: iconImage.rightAnchor, constant: 10).isActive = true
         textField.rightAnchor.constraint(equalTo: campView.rightAnchor, constant: -10).isActive = true
         textField.centerYAnchor.constraint(equalTo: campView.centerYAnchor).isActive = true
