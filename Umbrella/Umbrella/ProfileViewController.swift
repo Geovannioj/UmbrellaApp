@@ -15,7 +15,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundImage(named: "bkgRegisterView")
+        //view.backgroundImage(named: "bkgRegisterView")
+        self.view.backgroundColor = UIColor(white: 1, alpha: 0.1)
         setupInputs()
         setupUser()
     }

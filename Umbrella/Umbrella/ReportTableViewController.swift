@@ -23,7 +23,7 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         self.userId = UserInteractor.getCurrentUserUid()
         self.refUserReport = Database.database().reference().child("user-reports").child(userId!)
-        
+        self.tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
