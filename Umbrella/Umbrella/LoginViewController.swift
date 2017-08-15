@@ -14,12 +14,20 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
     @IBOutlet weak var inputs: LoginView!
     weak var presenter : LoginPresenter?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter = LoginPresenter()
         view.backgroundImage(named: "bkgLoginView")
         setupInputs()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if UserInteractor.isUserOnline() {
+            performSegue(withIdentifier: "mapSegue", sender: nil)
+        }
     }
     
     func handleLogin() {
