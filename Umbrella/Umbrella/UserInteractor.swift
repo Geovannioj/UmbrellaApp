@@ -308,27 +308,9 @@ class UserInteractor {
      - parameter handler: deals with errors
      */
     static func sendPasswordResetEmail(email: String, handler: InteractorCompleteProtocol) {
-        Auth.auth().sendPasswordReset(withEmail: getCurrentUserEmail()!, completion: { error in
-            if error != nil {
-                handler.completeSendPasswordResetEmail!(error: error)
-            }
+        Auth.auth().sendPasswordReset(withEmail: email, completion: { error in
+            handler.completeSendPasswordResetEmail!(error: error)
         })
-    }
-    
-    /**
-     Updates the current connected user's password.
-     - parameter password: new user's password
-     - parameter handler: deals with errors and completes changing password actions
-     */
-    static func updateCurrentUser(password: String, handler: InteractorCompleteProtocol) {
-        if ((Auth.auth().currentUser?.uid) != nil) {
-            Auth.auth().currentUser?.updatePassword(to: password, completion: { error in
-                if error != nil {
-                    handler.completeUpdatePassword!(error: error)
-                }
-            })
-            
-        }
     }
 
     // -FIXME: Dont delete, just deactivate the user

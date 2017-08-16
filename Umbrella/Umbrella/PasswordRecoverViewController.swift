@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PasswordRecoverViewController: UIViewController, InteractorCompleteProtocol {
 
@@ -34,7 +35,21 @@ class PasswordRecoverViewController: UIViewController, InteractorCompleteProtoco
             
         }
         else {
+            print(email!)
             UserInteractor.sendPasswordResetEmail(email: email!, handler: self)
+        }
+    }
+    
+    func completeSendPasswordResetEmail(error: Error?) {
+        if error != nil, let errCode = AuthErrorCode(rawValue: error!._code) {
+            if errCode == .userNotFound {
+                alert.showAlert(viewController: self, title: "Alerta!", message: "Não encontramos esse email na nossa base de dados.", confirmButton: nil, cancelButton: "OK")
+            }
+            else {
+                alert.showAlert(viewController: self, title: "Alerta!", message: errCode.rawValue.description, confirmButton: nil, cancelButton: "OK")
+            }
+        }
+        else {
             self.alert.showAlert(viewController: self, title: "Ótimo!", message: "Verifique se o e-mail chegou corretamente para você.", confirmButton: nil, cancelButton: "OK")
         }
     }
