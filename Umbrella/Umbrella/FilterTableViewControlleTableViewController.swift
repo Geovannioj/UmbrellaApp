@@ -24,7 +24,16 @@ class FilterTableViewControlleTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsSelection = false
-
+        self.tableView.layer.cornerRadius = 10
+        
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        containerToMaster?.mapView.allowsZooming = true
+        containerToMaster?.mapView.allowsRotating = true
+        containerToMaster?.mapView.allowsScrolling = true
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,8 +75,8 @@ class FilterTableViewControlleTableViewController: UITableViewController {
         containerToMaster?.filtros = desirables
         containerToMaster?.removePins()
         containerToMaster?.addPins(reports: (containerToMaster?.reports)!)
-         NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
-        
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
+       
         
     }
     @IBAction func undoAction(_ sender: UIButton) {
