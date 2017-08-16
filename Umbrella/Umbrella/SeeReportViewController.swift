@@ -15,9 +15,9 @@ class SeeReportViewController: UIViewController {
     
     //outlets
     
+    @IBOutlet weak var violenceTitleLbl: UILabel!
     @IBOutlet weak var secondView: UIView!
     @IBOutlet weak var agression: UILabel!
-    @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var violanceLocation: MGLMapView!
@@ -121,13 +121,7 @@ class SeeReportViewController: UIViewController {
 
     
     func initLabels() {
-        
-//        UserInteractor.getUser(withId: UserInteractor.getCurrentUserUid()!, completion: { (user) in
-//            
-//            self.username.text = user.nickname
-//          //  self.userPhoto.loadCacheImage(user["urlPhoto"])
-//
-//        })
+    
         let ref = self.refUser.child((self.report?.userId)!)
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -137,14 +131,28 @@ class SeeReportViewController: UIViewController {
             self.userPhoto.loadCacheImage((user?["urlPhoto"] as? String)!)
         })
 
+        self.username.textColor = UIColor.white
+        
+        self.violenceTitleLbl.text = self.report?.title
+        self.violenceTitleLbl.textColor = UIColor.white
+        
         self.agression.text = self.report?.violenceKind
+        self.agression.textColor = UIColor.white
+        
         self.violenceDescription.text = self.report?.description
+        //self.violenceDescription.textColor = UIColor.white
+        
         self.violenceDescription.isEditable = false
-        self.cityName.text = "Taguayork"
+        self.violenceDescription.backgroundColor = UIColor(colorLiteralRed: 0.107,
+                                                           green: 0.003,
+                                                           blue: 0.148,
+                                                           alpha: 1)
+        
         self.initiateLocationOnMap(map: self.violanceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
         self.formatDate()
     }
     
+    //initial placeholder to the textView of comments
     func initTexViewLabel() {
         self.commentTextView.text = "Insira um comentário"
         self.commentTextView.textColor = UIColor.lightGray
@@ -176,6 +184,7 @@ class SeeReportViewController: UIViewController {
         
         //setting the formated date
         self.violenceAproximateTime.text = dateFormat.string(from: startDate)
+        self.violenceAproximateTime.textColor = UIColor.white
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -229,6 +238,7 @@ class SeeReportViewController: UIViewController {
         return -1
     }
 
+    
     func setObserverToFireBaseChanges() {
         
         self.refComment.observe(DataEventType.value, with: {(snapshot) in
@@ -297,23 +307,29 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //setting cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath)
         cell.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
-        //cell.layer.borderWidth = 0.5
-        //cell.layer.borderColor = UIColor.white.cgColor
         
+        //comment text
         let commentTextField = tableView.viewWithTag(2) as! UITextView
         commentTextField.isEditable = false
         commentTextField.text = self.comments[indexPath.row].content
         commentTextField.textColor = UIColor.white
         commentTextField.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
+        //user photo to put into the comment cell
         let userPhoto = tableView.viewWithTag(1) as! UIImageView
+        
+        //comment nickname
         let userNickName = tableView.viewWithTag(8) as! UILabel
         userNickName.textColor = UIColor.white
         
+        
         let ref = self.refUser.child(self.comments[indexPath.row].userId)
         
+        //setting user image and name to each comment
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
             let user = snapshot.value as? [String: Any]
@@ -334,6 +350,7 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
 
 }
 
+//extension to the textView get a placeHolder
 extension SeeReportViewController: UITextViewDelegate {
  
     func textViewDidBeginEditing(_ textView: UITextView) {
