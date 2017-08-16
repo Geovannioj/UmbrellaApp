@@ -87,18 +87,18 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TiB-kK-srb">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TiB-kK-srb">
                                                 <rect key="frame" x="8" y="491" width="375" height="124"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="124" id="Rmp-Pj-7aM"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="comment" id="uYb-jD-087">
-                                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="comment" rowHeight="71" id="uYb-jD-087">
+                                                        <rect key="frame" x="0.0" y="28" width="375" height="71"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uYb-jD-087" id="NKx-JR-dsD">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sqc-I0-bFP">
@@ -108,18 +108,26 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qfL-n7-FYc">
-                                                                    <rect key="frame" x="69" y="0.0" width="298" height="38"/>
+                                                                    <rect key="frame" x="69" y="21" width="298" height="44"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" tag="8" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8nl-OD-cFy">
+                                                                    <rect key="frame" x="69" y="8" width="42" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottomMargin" secondItem="Sqc-I0-bFP" secondAttribute="bottom" constant="-2.3333333333333357" id="0Mg-jR-k0J"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="Sqc-I0-bFP" secondAttribute="bottom" constant="24.5" id="0Mg-jR-k0J"/>
                                                                 <constraint firstItem="Sqc-I0-bFP" firstAttribute="leading" secondItem="NKx-JR-dsD" secondAttribute="leadingMargin" constant="12" id="Mpd-6H-9e8"/>
-                                                                <constraint firstItem="Sqc-I0-bFP" firstAttribute="bottom" secondItem="qfL-n7-FYc" secondAttribute="bottom" id="TGT-RF-Ayp"/>
-                                                                <constraint firstItem="qfL-n7-FYc" firstAttribute="top" secondItem="NKx-JR-dsD" secondAttribute="top" id="cK2-jy-uNB"/>
+                                                                <constraint firstItem="Sqc-I0-bFP" firstAttribute="bottom" secondItem="qfL-n7-FYc" secondAttribute="bottom" constant="-27" id="TGT-RF-Ayp"/>
+                                                                <constraint firstAttribute="topMargin" secondItem="8nl-OD-cFy" secondAttribute="top" id="UnI-19-vBD"/>
+                                                                <constraint firstItem="8nl-OD-cFy" firstAttribute="leading" secondItem="Sqc-I0-bFP" secondAttribute="trailing" constant="19" id="YZb-iF-m2c"/>
+                                                                <constraint firstItem="qfL-n7-FYc" firstAttribute="top" secondItem="NKx-JR-dsD" secondAttribute="top" constant="21" id="cK2-jy-uNB"/>
                                                                 <constraint firstItem="qfL-n7-FYc" firstAttribute="trailing" secondItem="NKx-JR-dsD" secondAttribute="trailingMargin" id="lid-gF-u7p"/>
                                                                 <constraint firstItem="Sqc-I0-bFP" firstAttribute="top" secondItem="NKx-JR-dsD" secondAttribute="topMargin" id="qx6-zO-tmE"/>
                                                                 <constraint firstItem="qfL-n7-FYc" firstAttribute="leading" secondItem="Sqc-I0-bFP" secondAttribute="trailing" constant="19" id="xjY-9k-c1T"/>

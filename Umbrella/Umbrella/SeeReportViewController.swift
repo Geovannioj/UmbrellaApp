@@ -34,6 +34,7 @@ class SeeReportViewController: UIViewController {
     
     var refReport: DatabaseReference!
     var refComment: DatabaseReference!
+    var refUser: DatabaseReference!
     
     //comments to the report
     var comments:[Comment] = []
@@ -43,7 +44,8 @@ class SeeReportViewController: UIViewController {
         //database reference
         self.refComment =  Database.database().reference().child("comments")
         self.refReport =  Database.database().reference().child("reports")
-
+        self.refUser = Database.database().reference().child("user")
+        
         super.viewDidLoad()
         
         //observer para quando o teclado aparecer o textViewSubir com ele
@@ -120,15 +122,21 @@ class SeeReportViewController: UIViewController {
     
     func initLabels() {
         
-        UserInteractor.getUser(withId: UserInteractor.getCurrentUserUid()!, completion: { (user) in
-            
-            self.username.text = user.nickname
-            
-            //UIImage()
-            //self.userPhoto.image = user.
-            
-        })
+//        UserInteractor.getUser(withId: UserInteractor.getCurrentUserUid()!, completion: { (user) in
+//            
+//            self.username.text = user.nickname
+//          //  self.userPhoto.loadCacheImage(user["urlPhoto"])
+//
+//        })
+        let ref = self.refUser.child((self.report?.userId)!)
         
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let user = snapshot.value as? [String: Any]
+            self.username.text = user?["nickname"] as? String
+            self.userPhoto.loadCacheImage((user?["urlPhoto"] as? String)!)
+        })
+
         self.agression.text = self.report?.violenceKind
         self.violenceDescription.text = self.report?.description
         self.violenceDescription.isEditable = false
@@ -268,10 +276,10 @@ class SeeReportViewController: UIViewController {
         
         let id = refComment.childByAutoId().key
         let reportId = self.report?.id
-        let userId = "userIdComing"
+        let userId = UserInteractor.getCurrentUserUid()
         let content = self.commentTextView.text
         
-        let comment = Comment(commentId: id, content: content!, reportId: reportId!, userId: userId)
+        let comment = Comment(commentId: id, content: content!, reportId: reportId!, userId: userId!)
         
         print(comment.turnToDictionary())
         
@@ -301,9 +309,20 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
         commentTextField.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
         let userPhoto = tableView.viewWithTag(1) as! UIImageView
+        let userNickName = tableView.viewWithTag(8) as! UILabel
+        userNickName.textColor = UIColor.white
         
-        //colocar imagem do usuário
-        //userPhoto.image =
+        let ref = self.refUser.child(self.comments[indexPath.row].userId)
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+            let user = snapshot.value as? [String: Any]
+                userNickName.text = user?["nickname"] as? String
+                userPhoto.loadCacheImage((user?["urlPhoto"] as? String)!)
+        })
+        
+        
+        
         
         return cell
         
