@@ -25,7 +25,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N2s-2t-UdO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nGQ-80-sg0">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titulo para o relato" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nGQ-80-sg0">
                                         <rect key="frame" x="8" y="61" width="359" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -85,6 +85,12 @@
                                             <action selector="ChangeScreenAction:" destination="Vsi-xM-o8l" eventType="touchUpInside" id="aeZ-Q2-Imu"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Novo Relato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f26-yK-kGq">
+                                        <rect key="frame" x="141" y="31" width="93" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Q94-D8-Rbt" firstAttribute="top" secondItem="nGQ-80-sg0" secondAttribute="bottom" constant="21" id="1p4-sg-8gX"/>
@@ -95,6 +101,7 @@
                                     <constraint firstItem="nGQ-80-sg0" firstAttribute="leading" secondItem="N2s-2t-UdO" secondAttribute="leadingMargin" id="CCP-SI-kvt"/>
                                     <constraint firstItem="nGQ-80-sg0" firstAttribute="centerX" secondItem="N2s-2t-UdO" secondAttribute="centerX" id="DCB-Mr-jWK"/>
                                     <constraint firstAttribute="trailing" secondItem="Ajn-Fz-Ea5" secondAttribute="trailing" constant="8" id="HNt-Qv-frl"/>
+                                    <constraint firstItem="f26-yK-kGq" firstAttribute="centerX" secondItem="N2s-2t-UdO" secondAttribute="centerX" id="Os6-7t-xFl"/>
                                     <constraint firstAttribute="trailing" secondItem="5Ox-s9-FBz" secondAttribute="trailing" constant="11.5" id="R5W-LA-V8W"/>
                                     <constraint firstItem="nGQ-80-sg0" firstAttribute="trailing" secondItem="N2s-2t-UdO" secondAttribute="trailingMargin" id="R7f-mW-M5I"/>
                                     <constraint firstItem="nGQ-80-sg0" firstAttribute="top" secondItem="N2s-2t-UdO" secondAttribute="top" constant="61" id="fay-Tt-C3B"/>
@@ -109,6 +116,7 @@
                                     <constraint firstItem="qXW-7f-WlG" firstAttribute="leading" secondItem="N2s-2t-UdO" secondAttribute="leading" constant="8" id="siP-hY-LWz"/>
                                     <constraint firstItem="Gf5-Dy-JHi" firstAttribute="top" secondItem="qXW-7f-WlG" secondAttribute="bottom" constant="24" id="vf5-Yu-zOt"/>
                                     <constraint firstItem="qXW-7f-WlG" firstAttribute="top" secondItem="lVy-WW-ei3" secondAttribute="bottom" constant="8" id="vgn-fE-dHk"/>
+                                    <constraint firstItem="f26-yK-kGq" firstAttribute="top" secondItem="N2s-2t-UdO" secondAttribute="top" constant="31" id="wWe-Qp-6mO"/>
                                     <constraint firstItem="637-GJ-HmL" firstAttribute="top" secondItem="Gf5-Dy-JHi" secondAttribute="bottom" constant="8" id="yuu-ze-yVq"/>
                                 </constraints>
                             </scrollView>
