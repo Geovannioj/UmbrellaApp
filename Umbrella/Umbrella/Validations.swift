@@ -25,7 +25,7 @@ class Validation {
                 returnValue = false
             }
             
-        } catch let error as NSError {
+        } catch {
             returnValue = false
         }
         

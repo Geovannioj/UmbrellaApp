@@ -13,6 +13,7 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
     
     @IBOutlet weak var inputs: RegisterView!
     weak var presenter : RegisterPresenter?
+    let alert: AlertPresenter = AlertPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,15 +48,15 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
                 
             case .emailAlreadyInUse:
                 
-                AlertViewController.showAlert(viewController: self, title: "Alerta!!", message: "Este e-mail já está sendo usado.", confirmButton: nil, cancelButton: "OK")
+                alert.showAlert(viewController: self, title: "Alerta!!", message: "Este e-mail já está sendo usado.", confirmButton: nil, cancelButton: "OK")
                 
             case .weakPassword:
                 
-                AlertViewController.showAlert(viewController: self, title: "Alerta!!", message: "Cadastre uma senha de pelo menos 6 caracteres.", confirmButton: nil, cancelButton: "OK")
+                alert.showAlert(viewController: self, title: "Alerta!!", message: "Cadastre uma senha de pelo menos 6 caracteres.", confirmButton: nil, cancelButton: "OK")
                 
             default:
                 
-                AlertViewController.showAlert(viewController: self, title: "Alerta!!", message: "Ocorreu um erro, por favor tente novamente mais tarde.", confirmButton: nil, cancelButton: "OK")
+                alert.showAlert(viewController: self, title: "Alerta!!", message: "Ocorreu um erro, por favor tente novamente mais tarde.", confirmButton: nil, cancelButton: "OK")
             }
             return
         }

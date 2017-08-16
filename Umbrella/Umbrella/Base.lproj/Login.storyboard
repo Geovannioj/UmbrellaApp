@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,6 +33,7 @@
                         <outlet property="inputs" destination="0tc-Bo-1VV" id="tDA-tK-Et1"/>
                         <segue destination="RjF-Jp-o6p" kind="show" identifier="registerSegue" id="Yiy-xR-kVb"/>
                         <segue destination="o1N-WA-VUS" kind="show" identifier="mapSegue" id="GSU-tU-rPR"/>
+                        <segue destination="M8K-UB-uPK" kind="show" identifier="passwordRecoverSegue" id="vc1-3x-01i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -45,7 +46,7 @@
                 <viewControllerPlaceholder storyboardName="Register" id="RjF-Jp-o6p" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhT-jQ-1cw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="846" y="37"/>
+            <point key="canvasLocation" x="846" y="-10"/>
         </scene>
         <!--Map-->
         <scene sceneID="hCw-S7-1Ye">
@@ -53,7 +54,15 @@
                 <viewControllerPlaceholder storyboardName="Map" id="o1N-WA-VUS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zW1-gd-cwp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="845" y="187"/>
+            <point key="canvasLocation" x="826" y="224"/>
+        </scene>
+        <!--PasswordRecover-->
+        <scene sceneID="Cg0-DG-gll">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PasswordRecover" id="M8K-UB-uPK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="czP-BY-uuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="872" y="117"/>
         </scene>
     </scenes>
 </document>

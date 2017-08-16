@@ -1,16 +1,16 @@
 //
-//  AlertViewController.swift
+//  AlertPresenter.swift
 //  Umbrella
 //
 //  Created by Bruno Chagas on 15/08/17.
 //  Copyright © 2017 Geovanni Oliveira de Jesus. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class AlertViewController {
+class AlertPresenter {
     
-    static func showAlert(viewController: UIViewController, title: String, message: String, confirmButton: String?, cancelButton: String?, onAffirmation:  @escaping (Void) -> (Void) = { }) {
+    func showAlert(viewController: UIViewController, title: String, message: String, confirmButton: String?, cancelButton: String?, onAffirmation:  @escaping (Void) -> (Void) = { }) {
         let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         if confirmButton != nil {
