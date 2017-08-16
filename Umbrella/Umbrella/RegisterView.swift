@@ -11,6 +11,15 @@ import UIKit
 @IBDesignable
 class RegisterView: UIView {
     
+    let closeButton : UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "closeIcon")?.withRenderingMode(.alwaysTemplate)
+        imageView.contentMode = .scaleAspectFill
+        imageView.tintColor = UIColor(r: 74, g: 74, b: 74)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     let profileImage : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "profileImageIcon")
@@ -74,12 +83,14 @@ class RegisterView: UIView {
         
         self.backgroundColor = UIColor.clear
         
+        addSubview(closeButton)
         addSubview(profileImage)
         addSubview(username)
         addSubview(email)
         addSubview(password)
         addSubview(registerButton)
         
+        setupCloseImageView()
         setupProfileImageView()
         setupUsernameField()
         setupEmailField()
@@ -87,9 +98,17 @@ class RegisterView: UIView {
         setupRegisterButton()
     }
     
+    func setupCloseImageView() {
+        
+        closeButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+        closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+    
     func setupProfileImageView() {
         
-        profileImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        profileImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
         profileImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         profileImage.widthAnchor.constraint(equalToConstant: 90).isActive = true
         profileImage.heightAnchor.constraint(equalToConstant: 90).isActive = true
@@ -97,25 +116,25 @@ class RegisterView: UIView {
     
     func setupUsernameField() {
         
-        username.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 15).isActive = true
-        username.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        username.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        username.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        username.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 20).isActive = true
+        username.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3).isActive = true
         username.heightAnchor.constraint(equalToConstant: 70).isActive = true
     }
     
     func setupEmailField() {
         
-        email.topAnchor.constraint(equalTo: username.bottomAnchor, constant: 15).isActive = true
-        email.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        email.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        email.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        email.topAnchor.constraint(equalTo: username.bottomAnchor, constant: 20).isActive = true
+        email.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3).isActive = true
         email.heightAnchor.constraint(equalToConstant: 70).isActive = true
     }
     
     func setupPasswordField() {
      
-        password.topAnchor.constraint(equalTo: email.bottomAnchor, constant: 15).isActive = true
-        password.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        password.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        password.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        password.topAnchor.constraint(equalTo: email.bottomAnchor, constant: 20).isActive = true
+        password.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3).isActive = true
         password.heightAnchor.constraint(equalToConstant: 70).isActive = true
     }
 

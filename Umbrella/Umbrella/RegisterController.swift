@@ -20,7 +20,7 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
         
         presenter = RegisterPresenter()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "cancel", style: .plain, target: self, action: #selector(handleReturn))
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "cancel", style: .plain, target: self, action: #selector(handleReturn))
         view.backgroundImage(named: "bkgRegisterView")
         
         setupRegisterInputs()
@@ -75,15 +75,18 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
     func setupRegisterInputs() {
         
         inputs.translatesAutoresizingMaskIntoConstraints = false
-        inputs.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        inputs.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 2/3).isActive = true
-        inputs.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
-        inputs.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
+        inputs.translatesAutoresizingMaskIntoConstraints = false
+        inputs.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        inputs.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        inputs.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        inputs.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
 
-        
         inputs.email.textField.delegate = self
         inputs.username.textField.delegate = self
         inputs.password.textField.delegate = self
+        
+        inputs.closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleReturn)))
+        inputs.closeButton.isUserInteractionEnabled = true
         
         inputs.profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImage)))
         inputs.profileImage.isUserInteractionEnabled = true

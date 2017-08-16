@@ -16,7 +16,7 @@ class PasswordRecoverViewController: UIViewController, InteractorCompleteProtoco
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleReturn))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleReturn))
         view.backgroundImage(named: "bkgRegisterView")
         
         setupPasswordRecoverInputs()
@@ -42,14 +42,16 @@ class PasswordRecoverViewController: UIViewController, InteractorCompleteProtoco
     func setupPasswordRecoverInputs() {
         
         inputs.translatesAutoresizingMaskIntoConstraints = false
-        inputs.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        inputs.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        inputs.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 2/3).isActive = true
-        inputs.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200).isActive = true
-        inputs.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
+        inputs.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        inputs.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        inputs.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        inputs.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         inputs.email.textField.delegate = self
        
+        inputs.closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleReturn)))
+        inputs.closeButton.isUserInteractionEnabled = true
+        
         inputs.recoverButton.addTarget(self, action: #selector(handleRecovery), for: .touchUpInside)
     }
 

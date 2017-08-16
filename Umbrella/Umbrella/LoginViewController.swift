@@ -21,6 +21,7 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
         
         presenter = LoginPresenter()
         view.backgroundImage(named: "bkgLoginView")
+        
         setupInputs()
         
     }
@@ -40,6 +41,9 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
             return
         }
         
+        inputs.email.isValidImput(true)
+        inputs.password.isValidImput(true)
+        
         UserInteractor.connectUserOnline(email: email, password: password, handler: self)
     
     }
@@ -54,7 +58,7 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
                 inputs.email.isValidImput(false)
                 
             case .wrongPassword:
-                inputs.email.isValidImput(false)
+                inputs.password.isValidImput(false)
                 
             case .userDisabled:
                 alert.showAlert(viewController: self, title: "Alerta!!", message: "Essa conta de usuário está desativada.", confirmButton: nil, cancelButton: "OK")
