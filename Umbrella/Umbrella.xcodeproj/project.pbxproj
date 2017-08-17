@@ -12,6 +12,7 @@
 		A1A46E661F4630010045E13A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A46E631F4630010045E13A /* ProfileViewController.swift */; };
 		A1A46E671F4630010045E13A /* SeeReportDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A46E641F4630010045E13A /* SeeReportDescriptionTableViewController.swift */; };
 		A1A46E681F4630010045E13A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A46E651F4630010045E13A /* SettingsViewController.swift */; };
+		A1A46E6B1F4637C40045E13A /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A46E6A1F4637C40045E13A /* CommentView.swift */; };
 		D40366651F3E34D400B75704 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144C91F3B85A7004FFBCC /* PhotoInteractor.swift */; };
 		D413836B1F3A632A00384DCC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413836A1F3A632A00384DCC /* Comment.swift */; };
 		D41519771F3E3A4700F0C490 /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41519711F3E3A4700F0C490 /* ChatCollectionViewCell.swift */; };
@@ -78,6 +79,7 @@
 		A1A46E631F4630010045E13A /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A1A46E641F4630010045E13A /* SeeReportDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeReportDescriptionTableViewController.swift; sourceTree = "<group>"; };
 		A1A46E651F4630010045E13A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A1A46E6A1F4637C40045E13A /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		C56960A747D9DDABAB8D9901 /* Pods_Umbrella.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Umbrella.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D413836A1F3A632A00384DCC /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		D41519711F3E3A4700F0C490 /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 		D4B1E4221F2A93CC00308ABB /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				A1A46E6A1F4637C40045E13A /* CommentView.swift */,
 				A1A46E641F4630010045E13A /* SeeReportDescriptionTableViewController.swift */,
 				D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */,
 				FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */,
@@ -621,6 +624,7 @@
 				FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */,
 				D4E91E2A1F3E30C9004895B7 /* MinorityEntity.swift in Sources */,
 				FB0144CE1F3B85A7004FFBCC /* Keychain.swift in Sources */,
+				A1A46E6B1F4637C40045E13A /* CommentView.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
 				A1A46E671F4630010045E13A /* SeeReportDescriptionTableViewController.swift in Sources */,
 				FB60D86E1F39127E001E5E51 /* Report.swift in Sources */,
