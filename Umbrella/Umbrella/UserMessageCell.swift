@@ -50,6 +50,7 @@ class UserMessageCell: UITableViewCell {
         let text = UILabel()
         text.font = UIFont.systemFont(ofSize: 14)
         text.textColor = UIColor.lightGray
+        text.numberOfLines = 2
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
@@ -65,12 +66,13 @@ class UserMessageCell: UITableViewCell {
     
     override init(style : UITableViewCellStyle, reuseIdentifier : String?){
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-                
+        
+        backgroundColor = UIColor.clear
+        
         addSubview(profileImage)
         addSubview(nameLabel)
         addSubview(messageLabel)
         addSubview(timeLabel)
-        
         
         setupProfileImage()
         setupNameLabel()
@@ -102,20 +104,21 @@ class UserMessageCell: UITableViewCell {
     
     func setupNameLabel() {
         
-        nameLabel.topAnchor.constraint(equalTo: profileImage.topAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 10).isActive = true
     }
     
     func setupMessageLabel() {
         
-        messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 15).isActive = true
+        messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
+        messageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
         messageLabel.leftAnchor.constraint(equalTo: nameLabel.leftAnchor).isActive = true
-        messageLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10).isActive = true
+        messageLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
     }
     
     func setupTimeLabel() {
         
-        timeLabel.topAnchor.constraint(equalTo: nameLabel.topAnchor).isActive = true
+        timeLabel.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor).isActive = true
         timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
     }
     
