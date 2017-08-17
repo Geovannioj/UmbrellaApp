@@ -45,7 +45,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         super.viewDidLoad()
         buttonDistance = HorizontalStackButtons.spacing
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         self.msgCenter = msgsButton.center
@@ -254,17 +254,22 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     func closeFilter(){
         filterTable.isHidden = true
+        self.mapView.allowsZooming = true
+        self.mapView.allowsRotating = true
+        self.mapView.allowsScrolling = true
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
             
     }
 
 
     @IBAction func filterActivate(_ sender: UIButton) {
-
+        self.mapView.allowsZooming = false
+        self.mapView.allowsRotating = false
+        self.mapView.allowsScrolling = false
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
         
-        let storyboard = UIStoryboard(name: "Map", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
+//        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+//        let controller = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
         
 //        NotificationCenter.default.addObserver(controller, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
         filterTable.isHidden = false
@@ -294,7 +299,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBAction func expandAction(_ sender: UIButton) {
         
         if UserInteractor.getCurrentUserUid() == nil {
-            let alertControler = UIAlertController(title: "Por favor faça o login para poder acessar as opçoes de relato", message: nil, preferredStyle: .alert)
+            let alertControler = UIAlertController(title: "Atenção", message: "Por favor faça o login para poder acessar as opçoes de relato.", preferredStyle: .alert)
             
             alertControler.addAction(UIAlertAction(title: "Logar", style: .default, handler: { (UIAlertAction) in
                 
