@@ -46,7 +46,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         buttonDistance = HorizontalStackButtons.spacing
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         self.msgCenter = msgsButton.center
@@ -255,13 +255,18 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     func closeFilter(){
         filterTable.isHidden = true
+        self.mapView.allowsZooming = true
+        self.mapView.allowsRotating = true
+        self.mapView.allowsScrolling = true
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
             
     }
 
 
     @IBAction func filterActivate(_ sender: UIButton) {
-
+        self.mapView.allowsZooming = false
+        self.mapView.allowsRotating = false
+        self.mapView.allowsScrolling = false
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
         
 //        let storyboard = UIStoryboard(name: "Map", bundle: nil)

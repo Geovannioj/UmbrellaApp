@@ -61,9 +61,12 @@ extension UIView {
     
     open func backgroundImage(named : String){
         
+        let background = UIImage(named: named)
+        
         let imageView = UIImageView(frame: self.bounds)
-        imageView.image = UIImage(named: named)
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode =  .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
         imageView.center = self.center
         self.addSubview(imageView)
         self.sendSubview(toBack: imageView)

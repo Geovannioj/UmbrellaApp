@@ -74,6 +74,16 @@ class ProfileTableViewController: UITableViewController {
             if let url = user.urlPhoto {
                 self.inputs.profileImage.loadCacheImage(url)
             }
+
+            self.inputs.username.text = dicty["nickname"] as? String
+//            self.inputs.email.textField.text = dicty["email"] as? String
+//            self.inputs.password.textField.text = "password"
+//            self.inputs.birthDate.textField.text = dicty["birthDate"] as? String
+//            self.inputs.minority.textField.text = dicty["idMinority"] as? String
+            
+            if let url = user.urlPhoto {
+                self.inputs.profileImage.loadCacheImage(url)
+            }
             
             self.inputs.username.text = dicty["nickname"] as? String
 //            self.inputs.email.textLabel.text = dicty["email"] as? String

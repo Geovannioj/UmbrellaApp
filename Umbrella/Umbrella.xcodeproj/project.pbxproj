@@ -25,9 +25,15 @@
 		9E6066191F43C6C3002C5281 /* PasswordRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */; };
 		9E60661B1F43C70D002C5281 /* PasswordRecover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E60661A1F43C70D002C5281 /* PasswordRecover.storyboard */; };
 		9E60661D1F43C72F002C5281 /* PasswordRecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */; };
-		9E60661F1F44DC69002C5281 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60661E1F44DC69002C5281 /* InfoView.swift */; };
-		9E6066261F44EE53002C5281 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E6066251F44EE53002C5281 /* Profile.storyboard */; };
 		9E60662A1F460CCB002C5281 /* ExtendedNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066291F460CCB002C5281 /* ExtendedNavBarView.swift */; };
+		9E6066331F463BE4002C5281 /* CampFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60662B1F463BE4002C5281 /* CampFieldView.swift */; };
+		9E6066341F463BE4002C5281 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60662C1F463BE4002C5281 /* CommentView.swift */; };
+		9E6066351F463BE4002C5281 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60662D1F463BE4002C5281 /* Extensions.swift */; };
+		9E6066361F463BE4002C5281 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60662E1F463BE4002C5281 /* NavigationView.swift */; };
+		9E6066371F463BE4002C5281 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E60662F1F463BE4002C5281 /* Profile.storyboard */; };
+		9E6066381F463BE4002C5281 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066301F463BE4002C5281 /* ProfileView.swift */; };
+		9E6066391F463BE4002C5281 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066311F463BE4002C5281 /* ProfileViewController.swift */; };
+		9E60663A1F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */; };
 		D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
 		D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */; };
 		D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4051F2A78CF00308ABB /* Login.storyboard */; };
@@ -37,10 +43,6 @@
 		D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */; };
 		D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4281F2A96D200308ABB /* Map.storyboard */; };
 		D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */; };
-		D4BCF9611F423E6200DCD8A8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCF95E1F423E6200DCD8A8 /* ProfileView.swift */; };
-		D4BCF9621F423E6200DCD8A8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCF95F1F423E6200DCD8A8 /* ProfileViewController.swift */; };
-		D4E91E241F3E30C9004895B7 /* CampFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E141F3E30C9004895B7 /* CampFieldView.swift */; };
-		D4E91E251F3E30C9004895B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E151F3E30C9004895B7 /* Extensions.swift */; };
 		D4E91E261F3E30C9004895B7 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E161F3E30C9004895B7 /* LoginPresenter.swift */; };
 		D4E91E271F3E30C9004895B7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E171F3E30C9004895B7 /* LoginView.swift */; };
 		D4E91E281F3E30C9004895B7 /* MessageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E181F3E30C9004895B7 /* MessageEntity.swift */; };
@@ -49,7 +51,6 @@
 		D4E91E2C1F3E30C9004895B7 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E91E1C1F3E30C9004895B7 /* Register.storyboard */; };
 		D4E91E2D1F3E30C9004895B7 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E1D1F3E30C9004895B7 /* RegisterController.swift */; };
 		D4E91E2E1F3E30C9004895B7 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E1E1F3E30C9004895B7 /* RegisterPresenter.swift */; };
-		D4E91E2F1F3E30C9004895B7 /* RegisterReportDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E1F1F3E30C9004895B7 /* RegisterReportDelegate.swift */; };
 		D4E91E301F3E30C9004895B7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E201F3E30C9004895B7 /* RegisterView.swift */; };
 		D4E91E311F3E30C9004895B7 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E221F3E30C9004895B7 /* UserEntity.swift */; };
 		D4E91E321F3E30C9004895B7 /* UserMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E231F3E30C9004895B7 /* UserMessageCell.swift */; };
@@ -98,9 +99,15 @@
 		9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverView.swift; sourceTree = "<group>"; };
 		9E60661A1F43C70D002C5281 /* PasswordRecover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PasswordRecover.storyboard; sourceTree = "<group>"; };
 		9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverViewController.swift; sourceTree = "<group>"; };
-		9E60661E1F44DC69002C5281 /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoView.swift; path = ../../../../Downloads/InfoView.swift; sourceTree = "<group>"; };
-		9E6066251F44EE53002C5281 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		9E6066291F460CCB002C5281 /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = ../../../Downloads/CustomizingUINavigationBar/ExtendedNavBar/ExtendedNavBarView.swift; sourceTree = "<group>"; };
+		9E60662B1F463BE4002C5281 /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampFieldView.swift; path = Umbrella/CampFieldView.swift; sourceTree = "<group>"; };
+		9E60662C1F463BE4002C5281 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentView.swift; path = Umbrella/CommentView.swift; sourceTree = "<group>"; };
+		9E60662D1F463BE4002C5281 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Umbrella/Extensions.swift; sourceTree = "<group>"; };
+		9E60662E1F463BE4002C5281 /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationView.swift; path = Umbrella/NavigationView.swift; sourceTree = "<group>"; };
+		9E60662F1F463BE4002C5281 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = Umbrella/Profile.storyboard; sourceTree = "<group>"; };
+		9E6066301F463BE4002C5281 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = Umbrella/ProfileView.swift; sourceTree = "<group>"; };
+		9E6066311F463BE4002C5281 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Umbrella/ProfileViewController.swift; sourceTree = "<group>"; };
+		9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeReportDescriptionTableViewController.swift; path = Umbrella/SeeReportDescriptionTableViewController.swift; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -112,10 +119,6 @@
 		D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportViewController.swift; sourceTree = "<group>"; };
 		D4B1E4281F2A96D200308ABB /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		D4BCF95E1F423E6200DCD8A8 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		D4BCF95F1F423E6200DCD8A8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		D4E91E141F3E30C9004895B7 /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampFieldView.swift; path = Umbrella/CampFieldView.swift; sourceTree = "<group>"; };
-		D4E91E151F3E30C9004895B7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Umbrella/Extensions.swift; sourceTree = "<group>"; };
 		D4E91E161F3E30C9004895B7 /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		D4E91E171F3E30C9004895B7 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D4E91E181F3E30C9004895B7 /* MessageEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageEntity.swift; sourceTree = "<group>"; };
@@ -124,7 +127,6 @@
 		D4E91E1C1F3E30C9004895B7 /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		D4E91E1D1F3E30C9004895B7 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		D4E91E1E1F3E30C9004895B7 /* RegisterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
-		D4E91E1F1F3E30C9004895B7 /* RegisterReportDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterReportDelegate.swift; path = Umbrella/RegisterReportDelegate.swift; sourceTree = "<group>"; };
 		D4E91E201F3E30C9004895B7 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		D4E91E211F3E30C9004895B7 /* Umbrella.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = Umbrella.entitlements; path = Umbrella/Umbrella.entitlements; sourceTree = "<group>"; };
 		D4E91E221F3E30C9004895B7 /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
@@ -223,6 +225,20 @@
 			name = Messages;
 			sourceTree = "<group>";
 		};
+		A1A46E3D1F436E490045E13A /* ProfileManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ProfileManager;
+			sourceTree = "<group>";
+		};
+		A1A46E691F46302A0045E13A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
 		A1BB533C1F38E62D0060649C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,9 +258,9 @@
 		A1BB53421F3906DF0060649C /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				D4E91E1C1F3E30C9004895B7 /* Register.storyboard */,
 				D4E91E1D1F3E30C9004895B7 /* RegisterController.swift */,
 				D4E91E201F3E30C9004895B7 /* RegisterView.swift */,
+				D4E91E1C1F3E30C9004895B7 /* Register.storyboard */,
 			);
 			name = Register;
 			sourceTree = "<group>";
@@ -272,20 +288,17 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
-		D48EE1791F40EAF2002D3C78 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				D4BCF95E1F423E6200DCD8A8 /* ProfileView.swift */,
-				D4BCF95F1F423E6200DCD8A8 /* ProfileViewController.swift */,
-				9E60661E1F44DC69002C5281 /* InfoView.swift */,
-				9E6066251F44EE53002C5281 /* Profile.storyboard */,
-			);
-			name = Profile;
-			sourceTree = "<group>";
-		};
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
+				9E60662B1F463BE4002C5281 /* CampFieldView.swift */,
+				9E60662C1F463BE4002C5281 /* CommentView.swift */,
+				9E60662D1F463BE4002C5281 /* Extensions.swift */,
+				9E60662E1F463BE4002C5281 /* NavigationView.swift */,
+				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
+				9E6066301F463BE4002C5281 /* ProfileView.swift */,
+				9E6066311F463BE4002C5281 /* ProfileViewController.swift */,
+				9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */,
 				9E6066291F460CCB002C5281 /* ExtendedNavBarView.swift */,
 				9E6066011F43A065002C5281 /* ChatCollectionViewCell.swift */,
 				9E6066021F43A065002C5281 /* ChatCollectionViewController.swift */,
@@ -298,9 +311,6 @@
 				9E6066091F43A065002C5281 /* ProfileManagerViewController.swift */,
 				9E60660A1F43A065002C5281 /* ReportTableViewController.swift */,
 				9E60660B1F43A065002C5281 /* SettingsViewController.swift */,
-				D4E91E141F3E30C9004895B7 /* CampFieldView.swift */,
-				D4E91E151F3E30C9004895B7 /* Extensions.swift */,
-				D4E91E1F1F3E30C9004895B7 /* RegisterReportDelegate.swift */,
 				D4E91E211F3E30C9004895B7 /* Umbrella.entitlements */,
 				FBEFEACC1F3A349100CDC99A /* Assets.xcassets */,
 				FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */,
@@ -337,7 +347,8 @@
 		D4B1E4141F2A78E200308ABB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D48EE1791F40EAF2002D3C78 /* Profile */,
+				A1A46E3D1F436E490045E13A /* ProfileManager */,
+				A1A46E691F46302A0045E13A /* Profile */,
 				A11960FD1F3CAB6A009A699B /* Messages */,
 				A1BB534C1F3B87220060649C /* Chat */,
 				D4B1E4231F2A93E900308ABB /* Map */,
@@ -404,8 +415,8 @@
 		D4B1E41C1F2A910300308ABB /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				D4E91E171F3E30C9004895B7 /* LoginView.swift */,
 				D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */,
+				D4E91E171F3E30C9004895B7 /* LoginView.swift */,
 				D4B1E4051F2A78CF00308ABB /* Login.storyboard */,
 				9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */,
 				9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */,
@@ -568,7 +579,7 @@
 				FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */,
 				FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */,
 				FB3734101F3914E400FB3213 /* GoogleService-Info.plist in Resources */,
-				9E6066261F44EE53002C5281 /* Profile.storyboard in Resources */,
+				9E6066371F463BE4002C5281 /* Profile.storyboard in Resources */,
 				9E60661B1F43C70D002C5281 /* PasswordRecover.storyboard in Resources */,
 				FB60D86F1F39127E001E5E51 /* SeeReport.storyboard in Resources */,
 			);
@@ -630,27 +641,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4E91E311F3E30C9004895B7 /* UserEntity.swift in Sources */,
+				9E6066351F463BE4002C5281 /* Extensions.swift in Sources */,
+				9E6066361F463BE4002C5281 /* NavigationView.swift in Sources */,
 				FB60D86A1F39127E001E5E51 /* FirebaseManager.swift in Sources */,
 				D4E91E2D1F3E30C9004895B7 /* RegisterController.swift in Sources */,
 				FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */,
 				FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */,
 				9E2D83241F436A01000FF593 /* AlertPresenter.swift in Sources */,
 				9E6065FF1F438C80002C5281 /* Validations.swift in Sources */,
+				9E6066391F463BE4002C5281 /* ProfileViewController.swift in Sources */,
+				9E60663A1F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift in Sources */,
 				9E60660F1F43A065002C5281 /* InputChatView.swift in Sources */,
 				FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */,
-				D4BCF9621F423E6200DCD8A8 /* ProfileViewController.swift in Sources */,
 				9E6066101F43A065002C5281 /* MessageInterector.swift in Sources */,
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
 				FB0144D01F3B85A7004FFBCC /* MinorityInterector.swift in Sources */,
 				9E6066151F43A065002C5281 /* ReportTableViewController.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
 				D4E91E301F3E30C9004895B7 /* RegisterView.swift in Sources */,
-				D4E91E2F1F3E30C9004895B7 /* RegisterReportDelegate.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				9E6066121F43A065002C5281 /* MessagesTableViewController.swift in Sources */,
 				9E60662A1F460CCB002C5281 /* ExtendedNavBarView.swift in Sources */,
 				FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
+				9E6066341F463BE4002C5281 /* CommentView.swift in Sources */,
 				FB0144D61F3B85A7004FFBCC /* UserInteractor.swift in Sources */,
 				FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */,
 				D4E91E261F3E30C9004895B7 /* LoginPresenter.swift in Sources */,
@@ -665,8 +679,10 @@
 				9E60660D1F43A065002C5281 /* ChatCollectionViewController.swift in Sources */,
 				D4E91E2B1F3E30C9004895B7 /* PhotoEntity.swift in Sources */,
 				D4E91E321F3E30C9004895B7 /* UserMessageCell.swift in Sources */,
+				9E6066331F463BE4002C5281 /* CampFieldView.swift in Sources */,
 				D4E91E2E1F3E30C9004895B7 /* RegisterPresenter.swift in Sources */,
 				FB60D7D31F38DD03001E5E51 /* SearchBarCellTableViewCell.swift in Sources */,
+				9E6066381F463BE4002C5281 /* ProfileView.swift in Sources */,
 				FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */,
 				9E60660E1F43A065002C5281 /* Comment.swift in Sources */,
 				FB60D8691F39127E001E5E51 /* CustomUserLocationView.swift in Sources */,
@@ -674,10 +690,6 @@
 				9E6066171F43A343002C5281 /* PhotoInteractor.swift in Sources */,
 				9E6066111F43A065002C5281 /* MessagesPresenter.swift in Sources */,
 				D4E91E271F3E30C9004895B7 /* LoginView.swift in Sources */,
-				9E60661F1F44DC69002C5281 /* InfoView.swift in Sources */,
-				D4E91E251F3E30C9004895B7 /* Extensions.swift in Sources */,
-				D4E91E241F3E30C9004895B7 /* CampFieldView.swift in Sources */,
-				D4BCF9611F423E6200DCD8A8 /* ProfileView.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
 				D4E91E281F3E30C9004895B7 /* MessageEntity.swift in Sources */,
 				FB0144D31F3B85A7004FFBCC /* SaveManager.swift in Sources */,
@@ -813,6 +825,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = ./Umbrella/LFHeatMapHeader.h;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -829,6 +842,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = ./Umbrella/LFHeatMapHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
