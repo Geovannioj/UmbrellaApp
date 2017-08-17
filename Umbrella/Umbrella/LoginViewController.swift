@@ -27,11 +27,11 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
     }
     
     // DEIXAR COMENTADO APENAS PARA TESTES DE LOGIN
-//    override func viewDidAppear(_ animated: Bool) {
-//        if UserInteractor.isUserOnline() {
-//            performSegue(withIdentifier: "mapSegue", sender: nil)
-//        }
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        if UserInteractor.isUserOnline() {
+            performSegue(withIdentifier: "mapSegue", sender: nil)
+        }
+    }
     
     func handleLogin() {
         

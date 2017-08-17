@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 class ProfileView: UIView {
-
+    
     let profileImage : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "profileImageIcon")
@@ -19,43 +19,56 @@ class ProfileView: UIView {
         return imageView
     }()
     
-    let username : CampFieldView = {
-        let camp = CampFieldView()
-        camp.titleLabel.text = "Username"
-        camp.translatesAutoresizingMaskIntoConstraints = false
-        return camp
+    let username : UILabel = {
+        let view = UILabel()
+        view.text = "Username"
+        view.textColor = UIColor(r: 74, g: 3, b: 103)
+        view.font = UIFont.systemFont(ofSize: 20)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    let email : CampFieldView = {
-        let camp = CampFieldView()
-        camp.titleLabel.text = "Email"
-        camp.textField.keyboardType = UIKeyboardType.emailAddress
-        camp.translatesAutoresizingMaskIntoConstraints = false
-        return camp
-    }()
+//    let tableView : UITableView = {
+//        let table = UITableView()
+//        table.
+//    }
     
-    let password : CampFieldView = {
-        let camp = CampFieldView()
-        camp.titleLabel.text = "Senha"
-        camp.textField.isSecureTextEntry = true
-        camp.translatesAutoresizingMaskIntoConstraints = false
-        return camp
-    }()
-    
-    let birthDate : CampFieldView = {
-        let camp = CampFieldView()
-        camp.titleLabel.text = "Data de nascimento"
-        camp.translatesAutoresizingMaskIntoConstraints = false
-        return camp
-    }()
-    
-    let minority : CampFieldView = {
-        let camp = CampFieldView()
-        camp.titleLabel.text = "Minoria"
-        camp.textField.isSecureTextEntry = true
-        camp.translatesAutoresizingMaskIntoConstraints = false
-        return camp
-    }()
+//    let email : InfoView = {
+//        let view = InfoView()
+//        view.titleLabel.text = "Email"
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+//    
+//    let password : InfoView = {
+//        let view = InfoView()
+//        view.titleLabel.text = "Senha"
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+//    
+//    let birthDate : InfoView = {
+//        let view = InfoView()
+//        view.titleLabel.text = "Data de nascimento"
+//        view.textLabel.text = "dd/mm/aaaa"
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+//    
+//    let minority : InfoView = {
+//        let view = InfoView()
+//        view.titleLabel.text = "Minoria"
+//        view.textLabel.text = "Não declarada"
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+//    
+//    let lineView : UIView = {
+//        let view = UIView()
+//        view.backgroundColor = UIColor.lightGray
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -72,66 +85,50 @@ class ProfileView: UIView {
         self.backgroundColor = UIColor.clear
         
         addSubview(profileImage)
-        addSubview(username)
-        addSubview(email)
-        addSubview(password)
-        addSubview(birthDate)
-        addSubview(minority)
         
         setupProfileImageView()
-        setupUsernameField()
-        setupEmailField()
-        setupPasswordField()
-        setupBirthDateField()
-        setupMinorityField()
+//        setupNameLineStack()
+//        setupLabelsStack()
     }
-
+    
     func setupProfileImageView() {
         
-        profileImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        profileImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        profileImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        profileImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
         profileImage.widthAnchor.constraint(equalToConstant: 90).isActive = true
         profileImage.heightAnchor.constraint(equalToConstant: 90).isActive = true
     }
     
-    func setupUsernameField() {
-        
-        username.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 15).isActive = true
-        username.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        username.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        username.heightAnchor.constraint(equalToConstant: 70).isActive = true
-    }
+//    func setupNameLineStack() {
+//        
+//        let stackView = UIStackView(arrangedSubviews: [username, lineView])
+//        stackView.axis = .vertical
+//        stackView.spacing = 10
+//        stackView.distribution = .fillProportionally
+//        stackView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        addSubview(stackView)
+//        
+//        stackView.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: 5).isActive = true
+//        stackView.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 30).isActive = true
+//        stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5).isActive = true
+//        
+//        lineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+//    }
+//    
+//    func setupLabelsStack(){
+//        
+//        let stackView = UIStackView(arrangedSubviews: [email, password, birthDate, minority])
+//        stackView.axis = .vertical
+//        stackView.spacing = 50
+//        stackView.distribution = .fillProportionally
+//        stackView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        addSubview(stackView)
+//        
+//        stackView.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: 10).isActive = true
+//        stackView.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 50).isActive = true
+//    }
     
-    func setupEmailField() {
-        
-        email.topAnchor.constraint(equalTo: username.bottomAnchor, constant: 15).isActive = true
-        email.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        email.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        email.heightAnchor.constraint(equalToConstant: 70).isActive = true
-    }
-    
-    func setupPasswordField() {
-        
-        password.topAnchor.constraint(equalTo: email.bottomAnchor, constant: 15).isActive = true
-        password.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        password.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        password.heightAnchor.constraint(equalToConstant: 70).isActive = true
-    }
-    
-    func setupBirthDateField(){
-        
-        birthDate.topAnchor.constraint(equalTo: password.bottomAnchor, constant: 15).isActive = true
-        birthDate.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        birthDate.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        birthDate.heightAnchor.constraint(equalToConstant: 70).isActive = true
-    }
-
-    func setupMinorityField(){
-        
-        minority.topAnchor.constraint(equalTo: birthDate.bottomAnchor, constant: 15).isActive = true
-        minority.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        minority.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        minority.heightAnchor.constraint(equalToConstant: 70).isActive = true
-    }
-
 }
+
