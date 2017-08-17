@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02266197E8873852E904D3CF /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56960A747D9DDABAB8D9901 /* Pods_Umbrella.framework */; };
+		A1A46E411F44E4D30045E13A /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A46E401F44E4D30045E13A /* NavigationView.swift */; };
 		D40366651F3E34D400B75704 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144C91F3B85A7004FFBCC /* PhotoInteractor.swift */; };
 		D413836B1F3A632A00384DCC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413836A1F3A632A00384DCC /* Comment.swift */; };
 		D41519771F3E3A4700F0C490 /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41519711F3E3A4700F0C490 /* ChatCollectionViewCell.swift */; };
@@ -28,8 +29,6 @@
 		D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */; };
 		D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4281F2A96D200308ABB /* Map.storyboard */; };
 		D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */; };
-		D4BCF9611F423E6200DCD8A8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCF95E1F423E6200DCD8A8 /* ProfileView.swift */; };
-		D4BCF9621F423E6200DCD8A8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCF95F1F423E6200DCD8A8 /* ProfileViewController.swift */; };
 		D4E91E241F3E30C9004895B7 /* CampFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E141F3E30C9004895B7 /* CampFieldView.swift */; };
 		D4E91E251F3E30C9004895B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E151F3E30C9004895B7 /* Extensions.swift */; };
 		D4E91E261F3E30C9004895B7 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E161F3E30C9004895B7 /* LoginPresenter.swift */; };
@@ -40,7 +39,6 @@
 		D4E91E2C1F3E30C9004895B7 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E91E1C1F3E30C9004895B7 /* Register.storyboard */; };
 		D4E91E2D1F3E30C9004895B7 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E1D1F3E30C9004895B7 /* RegisterController.swift */; };
 		D4E91E2E1F3E30C9004895B7 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E1E1F3E30C9004895B7 /* RegisterPresenter.swift */; };
-		D4E91E2F1F3E30C9004895B7 /* RegisterReportDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E1F1F3E30C9004895B7 /* RegisterReportDelegate.swift */; };
 		D4E91E301F3E30C9004895B7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E201F3E30C9004895B7 /* RegisterView.swift */; };
 		D4E91E311F3E30C9004895B7 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E221F3E30C9004895B7 /* UserEntity.swift */; };
 		D4E91E321F3E30C9004895B7 /* UserMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E91E231F3E30C9004895B7 /* UserMessageCell.swift */; };
@@ -73,6 +71,7 @@
 
 /* Begin PBXFileReference section */
 		1F6ED68EF946D36AFE53B8DE /* Pods-Umbrella.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.debug.xcconfig"; sourceTree = "<group>"; };
+		A1A46E401F44E4D30045E13A /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		C56960A747D9DDABAB8D9901 /* Pods_Umbrella.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Umbrella.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D413836A1F3A632A00384DCC /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		D41519711F3E3A4700F0C490 /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -95,10 +94,8 @@
 		D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportViewController.swift; sourceTree = "<group>"; };
 		D4B1E4281F2A96D200308ABB /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		D4BCF95E1F423E6200DCD8A8 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		D4BCF95F1F423E6200DCD8A8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		D4E91E141F3E30C9004895B7 /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampFieldView.swift; path = Umbrella/CampFieldView.swift; sourceTree = "<group>"; };
-		D4E91E151F3E30C9004895B7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Umbrella/Extensions.swift; sourceTree = "<group>"; };
+		D4E91E141F3E30C9004895B7 /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampFieldView.swift; sourceTree = "<group>"; };
+		D4E91E151F3E30C9004895B7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D4E91E161F3E30C9004895B7 /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		D4E91E171F3E30C9004895B7 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D4E91E181F3E30C9004895B7 /* MessageEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageEntity.swift; sourceTree = "<group>"; };
@@ -107,7 +104,6 @@
 		D4E91E1C1F3E30C9004895B7 /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		D4E91E1D1F3E30C9004895B7 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		D4E91E1E1F3E30C9004895B7 /* RegisterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
-		D4E91E1F1F3E30C9004895B7 /* RegisterReportDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterReportDelegate.swift; path = Umbrella/RegisterReportDelegate.swift; sourceTree = "<group>"; };
 		D4E91E201F3E30C9004895B7 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		D4E91E211F3E30C9004895B7 /* Umbrella.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = Umbrella.entitlements; path = Umbrella/Umbrella.entitlements; sourceTree = "<group>"; };
 		D4E91E221F3E30C9004895B7 /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
@@ -177,8 +173,8 @@
 		A11960FD1F3CAB6A009A699B /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				D4E91E231F3E30C9004895B7 /* UserMessageCell.swift */,
 				D41519761F3E3A4700F0C490 /* MessagesTableViewController.swift */,
+				D4E91E231F3E30C9004895B7 /* UserMessageCell.swift */,
 			);
 			name = Messages;
 			sourceTree = "<group>";
@@ -191,9 +187,19 @@
 			name = Messages;
 			sourceTree = "<group>";
 		};
+		A1A46E3D1F436E490045E13A /* ProfileManager */ = {
+			isa = PBXGroup;
+			children = (
+				D48EE17C1F40F5C6002D3C78 /* ProfileManagerViewController.swift */,
+				D48EE17A1F40EB09002D3C78 /* ProfileManager.storyboard */,
+			);
+			name = ProfileManager;
+			sourceTree = "<group>";
+		};
 		A1BB533C1F38E62D0060649C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D4E91E151F3E30C9004895B7 /* Extensions.swift */,
 			);
 			name = Helpers;
 			path = Umbrella;
@@ -210,9 +216,9 @@
 		A1BB53421F3906DF0060649C /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				D4E91E1C1F3E30C9004895B7 /* Register.storyboard */,
 				D4E91E1D1F3E30C9004895B7 /* RegisterController.swift */,
 				D4E91E201F3E30C9004895B7 /* RegisterView.swift */,
+				D4E91E1C1F3E30C9004895B7 /* Register.storyboard */,
 			);
 			name = Register;
 			sourceTree = "<group>";
@@ -228,8 +234,9 @@
 		A1BB534C1F3B87220060649C /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				D41519711F3E3A4700F0C490 /* ChatCollectionViewCell.swift */,
 				D41519721F3E3A4700F0C490 /* ChatCollectionViewController.swift */,
+				D41519711F3E3A4700F0C490 /* ChatCollectionViewCell.swift */,
+				A1A46E401F44E4D30045E13A /* NavigationView.swift */,
 				D41519731F3E3A4700F0C490 /* InputChatView.swift */,
 			);
 			name = Chat;
@@ -243,24 +250,9 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
-		D48EE1791F40EAF2002D3C78 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				D4BCF95E1F423E6200DCD8A8 /* ProfileView.swift */,
-				D4BCF95F1F423E6200DCD8A8 /* ProfileViewController.swift */,
-				D48EE17A1F40EB09002D3C78 /* ProfileManager.storyboard */,
-				D48EE17C1F40F5C6002D3C78 /* ProfileManagerViewController.swift */,
-				D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */,
-			);
-			name = Profile;
-			sourceTree = "<group>";
-		};
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
-				D4E91E141F3E30C9004895B7 /* CampFieldView.swift */,
-				D4E91E151F3E30C9004895B7 /* Extensions.swift */,
-				D4E91E1F1F3E30C9004895B7 /* RegisterReportDelegate.swift */,
 				D4E91E211F3E30C9004895B7 /* Umbrella.entitlements */,
 				FBEFEACC1F3A349100CDC99A /* Assets.xcassets */,
 				FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */,
@@ -297,7 +289,8 @@
 		D4B1E4141F2A78E200308ABB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D48EE1791F40EAF2002D3C78 /* Profile */,
+				D4E91E141F3E30C9004895B7 /* CampFieldView.swift */,
+				A1A46E3D1F436E490045E13A /* ProfileManager */,
 				A11960FD1F3CAB6A009A699B /* Messages */,
 				A1BB534C1F3B87220060649C /* Chat */,
 				D4B1E4231F2A93E900308ABB /* Map */,
@@ -363,8 +356,8 @@
 		D4B1E41C1F2A910300308ABB /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				D4E91E171F3E30C9004895B7 /* LoginView.swift */,
 				D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */,
+				D4E91E171F3E30C9004895B7 /* LoginView.swift */,
 				D4B1E4051F2A78CF00308ABB /* Login.storyboard */,
 			);
 			name = Login;
@@ -382,6 +375,7 @@
 		D4B1E4221F2A93CC00308ABB /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */,
 				FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */,
 				D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */,
 				FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */,
@@ -481,7 +475,7 @@
 				TargetAttributes = {
 					D4B1E3FD1F2A78CF00308ABB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 7CN8A9X5L6;
+						DevelopmentTeam = 5A5BFGK2W9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -592,12 +586,10 @@
 				FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */,
 				D48EE17D1F40F5C6002D3C78 /* ProfileManagerViewController.swift in Sources */,
 				FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */,
-				D4BCF9621F423E6200DCD8A8 /* ProfileViewController.swift in Sources */,
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
 				FB0144D01F3B85A7004FFBCC /* MinorityInterector.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
 				D4E91E301F3E30C9004895B7 /* RegisterView.swift in Sources */,
-				D4E91E2F1F3E30C9004895B7 /* RegisterReportDelegate.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */,
 				D415197B1F3E3A4700F0C490 /* MessagesPresenter.swift in Sources */,
@@ -607,6 +599,7 @@
 				FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */,
 				D415197A1F3E3A4700F0C490 /* MessageInterector.swift in Sources */,
 				D4E91E261F3E30C9004895B7 /* LoginPresenter.swift in Sources */,
+				A1A46E411F44E4D30045E13A /* NavigationView.swift in Sources */,
 				FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */,
 				D4E91E2A1F3E30C9004895B7 /* MinorityEntity.swift in Sources */,
 				FB0144CE1F3B85A7004FFBCC /* Keychain.swift in Sources */,
@@ -625,7 +618,6 @@
 				D4E91E271F3E30C9004895B7 /* LoginView.swift in Sources */,
 				D4E91E251F3E30C9004895B7 /* Extensions.swift in Sources */,
 				D4E91E241F3E30C9004895B7 /* CampFieldView.swift in Sources */,
-				D4BCF9611F423E6200DCD8A8 /* ProfileView.swift in Sources */,
 				D415197C1F3E3A4700F0C490 /* MessagesTableViewController.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
 				D4E91E281F3E30C9004895B7 /* MessageEntity.swift in Sources */,
@@ -754,13 +746,14 @@
 			baseConfigurationReference = 1F6ED68EF946D36AFE53B8DE /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7CN8A9X5L6;
+				DEVELOPMENT_TEAM = 5A5BFGK2W9;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = ./Umbrella/LFHeatMapHeader.h;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -769,7 +762,7 @@
 			baseConfigurationReference = FDC9A259B10984B778DD44F3 /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7CN8A9X5L6;
+				DEVELOPMENT_TEAM = 5A5BFGK2W9;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;
@@ -777,6 +770,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = ./Umbrella/LFHeatMapHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

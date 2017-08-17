@@ -18,7 +18,12 @@ class MessagesTableViewController: UITableViewController{
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(handleReturnHome))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Editar", style: .plain, target: self, action: #selector(handleEditCells))
+//        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = UIColor.white
+        navigationController?.navigationBar.setBackgroundImage(UIImage(named : "bkgChatView"), for: .default)
+
         
+        tableView.backgroundView = UIImageView(image: UIImage(named : "bkgChatView"))
         tableView.register(UserMessageCell.self, forCellReuseIdentifier: "cellId")
         
         obseverUserMessages()
@@ -31,13 +36,23 @@ class MessagesTableViewController: UITableViewController{
             if let id = message.chatPartenerId() {
                 
                 self.userMessages[id] = message
-                self.messages = Array(self.userMessages.values)
-                
-                self.messages.sort(by: { (message1, message2) -> Bool in
-                    
-                    return message1.timeDate > message2.timeDate
-                })
             }
+            self.handleReloadTable()
+        })
+    }
+    
+    var timer : Timer?
+    
+    func handleReloadTable() {
+        
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false, block: { _ in
+            
+            self.messages = Array(self.userMessages.values)
+            self.messages.sort(by: { (message1, message2) -> Bool in
+                
+                return message1.timeDate > message2.timeDate
+            })
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -87,7 +102,7 @@ extension MessagesTableViewController {
             
             let chatController = ChatCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
             chatController.partner = partener
-            self.navigationController?.pushViewController(chatController, animated: true)
+            self.present(chatController, animated: true, completion: nil)
         })
     }
     

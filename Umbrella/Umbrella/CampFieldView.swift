@@ -10,7 +10,7 @@ import UIKit
 
 class CampFieldView: UIView {
     
-    let campView: UIView = {
+    var campView: UIView = {
         let camp = UIView()
         camp.backgroundColor = UIColor.white
         camp.layer.borderColor = UIColor.lightGray.cgColor
