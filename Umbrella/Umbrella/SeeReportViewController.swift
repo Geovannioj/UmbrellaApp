@@ -15,22 +15,26 @@ class SeeReportViewController: UIViewController {
     
     //outlets
     
-    @IBOutlet weak var secondView: UIView!
+//    @IBOutlet var commentView: UIView!
+//    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var violenceTitleLbl: UILabel!
     @IBOutlet weak var agression: UILabel!
-    @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var violanceLocation: MGLMapView!
     @IBOutlet weak var violenceAproximateTime: UILabel!
     @IBOutlet weak var violenceDescription: UITextView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var commentTextView: UITextView!
-    @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint?
+//    @IBOutlet weak var commentTextView: UITextView!
+//    @IBOutlet weak var sendComment: UIButton!
+//    @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
     
     //references
     var report:Report?
     let map = MapViewController()
+    let commentView = CommentView()
     
     var refReport: DatabaseReference!
     var refComment: DatabaseReference!
@@ -45,21 +49,14 @@ class SeeReportViewController: UIViewController {
         self.refComment =  Database.database().reference().child("comments")
         self.refReport =  Database.database().reference().child("reports")
         self.refUser = Database.database().reference().child("user")
-        
         super.viewDidLoad()
         
-        //observer para quando o teclado aparecer o textViewSubir com ele
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardNotification(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillChangeFrame,
-                                               object: nil)
         
         //recognizer para sumir o teclado quando o usuário clicar na tela
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
 
         //change the background color for the two views
-        self.secondView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
         //init the components of the screen
@@ -67,51 +64,39 @@ class SeeReportViewController: UIViewController {
         initTexViewLabel()
         
         // sets the delegate to textView and tableView
-        self.commentTextView.delegate = self
+        self.commentView.textView.delegate = self
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
         //sets the color of the table to the same as the view
         self.tableView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        self.headerView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        
+//        self.footerView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
         //observes the changes on the database
         setObserverToFireBaseChanges()
         
     }
     
+    override var inputAccessoryView: UIView? {
+        get{
+            
+            commentView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
+            commentView.sendCommentButton.addTarget(self, action: #selector(addComent), for: .touchUpInside)
+            
+            return self.commentView
+        }
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    //makes the keyboard go up and the textView goes with it
-    @objc func keyboardNotification(notification: NSNotification) {
-        
-        if let userInfo = notification.userInfo {
-            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            let duration: TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
-            let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
-            
-            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
-            
-                self.keyboardHeightLayoutConstraint?.constant = 0.0
-            
-            } else {
-             
-                self.keyboardHeightLayoutConstraint?.constant = endFrame?.size.height ?? 0.0
-                
-            }
-            
-            UIView.animate(withDuration: duration,
-                           delay: TimeInterval(0),
-                           options: animationCurve,
-                           animations: { self.view.layoutIfNeeded()},
-                           completion: nil)
-        }
-        
     }
     
     func dismissKeyboard() {
@@ -121,13 +106,7 @@ class SeeReportViewController: UIViewController {
 
     
     func initLabels() {
-        
-//        UserInteractor.getUser(withId: UserInteractor.getCurrentUserUid()!, completion: { (user) in
-//            
-//            self.username.text = user.nickname
-//          //  self.userPhoto.loadCacheImage(user["urlPhoto"])
-//
-//        })
+    
         let ref = self.refUser.child((self.report?.userId)!)
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -137,17 +116,31 @@ class SeeReportViewController: UIViewController {
             self.userPhoto.loadCacheImage((user?["urlPhoto"] as? String)!)
         })
 
+        self.username.textColor = UIColor.white
+        
+        self.violenceTitleLbl.text = self.report?.title
+        self.violenceTitleLbl.textColor = UIColor.white
+        
         self.agression.text = self.report?.violenceKind
+        self.agression.textColor = UIColor.white
+        
         self.violenceDescription.text = self.report?.description
+        //self.violenceDescription.textColor = UIColor.white
+        
         self.violenceDescription.isEditable = false
-        self.cityName.text = "Taguayork"
+        self.violenceDescription.backgroundColor = UIColor(colorLiteralRed: 0.107,
+                                                           green: 0.003,
+                                                           blue: 0.148,
+                                                           alpha: 1)
+        
         self.initiateLocationOnMap(map: self.violanceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
         self.formatDate()
     }
     
+    //initial placeholder to the textView of comments
     func initTexViewLabel() {
-        self.commentTextView.text = "Insira um comentário"
-        self.commentTextView.textColor = UIColor.lightGray
+        self.commentView.textView.text = "Insira um comentário"
+        self.commentView.textView.textColor = UIColor.lightGray
     }
     
     
@@ -163,6 +156,7 @@ class SeeReportViewController: UIViewController {
         annotation.coordinate = CLLocationCoordinate2D(latitude: (self.report?.latitude)!, longitude: (self.report?.longitude)! )
         annotation.title = self.report?.title
         self.violanceLocation.addAnnotation(annotation)
+        
 
     }
     
@@ -176,6 +170,7 @@ class SeeReportViewController: UIViewController {
         
         //setting the formated date
         self.violenceAproximateTime.text = dateFormat.string(from: startDate)
+        self.violenceAproximateTime.textColor = UIColor.white
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -229,6 +224,7 @@ class SeeReportViewController: UIViewController {
         return -1
     }
 
+    
     func setObserverToFireBaseChanges() {
         
         self.refComment.observe(DataEventType.value, with: {(snapshot) in
@@ -266,25 +262,19 @@ class SeeReportViewController: UIViewController {
         
     }
     
-    @IBAction func sendComment(_ sender: Any) {
-        
-        addComent()
-    
-    }
-    
     func addComent() {
         
         let id = refComment.childByAutoId().key
         let reportId = self.report?.id
         let userId = UserInteractor.getCurrentUserUid()
-        let content = self.commentTextView.text
+        let content = self.commentView.textView.text
         
         let comment = Comment(commentId: id, content: content!, reportId: reportId!, userId: userId!)
         
         print(comment.turnToDictionary())
         
         self.refComment.child(id).setValue(comment.turnToDictionary())
-        self.commentTextView.text = ""
+        self.commentView.textView.text = ""
 
     }
 
@@ -297,23 +287,29 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //setting cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath)
         cell.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
-        //cell.layer.borderWidth = 0.5
-        //cell.layer.borderColor = UIColor.white.cgColor
         
+        //comment text
         let commentTextField = tableView.viewWithTag(2) as! UITextView
         commentTextField.isEditable = false
         commentTextField.text = self.comments[indexPath.row].content
         commentTextField.textColor = UIColor.white
         commentTextField.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
+        //user photo to put into the comment cell
         let userPhoto = tableView.viewWithTag(1) as! UIImageView
+        
+        //comment nickname
         let userNickName = tableView.viewWithTag(8) as! UILabel
         userNickName.textColor = UIColor.white
         
+        
         let ref = self.refUser.child(self.comments[indexPath.row].userId)
         
+        //setting user image and name to each comment
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
             let user = snapshot.value as? [String: Any]
@@ -334,6 +330,7 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
 
 }
 
+//extension to the textView get a placeHolder
 extension SeeReportViewController: UITextViewDelegate {
  
     func textViewDidBeginEditing(_ textView: UITextView) {
