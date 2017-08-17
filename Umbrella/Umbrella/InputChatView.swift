@@ -32,7 +32,7 @@ class InputChatView: UIView {
     
     let fileIcon : UIImageView = {
         let icon = UIImageView()
-        icon.image = UIImage(named: "umbrella")
+        icon.image = UIImage(named: "FileIcon")
         icon.contentMode = .scaleAspectFill
         icon.isUserInteractionEnabled = false
         icon.translatesAutoresizingMaskIntoConstraints = false
