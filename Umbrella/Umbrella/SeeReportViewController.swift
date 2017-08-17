@@ -81,6 +81,13 @@ class SeeReportViewController: UIViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.inputAccessoryView?.removeFromSuperview()
+         NotificationCenter.default.removeObserver(self)
+    }
+    
     override var inputAccessoryView: UIView? {
         get{
             
@@ -95,9 +102,6 @@ class SeeReportViewController: UIViewController {
         return true
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
     
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
