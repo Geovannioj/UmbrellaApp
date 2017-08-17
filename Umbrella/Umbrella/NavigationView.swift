@@ -34,6 +34,7 @@ class NavigationView: UIView {
         return button
     }()
     
+    
     init() {
         super.init(frame: CGRect.zero)
         
@@ -47,7 +48,10 @@ class NavigationView: UIView {
     func setupView() {
         
         self.backgroundColor = UIColor.clear
-                
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.black.cgColor
+        
+        
         addSubview(profileImage)
         addSubview(nameField)
         addSubview(backButton)

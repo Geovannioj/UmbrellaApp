@@ -18,7 +18,7 @@ class MessagesTableViewController: UITableViewController{
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(handleReturnHome))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Editar", style: .plain, target: self, action: #selector(handleEditCells))
-//        navigationController?.navigationBar.isTranslucent = true
+        navigationItem.titleView = UIImageView(image: UIImage(named : "MessageIcon"))
         navigationController?.view.backgroundColor = UIColor.white
         navigationController?.navigationBar.setBackgroundImage(UIImage(named : "bkgChatView"), for: .default)
 

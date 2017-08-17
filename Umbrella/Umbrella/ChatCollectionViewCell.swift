@@ -47,7 +47,7 @@ class ChatCollectionViewCell: UICollectionViewCell {
         bubbleRightAnchor?.isActive = true
         bubbleLeftAnchor?.isActive = false
         bubbleView.transform = CGAffineTransform(scaleX: 1, y: 1)
-        bubbleView.tintColor = UIColor.blue
+        bubbleView.tintColor = UIColor(r: 80, g: 62, b: 86)
         textView.textColor =  UIColor.white
     }
     

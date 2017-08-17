@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		02266197E8873852E904D3CF /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56960A747D9DDABAB8D9901 /* Pods_Umbrella.framework */; };
 		A1A46E411F44E4D30045E13A /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A46E401F44E4D30045E13A /* NavigationView.swift */; };
+		A1A46E661F4630010045E13A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A46E631F4630010045E13A /* ProfileViewController.swift */; };
+		A1A46E671F4630010045E13A /* SeeReportDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A46E641F4630010045E13A /* SeeReportDescriptionTableViewController.swift */; };
+		A1A46E681F4630010045E13A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A46E651F4630010045E13A /* SettingsViewController.swift */; };
 		D40366651F3E34D400B75704 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144C91F3B85A7004FFBCC /* PhotoInteractor.swift */; };
 		D413836B1F3A632A00384DCC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413836A1F3A632A00384DCC /* Comment.swift */; };
 		D41519771F3E3A4700F0C490 /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41519711F3E3A4700F0C490 /* ChatCollectionViewCell.swift */; };
@@ -17,7 +20,6 @@
 		D415197A1F3E3A4700F0C490 /* MessageInterector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41519741F3E3A4700F0C490 /* MessageInterector.swift */; };
 		D415197B1F3E3A4700F0C490 /* MessagesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41519751F3E3A4700F0C490 /* MessagesPresenter.swift */; };
 		D415197C1F3E3A4700F0C490 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41519761F3E3A4700F0C490 /* MessagesTableViewController.swift */; };
-		D41C70421F437D5E000DB92B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41C70411F437D5E000DB92B /* SettingsViewController.swift */; };
 		D48EE17B1F40EB09002D3C78 /* ProfileManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48EE17A1F40EB09002D3C78 /* ProfileManager.storyboard */; };
 		D48EE17D1F40F5C6002D3C78 /* ProfileManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48EE17C1F40F5C6002D3C78 /* ProfileManagerViewController.swift */; };
 		D48EE17F1F41568A002D3C78 /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */; };
@@ -73,6 +75,9 @@
 /* Begin PBXFileReference section */
 		1F6ED68EF946D36AFE53B8DE /* Pods-Umbrella.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.debug.xcconfig"; sourceTree = "<group>"; };
 		A1A46E401F44E4D30045E13A /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		A1A46E631F4630010045E13A /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A1A46E641F4630010045E13A /* SeeReportDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeReportDescriptionTableViewController.swift; sourceTree = "<group>"; };
+		A1A46E651F4630010045E13A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C56960A747D9DDABAB8D9901 /* Pods_Umbrella.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Umbrella.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D413836A1F3A632A00384DCC /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		D41519711F3E3A4700F0C490 /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -81,7 +86,6 @@
 		D41519741F3E3A4700F0C490 /* MessageInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInterector.swift; sourceTree = "<group>"; };
 		D41519751F3E3A4700F0C490 /* MessagesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesPresenter.swift; sourceTree = "<group>"; };
 		D41519761F3E3A4700F0C490 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
-		D41C70411F437D5E000DB92B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D48EE17A1F40EB09002D3C78 /* ProfileManager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileManager.storyboard; sourceTree = "<group>"; };
 		D48EE17C1F40F5C6002D3C78 /* ProfileManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManagerViewController.swift; sourceTree = "<group>"; };
 		D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
@@ -192,10 +196,19 @@
 		A1A46E3D1F436E490045E13A /* ProfileManager */ = {
 			isa = PBXGroup;
 			children = (
+				A1A46E651F4630010045E13A /* SettingsViewController.swift */,
 				D48EE17C1F40F5C6002D3C78 /* ProfileManagerViewController.swift */,
 				D48EE17A1F40EB09002D3C78 /* ProfileManager.storyboard */,
 			);
 			name = ProfileManager;
+			sourceTree = "<group>";
+		};
+		A1A46E691F46302A0045E13A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A1A46E631F4630010045E13A /* ProfileViewController.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		A1BB533C1F38E62D0060649C /* Helpers */ = {
@@ -252,19 +265,6 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
-		D48EE1791F40EAF2002D3C78 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				D4BCF95E1F423E6200DCD8A8 /* ProfileView.swift */,
-				D4BCF95F1F423E6200DCD8A8 /* ProfileViewController.swift */,
-				D48EE17A1F40EB09002D3C78 /* ProfileManager.storyboard */,
-				D48EE17C1F40F5C6002D3C78 /* ProfileManagerViewController.swift */,
-				D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */,
-				D41C70411F437D5E000DB92B /* SettingsViewController.swift */,
-			);
-			name = Profile;
-			sourceTree = "<group>";
-		};
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +306,7 @@
 			children = (
 				D4E91E141F3E30C9004895B7 /* CampFieldView.swift */,
 				A1A46E3D1F436E490045E13A /* ProfileManager */,
+				A1A46E691F46302A0045E13A /* Profile */,
 				A11960FD1F3CAB6A009A699B /* Messages */,
 				A1BB534C1F3B87220060649C /* Chat */,
 				D4B1E4231F2A93E900308ABB /* Map */,
@@ -390,6 +391,7 @@
 		D4B1E4221F2A93CC00308ABB /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				A1A46E641F4630010045E13A /* SeeReportDescriptionTableViewController.swift */,
 				D48EE17E1F41568A002D3C78 /* ReportTableViewController.swift */,
 				FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */,
 				D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */,
@@ -601,6 +603,7 @@
 				FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */,
 				D48EE17D1F40F5C6002D3C78 /* ProfileManagerViewController.swift in Sources */,
 				FB60D8701F39127E001E5E51 /* SeeReportViewController.swift in Sources */,
+				A1A46E661F4630010045E13A /* ProfileViewController.swift in Sources */,
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
 				FB0144D01F3B85A7004FFBCC /* MinorityInterector.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
@@ -615,12 +618,13 @@
 				D415197A1F3E3A4700F0C490 /* MessageInterector.swift in Sources */,
 				D4E91E261F3E30C9004895B7 /* LoginPresenter.swift in Sources */,
 				A1A46E411F44E4D30045E13A /* NavigationView.swift in Sources */,
-				D41C70421F437D5E000DB92B /* SettingsViewController.swift in Sources */,
 				FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */,
 				D4E91E2A1F3E30C9004895B7 /* MinorityEntity.swift in Sources */,
 				FB0144CE1F3B85A7004FFBCC /* Keychain.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
+				A1A46E671F4630010045E13A /* SeeReportDescriptionTableViewController.swift in Sources */,
 				FB60D86E1F39127E001E5E51 /* Report.swift in Sources */,
+				A1A46E681F4630010045E13A /* SettingsViewController.swift in Sources */,
 				D40366651F3E34D400B75704 /* PhotoInteractor.swift in Sources */,
 				D41519791F3E3A4700F0C490 /* InputChatView.swift in Sources */,
 				D4E91E2B1F3E30C9004895B7 /* PhotoEntity.swift in Sources */,
