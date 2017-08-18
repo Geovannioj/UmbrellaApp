@@ -154,7 +154,7 @@ class SeeReportViewController: UIViewController {
         map.showsUserLocation = false
         
         let annotation = MGLPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: (self.report?.latitude)!, longitude: (self.report?.longitude)! )
+        annotation.coordinate = CLLocationCoordinate2D(latitude: (latitude), longitude: (longitude) )
         annotation.title = self.report?.title
         self.violanceLocation.addAnnotation(annotation)
         
