@@ -41,26 +41,48 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-
+        //setting the cell up
         let cell = tableView.dequeueReusableCell(withIdentifier: "report", for: indexPath)
+        
+        //sets the label of title of the report
         let title = tableView.viewWithTag(3) as! UILabel
         title.text = self.userReports[indexPath.row].title
         
+        //it sets the label of description of the report
         let description = tableView.viewWithTag(4) as! UILabel
         description.text = self.userReports[indexPath.row].description
         
-//        let location = tableView.viewWithTag(5) as! MGLMapView
-//        
-//        let latitude = self.userReports[indexPath.row].latitude
-//        let longitude = self.userReports[indexPath.row].longitude
-//        
-//        self.seeReport.initiateLocationOnMap(map: location, latitude: latitude, longitude: longitude)
+        //it sets the view as a MapView
+        let location = tableView.viewWithTag(5) as! MGLMapView
+        location.isUserInteractionEnabled = false
+
+        //it gets the coordinates
+        let latitude = self.userReports[indexPath.row].latitude
+        let longitude = self.userReports[indexPath.row].longitude
         
+        //it sets pin to the location of the report and center the map on it
+        setMapLocation(location: location, latitude: latitude, longitude: longitude)
         
         return cell
     }
     
+ 
+    func setMapLocation(location:MGLMapView, latitude: Double, longitude: Double){
+        
+        let locationCoodenate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        
+        location.setCenter(locationCoodenate, zoomLevel: 13, animated: true)
+        
+        location.showsUserLocation = false
+        
+        let annotation = MGLPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: (latitude), longitude: (longitude) )
+        
+        location.addAnnotation(annotation)
+        
+    }
     
+    //It observers the firebase database to get the newly changes
     func setObserverToFireBaseChanges() {
         
         self.refUserReport.observe(.childAdded, with: {(snapshot) in
