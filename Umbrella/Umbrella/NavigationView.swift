@@ -34,6 +34,13 @@ class NavigationView: UIView {
         return button
     }()
     
+    let bottomLine : UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.purple
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     
     init() {
         super.init(frame: CGRect.zero)
@@ -48,17 +55,16 @@ class NavigationView: UIView {
     func setupView() {
         
         self.backgroundColor = UIColor.clear
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.black.cgColor
-        
         
         addSubview(profileImage)
         addSubview(nameField)
         addSubview(backButton)
+        addSubview(bottomLine)
     
         setupProfileImage()
         setupTextField()
         setupBackButton()
+        setupBottomLine()
     }
     
     func setupProfileImage() {
@@ -79,6 +85,14 @@ class NavigationView: UIView {
         
         backButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         backButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+    }
+    
+    func setupBottomLine() {
+        
+        bottomLine.topAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        bottomLine.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3).isActive = true
+        bottomLine.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        bottomLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
 
 }
