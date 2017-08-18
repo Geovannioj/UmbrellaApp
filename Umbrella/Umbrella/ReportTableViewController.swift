@@ -48,28 +48,17 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         let description = tableView.viewWithTag(4) as! UILabel
         description.text = self.userReports[indexPath.row].description
         
-        let location = tableView.viewWithTag(5) as! MGLMapView
-        
-        let latitude = self.userReports[indexPath.row].latitude
-        let longitude = self.userReports[indexPath.row].longitude
-        
-        self.seeReport.initiateLocationOnMap(map: location, latitude: latitude, longitude: longitude)
+//        let location = tableView.viewWithTag(5) as! MGLMapView
+//        
+//        let latitude = self.userReports[indexPath.row].latitude
+//        let longitude = self.userReports[indexPath.row].longitude
+//        
+//        self.seeReport.initiateLocationOnMap(map: location, latitude: latitude, longitude: longitude)
         
         
         return cell
     }
     
-    func filterUserArray(reports:[Report]) {
-        
-        for report in reports {
-            //if report.userId == UserInteractor.getCurrentUserUid() {
-            if report.userId == "userIdComing" {
-                self.userReports.append(report)
-            }else {
-                //NOTHING TO DO
-            }
-        }
-    }
     
     func setObserverToFireBaseChanges() {
         
@@ -103,35 +92,3 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         })
     }
 }
-    
-            
-            
-//            if snapshot.childrenCount > 0 {
-//                self.userReports.removeAll()
-//                
-//                for report in snapshot.children.allObjects as![DataSnapshot]{
-//                    let reportObj = report.value as? [String: AnyObject]
-//                    
-//                    let id = reportObj?["id"]
-//                    let userId = reportObj?["userId"]
-//                    let title = reportObj?["title"]
-//                    let description = reportObj?["description"]
-//                    let violenceKind = reportObj?["violenceKind"]
-//                    let violenceAproximatedTime = reportObj?["violenceAproximatedTime"]
-//                    let latitude = reportObj?["latitude"]
-//                    let longitude = reportObj?["longitude"]
-//                    let personGender = reportObj?["personGender"]
-//                    
-//                    let reportAtt = Report(id: id as! String, userId: userId as! String, title: title as! String, description: description as! String, violenceKind: violenceKind as! String, violenceAproximatedTime: violenceAproximatedTime as! Double, latitude: latitude as! Double, longitude: longitude as! Double, personGender: personGender as! String)
-//                    
-//                    
-//                    self.userReports.append(reportAtt)
-//                    
-//                }
-            
-//                
-//            }
-//        })
-        
-
-

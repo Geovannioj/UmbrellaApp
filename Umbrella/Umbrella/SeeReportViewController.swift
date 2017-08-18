@@ -26,10 +26,7 @@ class SeeReportViewController: UIViewController {
     @IBOutlet weak var violenceAproximateTime: UILabel!
     @IBOutlet weak var violenceDescription: UITextView!
     @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var commentTextView: UITextView!
-//    @IBOutlet weak var sendComment: UIButton!
-//    @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint?
-    
+    @IBOutlet weak var sendMessageBtn: UIButton!
     
     //references
     var report:Report?
@@ -280,6 +277,39 @@ class SeeReportViewController: UIViewController {
         self.refComment.child(id).setValue(comment.turnToDictionary())
         self.commentView.textView.text = ""
 
+    }
+    
+    @IBAction func sendMessagesAction(_ sender: Any) {
+        
+        let sendMessage = UIAlertController(title: "Enviar Mensagem",
+                                            message: "Você deseja mandar mensagem para a pessoa?",
+                                            preferredStyle: .alert)
+        
+        sendMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
+                                            handler: {(action) in
+                                                
+            if let partnerId = self.report?.userId {
+                MessageInterector.createChat(withId: partnerId)
+                
+                UserInteractor.getUser(withId: partnerId, completion: { (user) in
+                
+                    let chatController = ChatCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+                    chatController.partner = user
+                    self.present(chatController, animated: true, completion: nil)
+                })
+            }
+        }))
+        
+        sendMessage.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            
+        self.present(sendMessage, animated: true, completion: nil)
+
+        /*
+            perguntar se realmente deseja falar com a pessoa que escreveu o report
+            mostrar um campo para mostrar mensagem
+            no campo já deve existir uma mensagem padrão de apoio
+            mandar mensagem
+         */
     }
 
 }
