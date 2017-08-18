@@ -315,7 +315,7 @@ class UserInteractor {
      */
     static func sendPasswordResetEmail(email: String, handler: InteractorCompleteProtocol) {
         Auth.auth().sendPasswordReset(withEmail: email, completion: { error in
-            handler.completeSendPasswordResetEmail!(error: error)
+            handler.completeSendPasswordResetEmail?(error: error)
         })
     }
 
@@ -383,7 +383,7 @@ class UserInteractor {
      */
     static func connectUserOnline(email: String, password: String, handler: InteractorCompleteProtocol) {
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-            handler.completeLogin!(user: user, error: error)
+            handler.completeLogin?(user: user, error: error)
         })
     }
     
@@ -411,9 +411,9 @@ class UserInteractor {
     static func disconnectUser(handler: InteractorCompleteProtocol) {
         do {
             try Auth.auth().signOut()
-            handler.completeSingOut!(error: nil)
+            handler.completeSingOut?(error: nil)
         } catch let error as NSError {
-            handler.completeSingOut!(error: error)
+            handler.completeSingOut?(error: error)
         }
     }
     
@@ -425,7 +425,7 @@ class UserInteractor {
     static func sendEmailVerification(handler: InteractorCompleteProtocol) {
         Auth.auth().currentUser?.sendEmailVerification(completion: { error in
             if error != nil {
-                handler.completeEmailVerification!(error: error)
+                handler.completeEmailVerification?(error: error)
             }
         })
     }
