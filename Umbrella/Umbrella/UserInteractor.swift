@@ -66,18 +66,23 @@ class UserInteractor {
             }
             if idMinority != nil {
                 newUser.idMinority = idMinority
-            }
-            if image != nil {
-                PhotoInteractor.createPhoto(image: image!, handler: handler, completion: { (photo) -> () in
-                    newUser.urlPhoto = photo
+                MinorityInteractor.getMinority(withId: idMinority!, completion: { minority in
+                    newUser.typeMinority = minority.type
                     
-                    // Add user to local database
-                    SaveManager.instance.create(newUser)
-                    
-                    // Add user to firebase
-                    userRef.setValue(newUser.toAnyObject())
+                    if image != nil {
+                        PhotoInteractor.createPhoto(image: image!, handler: handler, completion: { (photo) -> () in
+                            newUser.urlPhoto = photo
+                            
+                            // Add user to local database
+                            SaveManager.instance.create(newUser)
+                            
+                            // Add user to firebase
+                            userRef.setValue(newUser.toAnyObject())
+                        })
+                    }
                 })
             }
+            
             else {
                 // Add user to local database
                 SaveManager.instance.create(newUser)
@@ -283,19 +288,20 @@ class UserInteractor {
      Updates the current connected user's minority.
      - parameter nickname: new user's minority id
      */
-    static func updateCurrentUser(idMinority: String) {
+    static func updateCurrentUser(minority: MinorityEntity) {
         if let userId = getCurrentUserUid() {
 
             let userRef = Database.database().reference().child("user").child(userId)
             
             userRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
-                userRef.updateChildValues(["idMinority" : idMinority])
+                userRef.updateChildValues(["idMinority" : minority.id])
                 
                 let userRealm = SaveManager.realm.objects(UserEntity.self).filter("id == %s", userId).first
                 
                 try! SaveManager.realm.write {
-                    userRealm?.idMinority = idMinority
+                    userRealm?.idMinority = minority.id
+                    userRealm?.typeMinority = minority.type
                 }
                 
             })
@@ -405,6 +411,7 @@ class UserInteractor {
     static func disconnectUser(handler: InteractorCompleteProtocol) {
         do {
             try Auth.auth().signOut()
+            handler.completeSingOut!(error: nil)
         } catch let error as NSError {
             handler.completeSingOut!(error: error)
         }

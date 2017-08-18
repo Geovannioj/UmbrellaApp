@@ -22,54 +22,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bM-v1-iyd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="897"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6VJ-pj-GYK" customClass="ExtendedNavBarView" customModule="Umbrella" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                 <subviews>
-                                    <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tpa-Ve-Q8a">
-                                        <rect key="frame" x="0.0" y="56" width="373" height="674"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vnU-Gg-uoh">
+                                        <rect key="frame" x="8" y="11" width="359" height="29"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="674" id="Ifz-za-Ex6"/>
+                                            <constraint firstAttribute="width" constant="359" id="ZCs-GI-fnY"/>
+                                            <constraint firstAttribute="height" constant="28" id="jdb-qz-mhD"/>
                                         </constraints>
-                                        <connections>
-                                            <segue destination="wEL-2o-miT" kind="embed" id="ab4-Sj-ehp"/>
-                                        </connections>
-                                    </containerView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SN6-4G-gdV">
-                                        <rect key="frame" x="0.0" y="56" width="374" height="675"/>
-                                        <connections>
-                                            <segue destination="iw9-pP-Vou" kind="embed" id="CXI-SB-n49"/>
-                                        </connections>
-                                    </containerView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="usa-Vb-0BV">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="674"/>
-                                        <connections>
-                                            <segue destination="RZl-e3-iXb" kind="embed" id="knf-sw-n9y"/>
-                                        </connections>
-                                    </containerView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="SN6-4G-gdV" secondAttribute="bottom" constant="102" id="6XJ-b3-wlC"/>
-                                    <constraint firstItem="tpa-Ve-Q8a" firstAttribute="leading" secondItem="8bM-v1-iyd" secondAttribute="leading" id="7JI-UR-HP3"/>
-                                    <constraint firstItem="tpa-Ve-Q8a" firstAttribute="top" secondItem="8bM-v1-iyd" secondAttribute="top" constant="120" id="IvG-ex-KTj"/>
-                                    <constraint firstItem="SN6-4G-gdV" firstAttribute="leading" secondItem="8bM-v1-iyd" secondAttribute="leading" id="K8T-O8-Za5"/>
-                                    <constraint firstItem="tpa-Ve-Q8a" firstAttribute="top" secondItem="usa-Vb-0BV" secondAttribute="top" id="Y4z-Yc-CS5"/>
-                                    <constraint firstItem="usa-Vb-0BV" firstAttribute="centerX" secondItem="8bM-v1-iyd" secondAttribute="centerX" id="aqj-XH-oe1"/>
-                                    <constraint firstAttribute="trailing" secondItem="usa-Vb-0BV" secondAttribute="trailing" id="bGj-OD-PH8"/>
-                                    <constraint firstAttribute="trailing" secondItem="tpa-Ve-Q8a" secondAttribute="trailing" constant="2" id="bra-IY-MEA"/>
-                                    <constraint firstAttribute="trailing" secondItem="SN6-4G-gdV" secondAttribute="trailing" constant="1" id="dAc-45-vDg"/>
-                                    <constraint firstAttribute="bottom" secondItem="usa-Vb-0BV" secondAttribute="bottom" constant="103" id="eLq-lw-Xsj"/>
-                                    <constraint firstItem="usa-Vb-0BV" firstAttribute="top" secondItem="SN6-4G-gdV" secondAttribute="top" id="es2-df-W4s"/>
-                                    <constraint firstAttribute="bottom" secondItem="tpa-Ve-Q8a" secondAttribute="bottom" constant="103" id="jy8-nG-F8R"/>
-                                    <constraint firstItem="usa-Vb-0BV" firstAttribute="leading" secondItem="8bM-v1-iyd" secondAttribute="leading" id="tvJ-7I-cXb"/>
-                                </constraints>
-                            </scrollView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6VJ-pj-GYK" customClass="ExtendedNavBarView" customModule="Umbrella" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vnU-Gg-uoh">
-                                        <rect key="frame" x="8" y="9" width="359" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="Perfil"/>
                                             <segment title="Meus Relatos"/>
@@ -81,23 +42,60 @@
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="vnU-Gg-uoh" firstAttribute="centerX" secondItem="6VJ-pj-GYK" secondAttribute="centerX" id="4ok-Bv-TTU"/>
+                                    <constraint firstItem="vnU-Gg-uoh" firstAttribute="centerY" secondItem="6VJ-pj-GYK" secondAttribute="centerY" id="aXT-rW-7e7"/>
+                                    <constraint firstAttribute="height" constant="50" id="dXW-qn-DBX"/>
+                                </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpa-Ve-Q8a">
+                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                                <connections>
+                                    <segue destination="wEL-2o-miT" kind="embed" id="ab4-Sj-ehp"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SN6-4G-gdV">
+                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                                <connections>
+                                    <segue destination="iw9-pP-Vou" kind="embed" identifier="profileContainerSegue" id="CXI-SB-n49"/>
+                                </connections>
+                            </containerView>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="usa-Vb-0BV">
+                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                                <connections>
+                                    <segue destination="RZl-e3-iXb" kind="embed" id="knf-sw-n9y"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8bM-v1-iyd" firstAttribute="bottom" secondItem="x2q-iR-5kg" secondAttribute="top" constant="230" id="FKe-Od-xAb"/>
-                            <constraint firstAttribute="trailing" secondItem="8bM-v1-iyd" secondAttribute="trailing" id="PcL-h0-Qeb"/>
-                            <constraint firstItem="8bM-v1-iyd" firstAttribute="leading" secondItem="1QQ-pn-JcV" secondAttribute="leading" id="SLd-O6-3JP"/>
-                            <constraint firstItem="8bM-v1-iyd" firstAttribute="top" secondItem="1QQ-pn-JcV" secondAttribute="top" id="Yog-Jc-JHT"/>
-                            <constraint firstItem="8bM-v1-iyd" firstAttribute="width" secondItem="1QQ-pn-JcV" secondAttribute="width" id="zCe-cW-oC9"/>
+                            <constraint firstAttribute="bottom" secondItem="SN6-4G-gdV" secondAttribute="bottom" id="0gS-pN-qiR"/>
+                            <constraint firstAttribute="bottom" secondItem="tpa-Ve-Q8a" secondAttribute="bottom" id="59i-n3-DuK"/>
+                            <constraint firstItem="usa-Vb-0BV" firstAttribute="centerX" secondItem="1QQ-pn-JcV" secondAttribute="centerX" id="DOd-fF-bRt"/>
+                            <constraint firstItem="6VJ-pj-GYK" firstAttribute="leading" secondItem="1QQ-pn-JcV" secondAttribute="leading" id="E4F-5D-SXA"/>
+                            <constraint firstAttribute="bottom" secondItem="usa-Vb-0BV" secondAttribute="bottom" id="K9m-Jv-hgR"/>
+                            <constraint firstItem="tpa-Ve-Q8a" firstAttribute="centerX" secondItem="1QQ-pn-JcV" secondAttribute="centerX" id="Km6-ze-SFw"/>
+                            <constraint firstItem="tpa-Ve-Q8a" firstAttribute="top" secondItem="6VJ-pj-GYK" secondAttribute="bottom" id="MjO-bn-yeb"/>
+                            <constraint firstAttribute="trailing" secondItem="tpa-Ve-Q8a" secondAttribute="trailing" id="dEh-DF-oEw"/>
+                            <constraint firstItem="SN6-4G-gdV" firstAttribute="centerX" secondItem="1QQ-pn-JcV" secondAttribute="centerX" id="eLz-OO-9D6"/>
+                            <constraint firstItem="usa-Vb-0BV" firstAttribute="top" secondItem="6VJ-pj-GYK" secondAttribute="bottom" id="fs7-76-CwF"/>
+                            <constraint firstItem="6VJ-pj-GYK" firstAttribute="top" secondItem="L56-KO-noU" secondAttribute="bottom" id="jcG-pu-6F9"/>
+                            <constraint firstItem="tpa-Ve-Q8a" firstAttribute="leading" secondItem="1QQ-pn-JcV" secondAttribute="leading" id="oQF-d4-dIY"/>
+                            <constraint firstItem="SN6-4G-gdV" firstAttribute="leading" secondItem="1QQ-pn-JcV" secondAttribute="leading" id="ozU-xT-LBA"/>
+                            <constraint firstAttribute="trailing" secondItem="usa-Vb-0BV" secondAttribute="trailing" id="pze-68-w2J"/>
+                            <constraint firstAttribute="trailing" secondItem="6VJ-pj-GYK" secondAttribute="trailing" id="qeS-71-biw"/>
+                            <constraint firstItem="SN6-4G-gdV" firstAttribute="top" secondItem="6VJ-pj-GYK" secondAttribute="bottom" id="vgB-Es-fCm"/>
+                            <constraint firstItem="usa-Vb-0BV" firstAttribute="leading" secondItem="1QQ-pn-JcV" secondAttribute="leading" id="y4a-6f-KQf"/>
+                            <constraint firstAttribute="trailing" secondItem="SN6-4G-gdV" secondAttribute="trailing" id="ya8-l5-tAT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="N7m-Sa-fTU"/>
                     <connections>
+                        <outlet property="extendedNavBar" destination="6VJ-pj-GYK" id="Gx5-7l-79n"/>
                         <outlet property="profile" destination="SN6-4G-gdV" id="jVk-4K-npn"/>
+                        <outlet property="profileContainer" destination="SN6-4G-gdV" id="Li3-XC-19W"/>
                         <outlet property="reportView" destination="usa-Vb-0BV" id="LxT-LX-1xR"/>
-                        <outlet property="scrollView" destination="8bM-v1-iyd" id="fYG-gn-U2C"/>
                         <outlet property="segmentedControl" destination="vnU-Gg-uoh" id="MDE-Gt-TzW"/>
                         <outlet property="settings" destination="tpa-Ve-Q8a" id="gGz-AN-vbX"/>
                     </connections>
@@ -123,7 +121,7 @@
                         <viewControllerLayoutGuide type="bottom" id="9p1-8e-nj9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2aU-nZ-iOn">
-                        <rect key="frame" x="0.0" y="0.0" width="373" height="674"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Har-6d-v7a">
@@ -158,11 +156,11 @@
                         <viewControllerLayoutGuide type="bottom" id="w4U-SG-x8t"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rZH-4v-0gA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="674"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4YI-g1-gqC">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="674"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="report" rowHeight="60" id="Eil-F3-vFC">

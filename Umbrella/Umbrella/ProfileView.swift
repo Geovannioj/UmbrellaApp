@@ -28,47 +28,16 @@ class ProfileView: UIView {
         return view
     }()
     
-//    let tableView : UITableView = {
-//        let table = UITableView()
-//        table.
-//    }
+    let alterarFotoButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("Alterar Foto", for: .normal)
+        button.setTitleColor(UIColor(r: 170, g: 10, b: 234), for: .normal)
+        button.backgroundColor = .clear
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
-//    let email : InfoView = {
-//        let view = InfoView()
-//        view.titleLabel.text = "Email"
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-//    
-//    let password : InfoView = {
-//        let view = InfoView()
-//        view.titleLabel.text = "Senha"
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-//    
-//    let birthDate : InfoView = {
-//        let view = InfoView()
-//        view.titleLabel.text = "Data de nascimento"
-//        view.textLabel.text = "dd/mm/aaaa"
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-//    
-//    let minority : InfoView = {
-//        let view = InfoView()
-//        view.titleLabel.text = "Minoria"
-//        view.textLabel.text = "Não declarada"
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-//    
-//    let lineView : UIView = {
-//        let view = UIView()
-//        view.backgroundColor = UIColor.lightGray
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -85,8 +54,12 @@ class ProfileView: UIView {
         self.backgroundColor = UIColor.clear
         
         addSubview(profileImage)
+        addSubview(username)
+        addSubview(alterarFotoButton)
         
         setupProfileImageView()
+        setupUsername()
+        setupAlterarFotoButton()
 //        setupNameLineStack()
 //        setupLabelsStack()
     }
@@ -98,6 +71,23 @@ class ProfileView: UIView {
         profileImage.widthAnchor.constraint(equalToConstant: 90).isActive = true
         profileImage.heightAnchor.constraint(equalToConstant: 90).isActive = true
     }
+    
+    func setupUsername() {
+        username.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
+        username.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 20).isActive = true
+        //username.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        //username.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        
+    }
+    
+    func setupAlterarFotoButton() {
+        alterarFotoButton.topAnchor.constraint(equalTo: username.bottomAnchor, constant: 5).isActive = true
+        alterarFotoButton.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 20).isActive = true
+        //alterarFotoButton.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        //alterarFotoButton.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        
+    }
+    
     
 //    func setupNameLineStack() {
 //        

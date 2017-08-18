@@ -20,13 +20,14 @@ class MinorityInteractor {
         
         let minorityRef = ref.child("minority").child(mino.id)
         minorityRef.setValue(mino.toAnyObject())
+        
     }
     
     static func getMinorities(completion: @escaping ([MinorityEntity]) -> ()){
         let minorityRef = Database.database().reference().child("minority")
-        var minorities = [MinorityEntity]()
+        var minorities: [MinorityEntity] = []
         
-        minorityRef.observe(.value, with: { (snapshot) in
+        minorityRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.value is NSNull {
                 print("Minority not found")
                 return
@@ -37,10 +38,11 @@ class MinorityInteractor {
                 let snap = child as! DataSnapshot
                 let dict = snap.value as! [String : AnyObject]
                 
-                minority.id = dict["id"] as! String
+                minority.id = snap.key
                 minority.type = dict["type"] as! String
                 minorities.append(minority)
             }
+            print(minorities)
             completion(minorities)
         })
     }
@@ -55,11 +57,26 @@ class MinorityInteractor {
                 
                 let minority = MinorityEntity()
                 
-                minority.id = dict["id"] as! String
+                minority.id = snapshot.key
                 minority.type = dict["type"] as! String
                 
                 completion(minority)
             }
+        })
+    }
+    
+    static func getMinority(withId id: String, completion: @escaping (MinorityEntity) -> ()){
+        let minorityRef = Database.database().reference().child("minority").child(id)
+        
+        minorityRef.observeSingleEvent(of: .value, with: { (snapshot: DataSnapshot) in
+            
+            let dict = snapshot.value as! [String : Any]
+            let minority = MinorityEntity()
+            
+            minority.id = id
+            minority.type = dict["type"] as! String
+                
+            completion(minority)
         })
     }
     

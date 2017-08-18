@@ -104,9 +104,9 @@
 		9E60662C1F463BE4002C5281 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentView.swift; path = Umbrella/CommentView.swift; sourceTree = "<group>"; };
 		9E60662D1F463BE4002C5281 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Umbrella/Extensions.swift; sourceTree = "<group>"; };
 		9E60662E1F463BE4002C5281 /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationView.swift; path = Umbrella/NavigationView.swift; sourceTree = "<group>"; };
-		9E60662F1F463BE4002C5281 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = Umbrella/Profile.storyboard; sourceTree = "<group>"; };
-		9E6066301F463BE4002C5281 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = Umbrella/ProfileView.swift; sourceTree = "<group>"; };
-		9E6066311F463BE4002C5281 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Umbrella/ProfileViewController.swift; sourceTree = "<group>"; };
+		9E60662F1F463BE4002C5281 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		9E6066301F463BE4002C5281 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		9E6066311F463BE4002C5281 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeReportDescriptionTableViewController.swift; path = Umbrella/SeeReportDescriptionTableViewController.swift; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +235,9 @@
 		A1A46E691F46302A0045E13A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
+				9E6066301F463BE4002C5281 /* ProfileView.swift */,
+				9E6066311F463BE4002C5281 /* ProfileViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -295,9 +298,6 @@
 				9E60662C1F463BE4002C5281 /* CommentView.swift */,
 				9E60662D1F463BE4002C5281 /* Extensions.swift */,
 				9E60662E1F463BE4002C5281 /* NavigationView.swift */,
-				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
-				9E6066301F463BE4002C5281 /* ProfileView.swift */,
-				9E6066311F463BE4002C5281 /* ProfileViewController.swift */,
 				9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */,
 				9E6066291F460CCB002C5281 /* ExtendedNavBarView.swift */,
 				9E6066011F43A065002C5281 /* ChatCollectionViewCell.swift */,

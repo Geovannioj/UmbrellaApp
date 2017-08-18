@@ -16,9 +16,14 @@ class UserEntity: Object {
     dynamic var birthDate: Date? = nil
     dynamic var urlPhoto: String? = nil
     dynamic var idMinority: String? = nil
+    dynamic var typeMinority: String? = nil
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    override static func ignoredProperties() -> [String] {
+        return ["idMinority"]
     }
     
     func toAnyObject() -> Any {
