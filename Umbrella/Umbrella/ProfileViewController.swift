@@ -48,8 +48,6 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             
         })
         
-        
-        
         loadBlurViewIntoController()
         blurView.isHidden = true
         loadPopUpViewIntoController()
@@ -127,7 +125,10 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
 //                break
                 
             case IndexPath(row: 1, section: 0):
-                UserInteractor.sendPasswordResetEmail(email: UserInteractor.getCurrentUserEmail()!, handler: self)
+                alert.showAlert(viewController: self, title: "Olá!", message: "Deseja mesmo alterar sua senha?", confirmButton: "Sim", cancelButton: "Não", onAffirmation: {
+                    UserInteractor.sendPasswordResetEmail(email: UserInteractor.getCurrentUserEmail()!, handler: self)
+                    self.alert.showAlert(viewController: self, title: "Tudo bem", message: "Confirme se você recebeu nosso e-mail com um link para alterar sua senha.", confirmButton: nil, cancelButton: "OK")
+                })
                 
             case IndexPath(row: 2, section: 0):
                 isBirthSelection = true
