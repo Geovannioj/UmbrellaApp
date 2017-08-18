@@ -305,12 +305,6 @@ class SeeReportViewController: UIViewController {
             
         self.present(sendMessage, animated: true, completion: nil)
 
-        /*
-            perguntar se realmente deseja falar com a pessoa que escreveu o report
-            mostrar um campo para mostrar mensagem
-            no campo já deve existir uma mensagem padrão de apoio
-            mandar mensagem
-         */
     }
 
 }

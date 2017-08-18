@@ -41,6 +41,7 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "report", for: indexPath)
         let title = tableView.viewWithTag(3) as! UILabel
         title.text = self.userReports[indexPath.row].title
