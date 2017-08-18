@@ -42,7 +42,7 @@
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="vnU-Gg-uoh" firstAttribute="centerX" secondItem="6VJ-pj-GYK" secondAttribute="centerX" id="4ok-Bv-TTU"/>
                                     <constraint firstItem="vnU-Gg-uoh" firstAttribute="centerY" secondItem="6VJ-pj-GYK" secondAttribute="centerY" id="aXT-rW-7e7"/>
