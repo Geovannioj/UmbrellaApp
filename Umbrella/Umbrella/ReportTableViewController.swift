@@ -41,19 +41,19 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "report", for: indexPath)
-        let title = tableView.viewWithTag(3) as! UILabel
-        title.text = self.userReports[indexPath.row].title
-        
-        let description = tableView.viewWithTag(4) as! UILabel
-        description.text = self.userReports[indexPath.row].description
-        
-        let location = tableView.viewWithTag(5) as! MGLMapView
-        
-        let latitude = self.userReports[indexPath.row].latitude
-        let longitude = self.userReports[indexPath.row].longitude
-        
-        self.seeReport.initiateLocationOnMap(map: location, latitude: latitude, longitude: longitude)
+       let cell = tableView.dequeueReusableCell(withIdentifier: "report", for: indexPath)
+//        let title = tableView.viewWithTag(3) as! UILabel
+//        title.text = self.userReports[indexPath.row].title
+//        
+//        let description = tableView.viewWithTag(4) as! UILabel
+//        description.text = self.userReports[indexPath.row].description
+//        
+//        let location = tableView.viewWithTag(5) as! MGLMapView
+//        
+//        let latitude = self.userReports[indexPath.row].latitude
+//        let longitude = self.userReports[indexPath.row].longitude
+//        
+//        self.seeReport.initiateLocationOnMap(map: location, latitude: latitude, longitude: longitude)
         
         
         return cell
