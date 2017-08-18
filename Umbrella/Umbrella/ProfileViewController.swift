@@ -64,6 +64,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         setTable()
         
     }
+    
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
@@ -316,7 +317,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         self.view.bringSubview(toFront: (view.subviews.last)!)
         
         let closeButton = UIImageView(frame: CGRect(x: 15, y: 15, width: 20, height: 20))
-        closeButton.image = #imageLiteral(resourceName: "closeIcon")
+        closeButton.image = UIImage(named: "CloseIcon")
         self.popupView.addSubview(closeButton)
         self.popupView.bringSubview(toFront: (view.subviews.last)!)
         closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeButtonAction)))

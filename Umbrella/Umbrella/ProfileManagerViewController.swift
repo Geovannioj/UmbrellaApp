@@ -74,8 +74,10 @@ class ProfileManagerViewController: UIViewController, ProfileTableViewController
         //navBar?.bringSubview(toFront: (navBar?.subviews.last)!)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func manageSegmentedControl(_ sender: Any) {
