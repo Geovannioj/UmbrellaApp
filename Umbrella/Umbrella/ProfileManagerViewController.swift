@@ -41,6 +41,10 @@ class ProfileManagerViewController: UIViewController, ProfileTableViewController
         return self.navigationItem
     }
     
+    func getSegmentedControl() -> UISegmentedControl {
+        return self.segmentedControl
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         let navBar = navigationController?.navigationBar
         

@@ -10,12 +10,18 @@ import UIKit
 
 protocol ProfileTableViewControllerProtocol {
     func getNavBar() -> UINavigationItem
+    func getSegmentedControl() -> UISegmentedControl
 }
 
 
 class ProfileTableViewController: UITableViewController, InteractorCompleteProtocol {
     
+    @IBOutlet weak var emailCell: UITableViewCell!
+    @IBOutlet weak var passwordCell: UITableViewCell!
+    @IBOutlet weak var birthCell: UITableViewCell!
+    @IBOutlet weak var minorityCell: UITableViewCell!
     @IBOutlet weak var emailDetail: UILabel!
+    @IBOutlet weak var passwordDetail: UILabel!
     @IBOutlet weak var birthDetail: UILabel!
     @IBOutlet weak var minorityDetail: UILabel!
     @IBOutlet weak var inputs: ProfileView!
@@ -51,9 +57,6 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         
         inputs.alterarFotoButton.isHidden = true
         delegate?.getNavBar().rightBarButtonItem = UIBarButtonItem(title: "Editar", style: .plain, target: self, action: #selector(editingMode))
-
-        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Editar", style: .plain, target: self, action: #selector(editingMode))
-        //self.navigationItem.rightBarButtonItem?.action = #selector(editingMode)
         
         super.viewDidLoad()
         view.backgroundColor = .clear
@@ -82,6 +85,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             return 44
         }
         else {
+            if indexPath.section == 0 && indexPath.row == 0 {
+                return 0
+            }
             if indexPath.section == 1 && indexPath.row == 0 {
                 return 0
             }
@@ -95,33 +101,50 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         }
     }
     
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.
+//        if indexPath.section == 0 {
+//            if isEdit == false {
+//                cell?.accessoryType = .none
+//            }
+//            else {
+//                cell?.accessoryType = .disclosureIndicator
+//            }
+//        }
+//        return cell!
+//    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        switch indexPath {
-        case IndexPath(row: 0, section: 0):
-            break
-            
-        case IndexPath(row: 1, section: 0):
-            UserInteractor.sendPasswordResetEmail(email: UserInteractor.getCurrentUserEmail()!, handler: self)
-            
-        case IndexPath(row: 2, section: 0):
-            isBirthSelection = true
-            chooseBirthDate()
-            
-        case IndexPath(row: 3, section: 0):
-            isBirthSelection = false
-            chooseMinority()
-            
-        case IndexPath(row: 0, section: 2):
-            UserInteractor.disconnectUser(handler: self)
-            
-        case IndexPath(row: 1, section: 2):
-            alert.showAlert(viewController: self, title: "Atenção!", message: "Tem certeza que deseja deletar sua conta?", confirmButton: "Sim", cancelButton: "Não", onAffirmation: {
-                UserInteractor.deleteUser(handler: self)
-            })
-            
-        default:
-            break
+        if isEdit == false {
+            if indexPath == IndexPath(row: 0, section: 2) {
+                UserInteractor.disconnectUser(handler: self)
+            }
+        }
+        else {
+            switch indexPath {
+//            case IndexPath(row: 0, section: 0):
+//                break
+                
+            case IndexPath(row: 1, section: 0):
+                UserInteractor.sendPasswordResetEmail(email: UserInteractor.getCurrentUserEmail()!, handler: self)
+                
+            case IndexPath(row: 2, section: 0):
+                isBirthSelection = true
+                chooseBirthDate()
+                
+            case IndexPath(row: 3, section: 0):
+                isBirthSelection = false
+                chooseMinority()
+                
+            case IndexPath(row: 1, section: 2):
+                alert.showAlert(viewController: self, title: "Atenção!", message: "Tem certeza que deseja deletar sua conta?", confirmButton: "Sim", cancelButton: "Não", onAffirmation: {
+                    UserInteractor.deleteUser(handler: self)
+                })
+                
+            default:
+                break
+            }
         }
     }
     
@@ -222,26 +245,55 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
     
     func editingMode() {
         if isEdit == false {
-            navigationController?.navigationItem.rightBarButtonItem?.title = "Pronto"
+            delegate?.getNavBar().rightBarButtonItem?.title = "Pronto"
+            delegate?.getNavBar().leftBarButtonItem?.isEnabled = false
+            delegate?.getSegmentedControl().isEnabled = false
             inputs.alterarFotoButton.isHidden = false
+            
             isEdit = true
             
-            tableView.reloadData()
-//            tableView.beginUpdates()
-//            tableView.reloadSections(IndexSet(integersIn: 0...2), with: .automatic)
-//            tableView.endUpdates()
-        }
-        else {
-            navigationController?.navigationItem.rightBarButtonItem?.title = "Editar"
-            inputs.alterarFotoButton.isHidden = true
-            isEdit = false
+            emailCell.accessoryType = .disclosureIndicator
+            emailCell.accessoryView?.tintColor = .clear
+            emailDetail.textColor = UIColor(r: 165, g: 145, b: 174)
+            
+            birthCell.accessoryType = .disclosureIndicator
+            birthCell.accessoryView?.tintColor = .clear
+            birthDetail.textColor = UIColor(r: 165, g: 145, b: 174)
+            birthDetail.text = "Selecionar"
+            
+            minorityCell.accessoryType = .disclosureIndicator
+            minorityCell.accessoryView?.tintColor = .clear
+            minorityDetail.textColor = UIColor(r: 165, g: 145, b: 174)
+            minorityDetail.text = "Selecionar"
             
             tableView.reloadData()
-
-//            tableView.beginUpdates()
-//            tableView.reloadSections(IndexSet(integersIn: 0...2), with: .automatic)
-//            //tableView.reloadRows(at: [0,1,2], with: .fade)
-//            tableView.endUpdates()
+            tableView.beginUpdates()
+            tableView.reloadSections(IndexSet(integersIn: 0...2), with: .top)
+            tableView.endUpdates()
+            
+        }
+        else {
+            delegate?.getNavBar().rightBarButtonItem?.title = "Editar"
+            delegate?.getNavBar().leftBarButtonItem?.isEnabled = true
+            delegate?.getSegmentedControl().isEnabled = true
+            inputs.alterarFotoButton.isHidden = true
+            
+            isEdit = false
+            
+            emailCell.accessoryType = .none
+            emailDetail.textColor = UIColor(r: 170, g: 10, b: 234)
+            
+            birthCell.accessoryType = .none
+            birthDetail.textColor = UIColor(r: 170, g: 10, b: 234)
+            
+            minorityCell.accessoryType = .none
+            minorityDetail.textColor = UIColor(r: 170, g: 10, b: 234)
+            
+            setTable()
+            
+            tableView.beginUpdates()
+            tableView.reloadSections(IndexSet(integersIn: 0...2), with: .top)
+            tableView.endUpdates()
         }
     }
     
