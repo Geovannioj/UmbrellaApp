@@ -25,7 +25,6 @@
 		9E6066191F43C6C3002C5281 /* PasswordRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */; };
 		9E60661B1F43C70D002C5281 /* PasswordRecover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E60661A1F43C70D002C5281 /* PasswordRecover.storyboard */; };
 		9E60661D1F43C72F002C5281 /* PasswordRecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */; };
-		9E60662A1F460CCB002C5281 /* ExtendedNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066291F460CCB002C5281 /* ExtendedNavBarView.swift */; };
 		9E6066331F463BE4002C5281 /* CampFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60662B1F463BE4002C5281 /* CampFieldView.swift */; };
 		9E6066341F463BE4002C5281 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60662C1F463BE4002C5281 /* CommentView.swift */; };
 		9E6066351F463BE4002C5281 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60662D1F463BE4002C5281 /* Extensions.swift */; };
@@ -34,6 +33,7 @@
 		9E6066381F463BE4002C5281 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066301F463BE4002C5281 /* ProfileView.swift */; };
 		9E6066391F463BE4002C5281 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066311F463BE4002C5281 /* ProfileViewController.swift */; };
 		9E60663A1F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */; };
+		9EB6AD011F472F580099331A /* ExtendedNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */; };
 		D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
 		D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */; };
 		D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4051F2A78CF00308ABB /* Login.storyboard */; };
@@ -99,7 +99,6 @@
 		9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverView.swift; sourceTree = "<group>"; };
 		9E60661A1F43C70D002C5281 /* PasswordRecover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PasswordRecover.storyboard; sourceTree = "<group>"; };
 		9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverViewController.swift; sourceTree = "<group>"; };
-		9E6066291F460CCB002C5281 /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = ../../../Downloads/CustomizingUINavigationBar/ExtendedNavBar/ExtendedNavBarView.swift; sourceTree = "<group>"; };
 		9E60662B1F463BE4002C5281 /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampFieldView.swift; path = Umbrella/CampFieldView.swift; sourceTree = "<group>"; };
 		9E60662C1F463BE4002C5281 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentView.swift; path = Umbrella/CommentView.swift; sourceTree = "<group>"; };
 		9E60662D1F463BE4002C5281 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Umbrella/Extensions.swift; sourceTree = "<group>"; };
@@ -108,6 +107,7 @@
 		9E6066301F463BE4002C5281 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		9E6066311F463BE4002C5281 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeReportDescriptionTableViewController.swift; path = Umbrella/SeeReportDescriptionTableViewController.swift; sourceTree = "<group>"; };
+		9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = Umbrella/ExtendedNavBarView.swift; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -294,12 +294,12 @@
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
+				9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */,
 				9E60662B1F463BE4002C5281 /* CampFieldView.swift */,
 				9E60662C1F463BE4002C5281 /* CommentView.swift */,
 				9E60662D1F463BE4002C5281 /* Extensions.swift */,
 				9E60662E1F463BE4002C5281 /* NavigationView.swift */,
 				9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */,
-				9E6066291F460CCB002C5281 /* ExtendedNavBarView.swift */,
 				9E6066011F43A065002C5281 /* ChatCollectionViewCell.swift */,
 				9E6066021F43A065002C5281 /* ChatCollectionViewController.swift */,
 				9E6066031F43A065002C5281 /* Comment.swift */,
@@ -659,9 +659,9 @@
 				9E6066151F43A065002C5281 /* ReportTableViewController.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
 				D4E91E301F3E30C9004895B7 /* RegisterView.swift in Sources */,
+				9EB6AD011F472F580099331A /* ExtendedNavBarView.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				9E6066121F43A065002C5281 /* MessagesTableViewController.swift in Sources */,
-				9E60662A1F460CCB002C5281 /* ExtendedNavBarView.swift in Sources */,
 				FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
 				9E6066341F463BE4002C5281 /* CommentView.swift in Sources */,
