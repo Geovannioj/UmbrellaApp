@@ -195,6 +195,14 @@
                                         <constraint firstItem="WVU-Yd-gAD" firstAttribute="height" secondItem="CRu-Kg-ogo" secondAttribute="height" multiplier="0.3" id="m5N-ro-cgt"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="pDf-rN-AMn" id="trH-mb-0iK"/>
+                                    <outlet property="locationLabel" destination="Zn9-gv-toP" id="s3g-eh-JYm"/>
+                                    <outlet property="mapView" destination="H2g-zq-Nqw" id="cjK-Mr-mcn"/>
+                                    <outlet property="nameLabel" destination="aBi-Qn-vVv" id="cGt-Ox-KmO"/>
+                                    <outlet property="titleLabel" destination="wsc-WK-Ead" id="Wbh-Ek-uhC"/>
+                                    <outlet property="userImageView" destination="8hm-gB-Y2i" id="18e-ck-9aH"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
