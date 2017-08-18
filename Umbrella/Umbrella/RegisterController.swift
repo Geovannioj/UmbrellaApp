@@ -68,6 +68,11 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
         
     }
     
+    func completeLogin(user: UserInfo?, error: Error?) {
+        
+        
+    }
+    
     func handleReturn() {
         dismiss(animated: true, completion: nil)
     }

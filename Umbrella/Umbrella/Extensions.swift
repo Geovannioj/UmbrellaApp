@@ -21,22 +21,23 @@ extension UIImageView {
             return
         }
         
-        let realUrl = URL(string: url)
-        URLSession.shared.dataTask(with: realUrl!, completionHandler: { (data, response, error) in
-            
-            if error != nil {
-                return // Tratar erros
-            }
-            
-            DispatchQueue.main.async {
+        if let realUrl = URL(string: url) {
+            URLSession.shared.dataTask(with: realUrl, completionHandler: { (data, response, error) in
                 
-                if let dowload = UIImage(data: data!) {
-                    
-                    self.image = dowload
-                    imageCache.setObject(dowload, forKey: url as AnyObject)
+                if error != nil {
+                    return // Tratar erros
                 }
-            }
-        }).resume()
+                
+                DispatchQueue.main.async {
+                    
+                    if let dowload = UIImage(data: data!) {
+                        
+                        self.image = dowload
+                        imageCache.setObject(dowload, forKey: url as AnyObject)
+                    }
+                }
+            }).resume()
+        }
     }
 }
 
