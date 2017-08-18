@@ -102,7 +102,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        // searchBar.barTintColor = UIColor.clear
-        centerOnUser()
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+           centerOnUser() 
+        }
+        
         
     }
     //MARK: Buttons functions
