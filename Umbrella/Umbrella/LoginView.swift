@@ -13,6 +13,7 @@ class LoginView: UIView {
     
     let email : CampFieldView = {
         let camp = CampFieldView()
+        camp.id = 0
         camp.textField.placeholder = "Email"
         camp.iconImage.image = UIImage(named: "emailIcon")
         camp.invalidMessageLabel.text = "Ops! Email invalido"
@@ -23,6 +24,7 @@ class LoginView: UIView {
     
     let password : CampFieldView = {
         let camp = CampFieldView()
+        camp.id = 1
         camp.textField.placeholder = "Senha"
         camp.iconImage.image = UIImage(named: "passwordIcon")
         camp.invalidMessageLabel.text = "Ops! Senha invalida"

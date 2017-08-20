@@ -74,6 +74,18 @@ extension UIView {
     }
 }
 
+extension UIViewController {
+    
+    open func dismissKayboardInTapGesture(){
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+    }
+    
+    open func dismissKeyboard(){
+        view.endEditing(true)
+    }
+}
+
 extension UITextField {
     
     func estimateFrame(width : CGFloat) -> CGRect {
@@ -97,6 +109,7 @@ extension String {
         
     }
 }
+
 
 
 

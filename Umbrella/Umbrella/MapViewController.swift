@@ -46,8 +46,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         buttonDistance = HorizontalStackButtons.spacing
       
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        dismissKayboardInTapGesture()
         
         self.msgCenter = msgsButton.center
         self.perfilCenter = perfilButton.center
@@ -96,9 +95,6 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        // searchBar.barTintColor = UIColor.clear

@@ -63,8 +63,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         self.personIdentification.setValue(UIColor.white, forKey: "textColor")
         self.violenceKind.setValue(UIColor.white, forKey: "textColor")
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterReportSecondViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        dismissKayboardInTapGesture()
         
 
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
@@ -134,12 +133,6 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
                            completion: nil)
             
         }
-    }
-    
-    //Calls this function when the tap is recognized.
-    func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
     }
     
     func getViolenceKind(report: Report) -> Int {

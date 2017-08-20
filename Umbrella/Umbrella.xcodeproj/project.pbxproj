@@ -126,21 +126,21 @@
 		FB0144CD1F3B85A7004FFBCC /* UserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInteractor.swift; sourceTree = "<group>"; };
 		FB02B7281F47681100696EAA /* MySupportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySupportTableViewCell.swift; path = Umbrella/MySupportTableViewCell.swift; sourceTree = "<group>"; };
 		FB02B7291F47681100696EAA /* MySupportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySupportTableViewController.swift; path = Umbrella/MySupportTableViewController.swift; sourceTree = "<group>"; };
-		FB02B72C1F47761D00696EAA /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampFieldView.swift; path = Umbrella/CampFieldView.swift; sourceTree = "<group>"; };
-		FB02B72D1F47761D00696EAA /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatCollectionViewCell.swift; path = Umbrella/ChatCollectionViewCell.swift; sourceTree = "<group>"; };
-		FB02B72E1F47761D00696EAA /* ChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatCollectionViewController.swift; path = Umbrella/ChatCollectionViewController.swift; sourceTree = "<group>"; };
-		FB02B72F1F47761D00696EAA /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = Umbrella/Comment.swift; sourceTree = "<group>"; };
-		FB02B7301F47761D00696EAA /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentView.swift; path = Umbrella/CommentView.swift; sourceTree = "<group>"; };
-		FB02B7311F47761D00696EAA /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = Umbrella/ExtendedNavBarView.swift; sourceTree = "<group>"; };
-		FB02B7321F47761D00696EAA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Umbrella/Extensions.swift; sourceTree = "<group>"; };
-		FB02B7331F47761D00696EAA /* InputChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputChatView.swift; path = Umbrella/InputChatView.swift; sourceTree = "<group>"; };
-		FB02B7341F47761D00696EAA /* MessageInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageInterector.swift; path = Umbrella/MessageInterector.swift; sourceTree = "<group>"; };
-		FB02B7351F47761D00696EAA /* MessagesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesPresenter.swift; path = Umbrella/MessagesPresenter.swift; sourceTree = "<group>"; };
-		FB02B7361F47761D00696EAA /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesTableViewController.swift; path = Umbrella/MessagesTableViewController.swift; sourceTree = "<group>"; };
-		FB02B7371F47761D00696EAA /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationView.swift; path = Umbrella/NavigationView.swift; sourceTree = "<group>"; };
+		FB02B72C1F47761D00696EAA /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampFieldView.swift; sourceTree = "<group>"; };
+		FB02B72D1F47761D00696EAA /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
+		FB02B72E1F47761D00696EAA /* ChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewController.swift; sourceTree = "<group>"; };
+		FB02B72F1F47761D00696EAA /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		FB02B7301F47761D00696EAA /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		FB02B7311F47761D00696EAA /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedNavBarView.swift; sourceTree = "<group>"; };
+		FB02B7321F47761D00696EAA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FB02B7331F47761D00696EAA /* InputChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputChatView.swift; sourceTree = "<group>"; };
+		FB02B7341F47761D00696EAA /* MessageInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInterector.swift; sourceTree = "<group>"; };
+		FB02B7351F47761D00696EAA /* MessagesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesPresenter.swift; sourceTree = "<group>"; };
+		FB02B7361F47761D00696EAA /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
+		FB02B7371F47761D00696EAA /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		FB02B7381F47761D00696EAA /* ProfileManager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ProfileManager.storyboard; path = Umbrella/ProfileManager.storyboard; sourceTree = "<group>"; };
-		FB02B7391F47761D00696EAA /* ProfileManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileManagerViewController.swift; path = Umbrella/ProfileManagerViewController.swift; sourceTree = "<group>"; };
-		FB02B73A1F47761D00696EAA /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReportTableViewController.swift; path = Umbrella/ReportTableViewController.swift; sourceTree = "<group>"; };
+		FB02B7391F47761D00696EAA /* ProfileManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManagerViewController.swift; sourceTree = "<group>"; };
+		FB02B73A1F47761D00696EAA /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		FB02B73B1F47761D00696EAA /* SeeReportDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeReportDescriptionTableViewController.swift; path = Umbrella/SeeReportDescriptionTableViewController.swift; sourceTree = "<group>"; };
 		FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarControllerViewController.swift; sourceTree = "<group>"; };
 		FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Umbrella/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -217,6 +217,7 @@
 		A11960FD1F3CAB6A009A699B /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				FB02B7361F47761D00696EAA /* MessagesTableViewController.swift */,
 				D4E91E231F3E30C9004895B7 /* UserMessageCell.swift */,
 			);
 			name = Messages;
@@ -225,6 +226,7 @@
 		A17737C31F3BC22900E42C4D /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				FB02B7351F47761D00696EAA /* MessagesPresenter.swift */,
 			);
 			name = Messages;
 			sourceTree = "<group>";
@@ -232,6 +234,8 @@
 		A1A46E3D1F436E490045E13A /* ProfileManager */ = {
 			isa = PBXGroup;
 			children = (
+				FB02B7391F47761D00696EAA /* ProfileManagerViewController.swift */,
+				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
 			);
 			name = ProfileManager;
 			sourceTree = "<group>";
@@ -239,11 +243,20 @@
 		A1A46E691F46302A0045E13A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
 				9E6066311F463BE4002C5281 /* ProfileViewController.swift */,
 				9E6066301F463BE4002C5281 /* ProfileView.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		A1A46E6C1F4928BB0045E13A /* PasswordRecover */ = {
+			isa = PBXGroup;
+			children = (
+				9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */,
+				9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */,
+				9E60661A1F43C70D002C5281 /* PasswordRecover.storyboard */,
+			);
+			name = PasswordRecover;
 			sourceTree = "<group>";
 		};
 		A1BB533C1F38E62D0060649C /* Helpers */ = {
@@ -283,6 +296,10 @@
 		A1BB534C1F3B87220060649C /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				FB02B72E1F47761D00696EAA /* ChatCollectionViewController.swift */,
+				FB02B72D1F47761D00696EAA /* ChatCollectionViewCell.swift */,
+				FB02B7331F47761D00696EAA /* InputChatView.swift */,
+				FB02B7371F47761D00696EAA /* NavigationView.swift */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -298,21 +315,7 @@
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
-				FB02B72C1F47761D00696EAA /* CampFieldView.swift */,
-				FB02B72D1F47761D00696EAA /* ChatCollectionViewCell.swift */,
-				FB02B72E1F47761D00696EAA /* ChatCollectionViewController.swift */,
-				FB02B72F1F47761D00696EAA /* Comment.swift */,
-				FB02B7301F47761D00696EAA /* CommentView.swift */,
-				FB02B7311F47761D00696EAA /* ExtendedNavBarView.swift */,
-				FB02B7321F47761D00696EAA /* Extensions.swift */,
-				FB02B7331F47761D00696EAA /* InputChatView.swift */,
-				FB02B7341F47761D00696EAA /* MessageInterector.swift */,
-				FB02B7351F47761D00696EAA /* MessagesPresenter.swift */,
-				FB02B7361F47761D00696EAA /* MessagesTableViewController.swift */,
-				FB02B7371F47761D00696EAA /* NavigationView.swift */,
 				FB02B7381F47761D00696EAA /* ProfileManager.storyboard */,
-				FB02B7391F47761D00696EAA /* ProfileManagerViewController.swift */,
-				FB02B73A1F47761D00696EAA /* ReportTableViewController.swift */,
 				FB02B73B1F47761D00696EAA /* SeeReportDescriptionTableViewController.swift */,
 				FB02B7281F47681100696EAA /* MySupportTableViewCell.swift */,
 				FB02B7291F47681100696EAA /* MySupportTableViewController.swift */,
@@ -353,6 +356,8 @@
 		D4B1E4141F2A78E200308ABB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FB02B72C1F47761D00696EAA /* CampFieldView.swift */,
+				FB02B7311F47761D00696EAA /* ExtendedNavBarView.swift */,
 				A1A46E3D1F436E490045E13A /* ProfileManager */,
 				A1A46E691F46302A0045E13A /* Profile */,
 				A11960FD1F3CAB6A009A699B /* Messages */,
@@ -362,6 +367,7 @@
 				D4B1E41D1F2A918500308ABB /* TabBar */,
 				D4B1E41C1F2A910300308ABB /* Login */,
 				A1BB53421F3906DF0060649C /* Register */,
+				A1A46E6C1F4928BB0045E13A /* PasswordRecover */,
 				D4B1E40A1F2A78CF00308ABB /* LaunchScreen.storyboard */,
 			);
 			name = View;
@@ -370,6 +376,7 @@
 		D4B1E4151F2A78F700308ABB /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				FB02B7321F47761D00696EAA /* Extensions.swift */,
 				9E6066001F438FA1002C5281 /* Validations */,
 				9E2D83251F437122000FF593 /* AlertView */,
 				A17737C31F3BC22900E42C4D /* Messages */,
@@ -393,6 +400,7 @@
 				FB0144CD1F3B85A7004FFBCC /* UserInteractor.swift */,
 				FB0144C91F3B85A7004FFBCC /* PhotoInteractor.swift */,
 				FB0144C71F3B85A7004FFBCC /* MinorityInterector.swift */,
+				FB02B7341F47761D00696EAA /* MessageInterector.swift */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -424,9 +432,6 @@
 				D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */,
 				D4E91E171F3E30C9004895B7 /* LoginView.swift */,
 				D4B1E4051F2A78CF00308ABB /* Login.storyboard */,
-				9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */,
-				9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */,
-				9E60661A1F43C70D002C5281 /* PasswordRecover.storyboard */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -443,6 +448,7 @@
 		D4B1E4221F2A93CC00308ABB /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				FB02B73A1F47761D00696EAA /* ReportTableViewController.swift */,
 				FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */,
 				D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */,
 				FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */,
@@ -451,6 +457,8 @@
 				FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */,
 				FB60D8671F39127E001E5E51 /* ShowReports.storyboard */,
 				FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */,
+				FB02B72F1F47761D00696EAA /* Comment.swift */,
+				FB02B7301F47761D00696EAA /* CommentView.swift */,
 			);
 			name = Report;
 			sourceTree = "<group>";

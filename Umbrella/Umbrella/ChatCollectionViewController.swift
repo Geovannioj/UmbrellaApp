@@ -69,7 +69,9 @@ class ChatCollectionViewController: UICollectionViewController {
         }
     }
     
-    func dismissKeyboard(){
+    override func dismissKeyboard(){
+        super.dismissKeyboard()
+        
         inputChatView.textField.resignFirstResponder()
     }
     
@@ -87,8 +89,8 @@ extension ChatCollectionViewController {
     func setupController(){
         view.backgroundColor = UIColor.white
         view.backgroundImage(named: "bkgChatView")
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-        
+        dismissKayboardInTapGesture()
+                
         collectionView?.translatesAutoresizingMaskIntoConstraints = false
         collectionView?.topAnchor.constraint(equalTo: navigation.bottomAnchor).isActive = true
         collectionView?.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -96,24 +98,20 @@ extension ChatCollectionViewController {
         collectionBottomAnchor = collectionView?.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         collectionBottomAnchor?.isActive = true
         
-        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor.clear
         collectionView?.keyboardDismissMode = .interactive
         collectionView?.register(ChatCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
-        
     }
     
     override var inputAccessoryView: UIView? {
         get {
-            
             inputChatView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
             inputChatView.textField.delegate = self
             inputChatView.textField.returnKeyType = .send
             inputChatView.fileIcon.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapFileIcon)))
-            
-            
-            
+
             return inputChatView
         }
     }
@@ -131,7 +129,7 @@ extension ChatCollectionViewController {
         navigation.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         navigation.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         navigation.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        
+
         navigation.backButton.addTarget(self, action: #selector(handleTouchBackButton), for: .touchUpInside)
         
         setupNameAndPhotoPartner()
@@ -210,6 +208,7 @@ extension ChatCollectionViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         handleSend()
+        textField.text?.removeAll()
         return true
     }
     

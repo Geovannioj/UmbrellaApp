@@ -41,10 +41,8 @@ class NavigationView: UIView {
         return view
     }()
     
-    
     init() {
         super.init(frame: CGRect.zero)
-        
         setupView()
     }
 
@@ -83,8 +81,10 @@ class NavigationView: UIView {
     
     func setupBackButton() {
         
-        backButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        backButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        backButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 5).isActive = true
+        backButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 15).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: 30)
+        backButton.widthAnchor.constraint(equalToConstant: 30)
     }
     
     func setupBottomLine() {

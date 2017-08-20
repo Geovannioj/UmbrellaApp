@@ -24,6 +24,7 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
         
         setupInputs()
         
+        dismissKayboardInTapGesture()
     }
     
     // DEIXAR COMENTADO APENAS PARA TESTES DE LOGIN

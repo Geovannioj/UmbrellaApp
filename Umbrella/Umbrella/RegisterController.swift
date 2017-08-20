@@ -20,7 +20,7 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
         
         presenter = RegisterPresenter()
         
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "cancel", style: .plain, target: self, action: #selector(handleReturn))
+        dismissKayboardInTapGesture()
         view.backgroundImage(named: "bkgRegisterView")
         
         setupRegisterInputs()
@@ -131,7 +131,10 @@ extension RegisterController : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        textField.resignFirstResponder()
+        if textField.superview is CampFieldView {
+            (textField.superview as! CampFieldView).nextCamp()
+        }
+        
         return true
     }
 }
