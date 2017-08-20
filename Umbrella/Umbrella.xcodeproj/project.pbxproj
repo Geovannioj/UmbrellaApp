@@ -10,14 +10,23 @@
 		53D4E36AD57783E71AA29DB7 /* Pods_Umbrella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1561CEA4E3A4988F76D06849 /* Pods_Umbrella.framework */; };
 		9E2D83241F436A01000FF593 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D83231F436A01000FF593 /* AlertPresenter.swift */; };
 		9E6065FF1F438C80002C5281 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6065FE1F438C7F002C5281 /* Validations.swift */; };
+		9E6066121F43A065002C5281 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066071F43A065002C5281 /* MessagesTableViewController.swift */; };
 		9E6066161F43A065002C5281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60660B1F43A065002C5281 /* SettingsViewController.swift */; };
 		9E6066171F43A343002C5281 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144C91F3B85A7004FFBCC /* PhotoInteractor.swift */; };
 		9E6066191F43C6C3002C5281 /* PasswordRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */; };
 		9E60661B1F43C70D002C5281 /* PasswordRecover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E60661A1F43C70D002C5281 /* PasswordRecover.storyboard */; };
 		9E60661D1F43C72F002C5281 /* PasswordRecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */; };
 		9E6066371F463BE4002C5281 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E60662F1F463BE4002C5281 /* Profile.storyboard */; };
-		9E6066381F463BE4002C5281 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066301F463BE4002C5281 /* ProfileView.swift */; };
 		9E6066391F463BE4002C5281 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066311F463BE4002C5281 /* ProfileViewController.swift */; };
+		9EB6AD031F476C3A0099331A /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */; };
+		9EB6AD061F4778B40099331A /* PopUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD051F4778B40099331A /* PopUpPresenter.swift */; };
+		9EB6AD1A1F4935AE0099331A /* CampFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD131F4935AE0099331A /* CampFieldView.swift */; };
+		9EB6AD1B1F4935AE0099331A /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD141F4935AE0099331A /* CommentView.swift */; };
+		9EB6AD1C1F4935AE0099331A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD151F4935AE0099331A /* Extensions.swift */; };
+		9EB6AD1D1F4935AE0099331A /* MySupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD161F4935AE0099331A /* MySupportTableViewCell.swift */; };
+		9EB6AD1E1F4935AE0099331A /* MySupportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD171F4935AE0099331A /* MySupportTableViewController.swift */; };
+		9EB6AD1F1F4935AE0099331A /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD181F4935AE0099331A /* NavigationView.swift */; };
+		9EB6AD201F4935AE0099331A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD191F4935AE0099331A /* ProfileView.swift */; };
 		D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
 		D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */; };
 		D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4051F2A78CF00308ABB /* Login.storyboard */; };
@@ -44,23 +53,15 @@
 		FB0144D31F3B85A7004FFBCC /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144CA1F3B85A7004FFBCC /* SaveManager.swift */; };
 		FB0144D41F3B85A7004FFBCC /* UIImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144CB1F3B85A7004FFBCC /* UIImageHandler.swift */; };
 		FB0144D61F3B85A7004FFBCC /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144CD1F3B85A7004FFBCC /* UserInteractor.swift */; };
-		FB02B72A1F47681100696EAA /* MySupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7281F47681100696EAA /* MySupportTableViewCell.swift */; };
-		FB02B72B1F47681100696EAA /* MySupportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7291F47681100696EAA /* MySupportTableViewController.swift */; };
-		FB02B73C1F47761D00696EAA /* CampFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B72C1F47761D00696EAA /* CampFieldView.swift */; };
 		FB02B73D1F47761D00696EAA /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B72D1F47761D00696EAA /* ChatCollectionViewCell.swift */; };
 		FB02B73E1F47761D00696EAA /* ChatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B72E1F47761D00696EAA /* ChatCollectionViewController.swift */; };
 		FB02B73F1F47761D00696EAA /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B72F1F47761D00696EAA /* Comment.swift */; };
-		FB02B7401F47761D00696EAA /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7301F47761D00696EAA /* CommentView.swift */; };
 		FB02B7411F47761D00696EAA /* ExtendedNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7311F47761D00696EAA /* ExtendedNavBarView.swift */; };
-		FB02B7421F47761D00696EAA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7321F47761D00696EAA /* Extensions.swift */; };
 		FB02B7431F47761D00696EAA /* InputChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7331F47761D00696EAA /* InputChatView.swift */; };
 		FB02B7441F47761D00696EAA /* MessageInterector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7341F47761D00696EAA /* MessageInterector.swift */; };
 		FB02B7451F47761D00696EAA /* MessagesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7351F47761D00696EAA /* MessagesPresenter.swift */; };
-		FB02B7461F47761D00696EAA /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7361F47761D00696EAA /* MessagesTableViewController.swift */; };
-		FB02B7471F47761D00696EAA /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7371F47761D00696EAA /* NavigationView.swift */; };
 		FB02B7481F47761D00696EAA /* ProfileManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB02B7381F47761D00696EAA /* ProfileManager.storyboard */; };
 		FB02B7491F47761D00696EAA /* ProfileManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7391F47761D00696EAA /* ProfileManagerViewController.swift */; };
-		FB02B74A1F47761D00696EAA /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B73A1F47761D00696EAA /* ReportTableViewController.swift */; };
 		FB02B74B1F47761D00696EAA /* SeeReportDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B73B1F47761D00696EAA /* SeeReportDescriptionTableViewController.swift */; };
 		FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */; };
 		FB3734101F3914E400FB3213 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */; };
@@ -87,13 +88,32 @@
 		1561CEA4E3A4988F76D06849 /* Pods_Umbrella.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Umbrella.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E2D83231F436A01000FF593 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		9E6065FE1F438C7F002C5281 /* Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
+		9E6066011F43A065002C5281 /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatCollectionViewCell.swift; path = Umbrella/ChatCollectionViewCell.swift; sourceTree = "<group>"; };
+		9E6066021F43A065002C5281 /* ChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatCollectionViewController.swift; path = Umbrella/ChatCollectionViewController.swift; sourceTree = "<group>"; };
+		9E6066031F43A065002C5281 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = Umbrella/Comment.swift; sourceTree = "<group>"; };
+		9E6066041F43A065002C5281 /* InputChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputChatView.swift; path = Umbrella/InputChatView.swift; sourceTree = "<group>"; };
+		9E6066051F43A065002C5281 /* MessageInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageInterector.swift; path = Umbrella/MessageInterector.swift; sourceTree = "<group>"; };
+		9E6066061F43A065002C5281 /* MessagesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesPresenter.swift; path = Umbrella/MessagesPresenter.swift; sourceTree = "<group>"; };
+		9E6066071F43A065002C5281 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesTableViewController.swift; path = Umbrella/MessagesTableViewController.swift; sourceTree = "<group>"; };
+		9E6066081F43A065002C5281 /* ProfileManager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ProfileManager.storyboard; path = Umbrella/ProfileManager.storyboard; sourceTree = "<group>"; };
+		9E6066091F43A065002C5281 /* ProfileManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileManagerViewController.swift; path = Umbrella/ProfileManagerViewController.swift; sourceTree = "<group>"; };
 		9E60660B1F43A065002C5281 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Umbrella/SettingsViewController.swift; sourceTree = "<group>"; };
 		9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverView.swift; sourceTree = "<group>"; };
 		9E60661A1F43C70D002C5281 /* PasswordRecover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PasswordRecover.storyboard; sourceTree = "<group>"; };
 		9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverViewController.swift; sourceTree = "<group>"; };
 		9E60662F1F463BE4002C5281 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		9E6066301F463BE4002C5281 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		9E6066311F463BE4002C5281 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeReportDescriptionTableViewController.swift; path = Umbrella/SeeReportDescriptionTableViewController.swift; sourceTree = "<group>"; };
+		9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = Umbrella/ExtendedNavBarView.swift; sourceTree = "<group>"; };
+		9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
+		9EB6AD051F4778B40099331A /* PopUpPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpPresenter.swift; sourceTree = "<group>"; };
+		9EB6AD131F4935AE0099331A /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampFieldView.swift; path = Umbrella/CampFieldView.swift; sourceTree = "<group>"; };
+		9EB6AD141F4935AE0099331A /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentView.swift; path = Umbrella/CommentView.swift; sourceTree = "<group>"; };
+		9EB6AD151F4935AE0099331A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Umbrella/Extensions.swift; sourceTree = "<group>"; };
+		9EB6AD161F4935AE0099331A /* MySupportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySupportTableViewCell.swift; path = Umbrella/MySupportTableViewCell.swift; sourceTree = "<group>"; };
+		9EB6AD171F4935AE0099331A /* MySupportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySupportTableViewController.swift; path = Umbrella/MySupportTableViewController.swift; sourceTree = "<group>"; };
+		9EB6AD181F4935AE0099331A /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationView.swift; path = Umbrella/NavigationView.swift; sourceTree = "<group>"; };
+		9EB6AD191F4935AE0099331A /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = Umbrella/ProfileView.swift; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +224,14 @@
 			name = Validations;
 			sourceTree = "<group>";
 		};
+		9EB6AD041F47787D0099331A /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				9EB6AD051F4778B40099331A /* PopUpPresenter.swift */,
+			);
+			name = PopUp;
+			sourceTree = "<group>";
+		};
 		9ECE54DA1F2BBA9B0035913B /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,7 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				9E6066311F463BE4002C5281 /* ProfileViewController.swift */,
-				9E6066301F463BE4002C5281 /* ProfileView.swift */,
+				9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -315,10 +343,24 @@
 		D4B1E3F51F2A78CF00308ABB = {
 			isa = PBXGroup;
 			children = (
-				FB02B7381F47761D00696EAA /* ProfileManager.storyboard */,
-				FB02B73B1F47761D00696EAA /* SeeReportDescriptionTableViewController.swift */,
-				FB02B7281F47681100696EAA /* MySupportTableViewCell.swift */,
-				FB02B7291F47681100696EAA /* MySupportTableViewController.swift */,
+				9EB6AD131F4935AE0099331A /* CampFieldView.swift */,
+				9EB6AD141F4935AE0099331A /* CommentView.swift */,
+				9EB6AD151F4935AE0099331A /* Extensions.swift */,
+				9EB6AD161F4935AE0099331A /* MySupportTableViewCell.swift */,
+				9EB6AD171F4935AE0099331A /* MySupportTableViewController.swift */,
+				9EB6AD181F4935AE0099331A /* NavigationView.swift */,
+				9EB6AD191F4935AE0099331A /* ProfileView.swift */,
+				9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */,
+				9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */,
+				9E6066011F43A065002C5281 /* ChatCollectionViewCell.swift */,
+				9E6066021F43A065002C5281 /* ChatCollectionViewController.swift */,
+				9E6066031F43A065002C5281 /* Comment.swift */,
+				9E6066041F43A065002C5281 /* InputChatView.swift */,
+				9E6066051F43A065002C5281 /* MessageInterector.swift */,
+				9E6066061F43A065002C5281 /* MessagesPresenter.swift */,
+				9E6066071F43A065002C5281 /* MessagesTableViewController.swift */,
+				9E6066081F43A065002C5281 /* ProfileManager.storyboard */,
+				9E6066091F43A065002C5281 /* ProfileManagerViewController.swift */,
 				9E60660B1F43A065002C5281 /* SettingsViewController.swift */,
 				D4E91E211F3E30C9004895B7 /* Umbrella.entitlements */,
 				FBEFEACC1F3A349100CDC99A /* Assets.xcassets */,
@@ -377,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				FB02B7321F47761D00696EAA /* Extensions.swift */,
+				9EB6AD041F47787D0099331A /* PopUp */,
 				9E6066001F438FA1002C5281 /* Validations */,
 				9E2D83251F437122000FF593 /* AlertView */,
 				A17737C31F3BC22900E42C4D /* Messages */,
@@ -655,9 +698,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4E91E311F3E30C9004895B7 /* UserEntity.swift in Sources */,
-				FB02B7461F47761D00696EAA /* MessagesTableViewController.swift in Sources */,
 				FB60D86A1F39127E001E5E51 /* FirebaseManager.swift in Sources */,
 				FB02B73D1F47761D00696EAA /* ChatCollectionViewCell.swift in Sources */,
+				9EB6AD1B1F4935AE0099331A /* CommentView.swift in Sources */,
 				D4E91E2D1F3E30C9004895B7 /* RegisterController.swift in Sources */,
 				FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */,
 				FB60D7D51F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift in Sources */,
@@ -670,43 +713,44 @@
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
 				FB0144D01F3B85A7004FFBCC /* MinorityInterector.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
-				FB02B74A1F47761D00696EAA /* ReportTableViewController.swift in Sources */,
 				D4E91E301F3E30C9004895B7 /* RegisterView.swift in Sources */,
 				FB02B73F1F47761D00696EAA /* Comment.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
+				9E6066121F43A065002C5281 /* MessagesTableViewController.swift in Sources */,
+				9EB6AD031F476C3A0099331A /* ReportTableViewController.swift in Sources */,
 				FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
-				FB02B7421F47761D00696EAA /* Extensions.swift in Sources */,
+				9EB6AD201F4935AE0099331A /* ProfileView.swift in Sources */,
 				FB0144D61F3B85A7004FFBCC /* UserInteractor.swift in Sources */,
 				FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */,
 				D4E91E261F3E30C9004895B7 /* LoginPresenter.swift in Sources */,
 				FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */,
-				FB02B73C1F47761D00696EAA /* CampFieldView.swift in Sources */,
+				9EB6AD1F1F4935AE0099331A /* NavigationView.swift in Sources */,
 				FB02B7411F47761D00696EAA /* ExtendedNavBarView.swift in Sources */,
 				D4E91E2A1F3E30C9004895B7 /* MinorityEntity.swift in Sources */,
+				9EB6AD1A1F4935AE0099331A /* CampFieldView.swift in Sources */,
 				FB0144CE1F3B85A7004FFBCC /* Keychain.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
 				FB60D86E1F39127E001E5E51 /* Report.swift in Sources */,
 				FB02B7491F47761D00696EAA /* ProfileManagerViewController.swift in Sources */,
-				FB02B7401F47761D00696EAA /* CommentView.swift in Sources */,
+				9EB6AD1D1F4935AE0099331A /* MySupportTableViewCell.swift in Sources */,
 				9E60661D1F43C72F002C5281 /* PasswordRecoverViewController.swift in Sources */,
-				FB02B72B1F47681100696EAA /* MySupportTableViewController.swift in Sources */,
+				9EB6AD061F4778B40099331A /* PopUpPresenter.swift in Sources */,
 				9E6066161F43A065002C5281 /* SettingsViewController.swift in Sources */,
 				FB02B7451F47761D00696EAA /* MessagesPresenter.swift in Sources */,
 				FB02B7431F47761D00696EAA /* InputChatView.swift in Sources */,
+				9EB6AD1E1F4935AE0099331A /* MySupportTableViewController.swift in Sources */,
 				D4E91E2B1F3E30C9004895B7 /* PhotoEntity.swift in Sources */,
 				FB02B74B1F47761D00696EAA /* SeeReportDescriptionTableViewController.swift in Sources */,
 				D4E91E321F3E30C9004895B7 /* UserMessageCell.swift in Sources */,
 				D4E91E2E1F3E30C9004895B7 /* RegisterPresenter.swift in Sources */,
 				FB60D7D31F38DD03001E5E51 /* SearchBarCellTableViewCell.swift in Sources */,
-				9E6066381F463BE4002C5281 /* ProfileView.swift in Sources */,
 				FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */,
-				FB02B72A1F47681100696EAA /* MySupportTableViewCell.swift in Sources */,
-				FB02B7471F47761D00696EAA /* NavigationView.swift in Sources */,
 				FB60D8691F39127E001E5E51 /* CustomUserLocationView.swift in Sources */,
 				9E6066191F43C6C3002C5281 /* PasswordRecoverView.swift in Sources */,
 				9E6066171F43A343002C5281 /* PhotoInteractor.swift in Sources */,
 				D4E91E271F3E30C9004895B7 /* LoginView.swift in Sources */,
+				9EB6AD1C1F4935AE0099331A /* Extensions.swift in Sources */,
 				D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */,
 				D4E91E281F3E30C9004895B7 /* MessageEntity.swift in Sources */,
 				FB0144D31F3B85A7004FFBCC /* SaveManager.swift in Sources */,

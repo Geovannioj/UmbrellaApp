@@ -5,7 +5,6 @@
 //  Created by Geovanni Oliveira de Jesus on 14/08/17.
 //  Copyright © 2017 Geovanni Oliveira de Jesus. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import Mapbox
@@ -40,8 +39,7 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         return userReports.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        //setting the cell up
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "report", for: indexPath)
         
         //sets the label of title of the report
@@ -52,16 +50,13 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         let description = tableView.viewWithTag(4) as! UITextView
         description.text = self.userReports[indexPath.row].description
         
-        //it sets the view as a MapView
-        let location = tableView.viewWithTag(5) as! MGLMapView
-        location.isUserInteractionEnabled = false
-
-        //it gets the coordinates
+        /*let location = tableView.viewWithTag(5) as! MGLMapView
+        
         let latitude = self.userReports[indexPath.row].latitude
         let longitude = self.userReports[indexPath.row].longitude
         
-        //it sets pin to the location of the report and center the map on it
-        setMapLocation(location: location, latitude: latitude, longitude: longitude)
+        self.seeReport.initiateLocationOnMap(map: location, latitude: latitude, longitude: longitude)
+        */
         
         return cell
     }
@@ -115,3 +110,33 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         })
     }
 }
+
+
+
+//            if snapshot.childrenCount > 0 {
+//                self.userReports.removeAll()
+//
+//                for report in snapshot.children.allObjects as![DataSnapshot]{
+//                    let reportObj = report.value as? [String: AnyObject]
+//
+//                    let id = reportObj?["id"]
+//                    let userId = reportObj?["userId"]
+//                    let title = reportObj?["title"]
+//                    let description = reportObj?["description"]
+//                    let violenceKind = reportObj?["violenceKind"]
+//                    let violenceAproximatedTime = reportObj?["violenceAproximatedTime"]
+//                    let latitude = reportObj?["latitude"]
+//                    let longitude = reportObj?["longitude"]
+//                    let personGender = reportObj?["personGender"]
+//
+//                    let reportAtt = Report(id: id as! String, userId: userId as! String, title: title as! String, description: description as! String, violenceKind: violenceKind as! String, violenceAproximatedTime: violenceAproximatedTime as! Double, latitude: latitude as! Double, longitude: longitude as! Double, personGender: personGender as! String)
+//
+//
+//                    self.userReports.append(reportAtt)
+//
+//                }
+
+//
+//            }
+//        })
+        

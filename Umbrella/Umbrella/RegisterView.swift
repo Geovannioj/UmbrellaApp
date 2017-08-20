@@ -12,12 +12,12 @@ import UIKit
 class RegisterView: UIView {
     
     let closeButton : UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "CloseIcon")?.withRenderingMode(.alwaysTemplate)
-        view.contentMode = .scaleAspectFill
-        view.tintColor = UIColor(r: 74, g: 74, b: 74)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "CloseIcon")?.withRenderingMode(.alwaysTemplate)
+        imageView.contentMode = .scaleAspectFill
+        imageView.tintColor = UIColor(r: 74, g: 74, b: 74)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     let profileImage : UIImageView = {
