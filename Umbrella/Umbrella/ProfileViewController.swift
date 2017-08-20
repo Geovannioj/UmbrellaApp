@@ -37,8 +37,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
     
     let alert: AlertPresenter = AlertPresenter()
     
-    var popupView: UIView!
-    var blurView: UIView!
+    //var popupView: UIView!
+    //var blurView: UIView!
+    let popUp = PopUpPresenter()
     
     override func viewDidLoad() {
 
@@ -48,10 +49,11 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             
         })
         
-        loadBlurViewIntoController()
-        blurView.isHidden = true
-        loadPopUpViewIntoController()
-        popupView.isHidden = true
+        popUp.prepare(view: view,
+              popUpFrame: CGRect(x: 8, y: 1/9 * self.view.frame.height, width: self.view.frame.width - 16, height: 3/5 * self.view.frame.height),
+              blurFrame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        popUp.isHidden = true
+        putButtonsOnPopUp()
         
         inputs.alterarFotoButton.isHidden = true
         delegate?.getNavBar().rightBarButtonItem = UIBarButtonItem(title: "Editar", style: .plain, target: self, action: #selector(editingMode))
@@ -62,15 +64,29 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         setupInputs()
         setupUser()
         setTable()
-        
+        //Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: nil)
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 150
         }
+        if isEdit == true && section == 2 {
+            return 150
+        }
         return 0
     }
+    
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if isEdit == true && section == 2 {
+//            let image = UIView(frame: CGRect(x: tableView.rectForHeader(inSection: 2).size.width * 1/2, y: tableView.rectForHeader(inSection: 2).size.height * 1/2, width: 0.1, height: 0.1))
+//            //let image = UIImageView(image: #imageLiteral(resourceName: "heart"))
+//            image.image = #imageLiteral(resourceName: "heart")
+//            //image.contentMode = .scaleAspectFit
+//            return image
+//        }
+//        return nil
+//    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if isEdit == false {
@@ -283,89 +299,96 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             
             emailCell.accessoryType = .none
             emailDetail.textColor = UIColor(r: 170, g: 10, b: 234)
+            emailDetail.text = ""
             
             birthCell.accessoryType = .none
             birthDetail.textColor = UIColor(r: 170, g: 10, b: 234)
+            birthDetail.text = ""
             
             minorityCell.accessoryType = .none
             minorityDetail.textColor = UIColor(r: 170, g: 10, b: 234)
+            minorityDetail.text = ""
             
             setTable()
             
+            tableView.reloadData()
             tableView.beginUpdates()
             tableView.reloadSections(IndexSet(integersIn: 0...2), with: .top)
             tableView.endUpdates()
         }
     }
     
-    func loadBlurViewIntoController() {
-        blurView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        blurView.backgroundColor = .white
-        blurView.alpha = 0.5
-        self.view.addSubview(blurView)
-        self.view.bringSubview(toFront: (view.subviews.last)!)
-    }
+//    func loadBlurViewIntoController() {
+//        blurView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+//        blurView.backgroundColor = .white
+//        blurView.alpha = 0.5
+//        self.view.addSubview(blurView)
+//        self.view.bringSubview(toFront: (view.subviews.last)!)
+//    }
+//    
+//    func loadPopUpViewIntoController() {
+//        
+//        self.popupView = UIView(frame: CGRect(x: 8, y: 1/9 * self.view.frame.height, width: self.view.frame.width - 16, height: 3/5 * self.view.frame.height))
+//        popupView.backgroundColor = UIColor(r: 27, g: 2, b: 37)
+//        popupView.layer.cornerRadius = 10
+//        self.view.addSubview(popupView)
+//        popupView.isHidden = false
+//        self.view.bringSubview(toFront: (view.subviews.last)!)
+//        
+//
+//        
+//    }
     
-    func loadPopUpViewIntoController() {
-        
-        self.popupView = UIView(frame: CGRect(x: 8, y: 1/9 * self.view.frame.height, width: self.view.frame.width - 16, height: 3/5 * self.view.frame.height))
-        popupView.backgroundColor = UIColor(r: 27, g: 2, b: 37)
-        popupView.layer.cornerRadius = 10
-        self.view.addSubview(popupView)
-        popupView.isHidden = false
-        self.view.bringSubview(toFront: (view.subviews.last)!)
+    func putButtonsOnPopUp() {
         
         let closeButton = UIImageView(frame: CGRect(x: 15, y: 15, width: 20, height: 20))
         closeButton.image = #imageLiteral(resourceName: "closeIcon")
-        self.popupView.addSubview(closeButton)
-        self.popupView.bringSubview(toFront: (view.subviews.last)!)
+        self.popUp.popUpView.addSubview(closeButton)
+        self.popUp.popUpView.bringSubview(toFront: (view.subviews.last)!)
         closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeButtonAction)))
         closeButton.isUserInteractionEnabled = true
         
-        let saveButton = UIButton(frame: CGRect(x: popupView.bounds.size.width * 1/3, y: popupView.bounds.size.height - popupView.bounds.size.height * 1/10 - 20, width: popupView.bounds.size.width * 1/3, height: popupView.bounds.size.height * 1/10))
+        let saveButton = UIButton(frame: CGRect(x: self.popUp.popUpView.bounds.size.width * 1/3, y: self.popUp.popUpView.bounds.size.height - self.popUp.popUpView.bounds.size.height * 1/10 - 20, width: self.popUp.popUpView.bounds.size.width * 1/3, height: self.popUp.popUpView.bounds.size.height * 1/10))
         saveButton.setTitle("Salvar", for: .normal)
         saveButton.tintColor = .white
         saveButton.backgroundColor = UIColor(r: 74, g: 3, b: 103)
         saveButton.layer.cornerRadius = 5
-        popupView.addSubview(saveButton)
-        self.popupView.bringSubview(toFront: (view.subviews.last)!)
+        self.popUp.popUpView.addSubview(saveButton)
+        self.popUp.popUpView.bringSubview(toFront: (view.subviews.last)!)
         saveButton.addTarget(self, action: #selector(saveButtonAction), for: .touchUpInside)
-        
     }
     
     func chooseBirthDate() {
         tableView.isScrollEnabled = false
-        popupView.isHidden = false
-        blurView.isHidden = false
+        popUp.isHidden = false
         
-        datePicker = UIDatePicker(frame: CGRect(x: 0, y: 1/5 * popupView.frame.height, width: popupView.frame.width, height: 1/2 * popupView.frame.height))
+        datePicker = UIDatePicker(frame: CGRect(x: 0, y: 1/5 * self.popUp.popUpView.frame.height, width: self.popUp.popUpView.frame.width, height: 1/2 * self.popUp.popUpView.frame.height))
         datePicker.setValue(UIColor.white, forKey: "textColor")
+        datePicker.locale = Locale(identifier: "pt_BR")
         datePicker.datePickerMode = .date
-        popupView.addSubview(datePicker)
-        self.popupView.bringSubview(toFront: (view.subviews.last)!)
+        self.popUp.popUpView.addSubview(datePicker)
+        self.popUp.popUpView.bringSubview(toFront: (view.subviews.last)!)
         
     }
     
     func chooseMinority() {
         tableView.isScrollEnabled = false
-        popupView.isHidden = false
-        blurView.isHidden = false
+        popUp.isHidden = false
         
-        picker = UIPickerView(frame: CGRect(x: 0, y: 1/5 * popupView.frame.height, width: popupView.frame.width, height: 1/2 * popupView.frame.height))
+        picker = UIPickerView(frame: CGRect(x: 0, y: 1/5 * self.popUp.popUpView.frame.height, width: self.popUp.popUpView.frame.width, height: 1/2 * self.popUp.popUpView.frame.height))
         picker.dataSource = self
         picker.delegate = self
         
         minoritySelected = minorities.first!
         picker.setValue(UIColor.white, forKey: "textColor")
-        popupView.addSubview(picker)
-        self.popupView.bringSubview(toFront: (view.subviews.last)!)
+        self.popUp.popUpView.addSubview(picker)
+        self.popUp.popUpView.bringSubview(toFront: (view.subviews.last)!)
         
     }
     
     func closeButtonAction() {
         tableView.isScrollEnabled = true
-        popupView.isHidden = true
-        blurView.isHidden = true
+        popUp.isHidden = true
         
         if isBirthSelection == true {
             datePicker.removeFromSuperview()

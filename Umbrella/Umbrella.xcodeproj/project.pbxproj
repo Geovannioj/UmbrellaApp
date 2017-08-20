@@ -19,7 +19,6 @@
 		9E6066121F43A065002C5281 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066071F43A065002C5281 /* MessagesTableViewController.swift */; };
 		9E6066131F43A065002C5281 /* ProfileManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E6066081F43A065002C5281 /* ProfileManager.storyboard */; };
 		9E6066141F43A065002C5281 /* ProfileManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066091F43A065002C5281 /* ProfileManagerViewController.swift */; };
-		9E6066151F43A065002C5281 /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60660A1F43A065002C5281 /* ReportTableViewController.swift */; };
 		9E6066161F43A065002C5281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60660B1F43A065002C5281 /* SettingsViewController.swift */; };
 		9E6066171F43A343002C5281 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0144C91F3B85A7004FFBCC /* PhotoInteractor.swift */; };
 		9E6066191F43C6C3002C5281 /* PasswordRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */; };
@@ -34,6 +33,8 @@
 		9E6066391F463BE4002C5281 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066311F463BE4002C5281 /* ProfileViewController.swift */; };
 		9E60663A1F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */; };
 		9EB6AD011F472F580099331A /* ExtendedNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */; };
+		9EB6AD031F476C3A0099331A /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */; };
+		9EB6AD061F4778B40099331A /* PopUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD051F4778B40099331A /* PopUpPresenter.swift */; };
 		D4B1E4021F2A78CF00308ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
 		D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */; };
 		D4B1E4071F2A78CF00308ABB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4051F2A78CF00308ABB /* Login.storyboard */; };
@@ -94,7 +95,6 @@
 		9E6066071F43A065002C5281 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesTableViewController.swift; path = Umbrella/MessagesTableViewController.swift; sourceTree = "<group>"; };
 		9E6066081F43A065002C5281 /* ProfileManager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ProfileManager.storyboard; path = Umbrella/ProfileManager.storyboard; sourceTree = "<group>"; };
 		9E6066091F43A065002C5281 /* ProfileManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileManagerViewController.swift; path = Umbrella/ProfileManagerViewController.swift; sourceTree = "<group>"; };
-		9E60660A1F43A065002C5281 /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReportTableViewController.swift; path = Umbrella/ReportTableViewController.swift; sourceTree = "<group>"; };
 		9E60660B1F43A065002C5281 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Umbrella/SettingsViewController.swift; sourceTree = "<group>"; };
 		9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverView.swift; sourceTree = "<group>"; };
 		9E60661A1F43C70D002C5281 /* PasswordRecover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PasswordRecover.storyboard; sourceTree = "<group>"; };
@@ -108,6 +108,8 @@
 		9E6066311F463BE4002C5281 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeReportDescriptionTableViewController.swift; path = Umbrella/SeeReportDescriptionTableViewController.swift; sourceTree = "<group>"; };
 		9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = Umbrella/ExtendedNavBarView.swift; sourceTree = "<group>"; };
+		9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
+		9EB6AD051F4778B40099331A /* PopUpPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpPresenter.swift; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,14 @@
 			name = Validations;
 			sourceTree = "<group>";
 		};
+		9EB6AD041F47787D0099331A /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				9EB6AD051F4778B40099331A /* PopUpPresenter.swift */,
+			);
+			name = PopUp;
+			sourceTree = "<group>";
+		};
 		9ECE54DA1F2BBA9B0035913B /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +248,7 @@
 				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
 				9E6066301F463BE4002C5281 /* ProfileView.swift */,
 				9E6066311F463BE4002C5281 /* ProfileViewController.swift */,
+				9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -309,7 +320,6 @@
 				9E6066071F43A065002C5281 /* MessagesTableViewController.swift */,
 				9E6066081F43A065002C5281 /* ProfileManager.storyboard */,
 				9E6066091F43A065002C5281 /* ProfileManagerViewController.swift */,
-				9E60660A1F43A065002C5281 /* ReportTableViewController.swift */,
 				9E60660B1F43A065002C5281 /* SettingsViewController.swift */,
 				D4E91E211F3E30C9004895B7 /* Umbrella.entitlements */,
 				FBEFEACC1F3A349100CDC99A /* Assets.xcassets */,
@@ -364,6 +374,7 @@
 		D4B1E4151F2A78F700308ABB /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				9EB6AD041F47787D0099331A /* PopUp */,
 				9E6066001F438FA1002C5281 /* Validations */,
 				9E2D83251F437122000FF593 /* AlertView */,
 				A17737C31F3BC22900E42C4D /* Messages */,
@@ -656,12 +667,12 @@
 				9E6066101F43A065002C5281 /* MessageInterector.swift in Sources */,
 				FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */,
 				FB0144D01F3B85A7004FFBCC /* MinorityInterector.swift in Sources */,
-				9E6066151F43A065002C5281 /* ReportTableViewController.swift in Sources */,
 				D4B1E4041F2A78CF00308ABB /* LoginViewController.swift in Sources */,
 				D4E91E301F3E30C9004895B7 /* RegisterView.swift in Sources */,
 				9EB6AD011F472F580099331A /* ExtendedNavBarView.swift in Sources */,
 				D4B1E4271F2A95D600308ABB /* RegisterReportViewController.swift in Sources */,
 				9E6066121F43A065002C5281 /* MessagesTableViewController.swift in Sources */,
+				9EB6AD031F476C3A0099331A /* ReportTableViewController.swift in Sources */,
 				FB60D86D1F39127E001E5E51 /* RegisterReportSecondViewController.swift in Sources */,
 				D4B1E4211F2A91B300308ABB /* TabBarViewController.swift in Sources */,
 				9E6066341F463BE4002C5281 /* CommentView.swift in Sources */,
@@ -675,6 +686,7 @@
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
 				FB60D86E1F39127E001E5E51 /* Report.swift in Sources */,
 				9E60661D1F43C72F002C5281 /* PasswordRecoverViewController.swift in Sources */,
+				9EB6AD061F4778B40099331A /* PopUpPresenter.swift in Sources */,
 				9E6066161F43A065002C5281 /* SettingsViewController.swift in Sources */,
 				9E60660D1F43A065002C5281 /* ChatCollectionViewController.swift in Sources */,
 				D4E91E2B1F3E30C9004895B7 /* PhotoEntity.swift in Sources */,

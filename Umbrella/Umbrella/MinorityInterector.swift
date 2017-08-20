@@ -42,7 +42,6 @@ class MinorityInteractor {
                 minority.type = dict["type"] as! String
                 minorities.append(minority)
             }
-            print(minorities)
             completion(minorities)
         })
     }
