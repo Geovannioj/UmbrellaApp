@@ -13,7 +13,7 @@ class RegisterView: UIView {
     
     let closeButton : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "closeIcon")?.withRenderingMode(.alwaysTemplate)
+        imageView.image = UIImage(named: "CloseIcon")?.withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = UIColor(r: 74, g: 74, b: 74)
         imageView.translatesAutoresizingMaskIntoConstraints = false

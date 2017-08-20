@@ -16,6 +16,8 @@ protocol ProfileTableViewControllerProtocol {
 
 class ProfileTableViewController: UITableViewController, InteractorCompleteProtocol {
     
+    
+    
     @IBOutlet weak var emailCell: UITableViewCell!
     @IBOutlet weak var passwordCell: UITableViewCell!
     @IBOutlet weak var birthCell: UITableViewCell!
@@ -37,8 +39,6 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
     
     let alert: AlertPresenter = AlertPresenter()
     
-    //var popupView: UIView!
-    //var blurView: UIView!
     let popUp = PopUpPresenter()
     
     override func viewDidLoad() {
@@ -64,7 +64,6 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         setupInputs()
         setupUser()
         setTable()
-        //Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: nil)
     }
     
 
@@ -116,18 +115,6 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         }
     }
     
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.
-//        if indexPath.section == 0 {
-//            if isEdit == false {
-//                cell?.accessoryType = .none
-//            }
-//            else {
-//                cell?.accessoryType = .disclosureIndicator
-//            }
-//        }
-//        return cell!
-//    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -343,7 +330,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
     func putButtonsOnPopUp() {
         
         let closeButton = UIImageView(frame: CGRect(x: 15, y: 15, width: 20, height: 20))
-        closeButton.image = #imageLiteral(resourceName: "closeIcon")
+        closeButton.image = #imageLiteral(resourceName: "CloseIcon")
         self.popUp.popUpView.addSubview(closeButton)
         self.popUp.popUpView.bringSubview(toFront: (view.subviews.last)!)
         closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeButtonAction)))
@@ -390,7 +377,6 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
     func closeButtonAction() {
         tableView.isScrollEnabled = true
         popUp.isHidden = true
-        
         if isBirthSelection == true {
             datePicker.removeFromSuperview()
         }
@@ -416,14 +402,12 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         else {
             closeButtonAction()
             UserInteractor.updateCurrentUser(birthDate: datePicker.date)
-            setTable()
         }
     }
     
     func saveMinorityAction() {
         closeButtonAction()
         UserInteractor.updateCurrentUser(minority: minoritySelected)
-        setTable()
     }
     
 }
@@ -438,9 +422,7 @@ extension ProfileTableViewController: UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if minorities.isEmpty {
-            return 0
-        }
+
         return minorities.count
     }
     
@@ -451,12 +433,11 @@ extension ProfileTableViewController: UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 40
+        return 35
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        minoritySelected.id = minorities[row].id
-        minoritySelected.type = minorities[row].type
+        minoritySelected = minorities[row]
     }
 }
 
