@@ -228,8 +228,9 @@ extension MapViewController : MGLMapViewDelegate {
             self.view.addSubview(imageView)
         }
         
-        
+     
     }
+    //TO-DO: Ta dando error aqui
     //MARK : Center functions
     func centerOnUser(){
         

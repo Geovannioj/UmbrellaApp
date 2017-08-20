@@ -26,10 +26,7 @@ class SeeReportViewController: UIViewController {
     @IBOutlet weak var violenceAproximateTime: UILabel!
     @IBOutlet weak var violenceDescription: UITextView!
     @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var commentTextView: UITextView!
-//    @IBOutlet weak var sendComment: UIButton!
-//    @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint?
-    
+    @IBOutlet weak var sendMessageBtn: UIButton!
     
     //references
     var report:Report?
@@ -157,7 +154,7 @@ class SeeReportViewController: UIViewController {
         map.showsUserLocation = false
         
         let annotation = MGLPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: (self.report?.latitude)!, longitude: (self.report?.longitude)! )
+        annotation.coordinate = CLLocationCoordinate2D(latitude: (latitude), longitude: (longitude) )
         annotation.title = self.report?.title
         self.violanceLocation.addAnnotation(annotation)
         
@@ -279,6 +276,34 @@ class SeeReportViewController: UIViewController {
         
         self.refComment.child(id).setValue(comment.turnToDictionary())
         self.commentView.textView.text = ""
+
+    }
+    
+    @IBAction func sendMessagesAction(_ sender: Any) {
+        
+        let sendMessage = UIAlertController(title: "Enviar Mensagem",
+                                            message: "Você deseja mandar mensagem para a pessoa?",
+                                            preferredStyle: .alert)
+        
+        sendMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
+                                            handler: {(action) in
+                                                
+            if let partnerId = self.report?.userId {
+                MessageInterector.createChat(withId: partnerId)
+                
+                UserInteractor.getUser(withId: partnerId, completion: { (user) in
+                
+                    let chatController = ChatCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+                    chatController.partner = user
+                    chatController.inputChatView.textField.text = "Eu estava presente no momento e gostaria de ajudar você com a agressão, posso ajudar?"
+                    self.present(chatController, animated: true, completion: nil)
+                })
+            }
+        }))
+        
+        sendMessage.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            
+        self.present(sendMessage, animated: true, completion: nil)
 
     }
 

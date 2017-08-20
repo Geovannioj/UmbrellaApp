@@ -41,9 +41,12 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "report", for: indexPath)
+        
+        //sets the label of title of the report
         let title = tableView.viewWithTag(3) as! UILabel
         title.text = self.userReports[indexPath.row].title
         
+        //it sets the label of description of the report
         let description = tableView.viewWithTag(4) as! UILabel
         description.text = self.userReports[indexPath.row].description
         
@@ -58,18 +61,23 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
-    func filterUserArray(reports:[Report]) {
+ 
+    func setMapLocation(location:MGLMapView, latitude: Double, longitude: Double){
         
-        for report in reports {
-            //if report.userId == UserInteractor.getCurrentUserUid() {
-            if report.userId == "userIdComing" {
-                self.userReports.append(report)
-            }else {
-                //NOTHING TO DO
-            }
-        }
+        let locationCoodenate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        
+        location.setCenter(locationCoodenate, zoomLevel: 13, animated: true)
+        
+        location.showsUserLocation = false
+        
+        let annotation = MGLPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: (latitude), longitude: (longitude) )
+        
+        location.addAnnotation(annotation)
+        
     }
     
+    //It observers the firebase database to get the newly changes
     func setObserverToFireBaseChanges() {
         
         self.refUserReport.observe(.childAdded, with: {(snapshot) in

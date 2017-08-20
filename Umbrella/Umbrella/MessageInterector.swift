@@ -12,6 +12,15 @@ import Firebase
 
 class MessageInterector {
     
+    static func createChat(withId toId : String) {
+        
+        let fromId = UserInteractor.getCurrentUserUid()!
+        
+        let userMesRef = Database.database().reference().child("user-messages")
+        userMesRef.child(fromId).child(toId)
+        userMesRef.child(toId).child(fromId)
+    }
+    
     static func sendMessage(_ text : String, toId : String){
         
         let fromId = UserInteractor.getCurrentUserUid()!

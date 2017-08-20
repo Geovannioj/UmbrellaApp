@@ -157,20 +157,6 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         return counter
     }
 
-    @IBAction func registerReport(_ sender: Any) {
-        
-        if (self.reportToEdit != nil) {
-            
-            editReport(reportToEdit: self.reportToEdit!)
-            performSegue(withIdentifier: "backToMap", sender: Any.self)
-        }else {
-            
-            addReport()
-            performSegue(withIdentifier: "backToMap", sender: Any.self)
-        }
-        
-    }
-
     func initFieldsToEdit() {
         
         self.violenceDescription.text = reportToEdit?.description
@@ -181,11 +167,6 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
     }
 
-    func addUserReportMessage() {
-        
-      
-        
-    }
     
     func addReport() {
         
@@ -203,14 +184,14 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
                 let report = Report(id: id, userId: userId!, title: title!, description: description!, violenceKind: violenceKind, violenceAproximatedTime: Double(violenceAproximatedTime!), latitude: latitude!, longitude: longitude!, personGender: personGender)
         print(report.turnToDictionary())
         
-               self.refReports.child(id).setValue(report.turnToDictionary())
+                self.refReports.child(id).setValue(report.turnToDictionary())
        
                 let ref = self.refMessageReport.child(userId!)
                 
                 ref.updateChildValues([id : 1])
         
-        let saveMessage = UIAlertController(title: "Report saved",
-                                              message: "This report has been successfully saved",
+        let saveMessage = UIAlertController(title: "Relato Salvo",
+                                              message: "Relato salvo com sucesso",
                                               preferredStyle: .alert)
         saveMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
                                             handler: {(action) in

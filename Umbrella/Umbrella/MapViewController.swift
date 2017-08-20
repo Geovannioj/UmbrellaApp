@@ -45,7 +45,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         super.viewDidLoad()
         
         buttonDistance = HorizontalStackButtons.spacing
-        
+      
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
@@ -102,7 +102,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        // searchBar.barTintColor = UIColor.clear
-        centerOnUser()
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+           centerOnUser() 
+        }
+        
         
     }
     //MARK: Buttons functions

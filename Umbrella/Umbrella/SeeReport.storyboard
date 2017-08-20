@@ -390,6 +390,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLx-gr-EME">
                                                     <rect key="frame" x="0.0" y="0.0" width="21" height="25"/>
                                                     <state key="normal" image="message"/>
+                                                    <connections>
+                                                        <action selector="sendMessagesAction:" destination="saK-jK-EH4" eventType="touchUpInside" id="Tsk-wJ-yEf"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uoH-hh-HV3">
                                                     <rect key="frame" x="51" y="0.0" width="20" height="25"/>
@@ -479,6 +482,7 @@
                     <connections>
                         <outlet property="agression" destination="sjS-aS-ryp" id="A2X-x2-gi5"/>
                         <outlet property="headerView" destination="IlS-TY-DBs" id="nn0-S5-pcQ"/>
+                        <outlet property="sendMessageBtn" destination="ZLx-gr-EME" id="K8R-bu-ch4"/>
                         <outlet property="tableView" destination="Iod-iz-Z51" id="wUW-Zu-pkz"/>
                         <outlet property="userPhoto" destination="NsF-i1-dJe" id="lIO-Gy-xB1"/>
                         <outlet property="username" destination="NTA-7y-DWt" id="eo3-y0-NhV"/>

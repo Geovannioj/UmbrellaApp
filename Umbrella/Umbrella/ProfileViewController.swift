@@ -66,6 +66,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         setTable()
         //Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: nil)
     }
+    
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
