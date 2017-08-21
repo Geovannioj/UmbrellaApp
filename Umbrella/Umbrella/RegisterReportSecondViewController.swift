@@ -173,7 +173,9 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
                 let latitude = self.latitude
                 let longitude = self.longitude
+            //
         
+        //
                 let report = Report(id: id, userId: userId!, title: title!, description: description!, violenceKind: violenceKind, violenceAproximatedTime: Double(violenceAproximatedTime!), latitude: latitude!, longitude: longitude!, personGender: personGender)
         print(report.turnToDictionary())
         

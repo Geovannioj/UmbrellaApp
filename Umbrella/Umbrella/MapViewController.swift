@@ -285,6 +285,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
                // for report in reports{
                     if new.violenceKind.lowercased() == filtro.lowercased(){
                         addPin(new: new)
+                         
                     }
                // }
             
@@ -295,7 +296,30 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         
     }
+    func getPlace(latitude:Double,longitude:Double,onComplete: @escaping ([String]) -> ()){
+        //
+        let options = ReverseGeocodeOptions(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+        // Or perhaps: ReverseGeocodeOptions(location: locationManager.location)
+        var returnStringArray:[String] = []
+        _ = geocoder.geocode(options) { (placemarks, attribution, error) in
+            guard let placemark = placemarks?.first else {
+                return
+            }
+           
+            let auxString = placemark.administrativeRegion?.code?.characters.split(separator: Character.init("-")).map(String.init)
+             returnStringArray = [placemark.administrativeRegion?.name ?? "",auxString?[1] ?? "",auxString?[0] ?? ""]
+            
+            
+            
+            onComplete(returnStringArray)
+            
+        //
+        }
+        
        
+    }
+    
+    
     @IBAction func expandAction(_ sender: UIButton) {
         
         if UserInteractor.getCurrentUserUid() == nil {
