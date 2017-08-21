@@ -82,33 +82,33 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         let deleteButton = MGSwipeButton(title:"            ", backgroundColor: UIColor(patternImage: UIImage(named: "deleteReport")!)){
             (sender: MGSwipeTableCell!) -> Bool in
             
-            let deleteWarning = UIAlertController(title: "Delete",
-                                                  message: "Are you sure you want to delete it?",
+            let deleteWarning = UIAlertController(title: "Deletar relato",
+                                                  message: "Você tem certeza que deseja excluir este relato?",
                                                   preferredStyle: .alert)
-            deleteWarning.addAction(UIAlertAction(title: "Delete", style: .destructive,
+            deleteWarning.addAction(UIAlertAction(title: "Deletar", style: .destructive,
                                                   handler: { (action) in
                                                     
                                                     // report to be deleted
                                                     let reportToDelete = self.userReports[indexPath.row]
-                                                   
-                                                    //remove it from the local array
-                                                    self.mapController.reports.remove(at: self.seeReport.getReportIndexInArray(report: reportToDelete))
                                                     
                                                     //remove the report from the report table
                                                     self.refReports.child(reportToDelete.id).setValue(nil)
                                                     
                                                     //remove from the user-report table
-                                                    //necessita pegar o ID para excluir da tabela associativa
-                                                    //self.refUserReport.child("id").setValue(nil)
+                                                    self.refUserReport.child(reportToDelete.id).removeValue()
+                                                    
+                                                    self.userReports.remove(at: indexPath.row)
+                                                    self.tableView.reloadData()
                                                     
             }))
             
             
-            deleteWarning.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel,
+            deleteWarning.addAction(UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.cancel,
                                                   handler:nil))
             
             self.present(deleteWarning, animated: true, completion: nil)
-                        
+            
+            
             return true
         }
     
@@ -119,6 +119,22 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    func getReportIndexInArray(report: Report) -> Int {
+        
+        var counter = 0
+        
+        for report in self.mapController.reports {
+            if report.id == self.mapController.reports[counter].id {
+                return counter
+            } else {
+                counter += 1
+            }
+            
+        }
+        //if there is an error it will crash because the report was not found and a negative value was returned
+        return -1
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToEditReport" {
             if let editScreen = segue.destination as? RegisterReportViewController {
@@ -187,33 +203,3 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         })
     }
 }
-
-
-
-//            if snapshot.childrenCount > 0 {
-//                self.userReports.removeAll()
-//
-//                for report in snapshot.children.allObjects as![DataSnapshot]{
-//                    let reportObj = report.value as? [String: AnyObject]
-//
-//                    let id = reportObj?["id"]
-//                    let userId = reportObj?["userId"]
-//                    let title = reportObj?["title"]
-//                    let description = reportObj?["description"]
-//                    let violenceKind = reportObj?["violenceKind"]
-//                    let violenceAproximatedTime = reportObj?["violenceAproximatedTime"]
-//                    let latitude = reportObj?["latitude"]
-//                    let longitude = reportObj?["longitude"]
-//                    let personGender = reportObj?["personGender"]
-//
-//                    let reportAtt = Report(id: id as! String, userId: userId as! String, title: title as! String, description: description as! String, violenceKind: violenceKind as! String, violenceAproximatedTime: violenceAproximatedTime as! Double, latitude: latitude as! Double, longitude: longitude as! Double, personGender: personGender as! String)
-//
-//
-//                    self.userReports.append(reportAtt)
-//
-//                }
-
-//
-//            }
-//        })
-        

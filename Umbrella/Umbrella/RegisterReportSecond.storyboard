@@ -121,9 +121,10 @@
                     <connections>
                         <outlet property="addBtn" destination="gdA-jm-ibb" id="9lm-cG-zyK"/>
                         <outlet property="descriptionLbl" destination="B08-JW-gGh" id="4nY-4k-3bu"/>
-                        <outlet property="keyBoardConstraint" destination="R2k-hl-dGp" id="wFe-lN-v7l"/>
+                        <outlet property="keyBoardConstraint" destination="R2k-hl-dGp" id="HFW-JX-in2"/>
                         <outlet property="personIdentification" destination="yvo-jV-fUF" id="WUM-fC-pSa"/>
                         <outlet property="personIdentificationLbl" destination="hc3-BC-BQb" id="Xde-fb-PZb"/>
+                        <outlet property="scrollViewMainVIew" destination="TEE-sy-FZw" id="bQn-CD-iPm"/>
                         <outlet property="violenceAgressionLbl" destination="nQu-io-J9v" id="AgK-ue-bAd"/>
                         <outlet property="violenceDescription" destination="s9Q-za-xgq" id="M3G-1b-9dP"/>
                         <outlet property="violenceKind" destination="1m5-8A-cOr" id="ywo-YW-LTU"/>
