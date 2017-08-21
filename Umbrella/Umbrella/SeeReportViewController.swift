@@ -103,10 +103,16 @@ class SeeReportViewController: UIViewController {
         let ref = self.refUser.child((self.report?.userId)!)
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let user = snapshot.value as? [String: Any]
-            self.username.text = user?["nickname"] as? String
-            self.userPhoto.loadCacheImage((user?["urlPhoto"] as? String)!)
+        
+            if let user = snapshot.value as? [String: Any] {
+                self.username.text = user["nickname"] as? String
+                
+                if let url = user["urlPhoto"] as? String {
+                    self.userPhoto.loadCacheImage(url)
+                } else {
+                    self.userPhoto.image = UIImage(named: "emailIcon")
+                }
+            }
         })
 
         self.username.textColor = UIColor.white
@@ -333,9 +339,15 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
         //setting user image and name to each comment
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
-            let user = snapshot.value as? [String: Any]
-                userNickName.text = user?["nickname"] as? String
-                userPhoto.loadCacheImage((user?["urlPhoto"] as? String)!)
+            if let user = snapshot.value as? [String: Any] {
+                userNickName.text = user["nickname"] as? String
+                
+                if let url = user["urlPhoto"] as? String {
+                    userPhoto.loadCacheImage(url)
+                } else {
+                    userPhoto.image = UIImage(named: "emailIcon")
+                }
+            }
         })
         
         
