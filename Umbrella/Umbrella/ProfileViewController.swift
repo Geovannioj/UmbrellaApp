@@ -186,6 +186,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         inputs.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         
         inputs.alterarFotoButton.addTarget(self, action: #selector(handleSelectProfileImage), for: .touchUpInside)
+        
     }
     
     func setupUser(){
@@ -195,19 +196,20 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         }
         
         UserInteractor.getUser(withId: id, completion: { (user) in
-            
+    
             if let url = user.urlPhoto {
                 self.inputs.profileImage.loadCacheImage(url)
             }
-
             self.inputs.username.text = user.nickname
             
         })
-        
-        
     }
     
+    /**
+     Gets data from database to fill the necessary cells from the table view.
+    */
     func setTable() {
+        // Tries to get from the local database
         if let user = SaveManager.realm.objects(UserEntity.self).filter("id == %s", UserInteractor.getCurrentUserUid()!).first {
             self.emailDetail.text = user.email
             
@@ -222,6 +224,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             self.minorityDetail.text = user.typeMinority ?? ""
             
         }
+        // Tries to get from the web database
         else {
             UserInteractor.getUser(withId: UserInteractor.getCurrentUserUid()!, completion: { user in
                 SaveManager.instance.create(user)
@@ -248,14 +251,21 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         
     }
     
+    /**
+     Changes the screen when the user click on the editing button.
+     */
     func editingMode() {
         if isEdit == false {
+            isEdit = true
+            
+            // Navigation Bar changes
             delegate?.getNavBar().rightBarButtonItem?.title = "Pronto"
             delegate?.getNavBar().leftBarButtonItem?.isEnabled = false
             delegate?.getSegmentedControl().isEnabled = false
-            inputs.alterarFotoButton.isHidden = false
             
-            isEdit = true
+            
+            // Views and cells changes
+            inputs.alterarFotoButton.isHidden = false
             
             emailCell.accessoryType = .disclosureIndicator
             emailCell.accessoryView?.tintColor = .clear
@@ -271,19 +281,29 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             minorityDetail.textColor = UIColor(r: 165, g: 145, b: 174)
             minorityDetail.text = "Selecionar"
             
+            // Table view reload
             tableView.reloadData()
             tableView.beginUpdates()
             tableView.reloadSections(IndexSet(integersIn: 0...2), with: .top)
             tableView.endUpdates()
             
+            view.bringSubview(toFront: inputs)
+            //tableView.bringSubview(toFront: inputs)
+            //print(tableView.layer.zPosition)
+            //print(view.bringSubview(toFront: tableView.subviews.last!))
+            //view.bringSubview(toFront: tableView.subviews.last!)
+            
         }
         else {
+            isEdit = false
+
+            // Navigation Bar changes
             delegate?.getNavBar().rightBarButtonItem?.title = "Editar"
             delegate?.getNavBar().leftBarButtonItem?.isEnabled = true
             delegate?.getSegmentedControl().isEnabled = true
-            inputs.alterarFotoButton.isHidden = true
             
-            isEdit = false
+            // Views and cells changes
+            inputs.alterarFotoButton.isHidden = true
             
             emailCell.accessoryType = .none
             emailDetail.textColor = UIColor(r: 170, g: 10, b: 234)
@@ -297,8 +317,8 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             minorityDetail.textColor = UIColor(r: 170, g: 10, b: 234)
             minorityDetail.text = ""
             
+            // Table view reload
             setTable()
-            
             tableView.reloadData()
             tableView.beginUpdates()
             tableView.reloadSections(IndexSet(integersIn: 0...2), with: .top)
@@ -306,27 +326,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         }
     }
     
-//    func loadBlurViewIntoController() {
-//        blurView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-//        blurView.backgroundColor = .white
-//        blurView.alpha = 0.5
-//        self.view.addSubview(blurView)
-//        self.view.bringSubview(toFront: (view.subviews.last)!)
-//    }
-//    
-//    func loadPopUpViewIntoController() {
-//        
-//        self.popupView = UIView(frame: CGRect(x: 8, y: 1/9 * self.view.frame.height, width: self.view.frame.width - 16, height: 3/5 * self.view.frame.height))
-//        popupView.backgroundColor = UIColor(r: 27, g: 2, b: 37)
-//        popupView.layer.cornerRadius = 10
-//        self.view.addSubview(popupView)
-//        popupView.isHidden = false
-//        self.view.bringSubview(toFront: (view.subviews.last)!)
-//        
-//
-//        
-//    }
-    
+    /**
+     Sets standard buttons on the current pop up view.
+     */
     func putButtonsOnPopUp() {
         
         let closeButton = UIImageView(frame: CGRect(x: 15, y: 15, width: 20, height: 20))
@@ -346,6 +348,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         saveButton.addTarget(self, action: #selector(saveButtonAction), for: .touchUpInside)
     }
     
+    /**
+     Sets up a data picker view for the user choose his birthday.
+     */
     func chooseBirthDate() {
         tableView.isScrollEnabled = false
         popUp.isHidden = false
@@ -359,6 +364,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         
     }
     
+    /**
+     Sets up a picker view filled with minorities the user can choose.
+     */
     func chooseMinority() {
         tableView.isScrollEnabled = false
         popUp.isHidden = false
@@ -374,6 +382,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         
     }
     
+    /**
+     Activated when the close button is clicked.
+     */
     func closeButtonAction() {
         tableView.isScrollEnabled = true
         popUp.isHidden = true
@@ -385,6 +396,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         }
     }
     
+    /**
+     Activated when the save button is clicked.
+    */
     func saveButtonAction() {
         if isBirthSelection == true {
             saveBirthAction()
@@ -394,6 +408,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         }
     }
     
+    /**
+     Saves the date the user chose as his birthday.
+     */
     func saveBirthAction() {
         let date = datePicker.date
         if date >= Date() {
@@ -405,6 +422,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         }
     }
     
+    /**
+     Saves the item the user chose as his minority.
+     */
     func saveMinorityAction() {
         closeButtonAction()
         UserInteractor.updateCurrentUser(minority: minoritySelected)

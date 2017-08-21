@@ -35,6 +35,7 @@ class ProfileView: UIView {
         button.backgroundColor = .clear
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isUserInteractionEnabled = true
         return button
     }()
     

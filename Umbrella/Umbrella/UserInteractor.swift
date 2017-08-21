@@ -27,7 +27,6 @@ import Firebase
 
 class UserInteractor {
     
-    // -TODO: Email validation
     /**
      Function responsable for creating an authentication for an user and save his data on a server and local database.
      - parameter nickname: user's nickname
@@ -308,7 +307,6 @@ class UserInteractor {
         }
     }
     
-    // -TODO: implement errors handler
     /**
      Sends an email with a link to change the current user's password.
      - parameter handler: deals with errors
@@ -322,24 +320,22 @@ class UserInteractor {
     // -FIXME: Dont delete, just deactivate the user
     /**
      Deletes the current user logged in.
+     IMPORTANT: It keeps most of user's profile info
      - parameter handler: deals with errors and completes user deletion actions
 
      */
     static func deleteUser(handler: InteractorCompleteProtocol) {
         
         if let userId = getCurrentUserUid() {
-
             Auth.auth().currentUser?.delete(completion: { error in
                 if let err = error {
                     handler.completeDelete!(error: err)
                 }
                     
                 else {
-                    let userRef = Database.database().reference().child("user").child(userId)
+//                    let userRef = Database.database().reference().child("user").child(userId)
                     PhotoInteractor.deleteCurrentUserPhoto(handler: handler)
-                    userRef.removeValue()
-                    
-                    //KeychainService.removePassword(service: "Umbrella-Key", account: userId)
+//                    userRef.removeValue()
                     
                     if let user = SaveManager.realm.objects(UserEntity.self).filter("id == %s", userId).first {
                         
