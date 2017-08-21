@@ -9,19 +9,24 @@ import Foundation
 import UIKit
 import Mapbox
 import Firebase
+import MGSwipeTableCell
 
 class ReportTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    
     var userReports:[Report] = []
     let mapController = MapViewController()
     let seeReport = SeeReportViewController()
     var userId: String?
+    var reportToEdit:Report?
+    var refReports:DatabaseReference!
     var refUserReport: DatabaseReference!
     
     override func viewDidLoad() {
         self.userId = UserInteractor.getCurrentUserUid()
         self.refUserReport = Database.database().reference().child("user-reports").child(userId!)
+        self.refReports =  Database.database().reference().child("reports");
         
         self.tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
         self.tableView.delegate = self
@@ -33,35 +38,99 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        self.reportToEdit = self.userReports[indexPath.row]
+        performSegue(withIdentifier: "seeMyReport", sender: Any.self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userReports.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "report", for: indexPath)
+
+        //setting the cell up
+        let cell = Bundle.main.loadNibNamed("ReportTableViewCell", owner: self, options: nil)?.first as! ReportTableViewCell
         
         //sets the label of title of the report
-        let title = tableView.viewWithTag(3) as! UILabel
-        title.text = self.userReports[indexPath.row].title
+        cell.reportTitle.text = self.userReports[indexPath.row].title
         
         //it sets the label of description of the report
-        let description = tableView.viewWithTag(4) as! UITextView
-        description.text = self.userReports[indexPath.row].description
+        cell.reportDescription.text = self.userReports[indexPath.row].description
         
-        /*let location = tableView.viewWithTag(5) as! MGLMapView
-        
+        //it sets the view as a MapView
+        cell.map.isZoomEnabled = false
+        cell.map.isRotateEnabled = false
+        cell.map.isScrollEnabled = false
+        cell.map.isUserInteractionEnabled = false
+
+        //it gets the coordinates
         let latitude = self.userReports[indexPath.row].latitude
         let longitude = self.userReports[indexPath.row].longitude
         
-        self.seeReport.initiateLocationOnMap(map: location, latitude: latitude, longitude: longitude)
-        */
+        //it sets pin to the location of the report and center the map on it
+        setMapLocation(location: cell.map, latitude: latitude, longitude: longitude)
+        
+        let editButton = MGSwipeButton(title:"            ", backgroundColor: UIColor(patternImage: UIImage(named: "editReport")!)){
+            (sender: MGSwipeTableCell!) -> Bool in
+            
+            self.reportToEdit = self.userReports[indexPath.row]
+            self.performSegue(withIdentifier: "goToEditReport", sender: tableView)
+            
+            return true
+        }
+
+        let deleteButton = MGSwipeButton(title:"            ", backgroundColor: UIColor(patternImage: UIImage(named: "deleteReport")!)){
+            (sender: MGSwipeTableCell!) -> Bool in
+            
+            let deleteWarning = UIAlertController(title: "Delete",
+                                                  message: "Are you sure you want to delete it?",
+                                                  preferredStyle: .alert)
+            deleteWarning.addAction(UIAlertAction(title: "Delete", style: .destructive,
+                                                  handler: { (action) in
+                                                    
+                                                    // report to be deleted
+                                                    let reportToDelete = self.userReports[indexPath.row]
+                                                   
+                                                    //remove it from the local array
+                                                    self.mapController.reports.remove(at: self.seeReport.getReportIndexInArray(report: reportToDelete))
+                                                    
+                                                    //remove the report from the report table
+                                                    self.refReports.child(reportToDelete.id).setValue(nil)
+                                                    
+                                                    //remove from the user-report table
+                                                    //necessita pegar o ID para excluir da tabela associativa
+                                                    //self.refUserReport.child("id").setValue(nil)
+                                                    
+            }))
+            
+            
+            deleteWarning.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel,
+                                                  handler:nil))
+            
+            self.present(deleteWarning, animated: true, completion: nil)
+                        
+            return true
+        }
+    
+        cell.rightButtons = [editButton, deleteButton]
+        cell.rightSwipeSettings.transition = .border
+
         
         return cell
     }
     
- 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToEditReport" {
+            if let editScreen = segue.destination as? RegisterReportViewController {
+                editScreen.reportToEdit = self.reportToEdit
+            }
+        } else if segue.identifier == "seeMyReport" {
+            if let seeScreen = segue.destination as? SeeReportViewController {
+                seeScreen.report = self.reportToEdit
+            }
+        }
+    }
+    
     func setMapLocation(location:MGLMapView, latitude: Double, longitude: Double){
         
         let locationCoodenate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
@@ -98,7 +167,15 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
                     let longitude = dictonary["longitude"]
                     let personGender = dictonary["personGender"]
                     
-                    let reportAtt = Report(id: id as! String, userId: userId as! String, title: title as! String, description: description as! String, violenceKind: violenceKind as! String, violenceAproximatedTime: violenceAproximatedTime as! Double, latitude: latitude as! Double, longitude: longitude as! Double, personGender: personGender as! String)
+                    let reportAtt = Report(id: id as! String,
+                                           userId: userId as! String,
+                                           title: title as! String,
+                                           description: description as! String,
+                                           violenceKind: violenceKind as! String,
+                                           violenceAproximatedTime: violenceAproximatedTime as! Double,
+                                           latitude: latitude as! Double,
+                                           longitude: longitude as! Double,
+                                           personGender: personGender as! String)
                     
                     self.userReports.append(reportAtt)
                     

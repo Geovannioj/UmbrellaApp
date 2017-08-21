@@ -113,6 +113,7 @@ class RegisterReportViewController: UIViewController  {
         //}
         
     }
+    
     func getLocation () {
         
         self.reportLatitude = violenceLocation.camera.centerCoordinate.latitude

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="107" id="KGk-i7-Jjw" customClass="ReportTableViewCell" customModule="Umbrella" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="106.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mza-8e-HfA">
+                        <rect key="frame" x="0.0" y="0.0" width="103" height="107"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="n5S-7p-zcx">
+                                <rect key="frame" x="0.0" y="0.0" width="103" height="107"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="n5S-7p-zcx" secondAttribute="height" multiplier="103:107" id="fFt-2Z-sF5"/>
+                                </constraints>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.29304981229999999" green="0.0" blue="0.41050088410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="n5S-7p-zcx" secondAttribute="bottom" id="D6g-zE-ZUp"/>
+                            <constraint firstItem="n5S-7p-zcx" firstAttribute="leading" secondItem="mza-8e-HfA" secondAttribute="leading" id="UEP-S7-pBb"/>
+                            <constraint firstItem="n5S-7p-zcx" firstAttribute="top" secondItem="mza-8e-HfA" secondAttribute="top" id="bC3-JP-vN2"/>
+                            <constraint firstAttribute="width" secondItem="mza-8e-HfA" secondAttribute="height" multiplier="103:107" id="bC6-Cw-0Ps"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-DL-LkJ">
+                        <rect key="frame" x="111" y="8" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94e-m6-cYx">
+                        <rect key="frame" x="111" y="43" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="topMargin" secondItem="Ccy-DL-LkJ" secondAttribute="top" id="3BJ-p1-tSv"/>
+                    <constraint firstItem="94e-m6-cYx" firstAttribute="top" secondItem="Ccy-DL-LkJ" secondAttribute="bottom" constant="14" id="Liy-pZ-Cmg"/>
+                    <constraint firstItem="mza-8e-HfA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Nb4-fO-DG2"/>
+                    <constraint firstItem="94e-m6-cYx" firstAttribute="leading" secondItem="mza-8e-HfA" secondAttribute="trailing" constant="8" id="O3M-wJ-7Po"/>
+                    <constraint firstAttribute="bottom" secondItem="mza-8e-HfA" secondAttribute="bottom" id="Pw7-E4-qWj"/>
+                    <constraint firstItem="mza-8e-HfA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="pez-Zv-Pfn"/>
+                    <constraint firstItem="Ccy-DL-LkJ" firstAttribute="leading" secondItem="mza-8e-HfA" secondAttribute="trailing" constant="8" id="vz9-b9-pxl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="map" destination="n5S-7p-zcx" id="hcD-Ib-X8c"/>
+                <outlet property="mapView" destination="mza-8e-HfA" id="Kbi-ir-Ubz"/>
+                <outlet property="reportDescription" destination="94e-m6-cYx" id="c69-So-wlg"/>
+                <outlet property="reportTitle" destination="Ccy-DL-LkJ" id="nfX-uK-IFO"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="151.5"/>
+        </tableViewCell>
+    </objects>
+</document>
