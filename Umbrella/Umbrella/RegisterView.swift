@@ -33,6 +33,7 @@ class RegisterView: UIView {
     let username : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 0
+        camp.textField.autocapitalizationType = .sentences
         camp.textField.placeholder = "Somente letras e números"
         camp.titleLabel.text = "Username"
         camp.invalidMessageLabel.text = "Ops! username não válido."

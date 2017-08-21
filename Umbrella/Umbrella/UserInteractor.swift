@@ -69,6 +69,7 @@ class UserInteractor {
                     SaveManager.instance.create(newUser)
                     // Add user to firebase
                     userRef.setValue(newUser.toAnyObject())
+                    handler.completeCreate?(user: user, error: error)
                 })
             
             } else {
@@ -76,10 +77,9 @@ class UserInteractor {
                 SaveManager.instance.create(newUser)
                 // Add user to firebase
                 userRef.setValue(newUser.toAnyObject())
+                handler.completeCreate?(user: user, error: error)
             }
-            
-            handler.completeCreate?(user: user, error: error)
-            
+        
             // Save the password on the keychain
             //KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
         }

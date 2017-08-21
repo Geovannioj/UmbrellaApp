@@ -8,12 +8,14 @@
 
 import UIKit
 import Firebase
+import NVActivityIndicatorView
 
 class RegisterController: UIViewController, InteractorCompleteProtocol {
     
     @IBOutlet weak var inputs: RegisterView!
     weak var presenter : RegisterPresenter?
     let alert: AlertPresenter = AlertPresenter()
+    var indicatorView : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +25,13 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
         dismissKayboardInTapGesture()
         view.backgroundImage(named: "bkgRegisterView")
         
+        setupIndicator()
         setupRegisterInputs()
     }
     
     func handleRegister(){
         
+        indicatorView.startAnimating()
         UserInteractor.createUser(nickname: inputs.username.textField.text!,
                                   email: inputs.email.textField.text!,
                                   password: inputs.password.textField.text!,
@@ -37,10 +41,15 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
     }
     
     func completeCreate(user: UserInfo?, error: Error?) {
-         
+        
+        indicatorView.stopAnimating()
+        
         if error != nil, let errCode = AuthErrorCode(rawValue: error!._code) {
                 
             switch errCode {
+            case .userNotFound:
+                alert.showAlert(viewController: self, title: "Alerta!!", message: "Usuario não cadastrado", confirmButton: nil, cancelButton: "OK")
+
             case .invalidEmail:
                 inputs.email.isValidImput(false)
                 
@@ -94,6 +103,16 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
         
         inputs.registerButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         inputs.registerButton.isEnabled = false
+    }
+    
+    func setupIndicator() {
+        
+        indicatorView = NVActivityIndicatorView(frame: CGRect(x: 0.0, y: 0.0, width: 50, height: 50), type: .lineSpinFadeLoader, color: .purple, padding: 1.0)
+        view.addSubview(indicatorView)
+        
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        indicatorView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        indicatorView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
     
 }

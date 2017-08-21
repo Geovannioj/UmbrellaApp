@@ -161,6 +161,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             alert.showAlert(viewController: self, title: "Alerta!!", message: "Ocorreu um erro na base de dados. Tente novamente mais tarde.", confirmButton: nil, cancelButton: "OK")
         }
         else {
+            
             performSegue(withIdentifier: "loginSegue", sender: nil)
         }
     }

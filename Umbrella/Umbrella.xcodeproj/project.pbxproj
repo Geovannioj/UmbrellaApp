@@ -44,7 +44,7 @@
 		D4F8F0891F4A7F1000EA685A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8F0861F4A7F1000EA685A /* ProfileView.swift */; };
 		D4F8F08A1F4A7F6900EA685A /* CampFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B72C1F47761D00696EAA /* CampFieldView.swift */; };
 		D4F8F08B1F4A7F6900EA685A /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7361F47761D00696EAA /* MessagesTableViewController.swift */; };
-		D4F8F08C1F4A7F6900EA685A /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7371F47761D00696EAA /* NavigationView.swift */; };
+		D4F8F08C1F4A7F6900EA685A /* ChatNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7371F47761D00696EAA /* ChatNavigationView.swift */; };
 		D4F8F08D1F4A7F6900EA685A /* MySupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7281F47681100696EAA /* MySupportTableViewCell.swift */; };
 		D4F8F08E1F4A7F6900EA685A /* MySupportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7291F47681100696EAA /* MySupportTableViewController.swift */; };
 		D4F8F08F1F4A7F6900EA685A /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B73A1F47761D00696EAA /* ReportTableViewController.swift */; };
@@ -143,7 +143,7 @@
 		FB02B7341F47761D00696EAA /* MessageInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageInterector.swift; path = Umbrella/MessageInterector.swift; sourceTree = "<group>"; };
 		FB02B7351F47761D00696EAA /* MessagesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesPresenter.swift; path = Umbrella/MessagesPresenter.swift; sourceTree = "<group>"; };
 		FB02B7361F47761D00696EAA /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesTableViewController.swift; path = Umbrella/MessagesTableViewController.swift; sourceTree = "<group>"; };
-		FB02B7371F47761D00696EAA /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationView.swift; path = Umbrella/NavigationView.swift; sourceTree = "<group>"; };
+		FB02B7371F47761D00696EAA /* ChatNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatNavigationView.swift; sourceTree = "<group>"; };
 		FB02B7381F47761D00696EAA /* ProfileManager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileManager.storyboard; sourceTree = "<group>"; };
 		FB02B7391F47761D00696EAA /* ProfileManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileManagerViewController.swift; path = Umbrella/ProfileManagerViewController.swift; sourceTree = "<group>"; };
 		FB02B73A1F47761D00696EAA /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
@@ -230,7 +230,6 @@
 		A11960FD1F3CAB6A009A699B /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				FB02B7361F47761D00696EAA /* MessagesTableViewController.swift */,
 				D4E91E231F3E30C9004895B7 /* UserMessageCell.swift */,
 			);
 			name = Messages;
@@ -239,7 +238,6 @@
 		A17737C31F3BC22900E42C4D /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				FB02B7351F47761D00696EAA /* MessagesPresenter.swift */,
 			);
 			name = Messages;
 			sourceTree = "<group>";
@@ -247,8 +245,6 @@
 		A1A46E3D1F436E490045E13A /* ProfileManager */ = {
 			isa = PBXGroup;
 			children = (
-				FB02B7391F47761D00696EAA /* ProfileManagerViewController.swift */,
-				9E6066081F43A065002C5281 /* ProfileManager.storyboard */,
 			);
 			name = ProfileManager;
 			sourceTree = "<group>";
@@ -256,12 +252,9 @@
 		A1A46E691F46302A0045E13A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				9E6066311F463BE4002C5281 /* ProfileViewController.swift */,
-				9EB6AD191F4935AE0099331A /* ProfileView.swift */,
 				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
 				FB02B7381F47761D00696EAA /* ProfileManager.storyboard */,
 				9E6066311F463BE4002C5281 /* ProfileViewController.swift */,
-				FB02B73A1F47761D00696EAA /* ReportTableViewController.swift */,
 				D46921F31F4A249B003A344C /* ReportTableViewCell.swift */,
 				D46921F41F4A249B003A344C /* ReportTableViewCell.xib */,
 			);
@@ -317,6 +310,7 @@
 			children = (
 				FB02B72D1F47761D00696EAA /* ChatCollectionViewCell.swift */,
 				FB02B72E1F47761D00696EAA /* ChatCollectionViewController.swift */,
+				FB02B7371F47761D00696EAA /* ChatNavigationView.swift */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -341,7 +335,6 @@
 				FB02B7341F47761D00696EAA /* MessageInterector.swift */,
 				FB02B7351F47761D00696EAA /* MessagesPresenter.swift */,
 				FB02B7361F47761D00696EAA /* MessagesTableViewController.swift */,
-				FB02B7371F47761D00696EAA /* NavigationView.swift */,
 				FB02B7391F47761D00696EAA /* ProfileManagerViewController.swift */,
 				FB02B73B1F47761D00696EAA /* SeeReportDescriptionTableViewController.swift */,
 				FB02B7281F47681100696EAA /* MySupportTableViewCell.swift */,
@@ -383,8 +376,6 @@
 		D4B1E4141F2A78E200308ABB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FB02B72C1F47761D00696EAA /* CampFieldView.swift */,
-				FB02B7311F47761D00696EAA /* ExtendedNavBarView.swift */,
 				A1A46E3D1F436E490045E13A /* ProfileManager */,
 				A1A46E691F46302A0045E13A /* Profile */,
 				A11960FD1F3CAB6A009A699B /* Messages */,
@@ -403,7 +394,6 @@
 		D4B1E4151F2A78F700308ABB /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				FB02B7321F47761D00696EAA /* Extensions.swift */,
 				9EB6AD041F47787D0099331A /* PopUp */,
 				9E6066001F438FA1002C5281 /* Validations */,
 				9E2D83251F437122000FF593 /* AlertView */,
@@ -428,7 +418,6 @@
 				FB0144CD1F3B85A7004FFBCC /* UserInteractor.swift */,
 				FB0144C91F3B85A7004FFBCC /* PhotoInteractor.swift */,
 				FB0144C71F3B85A7004FFBCC /* MinorityInterector.swift */,
-				FB02B7341F47761D00696EAA /* MessageInterector.swift */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -476,7 +465,6 @@
 		D4B1E4221F2A93CC00308ABB /* Report */ = {
 			isa = PBXGroup;
 			children = (
-				9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */,
 				FB02B73A1F47761D00696EAA /* ReportTableViewController.swift */,
 				FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */,
 				D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */,
@@ -484,7 +472,6 @@
 				FB60D8631F39127E001E5E51 /* RegisterReportSecondViewController.swift */,
 				FB60D8651F39127E001E5E51 /* SeeReport.storyboard */,
 				FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */,
-				FB02B7301F47761D00696EAA /* CommentView.swift */,
 				FB60D8671F39127E001E5E51 /* ShowReports.storyboard */,
 				FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */,
 				FB02B72F1F47761D00696EAA /* Comment.swift */,
@@ -520,7 +507,6 @@
 		D4E91E131F3E304F004895B7 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
-				FB02B72F1F47761D00696EAA /* Comment.swift */,
 			);
 			name = Comment;
 			sourceTree = "<group>";
@@ -580,7 +566,7 @@
 				TargetAttributes = {
 					D4B1E3FD1F2A78CF00308ABB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 7CN8A9X5L6;
+						DevelopmentTeam = 5A5BFGK2W9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -689,7 +675,7 @@
 				D4F8F0901F4A7FC100EA685A /* CommentView.swift in Sources */,
 				D4F8F08A1F4A7F6900EA685A /* CampFieldView.swift in Sources */,
 				D4F8F08B1F4A7F6900EA685A /* MessagesTableViewController.swift in Sources */,
-				D4F8F08C1F4A7F6900EA685A /* NavigationView.swift in Sources */,
+				D4F8F08C1F4A7F6900EA685A /* ChatNavigationView.swift in Sources */,
 				D4F8F08D1F4A7F6900EA685A /* MySupportTableViewCell.swift in Sources */,
 				D4F8F08E1F4A7F6900EA685A /* MySupportTableViewController.swift in Sources */,
 				D4F8F08F1F4A7F6900EA685A /* ReportTableViewController.swift in Sources */,
@@ -868,7 +854,7 @@
 			baseConfigurationReference = D6376FD7318B57A083ABE80E /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7CN8A9X5L6;
+				DEVELOPMENT_TEAM = 5A5BFGK2W9;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;
@@ -884,7 +870,7 @@
 			baseConfigurationReference = FDC9A259B10984B778DD44F3 /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7CN8A9X5L6;
+				DEVELOPMENT_TEAM = 5A5BFGK2W9;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;
