@@ -13,6 +13,7 @@ import Firebase
 class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate{
     
     
+    @IBOutlet weak var scrollViewMainVIew: UIScrollView!
     @IBOutlet weak var violenceAgressionLbl: UILabel!
     @IBOutlet weak var descriptionLbl: UILabel!
     @IBOutlet weak var personIdentificationLbl: UILabel!
@@ -58,10 +59,10 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-        
-        self.personIdentification.setValue(UIColor.white, forKey: "textColor")
-        self.violenceKind.setValue(UIColor.white, forKey: "textColor")
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardNotification(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillChangeFrame,
+                                               object: nil)
         
         dismissKayboardInTapGesture()
         
@@ -124,6 +125,9 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
             } else {
                 
                 self.keyBoardConstraint?.constant = endFrame?.size.height ?? 0.0
+                let point = CGPoint(x: 0, y: 200) // 200 or any value you like.
+                self.scrollViewMainVIew.contentOffset = point
+
             }
             
             UIView.animate(withDuration: duration,
@@ -188,7 +192,9 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         let saveMessage = UIAlertController(title: "Relato Salvo",
                                               message: "Relato salvo com sucesso",
                                               preferredStyle: .alert)
-        saveMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
+        
+        saveMessage.addAction(UIAlertAction(title: "OK",
+                                            style: UIAlertActionStyle.default,
                                             handler: {(action) in
                        self.performSegue(withIdentifier: "backToMap", sender: Any.self)
         }))
@@ -287,8 +293,24 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
     }
 
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        var attributedString: NSAttributedString!
+        
+        if pickerView.accessibilityIdentifier == "violenceKind" {
+                attributedString = NSAttributedString(string: violenceKindArray[row],
+                                                      attributes: [NSForegroundColorAttributeName : UIColor.white])
+        } else {
+                attributedString = NSAttributedString(string: victimIdentificationArray[row],
+                                                      attributes: [NSForegroundColorAttributeName : UIColor.white])
+        }
+            
+            return attributedString
+        }
+    }
+
     
-}
+
 
 extension RegisterReportSecondViewController: UITextViewDelegate {
     
