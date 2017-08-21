@@ -31,9 +31,7 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
         UserInteractor.createUser(nickname: inputs.username.textField.text!,
                                   email: inputs.email.textField.text!,
                                   password: inputs.password.textField.text!,
-                                  birthDate: nil,
-                                  idMinority: nil,
-                                  image: inputs.profileImage.image!,
+                                  image: inputs.profileImage.image,
                                   handler: self)
         
     }
@@ -52,25 +50,23 @@ class RegisterController: UIViewController, InteractorCompleteProtocol {
                 
             case .weakPassword:
                 
-                alert.showAlert(viewController: self, title: "Alerta!!", message: "Cadastre uma senha de pelo menos 6 caracteres.", confirmButton: nil, cancelButton: "OK")
+                alert.showAlert(viewController: self, title: "Alerta!!", message: "A senha deve possuir pelo menos 6 caracteres.", confirmButton: nil, cancelButton: "OK")
                 
             default:
                 
                 alert.showAlert(viewController: self, title: "Alerta!!", message: "Ocorreu um erro, por favor tente novamente mais tarde.", confirmButton: nil, cancelButton: "OK")
             }
             return
-        }
-        else {
+        } else {
+            
             UserInteractor.connectUserOnline(email: inputs.email.textField.text!, password: inputs.password.textField.text!, handler: self)
             UserInteractor.sendEmailVerification(handler: self)
             handleReturn()
         }
-        
     }
     
     func completeLogin(user: UserInfo?, error: Error?) {
-        
-        
+        // Tratar erros
     }
     
     func handleReturn() {
@@ -144,35 +140,51 @@ extension RegisterController : UIImagePickerControllerDelegate, UINavigationCont
     
     func handleSelectProfileImage() {
         
+        let chooseAction = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        chooseAction.addAction(UIAlertAction(title: "Tirar Foto", style: .default, handler:{_ in
+            self.handlePresentPicker(type: .camera)
+        }))
+        
+        chooseAction.addAction(UIAlertAction(title: "Escolher Foto", style: .default, handler:{_ in
+            self.handlePresentPicker(type: .photoLibrary)
+        }))
+        
+        chooseAction.addAction(UIAlertAction(title: "Remover Foto", style: .destructive, handler:{_ in
+            self.inputs.profileImage.image = nil
+        }))
+        
+        chooseAction.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(chooseAction, animated: true, completion: nil)
+    }
+    
+    func handlePresentPicker(type : UIImagePickerControllerSourceType) {
+        
         let picker = UIImagePickerController()
         
         picker.delegate = self
         picker.allowsEditing = true
         
-        present(picker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(type) {
+            picker.sourceType = type
+            self.present(picker, animated: true, completion: nil)
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        var selectedImage : UIImage?
-        
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            selectedImage = editedImage
+            inputs.profileImage.image = editedImage
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            selectedImage = originalImage
+            inputs.profileImage.image = originalImage
         }
         
-        if selectedImage != nil {
-            
-            inputs.profileImage.image = selectedImage
-        }
-        
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
 }
 

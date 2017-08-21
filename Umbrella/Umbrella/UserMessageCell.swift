@@ -32,15 +32,14 @@ class UserMessageCell: UITableViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.image = UIImage(named: "umbrella")
-        image.layer.cornerRadius = image.frame.width / 2
-        image.layer.masksToBounds = true
+        image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
     let nameLabel : UILabel  = {
         let text = UILabel()
-        text.font = UIFont.systemFont(ofSize: 14)
+        text.font = UIFont.boldSystemFont(ofSize: 14)
         text.textColor = UIColor.purple
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
@@ -63,7 +62,6 @@ class UserMessageCell: UITableViewCell {
         return label
     }()
     
-    
     override init(style : UITableViewCellStyle, reuseIdentifier : String?){
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
@@ -78,6 +76,12 @@ class UserMessageCell: UITableViewCell {
         setupNameLabel()
         setupMessageLabel()
         setupTimeLabel()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        profileImage.layer.cornerRadius = profileImage.frame.width / 2
     }
     
     fileprivate func setupNameAndProfileImage() {

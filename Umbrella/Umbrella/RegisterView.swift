@@ -22,7 +22,7 @@ class RegisterView: UIView {
     
     let profileImage : UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "profileImageIcon")
+        view.layer.contents = UIImage(named: "profileImageIcon")?.cgImage
         view.layer.masksToBounds = false
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFill

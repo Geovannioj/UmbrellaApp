@@ -128,7 +128,7 @@ extension ChatCollectionViewController {
         navigation.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         navigation.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         navigation.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        navigation.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        navigation.heightAnchor.constraint(equalToConstant: 90).isActive = true
 
         navigation.backButton.addTarget(self, action: #selector(handleTouchBackButton), for: .touchUpInside)
         

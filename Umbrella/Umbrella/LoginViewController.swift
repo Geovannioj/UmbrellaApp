@@ -15,7 +15,6 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
     weak var presenter : LoginPresenter?
     let alert: AlertPresenter = AlertPresenter()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,9 +45,7 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
         inputs.password.isValidImput(true)
         
         UserInteractor.connectUserOnline(email: email, password: password, handler: self)
-    
     }
-    
     
     func completeLogin(user : UserInfo?, error : Error?) {
         

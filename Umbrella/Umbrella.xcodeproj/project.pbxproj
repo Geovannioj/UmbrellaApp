@@ -95,7 +95,7 @@
 		9E6066051F43A065002C5281 /* MessageInterector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageInterector.swift; path = Umbrella/MessageInterector.swift; sourceTree = "<group>"; };
 		9E6066061F43A065002C5281 /* MessagesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesPresenter.swift; path = Umbrella/MessagesPresenter.swift; sourceTree = "<group>"; };
 		9E6066071F43A065002C5281 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesTableViewController.swift; path = Umbrella/MessagesTableViewController.swift; sourceTree = "<group>"; };
-		9E6066081F43A065002C5281 /* ProfileManager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ProfileManager.storyboard; path = Umbrella/ProfileManager.storyboard; sourceTree = "<group>"; };
+		9E6066081F43A065002C5281 /* ProfileManager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileManager.storyboard; sourceTree = "<group>"; };
 		9E6066091F43A065002C5281 /* ProfileManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileManagerViewController.swift; path = Umbrella/ProfileManagerViewController.swift; sourceTree = "<group>"; };
 		9E60660B1F43A065002C5281 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Umbrella/SettingsViewController.swift; sourceTree = "<group>"; };
 		9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverView.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		9EB6AD161F4935AE0099331A /* MySupportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySupportTableViewCell.swift; path = Umbrella/MySupportTableViewCell.swift; sourceTree = "<group>"; };
 		9EB6AD171F4935AE0099331A /* MySupportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySupportTableViewController.swift; path = Umbrella/MySupportTableViewController.swift; sourceTree = "<group>"; };
 		9EB6AD181F4935AE0099331A /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationView.swift; path = Umbrella/NavigationView.swift; sourceTree = "<group>"; };
-		9EB6AD191F4935AE0099331A /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = Umbrella/ProfileView.swift; sourceTree = "<group>"; };
+		9EB6AD191F4935AE0099331A /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -144,8 +144,6 @@
 		FB0144CA1F3B85A7004FFBCC /* SaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
 		FB0144CB1F3B85A7004FFBCC /* UIImageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageHandler.swift; sourceTree = "<group>"; };
 		FB0144CD1F3B85A7004FFBCC /* UserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInteractor.swift; sourceTree = "<group>"; };
-		FB02B7281F47681100696EAA /* MySupportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySupportTableViewCell.swift; path = Umbrella/MySupportTableViewCell.swift; sourceTree = "<group>"; };
-		FB02B7291F47681100696EAA /* MySupportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySupportTableViewController.swift; path = Umbrella/MySupportTableViewController.swift; sourceTree = "<group>"; };
 		FB02B72C1F47761D00696EAA /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampFieldView.swift; sourceTree = "<group>"; };
 		FB02B72D1F47761D00696EAA /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		FB02B72E1F47761D00696EAA /* ChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewController.swift; sourceTree = "<group>"; };
@@ -263,7 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				FB02B7391F47761D00696EAA /* ProfileManagerViewController.swift */,
-				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
+				9E6066081F43A065002C5281 /* ProfileManager.storyboard */,
 			);
 			name = ProfileManager;
 			sourceTree = "<group>";
@@ -272,7 +270,8 @@
 			isa = PBXGroup;
 			children = (
 				9E6066311F463BE4002C5281 /* ProfileViewController.swift */,
-				9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */,
+				9EB6AD191F4935AE0099331A /* ProfileView.swift */,
+				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -349,7 +348,6 @@
 				9EB6AD161F4935AE0099331A /* MySupportTableViewCell.swift */,
 				9EB6AD171F4935AE0099331A /* MySupportTableViewController.swift */,
 				9EB6AD181F4935AE0099331A /* NavigationView.swift */,
-				9EB6AD191F4935AE0099331A /* ProfileView.swift */,
 				9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */,
 				9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */,
 				9E6066011F43A065002C5281 /* ChatCollectionViewCell.swift */,
@@ -359,7 +357,6 @@
 				9E6066051F43A065002C5281 /* MessageInterector.swift */,
 				9E6066061F43A065002C5281 /* MessagesPresenter.swift */,
 				9E6066071F43A065002C5281 /* MessagesTableViewController.swift */,
-				9E6066081F43A065002C5281 /* ProfileManager.storyboard */,
 				9E6066091F43A065002C5281 /* ProfileManagerViewController.swift */,
 				9E60660B1F43A065002C5281 /* SettingsViewController.swift */,
 				D4E91E211F3E30C9004895B7 /* Umbrella.entitlements */,
@@ -491,6 +488,7 @@
 		D4B1E4221F2A93CC00308ABB /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */,
 				FB02B73A1F47761D00696EAA /* ReportTableViewController.swift */,
 				FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */,
 				D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */,
