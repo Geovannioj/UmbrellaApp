@@ -51,15 +51,15 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.msgCenter = msgsButton.center
         self.perfilCenter = perfilButton.center
         self.reportCenter = reportButton.center
-        
-        self.perfilButton.center = self.expandButton.center
-        self.perfilButton.alpha = 0
-        
-        self.reportButton.center = self.expandButton.center
-        self.reportButton.alpha = 0
-        
-        self.msgsButton.center = self.expandButton.center
-        self.msgsButton.alpha = 0
+        hideButtons(duration: 0)
+//        self.perfilButton.center = self.expandButton.center
+//        self.perfilButton.alpha = 0
+//        
+//        self.reportButton.center = self.expandButton.center
+//        self.reportButton.alpha = 0
+//        
+//        self.msgsButton.center = self.expandButton.center
+//        self.msgsButton.alpha = 0
         
         mapView.compassView.removeFromSuperview()
         
@@ -105,13 +105,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     //MARK: Buttons functions
-    func hideButtons(){
-        UIView.animate(withDuration: 1, animations:{
-//            self.expandButton.isSelected = false
-          //  self.verticalStackButtons.spacing = 0
-           
-           // self.perfilButton.center = self.expandButton.center
-
+    func hideButtons(duration:Double){
+        UIView.animate(withDuration: duration, animations:{
             
             self.HorizontalStackButtons.spacing = 0
             self.reportButton.center = self.expandButton.center
@@ -119,17 +114,14 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             self.reportButton.alpha = 0
             self.msgsButton.alpha = 0
             self.perfilButton.alpha = 0
-           // self.msgsButton.center = self.expandButton.center
-            
-            
             
             }, completion: nil)
         
         
     }
-    func showButtons(){
+    func showButtons(duration:Double){
       self.view.layoutIfNeeded()
-        UIView.animate(withDuration: 1, animations:{
+        UIView.animate(withDuration: duration, animations:{
             //self.expandButton.isSelected = true
             
           //  self.perfilButton.center = self.perfilCenter
@@ -274,10 +266,14 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
 //        NotificationCenter.default.addObserver(controller, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
         filterTable.isHidden = false
     }
-        
+    /**
+     Funcao para adicionar somente pins filtrados
+     
+     - parameter new: Report a ser verificado.
+ 
+     */
     func filter(new:Report){
-       
-        
+    
         if(!filtros.isEmpty){
             
           //  removePins()
@@ -285,7 +281,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
                // for report in reports{
                     if new.violenceKind.lowercased() == filtro.lowercased(){
                         addPin(new: new)
-                         
+                        
                     }
                // }
             
@@ -296,22 +292,32 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         
     }
+    /**
+     Funcao para pegar as regiões de uma determinada coordenada
+     
+     - parameter latitude: Latitude em Double.
+     - parameter longitude: Longitude em Double.
+     - parameter onComplete: Bloco a ser executado ao fim da thread
+     */
     func getPlace(latitude:Double,longitude:Double,onComplete: @escaping ([String]) -> ()){
         //
         let options = ReverseGeocodeOptions(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
         // Or perhaps: ReverseGeocodeOptions(location: locationManager.location)
         var returnStringArray:[String] = []
         _ = geocoder.geocode(options) { (placemarks, attribution, error) in
-            guard let placemark = placemarks?.first else {
-                return
+            if error != nil{
+                guard let placemark = placemarks?.first else {
+                    return
+                }
+                
+                let auxString = placemark.administrativeRegion?.code?.characters.split(separator: Character.init("-")).map(String.init)
+                returnStringArray = [placemark.administrativeRegion?.name ?? "",auxString?[1] ?? "",auxString?[0] ?? ""]
+                
+                
+                
+                onComplete(returnStringArray)
             }
-           
-            let auxString = placemark.administrativeRegion?.code?.characters.split(separator: Character.init("-")).map(String.init)
-             returnStringArray = [placemark.administrativeRegion?.name ?? "",auxString?[1] ?? "",auxString?[0] ?? ""]
             
-            
-            
-            onComplete(returnStringArray)
             
         //
         }
@@ -345,10 +351,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             self.present(alertControler, animated: true, completion: nil)
         }else{
             if !sender.isSelected {
-                showButtons()
+                showButtons(duration: 0.5)
                 sender.isSelected = true
             }else{
-                hideButtons()
+                hideButtons(duration: 0.5)
                 sender.isSelected = false
             }
         }
