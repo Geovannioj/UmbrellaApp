@@ -20,9 +20,12 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var filterTable: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var HorizontalStackButtons: UIStackView!
+    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var mapView: MGLMapView!
+    @IBOutlet weak var searchTableView: UITableView!
     
+    var querryResults:[GeocodedPlacemark] = []
     var filtros:[String] = []
-    let image = UIImage(named: "CustomLocationPIN")
     var locationManager = CLLocationManager()
     var reports: [Report] = []
     var refReports : DatabaseReference!
@@ -32,15 +35,12 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     var msgCenter:CGPoint = CGPoint()
     var perfilCenter:CGPoint = CGPoint()
     var reportCenter:CGPoint = CGPoint()
-    
-    @IBOutlet weak var bannerView: GADBannerView!
-   // var mapDelegate = MapViewDelegate()
+   
     let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiaGVsZW5hc2ltb2VzIiwiYSI6ImNqNWp4bDBicDJpOTczMm9kaDJqemprbDcifQ.vdd9cfGAwcSXh1I7pq1mvA")
-    @IBOutlet weak var mapView: MGLMapView!
-    var querryResults:[GeocodedPlacemark] = []
-    //var tableView:UITableView = UITableView()
+    let image = UIImage(named: "CustomLocationPIN")
+   
     
-    @IBOutlet weak var searchTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,28 +51,24 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.msgCenter = msgsButton.center
         self.perfilCenter = perfilButton.center
         self.reportCenter = reportButton.center
+       
+        filterTable.isHidden = true
         hideButtons(duration: 0)
-//        self.perfilButton.center = self.expandButton.center
-//        self.perfilButton.alpha = 0
-//        
-//        self.reportButton.center = self.expandButton.center
-//        self.reportButton.alpha = 0
-//        
-//        self.msgsButton.center = self.expandButton.center
-//        self.msgsButton.alpha = 0
-        
+        //Remove bussola do mapa
         mapView.compassView.removeFromSuperview()
         
-        // utilizado para apps em desenvolvimento para teste.Sem isso a conta pode ser banina.
         self.refReports =  Database.database().reference().child("reports")
         setObserverToFireBaseChanges()
+       
+        //Requisitando propagandas e setando os devices
         let request = GADRequest()
-        filterTable.isHidden = true
+        // utilizado para apps em desenvolvimento para teste.Sem isso a conta pode ser banina.
         request.testDevices = [kGADSimulatorID]
         bannerView.adUnitID = "ca-app-pub-1296835094216265/5601148764"
         bannerView.rootViewController = self
         bannerView.load(request)
         
+        //Configurando searchBar e cllocation
         locationCheck()
         tableViewConstruct()
         searchBarConfig()
@@ -84,20 +80,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             name:NSNotification.Name.init(rawValue: "AuthorizationAccepted"),
             object: nil
         )
-  //      mapDelegate = MapViewDelegate(mapView: mapView, view: self.view)
-      
-        //Adiciona observer para authorização do GPS
-
-        
-        
-        
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       // searchBar.barTintColor = UIColor.clear
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
            centerOnUser() 
         }
@@ -122,16 +108,14 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     func showButtons(duration:Double){
       self.view.layoutIfNeeded()
         UIView.animate(withDuration: duration, animations:{
-            //self.expandButton.isSelected = true
-            
-          //  self.perfilButton.center = self.perfilCenter
+ 
             self.perfilButton.alpha = 1
+           
             self.HorizontalStackButtons.spacing = self.buttonDistance
-           // self.verticalStackButtons.spacing = 28
+
             self.reportButton.center = self.reportCenter
             self.reportButton.alpha = 1
             
-           // self.msgsButton.center = self.msgCenter
             self.msgsButton.alpha = 1
             
             
@@ -159,7 +143,6 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         searchBar.isTranslucent = true
         searchBar.backgroundImage = UIImage()
         searchBar.barTintColor = UIColor.clear
-        //searchBar.layer.cornerRadius = 100
     }
     func locationCheck(){
         locationManager.delegate = self
@@ -168,19 +151,16 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.locationManager.startUpdatingLocation()
     }
     func tableViewConstruct(){
-        //tableView = UITableView(frame: CGRect(x: searchBar.frame.minX , y: searchBar.frame.maxY , width: searchBar.frame.width * 0.9, height: searchBar.frame.height * 3))
-        //tableView.center = searchBar.centerCGPoint(x: searchBar.center.x, y: (searchBar.center.y + tableView.frame.height/2) )
+
         searchTableView.restorationIdentifier = "SearchTableView"
         searchTableView.delegate = self
         searchTableView.dataSource = self
-        //self.view.addSubview(tableView)
         self.searchTableView.isHidden = true
         searchTableView.allowsSelection = false
         searchTableView.layer.cornerRadius = 10
     }
     // MARK:Table VIew Delegate (searchBarResults)
     
-    //Objetivo: Função para centrar no usuario quando ocorre o request do GPS.
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -190,9 +170,6 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         let cell = searchTableView.dequeueReusableCell(withIdentifier: "searchCell") as! SearchBarCellTableViewCell
         
-//        let label = UILabel(frame: cell.frame)
-//        label.text = querryResults[indexPath.row].name
-//        cell.addSubview(label)
         cell.searchCellLabel.text = querryResults[indexPath.row].name
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapCel(sender:)))
@@ -212,38 +189,46 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "containerViewSegue" {
-            containerViewController = segue.destination as? FilterTableViewControlleTableViewController
-            containerViewController!.containerToMaster = self
-        } else if segue.identifier == "seeReport"{
-            if let seeScreen = segue.destination as? SeeReportViewController {
-                seeScreen.report = self.reportToSend
-            }
-
-        }
-    }
-   
 
 
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
+//    func filterContentForSearchText(searchText: String, scope: String = "All") {
+//        let options = ForwardGeocodeOptions(query: searchText)
+//                _ = geocoder.geocode(options) { (placemarks, attribution, error) in
+//                   // self.querryResults = placemarks!
+//                    self.querryResults = placemarks!.filter { placemark in
+//                        return placemark.name.lowercased().contains(searchText.lowercased())
+//                    }
+//                }
+//        
+//        
+//    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Transforma o texto do usuario em coordenadas e da reload na table.
         let options = ForwardGeocodeOptions(query: searchText)
-                _ = geocoder.geocode(options) { (placemarks, attribution, error) in
-                   // self.querryResults = placemarks!
-                    self.querryResults = placemarks!.filter { placemark in
-                        return placemark.name.lowercased().contains(searchText.lowercased())
-                    }
-                }
-        
-        
+        _ = geocoder.geocode(options) { (placemarks, attribution, error) in
+            if(placemarks != nil){
+                self.querryResults = placemarks!
+                self.searchTableView.reloadData()
+                self.searchTableView.isHidden = false
+            }else{
+                self.searchTableView.isHidden = true
+            }
+            
+        }
+    
     }
+    
     
     func handleMsgsButtonAction(){
         
         let navigation = UINavigationController(rootViewController: MessagesTableViewController())
         present(navigation, animated: true, completion: nil)
     }
-        
+    
+    /**
+     Funcao para ativar interação com o mapa atrás do filtro,esconder a view e que remove o observer para escondelo.
+     */
     func closeFilter(){
         filterTable.isHidden = true
         self.mapView.allowsZooming = true
@@ -253,17 +238,18 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             
     }
 
-
+    /**
+     Funcao para desativar interação com o mapa atrás do filtro e que cria um observer para escondelo.
+     
+     - parameter sender: Botão de filtro.
+     
+     */
     @IBAction func filterActivate(_ sender: UIButton) {
         self.mapView.allowsZooming = false
         self.mapView.allowsRotating = false
         self.mapView.allowsScrolling = false
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeFilter), name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
         
-//        let storyboard = UIStoryboard(name: "Map", bundle: nil)
-//        let controller = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
-        
-//        NotificationCenter.default.addObserver(controller, selector: #selector(self.filter), name: NSNotification.Name.init(rawValue: "Filter"), object: self.filtros)
         filterTable.isHidden = false
     }
     /**
@@ -302,7 +288,6 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     func getPlace(latitude:Double,longitude:Double,onComplete: @escaping ([String]) -> ()){
         //
         let options = ReverseGeocodeOptions(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
-        // Or perhaps: ReverseGeocodeOptions(location: locationManager.location)
         var returnStringArray:[String] = []
         _ = geocoder.geocode(options) { (placemarks, attribution, error) in
             if error != nil{
@@ -318,8 +303,6 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
                 onComplete(returnStringArray)
             }
             
-            
-        //
         }
         
        
@@ -327,29 +310,23 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     
     
     @IBAction func expandAction(_ sender: UIButton) {
-        
+        //Verifica se o Usuario ja está logado.
         if UserInteractor.getCurrentUserUid() == nil {
+            //Adiciona Alerta para redirecionar ao login.
             let alertControler = UIAlertController(title: "Atenção", message: "Por favor faça o login para poder acessar as opçoes de relato.", preferredStyle: .alert)
             
             alertControler.addAction(UIAlertAction(title: "Logar", style: .default, handler: { (UIAlertAction) in
                 
             self.performSegue(withIdentifier: "goToLogin", sender: nil)
                 
-              
-                
             }))
             alertControler.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (UIAlertAction) in
-                
-               
-                
-                
-                
+
             }))
-            // Perguntar pro usuario pra logar
-            // Sim -> mandar tela de login
             
             self.present(alertControler, animated: true, completion: nil)
         }else{
+            //Faz animação caso esteja logado.
             if !sender.isSelected {
                 showButtons(duration: 0.5)
                 sender.isSelected = true
@@ -362,27 +339,19 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         
     }
-   
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-      
-        let options = ForwardGeocodeOptions(query: searchText)
-        _ = geocoder.geocode(options) { (placemarks, attribution, error) in
-            // self.querryResults = placemarks!
-            if(placemarks != nil){
-                self.querryResults = placemarks!
-                self.searchTableView.reloadData()
-                self.searchTableView.isHidden = false
-            }else{
-                self.searchTableView.isHidden = true
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "containerViewSegue" {
+            containerViewController = segue.destination as? FilterTableViewControlleTableViewController
+            containerViewController!.containerToMaster = self
+        } else if segue.identifier == "seeReport"{
+            if let seeScreen = segue.destination as? SeeReportViewController {
+                seeScreen.report = self.reportToSend
             }
             
         }
-        
-        
-        
-        
     }
     
+   
     func setObserverToFireBaseChanges() {
         
         self.refReports.observe(DataEventType.value, with: {(snapshot) in
