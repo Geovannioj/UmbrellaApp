@@ -15,8 +15,7 @@ class SeeReportViewController: UIViewController {
     
     //outlets
     
-//    @IBOutlet var commentView: UIView!
-//    @IBOutlet weak var footerView: UIView!
+
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var violenceTitleLbl: UILabel!
     @IBOutlet weak var agression: UILabel!
@@ -79,11 +78,11 @@ class SeeReportViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         self.inputAccessoryView?.removeFromSuperview()
          NotificationCenter.default.removeObserver(self)
     }
-    
+
     override var inputAccessoryView: UIView? {
         get{
             
@@ -223,6 +222,12 @@ class SeeReportViewController: UIViewController {
         return -1
     }
 
+    @IBAction func closeAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "backToMap", sender: Any.self)
+        
+        
+    }
     
     func setObserverToFireBaseChanges() {
         

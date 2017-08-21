@@ -306,7 +306,8 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="18" height="22"/>
                                                     <state key="normal" image="Combined Shape"/>
                                                     <connections>
-                                                        <segue destination="XR8-Am-Lze" kind="show" id="3pG-hm-tgK"/>
+                                                        <action selector="closeAction:" destination="saK-jK-EH4" eventType="touchUpInside" id="8Kp-NJ-cOb"/>
+                                                        <segue destination="XR8-Am-Lze" kind="show" identifier="backToMap" id="3pG-hm-tgK"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhR-Pe-HWp">
