@@ -16,8 +16,6 @@ protocol ProfileTableViewControllerProtocol {
 
 class ProfileTableViewController: UITableViewController, InteractorCompleteProtocol {
     
-    
-    
     @IBOutlet weak var emailCell: UITableViewCell!
     @IBOutlet weak var passwordCell: UITableViewCell!
     @IBOutlet weak var birthCell: UITableViewCell!
@@ -67,7 +65,6 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         
     }
     
-
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 150
@@ -165,6 +162,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             alert.showAlert(viewController: self, title: "Alerta!!", message: "Ocorreu um erro na base de dados. Tente novamente mais tarde.", confirmButton: nil, cancelButton: "OK")
         }
         else {
+            
             performSegue(withIdentifier: "loginSegue", sender: nil)
         }
     }
@@ -185,7 +183,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         inputs.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
         inputs.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         inputs.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        
+            
         inputs.alterarFotoButton.addTarget(self, action: #selector(handleSelectProfileImage), for: .touchUpInside)
         
     }
@@ -467,34 +465,51 @@ extension ProfileTableViewController : UIImagePickerControllerDelegate, UINaviga
     
     func handleSelectProfileImage() {
         
+        let chooseAction = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        chooseAction.addAction(UIAlertAction(title: "Tirar Foto", style: .default, handler:{_ in
+            self.handlePresentPicker(type: .camera)
+        }))
+        
+        chooseAction.addAction(UIAlertAction(title: "Escolher Foto", style: .default, handler:{_ in
+            self.handlePresentPicker(type: .photoLibrary)
+        }))
+        
+        chooseAction.addAction(UIAlertAction(title: "Remover Foto", style: .destructive, handler:{_ in
+            self.inputs.profileImage.image = nil
+        }))
+        
+        chooseAction.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(chooseAction, animated: true, completion: nil)
+    }
+    
+    func handlePresentPicker(type : UIImagePickerControllerSourceType) {
+        
         let picker = UIImagePickerController()
         
         picker.delegate = self
         picker.allowsEditing = true
         
-        present(picker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(type) {
+            picker.sourceType = type
+            self.present(picker, animated: true, completion: nil)
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        var selectedImage : UIImage?
-        
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            selectedImage = editedImage
+            inputs.profileImage.image = editedImage
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            selectedImage = originalImage
+            inputs.profileImage.image = originalImage
         }
         
-        if selectedImage != nil {
-            
-            inputs.profileImage.image = selectedImage
-        }
-        
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
+
 }

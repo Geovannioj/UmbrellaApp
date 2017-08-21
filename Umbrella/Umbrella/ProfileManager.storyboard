@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -239,47 +238,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="report" rowHeight="119" id="Eil-F3-vFC">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y1x-H1-h9R">
                                         <rect key="frame" x="0.0" y="28" width="375" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eil-F3-vFC" id="cjm-Cc-yJe">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="119"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y1x-H1-h9R" id="Frp-KV-Sws">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw4-G7-ds6">
-                                                    <rect key="frame" x="139" y="8" width="37.5" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbr-sZ-ycT" customClass="MGLMapView">
-                                                    <rect key="frame" x="8" y="3" width="127" height="108"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="127" id="DgS-AX-vsy"/>
-                                                    </constraints>
-                                                </view>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="4" contentMode="scaleToFill" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xwd-Mf-kuc">
-                                                    <rect key="frame" x="139" y="27" width="208" height="84"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Hw4-G7-ds6" firstAttribute="leading" secondItem="Zbr-sZ-ycT" secondAttribute="trailing" constant="4" id="0ox-1e-9B3"/>
-                                                <constraint firstItem="Xwd-Mf-kuc" firstAttribute="top" secondItem="Hw4-G7-ds6" secondAttribute="bottom" constant="1" id="76c-6K-v1H"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="Zbr-sZ-ycT" secondAttribute="leading" id="GSv-AW-Uye"/>
-                                                <constraint firstItem="Xwd-Mf-kuc" firstAttribute="leading" secondItem="Zbr-sZ-ycT" secondAttribute="trailing" constant="4" id="aS4-BK-xvo"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Zbr-sZ-ycT" secondAttribute="bottom" constant="-0.5" id="ePE-NZ-GVc"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Xwd-Mf-kuc" secondAttribute="bottom" id="f0l-QZ-8hx"/>
-                                                <constraint firstItem="Zbr-sZ-ycT" firstAttribute="top" secondItem="cjm-Cc-yJe" secondAttribute="topMargin" constant="-5" id="mJA-sg-UqS"/>
-                                                <constraint firstAttribute="topMargin" secondItem="Hw4-G7-ds6" secondAttribute="top" id="tMK-uT-f8B"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Xwd-Mf-kuc" secondAttribute="trailing" constant="28" id="IXY-fq-BGg"/>
-                                        </constraints>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -296,11 +261,29 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="4YI-g1-gqC" id="TXH-Ts-lCC"/>
+                        <segue destination="TDX-zh-hIp" kind="show" identifier="goToEditReport" id="FzL-cs-xo5"/>
+                        <segue destination="ban-rk-3k3" kind="show" identifier="seeMyReport" id="IQ1-P2-Wcb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zqj-OJ-uX1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="301.60000000000002" y="857.72113943028489"/>
+        </scene>
+        <!--RegisterReportViewController-->
+        <scene sceneID="Eu0-80-qSR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RegisterReportFirst" referencedIdentifier="RegisterReportViewController" id="TDX-zh-hIp" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fvi-qd-SCJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1081" y="856"/>
+        </scene>
+        <!--SeeReportViewController-->
+        <scene sceneID="Hg2-0z-CWb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SeeReport" referencedIdentifier="SeeReportViewController" id="ban-rk-3k3" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mH5-Ft-CdB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1058" y="910"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7do-j0-y3l">

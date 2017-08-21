@@ -50,8 +50,7 @@ class SeeReportViewController: UIViewController {
         
         
         //recognizer para sumir o teclado quando o usuário clicar na tela
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+        dismissKayboardInTapGesture()
 
         //change the background color for the two views
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
@@ -98,13 +97,6 @@ class SeeReportViewController: UIViewController {
     override var canBecomeFirstResponder: Bool {
         return true
     }
-    
-    
-    func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
-
     
     func initLabels() {
     

@@ -35,9 +35,7 @@ class RegisterReportViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        
-        view.addGestureRecognizer(tap)
+        dismissKayboardInTapGesture()
         
         //setts the collor background to dark purple
         self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
@@ -64,13 +62,6 @@ class RegisterReportViewController: UIViewController  {
         
         
     }
-   
-    //Calls this function when the tap is recognized.
-    func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
-    
     
     //initiates the fields if there is a report to be edited
     func initFieldsToEdit() {
@@ -122,6 +113,7 @@ class RegisterReportViewController: UIViewController  {
         //}
         
     }
+    
     func getLocation () {
         
         self.reportLatitude = violenceLocation.camera.centerCoordinate.latitude

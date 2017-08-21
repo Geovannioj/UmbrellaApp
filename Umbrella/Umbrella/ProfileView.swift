@@ -12,11 +12,13 @@ import UIKit
 class ProfileView: UIView {
     
     let profileImage : UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "profileImageIcon")
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+        let view = UIImageView()
+        view.layer.contents = UIImage(named: "profileImageIcon")?.cgImage
+        view.layer.masksToBounds = false
+        view.clipsToBounds = true
+        view.contentMode = .scaleAspectFill
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     let username : UILabel = {
@@ -29,7 +31,7 @@ class ProfileView: UIView {
     }()
     
     let alterarFotoButton : UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Alterar Foto", for: .normal)
         button.setTitleColor(UIColor(r: 170, g: 10, b: 234), for: .normal)
         button.backgroundColor = .clear
@@ -38,7 +40,6 @@ class ProfileView: UIView {
         button.isUserInteractionEnabled = true
         return button
     }()
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,7 +50,7 @@ class ProfileView: UIView {
         super.prepareForInterfaceBuilder()
         setupView()
     }
-    
+        
     func setupView() {
         
         self.backgroundColor = UIColor.clear
@@ -61,8 +62,12 @@ class ProfileView: UIView {
         setupProfileImageView()
         setupUsername()
         setupAlterarFotoButton()
-//        setupNameLineStack()
-//        setupLabelsStack()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        profileImage.layer.cornerRadius = profileImage.frame.width / 2
     }
     
     func setupProfileImageView() {
@@ -76,50 +81,11 @@ class ProfileView: UIView {
     func setupUsername() {
         username.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
         username.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 20).isActive = true
-        //username.widthAnchor.constraint(equalToConstant: 90).isActive = true
-        //username.heightAnchor.constraint(equalToConstant: 90).isActive = true
-        
     }
     
     func setupAlterarFotoButton() {
         alterarFotoButton.topAnchor.constraint(equalTo: username.bottomAnchor, constant: 5).isActive = true
         alterarFotoButton.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 20).isActive = true
-        //alterarFotoButton.widthAnchor.constraint(equalToConstant: 90).isActive = true
-        //alterarFotoButton.heightAnchor.constraint(equalToConstant: 90).isActive = true
-        
-    }
-    
-    
-//    func setupNameLineStack() {
-//        
-//        let stackView = UIStackView(arrangedSubviews: [username, lineView])
-//        stackView.axis = .vertical
-//        stackView.spacing = 10
-//        stackView.distribution = .fillProportionally
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        addSubview(stackView)
-//        
-//        stackView.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: 5).isActive = true
-//        stackView.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 30).isActive = true
-//        stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5).isActive = true
-//        
-//        lineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-//    }
-//    
-//    func setupLabelsStack(){
-//        
-//        let stackView = UIStackView(arrangedSubviews: [email, password, birthDate, minority])
-//        stackView.axis = .vertical
-//        stackView.spacing = 50
-//        stackView.distribution = .fillProportionally
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        addSubview(stackView)
-//        
-//        stackView.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: 10).isActive = true
-//        stackView.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 50).isActive = true
-//    }
-    
+    }    
 }
 

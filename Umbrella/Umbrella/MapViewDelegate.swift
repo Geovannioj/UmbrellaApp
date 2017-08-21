@@ -10,25 +10,12 @@ import UIKit
 import Mapbox
 
 extension MapViewController : MGLMapViewDelegate {
-//    let mapView:MGLMapView
-//    let mainView:UIView
-    
-//    init(mapView:MGLMapView,view: UIView) {
-//        self.mapView = mapView
-//        mainView = view
-//        super.init()
-//        self.mapView.delegate = self
-//    }
-//     override init() {
-//        mapView = MGLMapView()
-//        mainView = UIView()
-//        super.init()
-//        
-//    }
+
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
         // Show the user location here
         mapView.showsUserLocation = true
     }
+    
     //Funcao acionada quando o pin e selecionado
     func mapView(_ mapView: MGLMapView, didSelect annotationView: MGLAnnotationView) {
         
@@ -99,6 +86,20 @@ extension MapViewController : MGLMapViewDelegate {
         
         
         
+    }
+    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        
+        return true
+        
+    }
+    
+    func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> MGLCalloutView? {
+        
+        
+        self.reportToSend = getAnnotationById(reportId: annotation.title!!, reports: self.reports)
+        performSegue(withIdentifier: "seeReport", sender: Any.self)
+        
+        return nil
     }
     
     /***
@@ -197,6 +198,7 @@ extension MapViewController : MGLMapViewDelegate {
         
         let annotation = MGLPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees.init(new.latitude), longitude: .init(new.longitude))
+       
         annotation.title = new.id
         annotation.subtitle = new.violenceKind
         
@@ -230,7 +232,6 @@ extension MapViewController : MGLMapViewDelegate {
         
      
     }
-    //TO-DO: Ta dando error aqui
     //MARK : Center functions
     func centerOnUser(){
         
@@ -261,19 +262,6 @@ extension MapViewController : MGLMapViewDelegate {
         return Report()
     }
     
-    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        
-        return true
-    
-    }
-    
-    func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> MGLCalloutView? {
-        
-        
-        self.reportToSend = getAnnotationById(reportId: annotation.title!!, reports: self.reports)
-        performSegue(withIdentifier: "seeReport", sender: Any.self)
- 
-        return nil
-    }
+   
 
 }

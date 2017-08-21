@@ -8,48 +8,41 @@
 
 import UIKit
 import Firebase
+import NVActivityIndicatorView
 
 class LoginViewController: UIViewController, InteractorCompleteProtocol {
     
     @IBOutlet weak var inputs: LoginView!
-    weak var presenter : LoginPresenter?
     let alert: AlertPresenter = AlertPresenter()
-    
+    var indicatorView : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter = LoginPresenter()
         view.backgroundImage(named: "bkgLoginView")
         
         setupInputs()
+        setupIndicator()
+        dismissKayboardInTapGesture()
+    }
         
-    }
-    
-    // DEIXAR COMENTADO APENAS PARA TESTES DE LOGIN
-    override func viewDidAppear(_ animated: Bool) {
-        if UserInteractor.isUserOnline() {
-            performSegue(withIdentifier: "mapSegue", sender: nil)
-        }
-    }
-    
     func handleLogin() {
         
         guard let email = inputs.email.textField.text,
               let password = inputs.password.textField.text else {
-    
             return
         }
-        
+        indicatorView.startAnimating()
+
         inputs.email.isValidImput(true)
         inputs.password.isValidImput(true)
         
         UserInteractor.connectUserOnline(email: email, password: password, handler: self)
-    
     }
     
-    
     func completeLogin(user : UserInfo?, error : Error?) {
+        
+        indicatorView.stopAnimating()
         
         if error != nil, let errCode = AuthErrorCode(rawValue: error!._code) {
             
@@ -78,7 +71,6 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
                 })
             }
         }
-        
     }
 
     func handleNewAccount() {
@@ -111,6 +103,16 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
         inputs.newAccountButton.addTarget(self, action: #selector(handleNewAccount), for: .touchUpInside)
         inputs.forgotPasswordButton.addTarget(self, action: #selector(handleForgotPassword), for: .touchUpInside)
         inputs.facebookButton.addTarget(self, action: #selector(handleFacebookLogin), for: .touchUpInside)
+    }
+    
+    func setupIndicator() {
+        
+        indicatorView = NVActivityIndicatorView(frame: CGRect(x: 0.0, y: 0.0, width: 50, height: 50), type: .lineSpinFadeLoader, color: .purple, padding: 1.0)
+        view.addSubview(indicatorView)
+        
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        indicatorView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        indicatorView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
 }
 

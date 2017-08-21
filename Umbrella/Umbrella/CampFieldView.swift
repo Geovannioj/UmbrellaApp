@@ -24,6 +24,7 @@ class CampFieldView: UIView {
     let textField : UITextField  = {
         let text = UITextField()
         text.placeholder = ""
+        text.autocapitalizationType = .none
         text.font = UIFont.systemFont(ofSize: 14)
         text.textColor = UIColor.black
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -58,6 +59,7 @@ class CampFieldView: UIView {
     }()
     
     var validated = false
+    var id : Int?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,6 +83,36 @@ class CampFieldView: UIView {
         invalidMessageLabel.isHidden = option
         campView.layer.borderColor = option ? UIColor.lightGray.cgColor : UIColor.red.cgColor
     }
+    
+    func nextCamp() {
+        
+        guard let fromId = self.id else {
+            self.textField.resignFirstResponder()
+            return
+        }
+        
+        if let camps = superview?.subviews.filter({$0 is CampFieldView}) {
+         
+            for camp in camps as! [CampFieldView] {
+            
+                if let toId = camp.id, toId - fromId == 1 {
+                    
+                    camp.textField.becomeFirstResponder()
+                    return
+                }
+            }
+        }
+        
+        self.textField.resignFirstResponder()
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("This class does not support NSCoding")
+    }
+
+}
+
+extension CampFieldView {
     
     func setupView() {
         
@@ -114,7 +146,7 @@ class CampFieldView: UIView {
     }
     
     func setupTextField() {
-  
+        
         textField.leftAnchor.constraint(equalTo: iconImage.rightAnchor, constant: 10).isActive = true
         textField.rightAnchor.constraint(equalTo: campView.rightAnchor, constant: -10).isActive = true
         textField.centerYAnchor.constraint(equalTo: campView.centerYAnchor).isActive = true
@@ -131,9 +163,4 @@ class CampFieldView: UIView {
         invalidMessageLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         invalidMessageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("This class does not support NSCoding")
-    }
-
 }

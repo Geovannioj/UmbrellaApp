@@ -12,7 +12,7 @@ class NavigationView: UIView {
 
     let nameField : UILabel  = {
         let text = UILabel()
-        text.font = UIFont.boldSystemFont(ofSize: 16)
+        text.font = UIFont.systemFont(ofSize: 14)
         text.textColor = UIColor.purple
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
@@ -21,6 +21,7 @@ class NavigationView: UIView {
     let profileImage : UIImageView = {
         let icon = UIImageView()
         icon.image = UIImage(named: "umbrella")
+        icon.clipsToBounds = true
         icon.contentMode = .scaleAspectFill
         icon.isUserInteractionEnabled = false
         icon.translatesAutoresizingMaskIntoConstraints = false
@@ -41,10 +42,8 @@ class NavigationView: UIView {
         return view
     }()
     
-    
     init() {
         super.init(frame: CGRect.zero)
-        
         setupView()
     }
 
@@ -67,24 +66,32 @@ class NavigationView: UIView {
         setupBottomLine()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        profileImage.layer.cornerRadius = profileImage.frame.width / 2
+    }
+    
     func setupProfileImage() {
         
-        profileImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        profileImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 25).isActive = true
         profileImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        profileImage.heightAnchor.constraint(equalToConstant: 34).isActive = true
-        profileImage.widthAnchor.constraint(equalToConstant: 34).isActive = true
+        profileImage.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        profileImage.widthAnchor.constraint(equalToConstant: 45).isActive = true
     }
     
     func setupTextField() {
         
-        nameField.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 5).isActive = true
+        nameField.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 3).isActive = true
         nameField.centerXAnchor.constraint(equalTo: profileImage.centerXAnchor).isActive = true
     }
     
     func setupBackButton() {
         
-        backButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        backButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        backButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 5).isActive = true
+        backButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 15).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: 30)
+        backButton.widthAnchor.constraint(equalToConstant: 30)
     }
     
     func setupBottomLine() {

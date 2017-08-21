@@ -38,8 +38,7 @@ class UserInteractor {
      - parameter handler: deals with errors and completes sign in actions
      */
     static func createUser(nickname: String, email: String,
-                           password: String, birthDate: Date?,
-                           idMinority: String?, image: UIImage?,
+                           password: String, image: UIImage?,
                            handler : InteractorCompleteProtocol) {
         
         // Add user to firebase
@@ -60,42 +59,28 @@ class UserInteractor {
             // Fill an instance of the user with data
             newUser.nickname = nickname
             newUser.email = email
-            if birthDate != nil {
-                newUser.birthDate = birthDate!
-            }
-            if idMinority != nil {
-                newUser.idMinority = idMinority
-                MinorityInteractor.getMinority(withId: idMinority!, completion: { minority in
-                    newUser.typeMinority = minority.type
-                    
-                    if image != nil {
-                        PhotoInteractor.createPhoto(image: image!, handler: handler, completion: { (photo) -> () in
-                            newUser.urlPhoto = photo
-                            
-                            // Add user to local database
-                            SaveManager.instance.create(newUser)
-                            
-                            // Add user to firebase
-                            userRef.setValue(newUser.toAnyObject())
-                        })
-                    }
-                })
-            }
             
-            else {
+            if image != nil {
+                PhotoInteractor.createPhoto(image: image!, handler: handler, completion: { (photo) -> () in
+                    newUser.urlPhoto = photo
+                    
+                    // Add user to local database
+                    SaveManager.instance.create(newUser)
+                    // Add user to firebase
+                    userRef.setValue(newUser.toAnyObject())
+                    handler.completeCreate?(user: user, error: error)
+                })
+            
+            } else {
                 // Add user to local database
                 SaveManager.instance.create(newUser)
-                
                 // Add user to firebase
                 userRef.setValue(newUser.toAnyObject())
+                handler.completeCreate?(user: user, error: error)
             }
-            
-            
-            handler.completeCreate?(user: user, error: error)
-            
+        
             // Save the password on the keychain
             //KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
-            
         }
     }
 
@@ -437,6 +422,69 @@ class UserInteractor {
     }
 }
 
+
+//static func createUser(nickname: String, email: String,
+//                       password: String, birthDate: Date?,
+//                       idMinority: String?, image: UIImage?,
+//                       handler : InteractorCompleteProtocol) {
+//    
+//    // Add user to firebase
+//    Auth.auth().createUser(withEmail: email, password: password) { user, error in
+//        
+//        // Treatment in case of user creation error
+//        if error != nil {
+//            handler.completeCreate?(user: user, error: error)
+//            return
+//        }
+//        
+//        let newUser = UserEntity()
+//        newUser.id = (user?.uid)!
+//        
+//        // Reference of the user table in firebase
+//        let userRef = Database.database().reference().child("user").child(String(newUser.id))
+//        
+//        // Fill an instance of the user with data
+//        newUser.nickname = nickname
+//        newUser.email = email
+//        if birthDate != nil {
+//            newUser.birthDate = birthDate!
+//        }
+//        if idMinority != nil {
+//            newUser.idMinority = idMinority
+//            MinorityInteractor.getMinority(withId: idMinority!, completion: { minority in
+//                newUser.typeMinority = minority.type
+//                
+//                
+//                if image != nil {
+//                    PhotoInteractor.createPhoto(image: image!, handler: handler, completion: { (photo) -> () in
+//                        newUser.urlPhoto = photo
+//                        
+//                        // Add user to local database
+//                        SaveManager.instance.create(newUser)
+//                        
+//                        // Add user to firebase
+//                        userRef.setValue(newUser.toAnyObject())
+//                    })
+//                }
+//            })
+//        }
+//            
+//        else {
+//            // Add user to local database
+//            SaveManager.instance.create(newUser)
+//            
+//            // Add user to firebase
+//            userRef.setValue(newUser.toAnyObject())
+//        }
+//        
+//        
+//        handler.completeCreate?(user: user, error: error)
+//        
+//        // Save the password on the keychain
+//        //KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
+//        
+//    }
+//}
 
 
 
