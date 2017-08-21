@@ -69,7 +69,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         setObserverToFireBaseChanges()
         let request = GADRequest()
         filterTable.isHidden = true
-        request.testDevices = [kGADSimulatorID]
+        request.testDevices = ["ed38a929ee1c81d9bdfdd596a77be9e0"]
         bannerView.adUnitID = "ca-app-pub-1296835094216265/5601148764"
         bannerView.rootViewController = self
         bannerView.load(request)

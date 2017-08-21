@@ -64,6 +64,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         setupInputs()
         setupUser()
         setTable()
+        
     }
     
 
@@ -287,7 +288,8 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             tableView.reloadSections(IndexSet(integersIn: 0...2), with: .top)
             tableView.endUpdates()
             
-            view.bringSubview(toFront: inputs)
+            print(tableView.tableFooterView?.isUserInteractionEnabled )
+            //view.bringSubview(toFront: inputs)
             //tableView.bringSubview(toFront: inputs)
             //print(tableView.layer.zPosition)
             //print(view.bringSubview(toFront: tableView.subviews.last!))
