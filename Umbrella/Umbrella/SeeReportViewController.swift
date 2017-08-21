@@ -347,12 +347,40 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
         })
         
         
-        
-        
+
         return cell
         
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     
+        if self.comments[indexPath.row].userId == UserInteractor.getCurrentUserUid() {
+        
+            let deleteWarning = UIAlertController(title: "Apagar Comentário",
+                                              message: "Você realmente deseja apagar o seu comentário?",
+                                              preferredStyle: .alert)
+        
+            deleteWarning.addAction(UIAlertAction(title: "Deletar", style: .destructive,
+                                              handler: { (action) in
+                                                
+                                                let commentToDelete = self.comments[indexPath.row].commentId
+                                                self.comments.remove(at: indexPath.row)
+                                                self.refComment.child(commentToDelete).setValue(nil)
+                                                tableView.reloadData()
+            }))
+        
+        
+            deleteWarning.addAction(UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.cancel,
+                                              handler:nil))
+        
+            self.present(deleteWarning, animated: true, completion: nil)
+
+        
+        }
+    
+    }
+
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
