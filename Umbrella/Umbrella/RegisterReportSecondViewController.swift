@@ -13,6 +13,7 @@ import Firebase
 class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate{
     
     
+    @IBOutlet weak var scrollViewMainVIew: UIScrollView!
     @IBOutlet weak var violenceAgressionLbl: UILabel!
     @IBOutlet weak var descriptionLbl: UILabel!
     @IBOutlet weak var personIdentificationLbl: UILabel!
@@ -62,9 +63,6 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
                                                selector: #selector(self.keyboardNotification(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                object: nil)
-        
-//        self.personIdentification.setValue(UIColor.white, forKey: "textColor")
-//        self.violenceKind.setValue(UIColor.white, forKey: "textColor")
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterReportSecondViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -128,6 +126,9 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
             } else {
                 
                 self.keyBoardConstraint?.constant = endFrame?.size.height ?? 0.0
+                let point = CGPoint(x: 0, y: 200) // 200 or any value you like.
+                self.scrollViewMainVIew.contentOffset = point
+
             }
             
             UIView.animate(withDuration: duration,
