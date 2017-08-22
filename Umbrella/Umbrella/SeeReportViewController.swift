@@ -15,8 +15,7 @@ class SeeReportViewController: UIViewController {
     
     //outlets
     
-//    @IBOutlet var commentView: UIView!
-//    @IBOutlet weak var footerView: UIView!
+
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var violenceTitleLbl: UILabel!
     @IBOutlet weak var agression: UILabel!
@@ -79,11 +78,11 @@ class SeeReportViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         self.inputAccessoryView?.removeFromSuperview()
          NotificationCenter.default.removeObserver(self)
     }
-    
+
     override var inputAccessoryView: UIView? {
         get{
             
@@ -103,10 +102,16 @@ class SeeReportViewController: UIViewController {
         let ref = self.refUser.child((self.report?.userId)!)
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let user = snapshot.value as? [String: Any]
-            self.username.text = user?["nickname"] as? String
-            self.userPhoto.loadCacheImage((user?["urlPhoto"] as? String)!)
+        
+            if let user = snapshot.value as? [String: Any] {
+                self.username.text = user["nickname"] as? String
+                
+                if let url = user["urlPhoto"] as? String {
+                    self.userPhoto.loadCacheImage(url)
+                } else {
+                    self.userPhoto.image = UIImage(named: "emailIcon")
+                }
+            }
         })
 
         self.username.textColor = UIColor.white
@@ -217,6 +222,12 @@ class SeeReportViewController: UIViewController {
         return -1
     }
 
+    @IBAction func closeAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "backToMap", sender: Any.self)
+        
+        
+    }
     
     func setObserverToFireBaseChanges() {
         
@@ -333,18 +344,52 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
         //setting user image and name to each comment
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
-            let user = snapshot.value as? [String: Any]
-                userNickName.text = user?["nickname"] as? String
-                userPhoto.loadCacheImage((user?["urlPhoto"] as? String)!)
+            if let user = snapshot.value as? [String: Any] {
+                userNickName.text = user["nickname"] as? String
+                
+                if let url = user["urlPhoto"] as? String {
+                    userPhoto.loadCacheImage(url)
+                } else {
+                    userPhoto.image = UIImage(named: "emailIcon")
+                }
+            }
         })
         
         
-        
-        
+
         return cell
         
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     
+        if self.comments[indexPath.row].userId == UserInteractor.getCurrentUserUid() {
+        
+            let deleteWarning = UIAlertController(title: "Apagar Comentário",
+                                              message: "Você realmente deseja apagar o seu comentário?",
+                                              preferredStyle: .alert)
+        
+            deleteWarning.addAction(UIAlertAction(title: "Deletar", style: .destructive,
+                                              handler: { (action) in
+                                                
+                                                let commentToDelete = self.comments[indexPath.row].commentId
+                                                self.comments.remove(at: indexPath.row)
+                                                self.refComment.child(commentToDelete).setValue(nil)
+                                                tableView.reloadData()
+            }))
+        
+        
+            deleteWarning.addAction(UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.cancel,
+                                              handler:nil))
+        
+            self.present(deleteWarning, animated: true, completion: nil)
+
+        
+        }
+    
+    }
+
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
