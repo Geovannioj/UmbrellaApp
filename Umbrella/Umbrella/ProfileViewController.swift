@@ -286,7 +286,6 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             tableView.reloadSections(IndexSet(integersIn: 0...2), with: .top)
             tableView.endUpdates()
             
-            print(tableView.tableFooterView?.isUserInteractionEnabled )
             //view.bringSubview(toFront: inputs)
             //tableView.bringSubview(toFront: inputs)
             //print(tableView.layer.zPosition)
