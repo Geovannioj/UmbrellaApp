@@ -78,8 +78,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ajn-Fz-Ea5">
-                                        <rect key="frame" x="335" y="599" width="32" height="30"/>
-                                        <state key="normal" title="Next">
+                                        <rect key="frame" x="311" y="599" width="56" height="30"/>
+                                        <state key="normal" title="Próximo">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>

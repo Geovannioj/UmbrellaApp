@@ -39,7 +39,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="414" height="71"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uYb-jD-087" id="NKx-JR-dsD">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sqc-I0-bFP">
@@ -306,7 +306,8 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="18" height="22"/>
                                                     <state key="normal" image="Combined Shape"/>
                                                     <connections>
-                                                        <segue destination="XR8-Am-Lze" kind="show" id="3pG-hm-tgK"/>
+                                                        <action selector="closeAction:" destination="saK-jK-EH4" eventType="touchUpInside" id="8Kp-NJ-cOb"/>
+                                                        <segue destination="XR8-Am-Lze" kind="show" identifier="backToMap" id="3pG-hm-tgK"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhR-Pe-HWp">
@@ -429,11 +430,12 @@
                                         <rect key="frame" x="0.0" y="415" width="414" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LbY-Uh-7tM" id="6o7-CF-XKX">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HFq-vI-ANe">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HFq-vI-ANe">
                                                     <rect key="frame" x="8" y="8" width="30" height="30"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="W6q-cQ-JMs"/>
                                                         <constraint firstAttribute="height" constant="30" id="bkY-Vy-kuT"/>
