@@ -45,6 +45,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     //database reference
     var refReports: DatabaseReference!
     var refMessageReport: DatabaseReference!
+    var refUserSupport: DatabaseReference!
     
     //atributes from the frist string
     var violenceTitle: String?
@@ -56,7 +57,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     override func viewDidLoad() {
         self.refReports =  Database.database().reference().child("reports")
         self.refMessageReport = Database.database().reference().child("user-reports")
-        
+        self.refUserSupport = Database.database().reference().child("user-support")
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self,
@@ -167,35 +168,36 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     func addReport() {
         
-                let id = refReports.childByAutoId().key
-                let userId = UserInteractor.getCurrentUserUid()
-                let title = self.violenceTitle
-                let description = self.violenceDescription.text
-                let violenceKind = self.violenceKindChosen
-                let personGender = self.personIdentificationChosen
-                let violenceAproximatedTime = self.aproximatedTime
+        let id = refReports.childByAutoId().key
+        let userId = UserInteractor.getCurrentUserUid()
+        let title = self.violenceTitle
+        let description = self.violenceDescription.text
+        let violenceKind = self.violenceKindChosen
+        let personGender = self.personIdentificationChosen
+        let violenceAproximatedTime = self.aproximatedTime
         
-                let latitude = self.latitude
-                let longitude = self.longitude
-            //
+        let latitude = self.latitude
+        let longitude = self.longitude
         
-                let report = Report(id: id,
-                                    userId: userId!,
-                                    title: title!,
-                                    description: description!,
-                                    violenceKind: violenceKind,
-                                    violenceAproximatedTime: Double(violenceAproximatedTime!),
-                                    latitude: latitude!,
-                                    longitude: longitude!,
-                                    personGender: personGender)
+        let report = Report(id: id,
+                            userId: userId!,
+                            title: title!,
+                            description: description!,
+                            violenceKind: violenceKind,
+                            violenceAproximatedTime: Double(violenceAproximatedTime!),
+                            latitude: latitude!,
+                            longitude: longitude!,
+                            personGender: personGender)
         
-    
-        
-                self.refReports.child(id).setValue(report.turnToDictionary())
+        self.refReports.child(id).setValue(report.turnToDictionary())
        
-                let ref = self.refMessageReport.child(userId!)
-                
-                ref.updateChildValues([id : 1])
+        // reference to the user-report table
+        let ref = self.refMessageReport.child(userId!)
+        ref.updateChildValues([id : 1])
+        
+        //reference to the user-support table
+        let databaseRef = self.refUserSupport.child(id)
+        databaseRef.updateChildValues([id : 1])
         
         let saveMessage = UIAlertController(title: "Relato Salvo",
                                               message: "Relato salvo com sucesso",

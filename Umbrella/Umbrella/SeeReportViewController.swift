@@ -39,6 +39,7 @@ class SeeReportViewController: UIViewController {
     var refUser: DatabaseReference!
     var refUserSupport: DatabaseReference!
     
+    
     //comments to the report
     var comments:[Comment] = []
     
@@ -323,27 +324,6 @@ class SeeReportViewController: UIViewController {
 
     }
     
-    func checkUserSupport(completion: @escaping (Bool) -> ()) {
-        //report id
-        let reportId = self.report?.id
-        
-        //user id
-        let userId = UserInteractor.getCurrentUserUid()
-        
-        //reference to the database table
-        let databaseRef = self.refUserSupport.child(reportId!)
-        //databaseRef.updateChildValues(["1": 1])
-        
-        databaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot.key)
-            if snapshot.key == userId {
-                print("achou o user")
-            } else {
-                print("o user não está aqui")
-            }            
-        })
-
-    }
     func setObserverToFireBaseUserSupportTable() {
         //report id
         let reportId = self.report?.id
@@ -511,6 +491,15 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
             self.present(deleteWarning, animated: true, completion: nil)
 
         
+        } else {
+            
+            let imposibleToDeleteWarning = UIAlertController(title: "O comentário não é seu",
+                                                             message: "Você só pode deletar os seus comentários!",
+                                                             preferredStyle: .alert)
+            
+            imposibleToDeleteWarning.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            
+            self.present(imposibleToDeleteWarning, animated: true, completion: nil)
         }
     
     }
