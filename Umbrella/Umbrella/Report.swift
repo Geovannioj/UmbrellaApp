@@ -19,6 +19,7 @@ class Report {
     var latitude : Double
     var longitude : Double
     var personGender : String
+    var supports: Int
     
     init(id : String,
          userId: String,
@@ -39,9 +40,31 @@ class Report {
         self.latitude = latitude
         self.longitude = longitude
         self.personGender = personGender
-        
+        self.supports = 0
     }
     
+    init(id : String,
+         userId: String,
+         title : String,
+         description : String,
+         violenceKind : String,
+         violenceAproximatedTime : Double,
+         latitude : Double,
+         longitude : Double,
+         personGender: String,
+         supports: Int) {
+        
+        self.id = id
+        self.userId = userId
+        self.title = title
+        self.description = description
+        self.violenceKind = violenceKind
+        self.violenceAproximatedTime = violenceAproximatedTime
+        self.latitude = latitude
+        self.longitude = longitude
+        self.personGender = personGender
+        self.supports = supports
+    }
     init() {
         self.id = "No Id"
         self.userId = "No User"
@@ -52,6 +75,7 @@ class Report {
         self.latitude = 0.0
         self.longitude = 0.0
         self.personGender = "nO gender"
+        self.supports = 0
     }
     func turnToDictionary() -> Any {
         
@@ -64,7 +88,8 @@ class Report {
             "violenceAproximatedTime" : violenceAproximatedTime,
             "latitude" : latitude,
             "longitude" : longitude,
-            "personGender" : personGender
+            "personGender" : personGender,
+            "supports": supports
         ]
     }
 
