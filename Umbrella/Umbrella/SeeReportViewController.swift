@@ -26,6 +26,8 @@ class SeeReportViewController: UIViewController {
     @IBOutlet weak var violenceDescription: UITextView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sendMessageBtn: UIButton!
+    @IBOutlet weak var supportLbl: UILabel!
+    @IBOutlet weak var supportBtn: UIButton!
     
     //references
     var report:Report?
@@ -35,6 +37,7 @@ class SeeReportViewController: UIViewController {
     var refReport: DatabaseReference!
     var refComment: DatabaseReference!
     var refUser: DatabaseReference!
+    var refUserSupport: DatabaseReference!
     
     //comments to the report
     var comments:[Comment] = []
@@ -45,6 +48,7 @@ class SeeReportViewController: UIViewController {
         self.refComment =  Database.database().reference().child("comments")
         self.refReport =  Database.database().reference().child("reports")
         self.refUser = Database.database().reference().child("user")
+        self.refUserSupport = Database.database().reference().child("user-support")
         super.viewDidLoad()
         
         
@@ -133,6 +137,15 @@ class SeeReportViewController: UIViewController {
         
         self.initiateLocationOnMap(map: self.violanceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
         self.formatDate()
+        
+        if (self.report?.supports)! > 0 {
+            
+            self.supportLbl.text = String(describing: (self.report?.supports)!)
+        
+        } else {
+            
+            self.supportLbl.isHidden = true
+        }
     }
     
     //initial placeholder to the textView of comments
@@ -309,6 +322,207 @@ class SeeReportViewController: UIViewController {
         self.present(sendMessage, animated: true, completion: nil)
 
     }
+    
+    func checkUserSupport(completion: @escaping (Bool) -> ()) {
+        //report id
+        let reportId = self.report?.id
+        
+        //user id
+        let userId = UserInteractor.getCurrentUserUid()
+        
+        //reference to the database table
+        let databaseRef = self.refUserSupport.child(reportId!)
+        //databaseRef.updateChildValues(["1": 1])
+        
+        databaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            print(snapshot.key)
+            if snapshot.key == userId {
+                print("achou o user")
+            } else {
+                print("o user não está aqui")
+            }            
+        })
+
+    }
+    func setObserverToFireBaseUserSupportTable() {
+        //report id
+        let reportId = self.report?.id
+        
+        //user id
+        let userId = UserInteractor.getCurrentUserUid()
+        
+        
+//        self.refUserReport.observe(.childAdded, with: {(snapshot) in
+//            
+//            let ref =  Database.database().reference().child("reports").child(snapshot.key)
+//            
+//            ref.observeSingleEvent(of: .value, with: {(snapshot) in
+//                
+//                if let dictonary = snapshot.value as? [String : Any] {
+//                    
+//                    let id = dictonary["id"]
+//                    let userId = dictonary["userId"]
+//                    let title = dictonary["title"]
+//                    let description = dictonary["description"]
+//                    let violenceKind = dictonary["violenceKind"]
+//                    let violenceAproximatedTime = dictonary["violenceAproximatedTime"]
+//                    let latitude = dictonary["latitude"]
+//                    let longitude = dictonary["longitude"]
+//                    let personGender = dictonary["personGender"]
+//                    
+//                    let reportAtt = Report(id: id as! String,
+//                                           userId: userId as! String,
+//                                           title: title as! String,
+//                                           description: description as! String,
+//                                           violenceKind: violenceKind as! String,
+//                                           violenceAproximatedTime: violenceAproximatedTime as! Double,
+//                                           latitude: latitude as! Double,
+//                                           longitude: longitude as! Double,
+//                                           personGender: personGender as! String)
+//                    
+//                    self.userReports.append(reportAtt)
+//                    
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//                }
+//            })
+//        })
+
+        
+        
+        self.refUserSupport.observe(.childAdded, with: { (snapshot) in
+            
+            let ref =  Database.database().reference().child("user-support").child(reportId!)
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let userSupport = snapshot.value as? [String : Any] {
+                    do {
+                            
+                        guard let user =  userSupport[userId!] else {
+                                print( "not here")
+                                throw UserError.noUser
+                            }
+                    
+                        if  (user as! String) == nil {
+                        
+                            print( "not here")
+                        } else if (user as! String)  == userId {
+                     
+                            print("user aqui")
+                        }
+                    } catch {
+                        print( "not here")
+                    }
+                }
+
+            })
+        })
+    }
+
+    enum UserError: Error {
+        case noUser
+    }
+    
+    @IBAction func supportReport(_ sender: Any) {
+        
+        //report id
+        let reportId = self.report?.id
+        
+        //user id
+        let userId = UserInteractor.getCurrentUserUid()
+        
+        //reference to the database table
+        let databaseRef = self.refUserSupport.child(reportId!)
+        
+        
+       setObserverToFireBaseUserSupportTable()
+//        checkUserSupport(completion: { (userIn) in
+//        
+//        })
+//        //ADD A SUPPORT!
+//        
+//        
+//       // put the user into the user-support table
+//        databaseRef.updateChildValues([userId!: userId!])
+//        
+//        //incrise the amount of supports
+//        self.report?.supports += 1
+//
+//        self.supportLbl.text = String(describing:(self.report?.supports)!)
+//        
+//        self.supportLbl.isHidden = false
+//        
+//        self.refReport.child(reportId!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
+//        let imageBtnBackground = UIImage(named: "heart") as UIImage?
+//        self.supportBtn.setImage(imageBtnBackground, for: .normal)
+        
+//
+//        //REMOVE A SUPPORT
+//        
+//        //remove user to the user-support table
+//        databaseRef.child(userId!).removeValue()
+//        self.report?.supports -= 1
+//        self.supportLbl.text = String(describing:(self.report?.supports)!)
+//        
+//        //if the amount of support is = 0 the label should be hidden
+//        if (self.report?.supports)! > 0 {
+//        
+//            self.supportLbl.isHidden = false
+//        
+//        } else {
+//            self.supportLbl.isHidden = true
+//        }
+//        
+//        self.refReport.child(reportId!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
+//        
+//        let imageBtnBackground1 = UIImage(named: "heart") as UIImage?
+//        self.supportBtn.setImage(imageBtnBackground1, for: .normal)
+
+        
+//        checkUserSupport(completion: {(userIn) in
+//            
+//            if userIn {
+//                
+//                //incrise the amount of supports
+//                self.report?.supports -= 1
+//                if let _: String = self.supportLbl.text {
+//                    self.supportLbl.text = String(describing:(self.report?.supports)!)
+//                } //String(describing: self.report?.supports)
+//                self.supportLbl.isHidden = false
+//                
+//                self.refReport.child(reportId!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
+//                
+//                //update the table
+//                 databaseRef.child(userId!).setValue(nil)
+//                //databaseRef.updateChildValues()
+//                
+//                let imageBtnBackground = UIImage(named: "heart-1") as UIImage?
+//                self.supportBtn.setImage(imageBtnBackground, for: .normal)
+//            
+//            } else {
+                //update the table
+                
+//                databaseRef.updateChildValues(["userId": userId!])
+//                
+//                //incrise the amount of supports
+//                self.report?.supports += 1
+//                if let _: String = self.supportLbl.text {
+//                    self.supportLbl.text = String(describing:(self.report?.supports)!)
+//                } //String(describing: self.report?.supports)
+//                self.supportLbl.isHidden = false
+//                
+//                self.refReport.child(reportId!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
+//                let imageBtnBackground = UIImage(named: "heart") as UIImage?
+//                self.supportBtn.setImage(imageBtnBackground, for: .normal)
+//                
+//            }
+//        })
+        //put the pictures of the people who supports the report
+        
+        
+    }
+    
 
 }
 

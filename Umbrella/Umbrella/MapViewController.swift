@@ -370,12 +370,36 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
                     let latitude = reportObj?["latitude"]
                     let longitude = reportObj?["longitude"]
                     let personGender = reportObj?["personGender"]
+                    let supports = reportObj?["supports"]
                     
-                    let reportAtt = Report(id: id as! String, userId: userId as! String, title: title as! String, description: description as! String, violenceKind: violenceKind as! String, violenceAproximatedTime: violenceAproximatedTime as! Double, latitude: latitude as! Double, longitude: longitude as! Double, personGender: personGender as! String)
+                    var reportAtt:Report?
+                    
+                    if supports != nil {
+                        
+                        reportAtt = Report(id: id as! String,
+                                           userId: userId as! String,
+                                           title: title as! String,
+                                           description: description as! String,
+                                           violenceKind: violenceKind as! String,
+                                           violenceAproximatedTime: violenceAproximatedTime as! Double,
+                                           latitude: latitude as! Double, longitude: longitude as! Double,
+                                           personGender: personGender as! String,
+                                           supports: supports as! Int)
+                    } else {
+                        reportAtt = Report(id: id as! String,
+                                           userId: userId as! String,
+                                           title: title as! String,
+                                           description: description as! String,
+                                           violenceKind: violenceKind as! String,
+                                           violenceAproximatedTime: violenceAproximatedTime as! Double,
+                                           latitude: latitude as! Double,
+                                           longitude: longitude as! Double,
+                                           personGender: personGender as! String)
+                    }
                     
                     
-                    self.reports.append(reportAtt)
-                    self.filter(new: reportAtt)
+                    self.reports.append(reportAtt!)
+                    self.filter(new: reportAtt!)
                    // self.filter()
                 }
                 
