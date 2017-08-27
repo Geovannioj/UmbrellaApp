@@ -26,6 +26,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
     @IBOutlet weak var minorityDetail: UILabel!
     @IBOutlet weak var inputs: ProfileView!
     
+    
     var delegate: ProfileTableViewControllerProtocol?
     
     var isEdit = false
@@ -63,7 +64,17 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         setupUser()
         setTable()
         
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognizer))
+//        tableView.tableFooterView?.addGestureRecognizer(tapGesture)
+        
+        
+        
     }
+//    
+//    func tapGestureRecognizer(gestureRecognizer: UIGestureRecognizer) {
+//        //do your stuff here
+//    }
+    
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
@@ -180,10 +191,12 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         
         inputs.translatesAutoresizingMaskIntoConstraints = false
         inputs.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
+        inputs.heightAnchor.constraint(equalToConstant: 155).isActive = true
+        inputs.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         inputs.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
         inputs.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         inputs.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-            
+        
         inputs.alterarFotoButton.addTarget(self, action: #selector(handleSelectProfileImage), for: .touchUpInside)
         
     }
