@@ -82,6 +82,8 @@
 		FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */; };
 		FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7998721F2BB516005FC75D /* MapViewDelegate.swift */; };
 		FB7998791F2BBA85005FC75D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7998781F2BBA85005FC75D /* CoreLocation.framework */; };
+		FB8556D01F4F949B00B3D9DC /* RegisterReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */; };
+		FB8556D21F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */; };
 		FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */; };
 		FBEFEACD1F3A349100CDC99A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBEFEACC1F3A349100CDC99A /* Assets.xcassets */; };
 		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
@@ -179,6 +181,8 @@
 		FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowReportsViewController.swift; sourceTree = "<group>"; };
 		FB7998721F2BB516005FC75D /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998781F2BBA85005FC75D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportTableViewController.swift; sourceTree = "<group>"; };
+		FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportSecondTableViewController.swift; sourceTree = "<group>"; };
 		FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgressionPinAnnotationView.swift; sourceTree = "<group>"; };
 		FBEFEACC1F3A349100CDC99A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Umbrella/Assets.xcassets; sourceTree = "<group>"; };
 		FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
@@ -509,6 +513,8 @@
 				FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */,
 				FB02B72F1F47761D00696EAA /* Comment.swift */,
 				FB02B7301F47761D00696EAA /* CommentView.swift */,
+				FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */,
+				FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */,
 			);
 			name = Report;
 			sourceTree = "<group>";
@@ -746,6 +752,7 @@
 				D4E91E2A1F3E30C9004895B7 /* MinorityEntity.swift in Sources */,
 				FB0144CE1F3B85A7004FFBCC /* Keychain.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
+				FB8556D01F4F949B00B3D9DC /* RegisterReportTableViewController.swift in Sources */,
 				FB60D86E1F39127E001E5E51 /* Report.swift in Sources */,
 				9E60661D1F43C72F002C5281 /* PasswordRecoverViewController.swift in Sources */,
 				9E6066161F43A065002C5281 /* SettingsViewController.swift in Sources */,
