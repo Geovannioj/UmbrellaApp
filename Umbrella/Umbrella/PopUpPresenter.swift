@@ -38,6 +38,7 @@ class PopUpPresenter {
         popUpView.layer.cornerRadius = 10
         view.addSubview(popUpView)
         view.bringSubview(toFront: view.subviews.last!)
+        
     }
 
     var isHidden: Bool = true {

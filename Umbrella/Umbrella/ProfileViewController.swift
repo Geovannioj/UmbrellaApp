@@ -48,12 +48,6 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
             
         })
         
-        popUp.prepare(view: view,
-              popUpFrame: CGRect(x: 8, y: 1/9 * self.view.frame.height, width: self.view.frame.width - 16, height: 3/5 * self.view.frame.height),
-              blurFrame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        popUp.isHidden = true
-        putButtonsOnPopUp()
-        
         inputs.alterarFotoButton.isHidden = true
         delegate?.getNavBar().rightBarButtonItem = UIBarButtonItem(title: "Editar", style: .plain, target: self, action: #selector(editingMode))
         
@@ -63,17 +57,12 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         setupInputs()
         setupUser()
         setTable()
+        setPopUp()
         
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognizer))
-//        tableView.tableFooterView?.addGestureRecognizer(tapGesture)
-        
-        
-        
+        // Necessary to be behind de pop up view
+        tableView.tableFooterView?.layer.zPosition = -10
+
     }
-//    
-//    func tapGestureRecognizer(gestureRecognizer: UIGestureRecognizer) {
-//        //do your stuff here
-//    }
     
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -263,6 +252,14 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         
     }
     
+    func setPopUp() {
+        popUp.prepare(view: view,
+        popUpFrame: CGRect(x: 8, y: 1/9 * self.view.frame.height, width: self.view.frame.width - 16, height: 3/5 * self.view.frame.height),
+        blurFrame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        popUp.isHidden = true
+        putButtonsOnPopUp()
+    }
+    
     /**
      Changes the screen when the user click on the editing button.
      */
@@ -350,6 +347,8 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeButtonAction)))
         closeButton.isUserInteractionEnabled = true
         
+        
+        
         let saveButton = UIButton(frame: CGRect(x: self.popUp.popUpView.bounds.size.width * 1/3, y: self.popUp.popUpView.bounds.size.height - self.popUp.popUpView.bounds.size.height * 1/10 - 20, width: self.popUp.popUpView.bounds.size.width * 1/3, height: self.popUp.popUpView.bounds.size.height * 1/10))
         saveButton.setTitle("Salvar", for: .normal)
         saveButton.tintColor = .white
@@ -366,6 +365,8 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
     func chooseBirthDate() {
         tableView.isScrollEnabled = false
         popUp.isHidden = false
+        delegate?.getNavBar().rightBarButtonItem?.isEnabled = false
+        tableView.tableFooterView?.isUserInteractionEnabled = false
         
         datePicker = UIDatePicker(frame: CGRect(x: 0, y: 1/5 * self.popUp.popUpView.frame.height, width: self.popUp.popUpView.frame.width, height: 1/2 * self.popUp.popUpView.frame.height))
         datePicker.setValue(UIColor.white, forKey: "textColor")
@@ -382,6 +383,8 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
     func chooseMinority() {
         tableView.isScrollEnabled = false
         popUp.isHidden = false
+        delegate?.getNavBar().rightBarButtonItem?.isEnabled = false
+        tableView.tableFooterView?.isUserInteractionEnabled = false
         
         picker = UIPickerView(frame: CGRect(x: 0, y: 1/5 * self.popUp.popUpView.frame.height, width: self.popUp.popUpView.frame.width, height: 1/2 * self.popUp.popUpView.frame.height))
         picker.dataSource = self
@@ -400,6 +403,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
     func closeButtonAction() {
         tableView.isScrollEnabled = true
         popUp.isHidden = true
+        delegate?.getNavBar().rightBarButtonItem?.isEnabled = true
+        tableView.tableFooterView?.isUserInteractionEnabled = true
+
         if isBirthSelection == true {
             datePicker.removeFromSuperview()
         }
@@ -478,6 +484,7 @@ extension ProfileTableViewController : UIImagePickerControllerDelegate, UINaviga
     func handleSelectProfileImage() {
         
         let chooseAction = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
         
         chooseAction.addAction(UIAlertAction(title: "Tirar Foto", style: .default, handler:{_ in
             self.handlePresentPicker(type: .camera)
