@@ -11,6 +11,15 @@ import UIKit
 @IBDesignable
 class LoginView: UIView {
     
+    let closeButton : UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "CloseIcon")?.withRenderingMode(.alwaysTemplate)
+        imageView.contentMode = .scaleAspectFill
+        imageView.tintColor = .white
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     let email : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 0
@@ -94,6 +103,7 @@ class LoginView: UIView {
         
         self.backgroundColor = UIColor.clear
 
+        addSubview(closeButton)
         addSubview(email)
         addSubview(password)
         addSubview(loginButton)
@@ -101,6 +111,7 @@ class LoginView: UIView {
         addSubview(newAccountButton)
         addSubview(facebookButton)
         
+        setupCloseImageView()
         setupEmailField()
         setupPasswordField()
         setupLoginButton()
@@ -109,19 +120,27 @@ class LoginView: UIView {
         setupFacebookButton()
     }
     
+    func setupCloseImageView() {
+        
+        closeButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+        closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor).isActive = true
+    }
+    
     func setupEmailField() {
         
-        email.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        email.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        email.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        email.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        email.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -70).isActive = true
+        email.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3).isActive = true
         email.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     func setupPasswordField() {
         
-        password.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        password.topAnchor.constraint(equalTo: email.bottomAnchor, constant: 20).isActive = true
-        password.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        password.topAnchor.constraint(equalTo: email.bottomAnchor, constant: 10).isActive = true
+        password.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        password.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3).isActive = true
         password.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
@@ -129,8 +148,8 @@ class LoginView: UIView {
         
         loginButton.topAnchor.constraint(equalTo: password.bottomAnchor, constant: 20).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        loginButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/2).isActive = true
-        loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
+        loginButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     func setupForgotPasswordButton() {
@@ -142,15 +161,14 @@ class LoginView: UIView {
     func setupNewAccountButton() {
         
         newAccountButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 20).isActive = true
-        newAccountButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/4).isActive = true
         newAccountButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     
     func setupFacebookButton() {
         
-        facebookButton.topAnchor.constraint(equalTo: newAccountButton.bottomAnchor, constant: 20).isActive = true
+        facebookButton.topAnchor.constraint(equalTo: newAccountButton.bottomAnchor, constant: 30).isActive = true
         facebookButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        facebookButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 3/4).isActive = true
+        facebookButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 3/5).isActive = true
         facebookButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
