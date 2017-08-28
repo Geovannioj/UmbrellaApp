@@ -66,6 +66,7 @@
 		FB02B7451F47761D00696EAA /* MessagesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7351F47761D00696EAA /* MessagesPresenter.swift */; };
 		FB02B7491F47761D00696EAA /* ProfileManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7391F47761D00696EAA /* ProfileManagerViewController.swift */; };
 		FB02B74B1F47761D00696EAA /* SeeReportDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B73B1F47761D00696EAA /* SeeReportDescriptionTableViewController.swift */; };
+		FB2047B11F54A3A3004AE911 /* RegisterReportSecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */; };
 		FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */; };
 		FB3734101F3914E400FB3213 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */; };
 		FB60D7D31F38DD03001E5E51 /* SearchBarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */; };
@@ -83,7 +84,6 @@
 		FB7998731F2BB516005FC75D /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7998721F2BB516005FC75D /* MapViewDelegate.swift */; };
 		FB7998791F2BBA85005FC75D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7998781F2BBA85005FC75D /* CoreLocation.framework */; };
 		FB8556D01F4F949B00B3D9DC /* RegisterReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */; };
-		FB8556D21F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */; };
 		FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */; };
 		FBEFEACD1F3A349100CDC99A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBEFEACC1F3A349100CDC99A /* Assets.xcassets */; };
 		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
@@ -605,7 +605,7 @@
 				TargetAttributes = {
 					D4B1E3FD1F2A78CF00308ABB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = XB3C2V95Z9;
+						DevelopmentTeam = H6LU9H3DMX;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -749,6 +749,7 @@
 				FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */,
 				D4E91E261F3E30C9004895B7 /* LoginPresenter.swift in Sources */,
 				FB60D8721F39127E001E5E51 /* ShowReportsViewController.swift in Sources */,
+				FB2047B11F54A3A3004AE911 /* RegisterReportSecondTableViewController.swift in Sources */,
 				D4E91E2A1F3E30C9004895B7 /* MinorityEntity.swift in Sources */,
 				FB0144CE1F3B85A7004FFBCC /* Keychain.swift in Sources */,
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
@@ -895,7 +896,7 @@
 			baseConfigurationReference = D6376FD7318B57A083ABE80E /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XB3C2V95Z9;
+				DEVELOPMENT_TEAM = H6LU9H3DMX;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;
@@ -911,7 +912,7 @@
 			baseConfigurationReference = FDC9A259B10984B778DD44F3 /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XB3C2V95Z9;
+				DEVELOPMENT_TEAM = H6LU9H3DMX;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = geovanni.Umbrella;

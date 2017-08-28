@@ -274,9 +274,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTw-Vg-qcr">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTw-Vg-qcr">
                                                     <rect key="frame" x="296" y="168" width="56" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Próximo">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
@@ -289,8 +288,10 @@
                                                 <constraint firstAttribute="leadingMargin" secondItem="wWr-hx-XQ9" secondAttribute="leading" id="6Vj-jj-ndH"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="wWr-hx-XQ9" secondAttribute="bottom" constant="34" id="Bt3-3A-gOF"/>
                                                 <constraint firstItem="71c-O5-CnE" firstAttribute="leading" secondItem="AfM-Mg-TIn" secondAttribute="leading" id="CwH-gG-Xsf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="NTw-Vg-qcr" secondAttribute="trailing" constant="15" id="Emf-Rz-XuG"/>
                                                 <constraint firstItem="wWr-hx-XQ9" firstAttribute="top" secondItem="71c-O5-CnE" secondAttribute="bottom" constant="8" id="FK5-xk-HvV"/>
                                                 <constraint firstAttribute="trailing" secondItem="71c-O5-CnE" secondAttribute="trailing" id="Qi6-ej-ddZ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="NTw-Vg-qcr" secondAttribute="bottom" id="gE0-oa-Ih0"/>
                                                 <constraint firstItem="71c-O5-CnE" firstAttribute="top" secondItem="AfM-Mg-TIn" secondAttribute="topMargin" constant="32" id="mz4-xO-gSm"/>
                                             </constraints>
                                         </tableViewCellContentView>

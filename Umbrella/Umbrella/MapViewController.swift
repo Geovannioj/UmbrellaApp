@@ -80,13 +80,15 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             name:NSNotification.Name.init(rawValue: "AuthorizationAccepted"),
             object: nil
         )
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+            centerOnUser()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
-           centerOnUser() 
-        }
+        
+        deselectAllAnnotations(mapView: mapView)
         
         
     }
