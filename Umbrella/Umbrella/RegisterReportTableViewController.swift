@@ -82,14 +82,19 @@ class RegisterReportTableViewController: UITableViewController {
         
         @IBAction func ChangeScreenAction(_ sender: Any) {
             
-            if (!(self.violenceTitle.text?.isEmpty)! && self.violenceAproximatedTime.date <= Date()) {
+            if (!(self.violenceTitle.text?.isEmpty)!) {
                 
-                getLocation()
-                performSegue(withIdentifier: "goToSecondRegisterView", sender: Any.self)
+                if self.violenceAproximatedTime.date <= Date(){
+                    
+                    getLocation()
+                    performSegue(withIdentifier: "goToSecondRegisterView", sender: Any.self)
+                } else {
+                    
+                    self.validateDateError.isHidden = false
+                }
                 
             }else {
                 
-                self.validateDateError.isHidden = false
                 self.validateTitleError.isHidden = false
                 
             }

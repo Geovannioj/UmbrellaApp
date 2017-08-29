@@ -235,9 +235,9 @@ class RegisterReportSecondTableViewController: UITableViewController, UIPickerVi
                 editReport(reportToEdit: self.reportToEdit!)
                 performSegue(withIdentifier: "backToMap", sender: Any.self)
             }else {
-                
                 addReport()
                 performSegue(withIdentifier: "backToMap", sender: Any.self)
+                
             }
             
         }
