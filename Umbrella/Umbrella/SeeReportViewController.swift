@@ -334,31 +334,36 @@ class SeeReportViewController: UIViewController {
         //reference to the database table
         let databaseRef = self.refUserSupport.child(reportId!)
         
+        var count = 0
+        
         self.refUserSupport.observe(.childAdded, with: { (snapshot) in
             
             let ref =  Database.database().reference().child("user-support").child(reportId!)
+           
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let userSupport = snapshot.value as? [String : Any] {
                     do {
                             
                         guard let user =  userSupport[userId!] else {
-                                print( "not here")
+                                //print( "not here")
                                 throw UserError.noUser
                             }
                     
                         if  (user as! String) == nil {
                             
-                            print( "not here")
+                          //  print( "not here")
 
                         } else if (user as! String)  == userId {
                             
                             print("user aqui")
                             //REMOVE A SUPPORT
-                            
+                           
+                            print(self.report?.supports)
                             //remove user to the user-support table
+                            snapshot.value
                             databaseRef.child(userId!).removeValue()
-                            self.report?.supports -= 1
+                            self.report?.supports = Int(snapshot.childrenCount) - 2
                             self.supportLbl.text = String(describing:(self.report?.supports)!)
                             
                             //if the amount of support is = 0 the label should be hidden
@@ -372,7 +377,7 @@ class SeeReportViewController: UIViewController {
                             
                             self.refReport.child(reportId!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
                             
-                            let imageBtnBackground1 = UIImage(named: "heart") as UIImage?
+                            let imageBtnBackground1 = UIImage(named: "heart-1") as UIImage?
                             self.supportBtn.setImage(imageBtnBackground1, for: .normal)
 
                             
@@ -382,13 +387,13 @@ class SeeReportViewController: UIViewController {
                         print( "not here")
                         
                         //ADD A SUPPORT!
-                        
+                        count = count + 1
                         // put the user into the user-support table
                         databaseRef.updateChildValues([userId!: userId!])
                         
                         //incrise the amount of supports
-                        self.report?.supports += 1
-                        
+                        self.report?.supports = Int(snapshot.childrenCount)
+                        print(self.report?.supports)
                         self.supportLbl.text = String(describing:(self.report?.supports)!)
                         
                         self.supportLbl.isHidden = false
