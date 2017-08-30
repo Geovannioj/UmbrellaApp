@@ -19,13 +19,14 @@ class RegisterReportTableViewController: UITableViewController {
         
         // MARK: - Outlets
         
-        @IBOutlet weak var violenceLocation: MGLMapView!
-        @IBOutlet weak var violenceTitle: UITextField!
-        @IBOutlet weak var violenceAproximatedTime: UIDatePicker!
-        @IBOutlet weak var nexttButton: UIButton!
-        @IBOutlet weak var validateTitleError: UILabel!
-        @IBOutlet weak var validateDateError: UILabel!
-        
+    @IBOutlet weak var violenceLocation: MGLMapView!
+    @IBOutlet weak var violenceTitle: UITextField!
+    @IBOutlet weak var violenceAproximatedTime: UIDatePicker!
+    @IBOutlet weak var nexttButton: UIButton!
+    @IBOutlet weak var validateTitleError: UILabel!
+    @IBOutlet weak var validateDateError: UILabel!
+    @IBOutlet weak var closeBtn: UIButton!
+    
         
         //Mark: acessories
         let locationManager = CLLocationManager()
@@ -118,6 +119,10 @@ class RegisterReportTableViewController: UITableViewController {
                 
             }
         }
+    @IBAction func closeAction(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
         
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "goToSecondRegisterView" {

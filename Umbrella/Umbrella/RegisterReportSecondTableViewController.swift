@@ -23,7 +23,8 @@ class RegisterReportSecondTableViewController: UITableViewController, UIPickerVi
         @IBOutlet weak var personIdentification: UIPickerView!
         @IBOutlet weak var addBtn: UIButton!
         @IBOutlet weak var keyBoardConstraint: NSLayoutConstraint!
-        
+        @IBOutlet weak var closeBtn: UIButton!
+    
         //options to the picker view
         let violenceKindArray = ["Verbal","Física","Moral","Psicológica","Sexual"]
         
@@ -274,6 +275,9 @@ class RegisterReportSecondTableViewController: UITableViewController, UIPickerVi
             
         }
         
+        @IBAction func closeAction(_ sender: Any) {
+            self.dismiss(animated: true, completion: nil)
+        }
         //MARK: Data Sources
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 1
