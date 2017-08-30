@@ -176,7 +176,7 @@ class RegisterReportSecondTableViewController: UITableViewController, UIPickerVi
                                         inComponent: 0,
                                         animated: true)
             
-            self.personIdentification.selectRow(0, inComponent: 0, animated: true)
+            self.personIdentification.selectRow(personGender, inComponent: 0, animated: true)
 
             
             self.addBtn.setTitle("Salvar alteração", for: .normal)
