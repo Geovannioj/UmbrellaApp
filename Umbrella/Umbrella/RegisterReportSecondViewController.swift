@@ -195,7 +195,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
         //reference to the user-support table
         let databaseRef = self.refUserSupport.child(id)
-        databaseRef.updateChildValues([id : 1])
+        databaseRef.updateChildValues([id : id])
         
         let saveMessage = UIAlertController(title: "Relato Salvo",
                                               message: "Relato salvo com sucesso",

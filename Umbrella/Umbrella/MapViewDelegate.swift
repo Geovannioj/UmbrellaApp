@@ -18,6 +18,7 @@ extension MapViewController : MGLMapViewDelegate {
     
     //Funcao acionada quando o pin e selecionado
     func mapView(_ mapView: MGLMapView, didSelect annotationView: MGLAnnotationView) {
+      
         
     }
     
@@ -50,6 +51,7 @@ extension MapViewController : MGLMapViewDelegate {
                     
                    
                 }
+           
             annotationView?.contentMode = .scaleAspectFit
                  return annotationView
             
@@ -64,43 +66,37 @@ extension MapViewController : MGLMapViewDelegate {
  
     
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
-//        let view = mapView.subviews.first { (i) -> Bool in
-//            i.restorationIdentifier == "heatmap"
-//        }
-//        if   !reports.isEmpty {
-//            if   mapView.zoomLevel < 12 && mapView.zoomLevel > 9{
-//                
-//                if view != nil{
-//                    printHeatmap(imageView: view as! UIImageView)
-//                }else{
-//                    heatAction()
-//                }
-//                
-//            }else{
-//                addPins(reports: self.reports)
-//                view?.removeFromSuperview()
-//                
-//                
-//            }
-//        }
-        
-        
+
         
     }
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        
-        return true
-        
-    }
-    
-    func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> MGLCalloutView? {
-        
-        
+        if annotation is MGLUserLocation {
+            return false
+        }
+        mapView.deselectAnnotation(annotation, animated: false)
         self.reportToSend = getAnnotationById(reportId: annotation.title!!, reports: self.reports)
         performSegue(withIdentifier: "seeReport", sender: Any.self)
         
+        return false
+        
+    }
+   
+    
+    func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> MGLCalloutView? {
+
         return nil
     }
+    func deselectAllAnnotations(mapView : MGLMapView){
+        if !mapView.selectedAnnotations.isEmpty{
+            for i in mapView.selectedAnnotations{
+                mapView.deselectAnnotation(i, animated: false)
+            }
+        }
+        
+        
+    }
+    
+    
     
     /***
  

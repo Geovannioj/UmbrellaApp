@@ -22,11 +22,13 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
     var reportToEdit:Report?
     var refReports:DatabaseReference!
     var refUserReport: DatabaseReference!
+    var refUserSupport: DatabaseReference!
     
     override func viewDidLoad() {
         self.userId = UserInteractor.getCurrentUserUid()
         self.refUserReport = Database.database().reference().child("user-reports").child(userId!)
         self.refReports =  Database.database().reference().child("reports");
+        self.refUserSupport = Database.database().reference().child("user-support")
         
         self.tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
         self.tableView.delegate = self
@@ -96,6 +98,8 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
                                                     
                                                     //remove from the user-report table
                                                     self.refUserReport.child(reportToDelete.id).removeValue()
+                                                    //remove from the user-support table
+                                                    self.refUserSupport.child(reportToDelete.id).removeValue()
                                                     
                                                     self.userReports.remove(at: indexPath.row)
                                                     self.tableView.reloadData()
@@ -137,7 +141,7 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToEditReport" {
-            if let editScreen = segue.destination as? RegisterReportViewController {
+            if let editScreen = segue.destination as? RegisterReportTableViewController {
                 editScreen.reportToEdit = self.reportToEdit
             }
         } else if segue.identifier == "seeMyReport" {
