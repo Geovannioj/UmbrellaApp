@@ -381,6 +381,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
    
     func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
+        //self.bannerView.isHidden = true
         if let blurView = (self.view.subviews.filter{$0 is UIVisualEffectView}.first) {
             blurView.isHidden = false
         }

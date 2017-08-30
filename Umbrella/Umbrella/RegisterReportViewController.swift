@@ -122,6 +122,9 @@ class RegisterReportViewController: UIViewController {
     
     @IBAction func closeButtonAction(_ sender: Any) {
         // Gambiarra
+//        if let mapView = self.view.window?.subviews.first as? MapViewController {
+//            mapView.bannerView.isHidden = false
+//        }
         if let blurView = (self.view.window?.subviews.first?.subviews.filter{$0 is UIVisualEffectView}.first) {
             blurView.isHidden = true
         }
