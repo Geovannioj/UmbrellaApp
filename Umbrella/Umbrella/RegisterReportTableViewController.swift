@@ -55,11 +55,11 @@ class RegisterReportTableViewController: UITableViewController {
             //center the camera on the user location
             if self.reportToEdit == nil {
                 
-                centerCamera(image: UIImage(named: "indicador_crime")!)
+                centerCamera()
             
             } else {
              
-                setMapLocation(location: violenceLocation, latitude: (reportToEdit?.latitude)!, longitude: (reportToEdit?.longitude)!, image: UIImage(named: "indicador_crime")!)
+                setMapLocation(location: violenceLocation, latitude: (reportToEdit?.latitude)!, longitude: (reportToEdit?.longitude)!)
             }
             
             
@@ -136,44 +136,20 @@ class RegisterReportTableViewController: UITableViewController {
             }
         }
         
-        func centerCamera(image: UIImage) {
+        func centerCamera() {
             
             violenceLocation.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
             violenceLocation.showsUserLocation = true
             
-            let imageView = UIImageView(image: image)
-           
-            
-            
-            
-            imageView.center = CGPoint(x: (violenceLocation.center.x), y: self.violenceLocation.center.y + 104)
-            imageView.restorationIdentifier = "pinPoint"
-            self.view.addSubview(imageView)
-            
-            
         }
     
-    func setMapLocation(location:MGLMapView, latitude: Double, longitude: Double, image: UIImage) {
+    func setMapLocation(location:MGLMapView, latitude: Double, longitude: Double) {
         
         let locationCoodenate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
         
         location.setCenter(locationCoodenate, zoomLevel: 13, animated: true)
         
         location.showsUserLocation = false
-        
-//        let annotation = MGLPointAnnotation()
-//        annotation.coordinate = CLLocationCoordinate2D(latitude: (latitude), longitude: (longitude) )
-//        
-//        location.addAnnotation(annotation)
-        
-        let imageView = UIImageView(image: image)
-        
-        
-        imageView.center = CGPoint(x: (violenceLocation.center.x), y: self.violenceLocation.center.y + 104)
-        imageView.restorationIdentifier = "pinPoint"
-        self.view.addSubview(imageView)
-
-
         
     }
 
