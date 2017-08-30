@@ -42,9 +42,8 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nomeie o seu relato" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nGQ-80-sg0">
-                                <rect key="frame" x="30" y="498" width="315" height="40"/>
+                                <rect key="frame" x="31" y="498" width="313" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="315" id="ANP-oR-Ik1"/>
                                     <constraint firstAttribute="height" constant="40" id="Yil-ce-BYp"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -88,15 +87,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ajn-Fz-Ea5">
-                                <rect key="frame" x="298" y="632" width="56" height="30"/>
-                                <state key="normal" title="Próximo">
+                                <rect key="frame" x="285" y="632" width="69" height="30"/>
+                                <state key="normal" title="Próximo &gt;">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="ChangeScreenAction:" destination="Vsi-xM-o8l" eventType="touchUpInside" id="aeZ-Q2-Imu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Novo Relato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f26-yK-kGq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Novo Relato" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f26-yK-kGq">
                                 <rect key="frame" x="137.5" y="10" width="100" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="hl5-dg-ipx"/>
@@ -123,6 +122,7 @@
                         <constraints>
                             <constraint firstItem="Gf5-Dy-JHi" firstAttribute="leading" secondItem="wNp-Wj-3zx" secondAttribute="leading" id="1lT-r4-BXz"/>
                             <constraint firstItem="8BI-xu-nDl" firstAttribute="top" secondItem="637-GJ-HmL" secondAttribute="bottom" constant="10" id="38r-ge-xjk"/>
+                            <constraint firstItem="nGQ-80-sg0" firstAttribute="leading" secondItem="wNp-Wj-3zx" secondAttribute="leadingMargin" constant="15" id="5d4-ed-7dg"/>
                             <constraint firstItem="4Cq-WJ-VUZ" firstAttribute="top" secondItem="f26-yK-kGq" secondAttribute="bottom" constant="25" id="7kg-wV-Geh"/>
                             <constraint firstItem="BpK-hs-kIt" firstAttribute="top" secondItem="Avh-1P-4MG" secondAttribute="bottom" constant="10" id="Bwi-Qu-A2z"/>
                             <constraint firstItem="f26-yK-kGq" firstAttribute="top" secondItem="Avh-1P-4MG" secondAttribute="bottom" constant="10" id="DAj-At-gb7"/>
@@ -153,7 +153,7 @@
                         <outlet property="violenceAproximatedTime" destination="Gf5-Dy-JHi" id="3zH-yF-7kw"/>
                         <outlet property="violenceLocation" destination="4Cq-WJ-VUZ" id="kKL-Vs-Ltp"/>
                         <outlet property="violenceTitle" destination="nGQ-80-sg0" id="EKq-kU-W2x"/>
-                        <segue destination="40x-hh-ny2" kind="presentation" identifier="goToSecondRegisterView" id="1gD-4h-Hiq"/>
+                        <segue destination="40x-hh-ny2" kind="presentation" identifier="goToSecondRegisterView" modalPresentationStyle="currentContext" id="1gD-4h-Hiq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XDX-PB-ISJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

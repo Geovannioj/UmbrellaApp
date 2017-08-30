@@ -13,7 +13,6 @@ import Firebase
 class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate{
     
     
-    @IBOutlet weak var scrollViewMainVIew: UIScrollView!
     @IBOutlet weak var violenceAgressionLbl: UILabel!
     @IBOutlet weak var descriptionLbl: UILabel!
     @IBOutlet weak var personIdentificationLbl: UILabel!
@@ -21,7 +20,6 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     @IBOutlet weak var violenceKind: UIPickerView!
     @IBOutlet weak var personIdentification: UIPickerView!
     @IBOutlet weak var addBtn: UIButton!
-    @IBOutlet weak var keyBoardConstraint: NSLayoutConstraint!
     
     //options to the picker view
     let violenceKindArray = ["Verbal","Física","Moral","Psicológica","Sexual"]
@@ -68,12 +66,12 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         dismissKayboardInTapGesture()
         
 
-        self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        self.view.backgroundColor = UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7)
         
         self.violenceAgressionLbl.setValue(UIColor.white, forKey: "textColor")
         self.descriptionLbl.setValue(UIColor.white, forKey: "textColor")
         self.personIdentificationLbl.setValue(UIColor.white, forKey: "textColor")
-        
+        self.violenceDescription.layer.cornerRadius = 6
         
         if (reportToEdit != nil) {
             
@@ -119,17 +117,17 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
             let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
             let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
             
-            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
-                
-                self.keyBoardConstraint?.constant = 0.0
-                
-            } else {
-                
-                self.keyBoardConstraint?.constant = endFrame?.size.height ?? 0.0
-                let point = CGPoint(x: 0, y: 200) // 200 or any value you like.
-                self.scrollViewMainVIew.contentOffset = point
-
-            }
+//            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
+//                
+//                self.keyBoardConstraint?.constant = 0.0
+//                
+//            } else {
+//                
+//                self.keyBoardConstraint?.constant = endFrame?.size.height ?? 0.0
+//                let point = CGPoint(x: 0, y: 200) // 200 or any value you like.
+//                self.scrollViewMainVIew.contentOffset = point
+//
+//            }
             
             UIView.animate(withDuration: duration,
                            delay: TimeInterval(0),
@@ -247,14 +245,24 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         if (self.reportToEdit != nil) {
             
             editReport(reportToEdit: self.reportToEdit!)
-            performSegue(withIdentifier: "backToMap", sender: Any.self)
+            closeButtonAction(sender)
         }else {
             
             addReport()
-            performSegue(withIdentifier: "backToMap", sender: Any.self)
+            closeButtonAction(sender)
         }
 
     }
+    
+    
+    @IBAction func backButtonAction(_ sender: Any) {
+        performSegue(withIdentifier: "goToFirstRegisterSegue", sender: self)
+    }
+    
+    @IBAction func closeButtonAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     //MARK: Data Sources
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

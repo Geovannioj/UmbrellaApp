@@ -34,11 +34,10 @@ class RegisterReportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         dismissKayboardInTapGesture()
         
-        //setts the collor background to dark purple
-        self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        //sets the color background to dark purple
+        self.view.backgroundColor = UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7)
         
         // it makes the font color of the datePicker turn to white
         
