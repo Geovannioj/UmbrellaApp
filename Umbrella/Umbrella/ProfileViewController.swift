@@ -61,8 +61,9 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         
         // Necessary to be behind de pop up view
         tableView.tableFooterView?.layer.zPosition = -10
-
+        
     }
+    
     
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

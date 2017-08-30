@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 import Mapbox
 
-class RegisterReportViewController: UIViewController  {
+class RegisterReportViewController: UIViewController {
     
     
     // MARK: - Outlets
@@ -31,9 +31,9 @@ class RegisterReportViewController: UIViewController  {
     
     var reportToEdit : Report?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         dismissKayboardInTapGesture()
         
@@ -119,6 +119,14 @@ class RegisterReportViewController: UIViewController  {
         self.reportLatitude = violenceLocation.camera.centerCoordinate.latitude
         self.reportLongitude = violenceLocation.camera.centerCoordinate.longitude
         
+    }
+    
+    @IBAction func closeButtonAction(_ sender: Any) {
+        // Gambiarra
+        if let blurView = (self.view.window?.subviews.first?.subviews.filter{$0 is UIVisualEffectView}.first) {
+            blurView.isHidden = true
+        }
+        dismiss(animated: true, completion: nil)
     }
     
         

@@ -12,7 +12,8 @@ import Mapbox
 import MapboxGeocoder
 import GoogleMobileAds
 import Firebase
-class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
+
+class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate, UIPopoverPresentationControllerDelegate{
     @IBOutlet weak var msgsButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var perfilButton: UIButton!
@@ -43,6 +44,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addBlurView()
         
         buttonDistance = HorizontalStackButtons.spacing
       
@@ -90,6 +93,16 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
         
     }
+    
+    func addBlurView() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.addSubview(blurEffectView)
+        self.view.subviews.last?.isHidden = true
+    }
+    
     //MARK: Buttons functions
     func hideButtons(duration:Double){
         UIView.animate(withDuration: duration, animations:{
@@ -348,10 +361,35 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
                 seeScreen.report = self.reportToSend
             }
             
+        } else if segue.identifier == "registerReportSegue" {
+            if let reportScreen = segue.destination as? RegisterReportViewController {
+                
+                UIView.animate(withDuration: 1.0, delay: 0.5, options: [], animations: {
+                    reportScreen.modalPresentationStyle = UIModalPresentationStyle.popover
+                    reportScreen.preferredContentSize = CGSize(width: 365, height: 670)
+                }, completion: nil)
+                
+                reportScreen.popoverPresentationController!.delegate = self
+                reportScreen.popoverPresentationController!.sourceView = self.view
+                reportScreen.popoverPresentationController!.popoverBackgroundViewClass = PopoverBackgroundView.self
+                reportScreen.popoverPresentationController!.sourceRect = CGRect(x: 0, y: 0, width: self.view.bounds.size.width - 10, height: self.view.bounds.size.height)
+                reportScreen.popoverPresentationController!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+                reportScreen.view.backgroundColor = UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7)
+            }
+
+        }
+    }
+   
+    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
+        if let blurView = (self.view.subviews.filter{$0 is UIVisualEffectView}.first) {
+            blurView.isHidden = false
         }
     }
     
-   
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
     func setObserverToFireBaseChanges() {
         
         self.refReports.observe(DataEventType.value, with: {(snapshot) in

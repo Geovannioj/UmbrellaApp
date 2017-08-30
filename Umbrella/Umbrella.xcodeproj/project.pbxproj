@@ -17,6 +17,7 @@
 		9E60661D1F43C72F002C5281 /* PasswordRecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */; };
 		9E6066371F463BE4002C5281 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E60662F1F463BE4002C5281 /* Profile.storyboard */; };
 		9E6066391F463BE4002C5281 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066311F463BE4002C5281 /* ProfileViewController.swift */; };
+		9EAE03081F56A685006EE491 /* PopoverBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE03071F56A685006EE491 /* PopoverBackgroundView.swift */; };
 		9EB6AD331F4B96770099331A /* ChatNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD2F1F4B96770099331A /* ChatNavigationView.swift */; };
 		9EB6AD341F4B96770099331A /* PopUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD301F4B96770099331A /* PopUpPresenter.swift */; };
 		9EB6AD351F4B96770099331A /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD311F4B96770099331A /* ReportTableViewCell.swift */; };
@@ -107,6 +108,7 @@
 		9E60662F1F463BE4002C5281 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		9E6066311F463BE4002C5281 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeReportDescriptionTableViewController.swift; path = Umbrella/SeeReportDescriptionTableViewController.swift; sourceTree = "<group>"; };
+		9EAE03071F56A685006EE491 /* PopoverBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverBackgroundView.swift; sourceTree = "<group>"; };
 		9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedNavBarView.swift; sourceTree = "<group>"; };
 		9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		9EB6AD131F4935AE0099331A /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampFieldView.swift; path = Umbrella/CampFieldView.swift; sourceTree = "<group>"; };
@@ -291,8 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				9EB6AD191F4935AE0099331A /* ProfileView.swift */,
-				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
 				9E6066311F463BE4002C5281 /* ProfileViewController.swift */,
+				9E60662F1F463BE4002C5281 /* Profile.storyboard */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -310,6 +312,7 @@
 		A1BB533C1F38E62D0060649C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9EAE03071F56A685006EE491 /* PopoverBackgroundView.swift */,
 			);
 			name = Helpers;
 			path = Umbrella;
@@ -709,6 +712,7 @@
 				D4F8F0901F4A7FC100EA685A /* CommentView.swift in Sources */,
 				D4F8F0871F4A7F1000EA685A /* Extensions.swift in Sources */,
 				D4F8F08D1F4A7F6900EA685A /* MySupportTableViewCell.swift in Sources */,
+				9EAE03081F56A685006EE491 /* PopoverBackgroundView.swift in Sources */,
 				D4F8F08E1F4A7F6900EA685A /* MySupportTableViewController.swift in Sources */,
 				FB02B74B1F47761D00696EAA /* SeeReportDescriptionTableViewController.swift in Sources */,
 				FB02B73F1F47761D00696EAA /* Comment.swift in Sources */,
