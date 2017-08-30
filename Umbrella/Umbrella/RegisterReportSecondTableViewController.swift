@@ -124,6 +124,7 @@ class RegisterReportSecondTableViewController: UITableViewController, UIPickerVi
             initFieldsToEdit()
             
             self.violenceKindChosen = (reportToEdit?.violenceKind)!
+            self.personIdentificationChosen = (reportToEdit?.personGender)!
             
         }
     }
