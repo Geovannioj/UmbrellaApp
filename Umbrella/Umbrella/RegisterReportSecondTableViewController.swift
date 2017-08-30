@@ -90,19 +90,17 @@ class RegisterReportSecondTableViewController: UITableViewController, UIPickerVi
             self.personIdentificationLbl.setValue(UIColor.white, forKey: "textColor")
             
             
-            if (reportToEdit != nil) {
-                
-                initFieldsToEdit()
-                
-                self.violenceKindChosen = (reportToEdit?.violenceKind)!
-                
-            } else {
+            self.violenceDescription.delegate = self
+            self.violenceDescription.text = "Digite a descrição da agressão"
+            self.violenceDescription.textColor = UIColor.lightGray
+            
+            if (reportToEdit == nil) {
                 
                 self.violenceKind.selectRow(2, inComponent: 0, animated: true)
                 self.violenceKindChosen = self.violenceKindArray[(violenceKindArray.count - 1)]
                 
-                self.personIdentification.selectedRow(inComponent: 0)
                 self.personIdentificationChosen = self.victimIdentificationArray[(victimIdentificationArray.count - 1)]
+                
             }
             
             self.personIdentification.dataSource = self
@@ -115,12 +113,20 @@ class RegisterReportSecondTableViewController: UITableViewController, UIPickerVi
             self.violenceKind.delegate = self
             self.violenceKind.accessibilityIdentifier = "violenceKind"
             
-            self.violenceDescription.delegate = self
-            self.violenceDescription.text = "Digite a descrição da agressão"
-            self.violenceDescription.textColor = UIColor.lightGray
+
             
         }
-        
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if (reportToEdit != nil) {
+            
+            initFieldsToEdit()
+            
+            self.violenceKindChosen = (reportToEdit?.violenceKind)!
+            
+        }
+    }
         deinit {
             NotificationCenter.default.removeObserver(self)
         }
@@ -140,13 +146,38 @@ class RegisterReportSecondTableViewController: UITableViewController, UIPickerVi
             
             return counter
         }
+    
+    func getPersonIdentification(report: Report) -> Int {
         
+        var counter: Int = 0
+        
+        for personIdentification in self.victimIdentificationArray {
+            
+            if personIdentification == report.personGender{
+                return counter
+            }
+            counter += 1
+        }
+        
+        return counter
+
+    }
+    
         func initFieldsToEdit() {
             
             self.violenceDescription.text = reportToEdit?.description
-            self.violenceKind.selectRow(getViolenceKind(report: self.reportToEdit!),
+            self.violenceDescription.textColor = UIColor.black
+            
+            let violenceIndex = getViolenceKind(report: self.reportToEdit!)
+            let personGender = getPersonIdentification(report: self.reportToEdit!)
+            
+            self.violenceKind.selectRow(violenceIndex,
                                         inComponent: 0,
                                         animated: true)
+            
+            self.personIdentification.selectRow(0, inComponent: 0, animated: true)
+
+            
             self.addBtn.setTitle("Salvar alteração", for: .normal)
             
         }
@@ -214,8 +245,8 @@ class RegisterReportSecondTableViewController: UITableViewController, UIPickerVi
             
             self.refReports.child(reportToEdit.id).setValue(report)
             
-            let updateMessage = UIAlertController(title: "Report Updated",
-                                                  message: "This report has been successfully updated",
+            let updateMessage = UIAlertController(title: "Relato alterado",
+                                                  message: "O relato foi alterado com sucesso",
                                                   preferredStyle: .alert)
             
             updateMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,

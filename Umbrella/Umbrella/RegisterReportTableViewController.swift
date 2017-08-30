@@ -88,13 +88,24 @@ class RegisterReportTableViewController: UITableViewController {
                     
                     getLocation()
                     performSegue(withIdentifier: "goToSecondRegisterView", sender: Any.self)
+                
+                    self.validateDateError.isHidden = true
+                
                 } else {
                     
                     self.validateDateError.isHidden = false
                 }
                 
-            }else {
+                self.validateTitleError.isHidden = true
+            
+            }else if (self.violenceTitle.text?.isEmpty)! {
                 
+                self.validateTitleError.isHidden = false
+                self.validateDateError.isHidden = true
+                
+            }else if self.violenceAproximatedTime.date >= Date() {
+                
+                self.validateDateError.isHidden = false
                 self.validateTitleError.isHidden = false
                 
             }
@@ -108,6 +119,10 @@ class RegisterReportTableViewController: UITableViewController {
                     secondScreen.longitude = self.reportLongitude
                     secondScreen.aproximatedTime = self.violenceAproximatedTime.date.timeIntervalSince1970
                     secondScreen.violenceTitle = self.violenceTitle.text
+                    
+                    if self.reportToEdit != nil {
+                        secondScreen.reportToEdit = self.reportToEdit
+                    }
                     
                 }
             }
