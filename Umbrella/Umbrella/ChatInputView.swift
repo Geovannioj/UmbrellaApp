@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InputChatView: UIView {
+class ChatInputView: UIView {
 
     var campView : UIView = {
         let view = UIView()
@@ -41,7 +41,6 @@ class InputChatView: UIView {
     
     init() {
         super.init(frame: CGRect.zero)
-        
         setupView()
     }
     
@@ -88,32 +87,3 @@ class InputChatView: UIView {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

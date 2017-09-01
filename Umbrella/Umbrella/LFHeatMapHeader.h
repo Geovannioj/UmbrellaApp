@@ -2,8 +2,12 @@
 //  LFHeatMapHeader.h
 //  Umbrella
 //
-//  Created by Eduardo Pereira on 01/08/17.
+//  Created by Jonas de Castro Leitao on 30/08/17.
 //  Copyright © 2017 Geovanni Oliveira de Jesus. All rights reserved.
 //
 
-//#import <LFHeatMap/LFHeatMap-umbrella.h>
+//#ifndef LFHeatMapHeader_h
+//#define LFHeatMapHeader_h
+//
+//
+//#endif /* LFHeatMapHeader_h */
