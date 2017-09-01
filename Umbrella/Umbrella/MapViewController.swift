@@ -80,13 +80,15 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             name:NSNotification.Name.init(rawValue: "AuthorizationAccepted"),
             object: nil
         )
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+            centerOnUser()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
-           centerOnUser() 
-        }
+        
+        deselectAllAnnotations(mapView: mapView)
         
         
     }
@@ -129,9 +131,9 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     
     @IBAction func messageButtonAction(_ sender: Any) {
-        
-        let navigation = UINavigationController(rootViewController: MessagesTableViewController())
-        present(navigation, animated: true, completion: nil)
+
+        let view = MessagesRouter.assembleModule()
+        present(view, animated: true, completion: nil)
     }
     
     @IBAction func locatioButtonAction(_ sender: UIButton) {
@@ -317,7 +319,9 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             
             alertControler.addAction(UIAlertAction(title: "Logar", style: .default, handler: { (UIAlertAction) in
                 
-            self.performSegue(withIdentifier: "goToLogin", sender: nil)
+                let controller = LoginRouter.assembleModule()
+                self.present(controller, animated: true, completion: nil)
+//                self.performSegue(withIdentifier: "goToLogin", sender: nil)
                 
             }))
             alertControler.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (UIAlertAction) in

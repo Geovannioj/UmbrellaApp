@@ -22,11 +22,15 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
     var reportToEdit:Report?
     var refReports:DatabaseReference!
     var refUserReport: DatabaseReference!
+    var refUserSupport: DatabaseReference!
+    var refCommentReport: DatabaseReference!
     
     override func viewDidLoad() {
         self.userId = UserInteractor.getCurrentUserUid()
         self.refUserReport = Database.database().reference().child("user-reports").child(userId!)
         self.refReports =  Database.database().reference().child("reports");
+        self.refUserSupport = Database.database().reference().child("user-support")
+        self.refCommentReport = Database.database().reference().child("comments")
         
         self.tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
         self.tableView.delegate = self
@@ -88,17 +92,24 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
             deleteWarning.addAction(UIAlertAction(title: "Deletar", style: .destructive,
                                                   handler: { (action) in
                                                     
-                                                    // report to be deleted
-                                                    let reportToDelete = self.userReports[indexPath.row]
+                    // report to be deleted
+                    let reportToDelete = self.userReports[indexPath.row]
+                    
+                    //remove the report from the report table
+                    self.refReports.child(reportToDelete.id).setValue(nil)
+                    
+                    //remove from the user-report table
+                    self.refUserReport.child(reportToDelete.id).removeValue()
                                                     
-                                                    //remove the report from the report table
-                                                    self.refReports.child(reportToDelete.id).setValue(nil)
+                    //remove from the user-support table
+                    self.refUserSupport.child(reportToDelete.id).removeValue()
+                    
+                    //remove comments
+                    self.setObserverToFireBaseCommentTable(report: reportToDelete)
                                                     
-                                                    //remove from the user-report table
-                                                    self.refUserReport.child(reportToDelete.id).removeValue()
-                                                    
-                                                    self.userReports.remove(at: indexPath.row)
-                                                    self.tableView.reloadData()
+                    self.userReports.remove(at: indexPath.row)
+                    self.tableView.reloadData()
+                      
                                                     
             }))
             
@@ -119,6 +130,26 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    func setObserverToFireBaseCommentTable(report: Report) {
+    
+        
+        self.refCommentReport.observe(.childAdded, with: { (snapshot) in
+            
+           // let singleComment = self.refCommentReport.child(snapshot.key)
+            
+                if let comment = snapshot.value as? [String: Any] {
+                    let reportId = comment["reportId"]
+                    
+                    if  report.id == reportId as! String {
+                        print("comentário do repport")
+                        self.refCommentReport.child(snapshot.key).setValue(nil)
+                    }
+                }
+            
+        })
+    }
+
+    
     func getReportIndexInArray(report: Report) -> Int {
         
         var counter = 0
@@ -137,7 +168,7 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToEditReport" {
-            if let editScreen = segue.destination as? RegisterReportViewController {
+            if let editScreen = segue.destination as? RegisterReportTableViewController {
                 editScreen.reportToEdit = self.reportToEdit
             }
         } else if segue.identifier == "seeMyReport" {

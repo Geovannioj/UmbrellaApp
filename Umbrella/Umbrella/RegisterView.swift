@@ -34,9 +34,8 @@ class RegisterView: UIView {
         let camp = CampFieldView()
         camp.id = 0
         camp.textField.autocapitalizationType = .sentences
-        camp.textField.placeholder = "Somente letras e números"
         camp.titleLabel.text = "Username"
-        camp.invalidMessageLabel.text = "Ops! username não válido."
+        camp.textField.placeholder = "Somente letras e números"
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
     }()
@@ -44,9 +43,8 @@ class RegisterView: UIView {
     let email : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 1
-        camp.textField.placeholder = "Email válido"
         camp.titleLabel.text = "Email"
-        camp.invalidMessageLabel.text = "Ops! email não válido."
+        camp.textField.placeholder = "Email válido"
         camp.textField.keyboardType = UIKeyboardType.emailAddress
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
@@ -55,9 +53,8 @@ class RegisterView: UIView {
     let password : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 2
-        camp.textField.placeholder = "Minimo de 6 caracteres"
         camp.titleLabel.text = "Senha"
-        camp.invalidMessageLabel.text = "Ops! senha não válido."
+        camp.textField.placeholder = "Minimo de 6 caracteres"
         camp.textField.isSecureTextEntry = true
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
