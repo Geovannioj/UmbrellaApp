@@ -13,7 +13,7 @@ import MapboxGeocoder
 import GoogleMobileAds
 import Firebase
 
-class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate, UIPopoverPresentationControllerDelegate{
+class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate, UIPopoverPresentationControllerDelegate, ReportDelegate {
     @IBOutlet weak var msgsButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var perfilButton: UIButton!
@@ -36,6 +36,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     var msgCenter:CGPoint = CGPoint()
     var perfilCenter:CGPoint = CGPoint()
     var reportCenter:CGPoint = CGPoint()
+    
    
     let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiaGVsZW5hc2ltb2VzIiwiYSI6ImNqNWp4bDBicDJpOTczMm9kaDJqemprbDcifQ.vdd9cfGAwcSXh1I7pq1mvA")
     let image = UIImage(named: "CustomLocationPIN")
@@ -88,12 +89,19 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         }
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         deselectAllAnnotations(mapView: mapView)
         
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        hideButtons(duration: 0.5)
+        self.expandButton.isSelected = false
     }
     
     func addBlurView() {
@@ -103,6 +111,27 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.addSubview(blurEffectView)
         self.view.subviews.last?.isHidden = true
+    }
+    
+    func changeBannerVisibility() {
+        if bannerView.isHidden == true {
+            self.bannerView.isHidden = false
+        }
+        else {
+            self.bannerView.isHidden = true
+        }
+    }
+    
+    func changeBlurViewVisibility() {
+        if let blurView = (self.view.subviews.filter{$0 is UIVisualEffectView}.first) {
+            if blurView.isHidden == false {
+                blurView.isHidden = true
+            }
+            else {
+                blurView.isHidden = false
+            }
+        }
+        
     }
     
     //MARK: Buttons functions
@@ -355,6 +384,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "containerViewSegue" {
             containerViewController = segue.destination as? FilterTableViewControlleTableViewController
             containerViewController!.containerToMaster = self
@@ -365,6 +395,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             
         } else if segue.identifier == "registerReportSegue" {
             if let reportScreen = segue.destination as? RegisterReportViewController {
+                
+                reportScreen.delegate = self
                 
                 UIView.animate(withDuration: 1.0, delay: 0.5, options: [], animations: {
                     reportScreen.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -383,11 +415,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
    
     func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
-        //self.bannerView.isHidden = true
-        if let blurView = (self.view.subviews.filter{$0 is UIVisualEffectView}.first) {
-            blurView.isHidden = false
-        }
+        changeBannerVisibility()
+        changeBlurViewVisibility()
     }
+
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none

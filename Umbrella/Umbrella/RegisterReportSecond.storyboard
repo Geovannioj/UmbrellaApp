@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yfv-7J-pWA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,7 +14,7 @@
         <!--Register Report Second View Controller-->
         <scene sceneID="1Ch-Cc-Rex">
             <objects>
-                <viewController storyboardIdentifier="RegisterReportSecondViewController" id="yfv-7J-pWA" customClass="RegisterReportSecondViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterReportSecondViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yfv-7J-pWA" customClass="RegisterReportSecondViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NSZ-DJ-dV4"/>
                         <viewControllerLayoutGuide type="bottom" id="Iwi-ya-TjG"/>
@@ -170,10 +170,10 @@
             </objects>
             <point key="canvasLocation" x="98.400000000000006" y="70.614692653673174"/>
         </scene>
-        <!--RegisterReportTableViewController-->
+        <!--RegisterReportViewController-->
         <scene sceneID="cbY-yp-LFF">
             <objects>
-                <viewControllerPlaceholder storyboardName="RegisterReportFirst" referencedIdentifier="RegisterReportTableViewController" id="mmc-tt-cG5" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="RegisterReportFirst" referencedIdentifier="RegisterReportViewController" id="mmc-tt-cG5" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSv-cx-pyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="834" y="70"/>
@@ -182,7 +182,4 @@
     <resources>
         <image name="Combined Shape" width="18" height="18"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="wTr-ka-OOm"/>
-    </inferredMetricsTieBreakers>
 </document>

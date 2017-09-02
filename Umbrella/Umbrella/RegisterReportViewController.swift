@@ -11,6 +11,11 @@ import UIKit
 import Firebase
 import Mapbox
 
+protocol ReportDelegate {
+    func changeBannerVisibility()
+    func changeBlurViewVisibility()
+}
+
 class RegisterReportViewController: UIViewController {
     
     
@@ -30,6 +35,8 @@ class RegisterReportViewController: UIViewController {
     var reportLongitude: Double = 0.0
     
     var reportToEdit : Report?
+    
+    var delegate: ReportDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,9 +129,11 @@ class RegisterReportViewController: UIViewController {
     
     @IBAction func closeButtonAction(_ sender: Any) {
         // Gambiarra
-//        if let mapView = self.view.window?.subviews.first as? MapViewController {
-//            mapView.bannerView.isHidden = false
+//        print(self.view.window?.subviews.first?.subviews.filter{$0 is GADBannerView})
+//        if let bannerView = (self.view.window?.subviews.first?.subviews.filter{$0 is GADBannerView}.first) {
+//            bannerView.isHidden = false
 //        }
+        self.delegate?.changeBannerVisibility()
         if let blurView = (self.view.window?.subviews.first?.subviews.filter{$0 is UIVisualEffectView}.first) {
             blurView.isHidden = true
         }
