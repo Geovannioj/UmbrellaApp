@@ -17,31 +17,39 @@ class LoginPresenter : NSObject, LoginPresenterProtocol {
         
     func handleLogin(email : String?, password : String?) {
         
-        if email == nil || password == nil { // Arrumar isso e tratar depois
-            return
-        }
-        
         var valid = true
         
-        if email!.isEmpty { // Verificar melhor os campos
-            view?.showFieldMessage(.email, message: "* obrigatório", isValid: false)
-            valid = false
-        }
-        
-        if password!.isEmpty {
-            view?.showFieldMessage(.password, message: "* obrigatório", isValid: false)
-            valid = false
-        }
+        isValidField(email, field: .email, check: &valid)
+        isValidField(password, field: .password, check: &valid)
         
         if valid {
+            
             view?.indicatorView.startAnimating()
             interactor.connectUserOnline(email: email!, password: password!)
+        }
+    }
+    
+    func isValidField(_ text : String?, field : FieldEnum, check : inout Bool) {
+    
+        if  text == nil { // TRATAR
+            check = false
+        }
+        
+        if text!.isEmpty {
+            
+            view?.showFieldMessage(field, message: "* campo obrigatório", isValid: false)
+            check = false
         }
     }
     
     func handleNewAccount() {
         
         router.performNewAccountController()
+    }
+    
+    func handleForgotPassword() {
+        
+        router.performForgotPassword()
     }
 }
 

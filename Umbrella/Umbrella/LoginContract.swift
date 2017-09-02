@@ -26,6 +26,7 @@ protocol LoginPresenterProtocol : class , FBSDKLoginButtonDelegate {
     
     func handleLogin(email : String?, password : String?)
     func handleNewAccount()
+    func handleForgotPassword()
 }
 
 protocol LoginInteractorProtocol : class {
@@ -49,4 +50,5 @@ protocol LoginRouterProtocol : class {
     
     func performMapControler()
     func performNewAccountController()
+    func performForgotPassword()
 }

@@ -38,6 +38,7 @@ class LoginViewController: UIViewController {
     
     func handleForgotPassword() {
 
+        presenter.handleForgotPassword()
     }
     
     func setupInputs() {

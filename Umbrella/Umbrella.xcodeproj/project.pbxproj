@@ -63,6 +63,10 @@
 		A1B9DA191F589AE4008D041A /* PasswordRecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */; };
 		A1B9DA1A1F589AE4008D041A /* PasswordRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */; };
 		A1B9DA1B1F589AE4008D041A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */; };
+		A1E9FF721F5B3F1C007B14D7 /* PasswordRecoverContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9FF6E1F5B3F1C007B14D7 /* PasswordRecoverContract.swift */; };
+		A1E9FF731F5B3F1C007B14D7 /* PasswordRecoverInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9FF6F1F5B3F1C007B14D7 /* PasswordRecoverInteractor.swift */; };
+		A1E9FF741F5B3F1C007B14D7 /* PasswordRecoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9FF701F5B3F1C007B14D7 /* PasswordRecoverPresenter.swift */; };
+		A1E9FF751F5B3F1C007B14D7 /* PasswordRecoverRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9FF711F5B3F1C007B14D7 /* PasswordRecoverRouter.swift */; };
 		D4B1E41F1F2A919900308ABB /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E41E1F2A919900308ABB /* TabBar.storyboard */; };
 		D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B1E4281F2A96D200308ABB /* Map.storyboard */; };
 		D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */; };
@@ -147,6 +151,10 @@
 		A1B9D9B21F578B56008D041A /* LFHeatMapHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFHeatMapHeader.h; sourceTree = "<group>"; };
 		A1B9D9B31F578DBE008D041A /* ImagePickerRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerRouter.swift; sourceTree = "<group>"; };
 		A1B9D9E61F589A84008D041A /* ReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ReportTableViewCell.xib; path = Umbrella/ReportTableViewCell.xib; sourceTree = "<group>"; };
+		A1E9FF6E1F5B3F1C007B14D7 /* PasswordRecoverContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverContract.swift; sourceTree = "<group>"; };
+		A1E9FF6F1F5B3F1C007B14D7 /* PasswordRecoverInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverInteractor.swift; sourceTree = "<group>"; };
+		A1E9FF701F5B3F1C007B14D7 /* PasswordRecoverPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverPresenter.swift; sourceTree = "<group>"; };
+		A1E9FF711F5B3F1C007B14D7 /* PasswordRecoverRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverRouter.swift; sourceTree = "<group>"; };
 		D4B1E3FE1F2A78CF00308ABB /* Umbrella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbrella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B1E4011F2A78CF00308ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B1E4031F2A78CF00308ABB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +304,7 @@
 				A149053D1F4F3CD4000DE25C /* Chat */,
 				A100C3191F55B1CA0021EB6B /* Login */,
 				A14905421F4F3D12000DE25C /* Register */,
+				A1E9FF6D1F5B3F0C007B14D7 /* PasswordRecover */,
 			);
 			name = Features;
 			sourceTree = "<group>";
@@ -402,14 +411,14 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		A1A46E6C1F4928BB0045E13A /* PasswordRecover */ = {
+		A1A46E6C1F4928BB0045E13A /* View */ = {
 			isa = PBXGroup;
 			children = (
 				9E60661C1F43C72F002C5281 /* PasswordRecoverViewController.swift */,
 				9E6066181F43C6C3002C5281 /* PasswordRecoverView.swift */,
 				9E60661A1F43C70D002C5281 /* PasswordRecover.storyboard */,
 			);
-			name = PasswordRecover;
+			name = View;
 			sourceTree = "<group>";
 		};
 		A1BB533C1F38E62D0060649C /* Helpers */ = {
@@ -436,6 +445,18 @@
 				D4E91E181F3E30C9004895B7 /* MessageEntity.swift */,
 			);
 			name = Chat;
+			sourceTree = "<group>";
+		};
+		A1E9FF6D1F5B3F0C007B14D7 /* PasswordRecover */ = {
+			isa = PBXGroup;
+			children = (
+				A1E9FF6E1F5B3F1C007B14D7 /* PasswordRecoverContract.swift */,
+				A1E9FF6F1F5B3F1C007B14D7 /* PasswordRecoverInteractor.swift */,
+				A1E9FF701F5B3F1C007B14D7 /* PasswordRecoverPresenter.swift */,
+				A1E9FF711F5B3F1C007B14D7 /* PasswordRecoverRouter.swift */,
+				A1A46E6C1F4928BB0045E13A /* View */,
+			);
+			name = PasswordRecover;
 			sourceTree = "<group>";
 		};
 		D4B1E3F51F2A78CF00308ABB = {
@@ -493,7 +514,6 @@
 				D4B1E4231F2A93E900308ABB /* Map */,
 				D4B1E4221F2A93CC00308ABB /* Report */,
 				D4B1E41D1F2A918500308ABB /* TabBar */,
-				A1A46E6C1F4928BB0045E13A /* PasswordRecover */,
 				D4B1E40A1F2A78CF00308ABB /* LaunchScreen.storyboard */,
 			);
 			name = View;
@@ -685,7 +705,7 @@
 				TargetAttributes = {
 					D4B1E3FD1F2A78CF00308ABB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = H6LU9H3DMX;
+						DevelopmentTeam = 5A5BFGK2W9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -799,6 +819,7 @@
 				A1B9D9F41F589AE4008D041A /* SettingsViewController.swift in Sources */,
 				A17ADA571F59CD7A000B40CD /* UserInteractor.swift in Sources */,
 				A1B9D9F51F589AE4008D041A /* FirebaseManager.swift in Sources */,
+				A1E9FF721F5B3F1C007B14D7 /* PasswordRecoverContract.swift in Sources */,
 				A1B9D9F61F589AE4008D041A /* MessageContract.swift in Sources */,
 				A1B9D9F71F589AE4008D041A /* MessagesPresenter.swift in Sources */,
 				A1B9D9F81F589AE4008D041A /* MessagesRouter.swift in Sources */,
@@ -825,6 +846,7 @@
 				A1B9DA081F589AE4008D041A /* ImagePickerRouter.swift in Sources */,
 				A17ADA501F59CD7A000B40CD /* MySupportTableViewCell.swift in Sources */,
 				A1B9DA091F589AE4008D041A /* Validations.swift in Sources */,
+				A1E9FF731F5B3F1C007B14D7 /* PasswordRecoverInteractor.swift in Sources */,
 				A17ADA541F59CD7A000B40CD /* ReportTableViewCell.swift in Sources */,
 				A1B9DA0A1F589AE4008D041A /* AlertPresenter.swift in Sources */,
 				A1B9DA0B1F589AE4008D041A /* ExtendedNavBarView.swift in Sources */,
@@ -838,6 +860,7 @@
 				A1B9DA131F589AE4008D041A /* ReportTableViewController.swift in Sources */,
 				A17ADA531F59CD7A000B40CD /* PopUpPresenter.swift in Sources */,
 				A1B9DA141F589AE4008D041A /* RegisterReportViewController.swift in Sources */,
+				A1E9FF751F5B3F1C007B14D7 /* PasswordRecoverRouter.swift in Sources */,
 				A1B9DA151F589AE4008D041A /* RegisterReportSecondViewController.swift in Sources */,
 				A1B9DA161F589AE4008D041A /* SeeReportViewController.swift in Sources */,
 				A1B9DA171F589AE4008D041A /* ShowReportsViewController.swift in Sources */,
@@ -873,6 +896,7 @@
 				D4E91E281F3E30C9004895B7 /* MessageEntity.swift in Sources */,
 				A17ADA4D1F59CD7A000B40CD /* CampFieldView.swift in Sources */,
 				FB0144D31F3B85A7004FFBCC /* SaveManager.swift in Sources */,
+				A1E9FF741F5B3F1C007B14D7 /* PasswordRecoverPresenter.swift in Sources */,
 				FB0144D41F3B85A7004FFBCC /* UIImageHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -997,7 +1021,7 @@
 			baseConfigurationReference = D6376FD7318B57A083ABE80E /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H6LU9H3DMX;
+				DEVELOPMENT_TEAM = 5A5BFGK2W9;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.Umbrella.UmbrellaApp;
@@ -1013,7 +1037,7 @@
 			baseConfigurationReference = FDC9A259B10984B778DD44F3 /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H6LU9H3DMX;
+				DEVELOPMENT_TEAM = 5A5BFGK2W9;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.Umbrella.UmbrellaApp;

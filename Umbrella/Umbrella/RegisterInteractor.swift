@@ -120,6 +120,8 @@ class RegisterInteractor: RegisterInteractorProtocol {
         
         if let errCode = AuthErrorCode(rawValue: error._code) {
             
+            
+            
             switch errCode {
             case .invalidEmail:
                 output.fetched("Email inválido", field: .email)

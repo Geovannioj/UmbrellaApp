@@ -16,28 +16,30 @@ class RegisterPresenter : NSObject, RegisterPresenterProtocol {
     
     func createUser(nickname: String?, email : String?, password: String?, image : UIImage?) {
         
-        if  nickname == nil || email == nil || password == nil { // Arrumar isso e tratar depois
-            return
-        }
-        
         var valid = true
         
-        valid = isValidField(nickname, field: .nickname)
-        valid = isValidField(email, field: .email)
-        valid = isValidField(password, field: .password)
+        isValidField(nickname, field: .nickname, check: &valid)
+        isValidField(email, field: .email, check: &valid)
+        isValidField(password, field: .password, check: &valid)
         
         if valid {
+         
             view?.indicatorView.startAnimating()
             interactor.createUser(nickname: nickname!, email: email!, password: password!, image: image)
         }
     }
     
-    func isValidField(_ text : String?, field : FieldEnum) -> Bool {
+    func isValidField(_ text : String?, field : FieldEnum, check : inout Bool) {
         
-        let valid = !text!.isEmpty
+        if  text == nil { // TRATAR
+            check = false
+        }
         
-        view?.showFieldMessage(field, message: "* campo obrigatório", isValid: valid)
-        return valid
+        if text!.isEmpty {
+            
+            view?.showFieldMessage(field, message: "* campo obrigatório", isValid: false)
+            check = false
+        }
     }
     
     func validateField(_ field : FieldEnum, input : String?) {

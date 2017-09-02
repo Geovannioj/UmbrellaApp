@@ -45,6 +45,7 @@ class LoginRouter : LoginRouterProtocol {
     
     func performForgotPassword() {
         
-        viewController?.performSegue(withIdentifier: "passwordRecoverSegue", sender: nil)
+        let controller = PasswordRecoverRouter.assembleModule()
+        viewController?.present(controller, animated: true, completion: nil)
     }
 }
