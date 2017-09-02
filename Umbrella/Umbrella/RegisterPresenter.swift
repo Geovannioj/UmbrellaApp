@@ -22,25 +22,22 @@ class RegisterPresenter : NSObject, RegisterPresenterProtocol {
         
         var valid = true
         
-        if nickname!.isEmpty {
-            view?.showFieldMessage(.nickname, message: "* obrigatório", isValid: false)
-            valid = false
-        }
-        
-        if email!.isEmpty {
-            view?.showFieldMessage(.email, message: "* obrigatório", isValid: false)
-            valid = false
-        }
-        
-        if password!.isEmpty {
-            view?.showFieldMessage(.password, message: "* obrigatório", isValid: false)
-            valid = false
-        }
+        valid = isValidField(nickname, field: .nickname)
+        valid = isValidField(email, field: .email)
+        valid = isValidField(password, field: .password)
         
         if valid {
             view?.indicatorView.startAnimating()
             interactor.createUser(nickname: nickname!, email: email!, password: password!, image: image)
         }
+    }
+    
+    func isValidField(_ text : String?, field : FieldEnum) -> Bool {
+        
+        let valid = !text!.isEmpty
+        
+        view?.showFieldMessage(field, message: "* campo obrigatório", isValid: valid)
+        return valid
     }
     
     func validateField(_ field : FieldEnum, input : String?) {
