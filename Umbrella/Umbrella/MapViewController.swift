@@ -12,7 +12,8 @@ import Mapbox
 import MapboxGeocoder
 import GoogleMobileAds
 import Firebase
-class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
+
+class MapViewController: UIViewController ,UISearchBarDelegate{
     @IBOutlet weak var msgsButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var perfilButton: UIButton!
@@ -87,12 +88,42 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        deselectAllAnnotations(mapView: mapView)
+  
         
         
     }
-    //MARK: Buttons functions
+    //MARK: - Buttons functions
+    
+    
+    @IBAction func expandAction(_ sender: UIButton) {
+        //Verifica se o Usuario ja está logado.
+        if UserInteractor.getCurrentUserUid() == nil {
+            //Adiciona Alerta para redirecionar ao login.
+            let alertControler = UIAlertController(title: "Atenção", message: "Por favor faça o login para poder acessar as opçoes de relato.", preferredStyle: .alert)
+            
+            alertControler.addAction(UIAlertAction(title: "Logar", style: .default, handler: { (UIAlertAction) in
+                
+                let controller = LoginRouter.assembleModule()
+                self.present(controller, animated: true, completion: nil)
+                //                self.performSegue(withIdentifier: "goToLogin", sender: nil)
+                
+            }))
+            alertControler.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (UIAlertAction) in
+                
+            }))
+            
+            self.present(alertControler, animated: true, completion: nil)
+        }else{
+            //Faz animação caso esteja logado.
+            if !sender.isSelected {
+                showButtons(duration: 0.5)
+                sender.isSelected = true
+            }else{
+                hideButtons(duration: 0.5)
+                sender.isSelected = false
+            }
+        }
+    }
     func hideButtons(duration:Double){
         UIView.animate(withDuration: duration, animations:{
             
@@ -139,7 +170,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     @IBAction func locatioButtonAction(_ sender: UIButton) {
         centerOnUser()
     }
-    //MARK: config functions
+    //MARK: - config functions
+    
     func searchBarConfig(){
         searchBar.delegate = self
         searchBar.isTranslucent = true
@@ -161,24 +193,8 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         searchTableView.allowsSelection = false
         searchTableView.layer.cornerRadius = 10
     }
-    // MARK:Table VIew Delegate (searchBarResults)
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return querryResults.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = searchTableView.dequeueReusableCell(withIdentifier: "searchCell") as! SearchBarCellTableViewCell
-        
-        cell.searchCellLabel.text = querryResults[indexPath.row].name
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapCel(sender:)))
-        cell.addGestureRecognizer(gesture)
-        
-        return cell
-    }
     func tapCel(sender:UITapGestureRecognizer)  {
         //using sender, we can get the point in respect to the table view
         let tapLocation = sender.location(in: self.searchTableView)
@@ -309,40 +325,13 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         
        
     }
-    
-    
-    @IBAction func expandAction(_ sender: UIButton) {
-        //Verifica se o Usuario ja está logado.
-        if UserInteractor.getCurrentUserUid() == nil {
-            //Adiciona Alerta para redirecionar ao login.
-            let alertControler = UIAlertController(title: "Atenção", message: "Por favor faça o login para poder acessar as opçoes de relato.", preferredStyle: .alert)
-            
-            alertControler.addAction(UIAlertAction(title: "Logar", style: .default, handler: { (UIAlertAction) in
-                
-                let controller = LoginRouter.assembleModule()
-                self.present(controller, animated: true, completion: nil)
-//                self.performSegue(withIdentifier: "goToLogin", sender: nil)
-                
-            }))
-            alertControler.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (UIAlertAction) in
 
-            }))
-            
-            self.present(alertControler, animated: true, completion: nil)
-        }else{
-            //Faz animação caso esteja logado.
-            if !sender.isSelected {
-                showButtons(duration: 0.5)
-                sender.isSelected = true
-            }else{
-                hideButtons(duration: 0.5)
-                sender.isSelected = false
-            }
-        }
+
         
         
         
-    }
+
+    //MARK: - Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "containerViewSegue" {
             containerViewController = segue.destination as? FilterTableViewControlleTableViewController
@@ -354,63 +343,92 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             
         }
     }
-    
-   
-    func setObserverToFireBaseChanges() {
+    func setAddObserverFireBase(){
         
-        self.refReports.observe(DataEventType.value, with: {(snapshot) in
-            if snapshot.childrenCount > 0 {
-                self.reports.removeAll()
-                self.removePins()
-                for report in snapshot.children.allObjects as![DataSnapshot]{
-                    let reportObj = report.value as? [String: AnyObject]
-                    
-                    let id = reportObj?["id"]
-                    let userId = reportObj?["userId"]
-                    let title = reportObj?["title"]
-                    let description = reportObj?["description"]
-                    let violenceKind = reportObj?["violenceKind"]
-                    let violenceAproximatedTime = reportObj?["violenceAproximatedTime"]
-                    let latitude = reportObj?["latitude"]
-                    let longitude = reportObj?["longitude"]
-                    let personGender = reportObj?["personGender"]
-                    let supports = reportObj?["supports"]
-                    
-                    var reportAtt:Report?
-                    
-                    if supports != nil {
-                        
-                        reportAtt = Report(id: id as! String,
-                                           userId: userId as! String,
-                                           title: title as! String,
-                                           description: description as! String,
-                                           violenceKind: violenceKind as! String,
-                                           violenceAproximatedTime: violenceAproximatedTime as! Double,
-                                           latitude: latitude as! Double, longitude: longitude as! Double,
-                                           personGender: personGender as! String,
-                                           supports: supports as! Int)
-                    } else {
-                        reportAtt = Report(id: id as! String,
-                                           userId: userId as! String,
-                                           title: title as! String,
-                                           description: description as! String,
-                                           violenceKind: violenceKind as! String,
-                                           violenceAproximatedTime: violenceAproximatedTime as! Double,
-                                           latitude: latitude as! Double,
-                                           longitude: longitude as! Double,
-                                           personGender: personGender as! String)
-                    }
-                    
-                    
-                    self.reports.append(reportAtt!)
-                    self.filter(new: reportAtt!)
-                   // self.filter()
-                }
-                
-            }
+        self.refReports.observe(.childAdded, with: { (snapShot) in
+            let snapShotValue = snapShot.value as! Dictionary<String,Any>
+            
+
+            let newReport = Report(id: snapShotValue["id"]! as! String, userId: snapShotValue["userId"]! as! String, title: snapShotValue["title"]! as! String, description: snapShotValue["description"]! as! String, violenceKind: snapShotValue["violenceKind"]! as! String, violenceAproximatedTime: snapShotValue["violenceAproximatedTime"] as! Double, latitude: snapShotValue["latitude"] as! Double, longitude: snapShotValue["longitude"] as! Double, personGender: snapShotValue["personGender"]! as! String)
+            
+            self.reports.append(newReport)
+            self.filter(new:newReport)
+
         })
-        
+    }
+    func setRemoveObserver(){
+        self.refReports.observe(.childRemoved, with: { (snapShot) in
+            let snapShotValue = snapShot.value as! Dictionary<String,Any>
+            let id = snapShotValue["id"] as! String
+            let newArray = self.reports.filter(){
+               $0.id != id
+            }
+            
+            self.reports = newArray
+            self.removePins()
+            self.addPins(reports: newArray)
+        })
+    }
+    func getReports(){
         
     }
     
+   
+    func setObserverToFireBaseChanges() {
+//        self.refReports.observe(DataEventType.value, with: {(snapshot) in
+//            if snapshot.childrenCount > 0 {
+//                self.reports.removeAll()
+//                self.removePins()
+//                for report in snapshot.children.allObjects as![DataSnapshot]{
+//                    let reportObj = report.value as? [String: AnyObject]
+//                    
+//                    let id = reportObj?["id"]
+//                    let userId = reportObj?["userId"]
+//                    let title = reportObj?["title"]
+//                    let description = reportObj?["description"]
+//                    let violenceKind = reportObj?["violenceKind"]
+//                    let violenceAproximatedTime = reportObj?["violenceAproximatedTime"]
+//                    let latitude = reportObj?["latitude"]
+//                    let longitude = reportObj?["longitude"]
+//                    let personGender = reportObj?["personGender"]
+//                    let supports = reportObj?["supports"]
+//                    
+//                    var reportAtt:Report?
+//                    
+//                    if supports != nil {
+//                        
+//                        reportAtt = Report(id: id as! String,
+//                                           userId: userId as! String,
+//                                           title: title as! String,
+//                                           description: description as! String,
+//                                           violenceKind: violenceKind as! String,
+//                                           violenceAproximatedTime: violenceAproximatedTime as! Double,
+//                                           latitude: latitude as! Double, longitude: longitude as! Double,
+//                                           personGender: personGender as! String,
+//                                           supports: supports as! Int)
+//                    } else {
+//                        reportAtt = Report(id: id as! String,
+//                                           userId: userId as! String,
+//                                           title: title as! String,
+//                                           description: description as! String,
+//                                           violenceKind: violenceKind as! String,
+//                                           violenceAproximatedTime: violenceAproximatedTime as! Double,
+//                                           latitude: latitude as! Double,
+//                                           longitude: longitude as! Double,
+//                                           personGender: personGender as! String)
+//                    }
+//                    
+//                    
+//                    self.reports.append(reportAtt!)
+//                    self.filter(new: reportAtt!)
+//                }
+//                
+//            }
+//        })
+        
+        setAddObserverFireBase()
+        setRemoveObserver()
+    }
+    
+
 }

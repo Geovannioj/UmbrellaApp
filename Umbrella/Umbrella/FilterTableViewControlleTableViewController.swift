@@ -10,22 +10,23 @@ import UIKit
 
 class FilterTableViewControlleTableViewController: UITableViewController {
 
-    @IBOutlet weak var psycologic: UIButton!
+   
     
-    @IBOutlet weak var verbal: UIButton!
-    
-    @IBOutlet weak var physic: UIButton!
-    
-    @IBOutlet weak var sexual: UIButton!
+
     
     var desirables:[String] = []
     var containerToMaster:MapViewController?
-    
+    var filters:[FilterEntity] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsSelection = false
         self.tableView.layer.cornerRadius = 10
+        updateFilter()
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -34,6 +35,13 @@ class FilterTableViewControlleTableViewController: UITableViewController {
         containerToMaster?.mapView.allowsRotating = true
         containerToMaster?.mapView.allowsScrolling = true
         
+    }
+    func updateFilter(){
+        FilterInteractor.getFilters(completion: { filtersFirebase in
+            self.filters.append(contentsOf: filtersFirebase)
+            self.tableView.reloadData()
+            
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,25 +58,22 @@ class FilterTableViewControlleTableViewController: UITableViewController {
     }
   
     @IBAction func closeAction(_ sender: Any) {
-       // self.view.removeFromSuperview()
-        //self.removeFromParentViewController()
-       // self.view.isHidden = true
+    
         NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
 
     }
     @IBAction func FilterAction(_ sender: UIButton) {
         
-        if psycologic.isSelected{
-            desirables.append("psicológica")
-        }
-        if verbal.isSelected{
-            desirables.append("verbal")
-        }
-        if physic.isSelected{
-            desirables.append("física")
-        }
-        if sexual.isSelected{
-            desirables.append("sexual")
+//        if psycologic.isSelected{
+//            desirables.append("psicológica")
+//        }
+        for i in 0...filters.count - 1 {
+            let indexPath = IndexPath(row: i, section: 0)
+            let cell = self.tableView.cellForRow(at: indexPath) as! FilterTableViewCell
+            
+            if cell.checkButton.isSelected{
+                self.desirables.append("\(cell.violenceTitle.text ?? "")")
+            }
         }
        // NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "Filter"), object: desirables)
         //performSegue(withIdentifier: "filterAction", sender: self)
@@ -80,10 +85,10 @@ class FilterTableViewControlleTableViewController: UITableViewController {
         
     }
     @IBAction func undoAction(_ sender: UIButton) {
-        sexual.isSelected = false
-        physic.isSelected = false
-        psycologic.isSelected = false
-        verbal.isSelected = false
+//        sexual.isSelected = false
+//        physic.isSelected = false
+//        psycologic.isSelected = false
+//        verbal.isSelected = false
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "filterAction"{
@@ -91,6 +96,19 @@ class FilterTableViewControlleTableViewController: UITableViewController {
             controller?.filtros = desirables
         }
         
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        
+    return  filters.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FilterCell") as! FilterTableViewCell
+        
+        cell.violenceTitle.text = filters[indexPath.row].type
+        
+        return cell
     }
 
 

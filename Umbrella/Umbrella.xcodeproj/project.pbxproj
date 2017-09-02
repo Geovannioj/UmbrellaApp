@@ -20,7 +20,6 @@
 		A17ADA521F59CD7A000B40CD /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17ADA471F59CD7A000B40CD /* PhotoInteractor.swift */; };
 		A17ADA531F59CD7A000B40CD /* PopUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17ADA481F59CD7A000B40CD /* PopUpPresenter.swift */; };
 		A17ADA541F59CD7A000B40CD /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17ADA491F59CD7A000B40CD /* ReportTableViewCell.swift */; };
-		A17ADA551F59CD7A000B40CD /* ReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17ADA4A1F59CD7A000B40CD /* ReportTableViewCell.xib */; };
 		A17ADA561F59CD7A000B40CD /* SeeReportDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17ADA4B1F59CD7A000B40CD /* SeeReportDescriptionTableViewController.swift */; };
 		A17ADA571F59CD7A000B40CD /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17ADA4C1F59CD7A000B40CD /* UserInteractor.swift */; };
 		A1B9D9F11F589A84008D041A /* ReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1B9D9E61F589A84008D041A /* ReportTableViewCell.xib */; };
@@ -94,7 +93,11 @@
 		FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */; };
 		FB60D86F1F39127E001E5E51 /* SeeReport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8651F39127E001E5E51 /* SeeReport.storyboard */; };
 		FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8671F39127E001E5E51 /* ShowReports.storyboard */; };
+		FB6AB71F1F59FEEC00711605 /* SearchTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6AB71E1F59FEEC00711605 /* SearchTableViewDelegate.swift */; };
 		FB7998791F2BBA85005FC75D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7998781F2BBA85005FC75D /* CoreLocation.framework */; };
+		FB82ECEF1F59D0C7000D7F2B /* FilterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB82ECEC1F59D0C7000D7F2B /* FilterEntity.swift */; };
+		FB82ECF01F59D0C7000D7F2B /* FilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB82ECED1F59D0C7000D7F2B /* FilterInteractor.swift */; };
+		FB82ECF11F59D0C7000D7F2B /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB82ECEE1F59D0C7000D7F2B /* FilterTableViewCell.swift */; };
 		FB8556D01F4F949B00B3D9DC /* RegisterReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */; };
 		FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */; };
 		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
@@ -192,8 +195,12 @@
 		FB60D8661F39127E001E5E51 /* SeeReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeReportViewController.swift; sourceTree = "<group>"; };
 		FB60D8671F39127E001E5E51 /* ShowReports.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShowReports.storyboard; sourceTree = "<group>"; };
 		FB60D8681F39127E001E5E51 /* ShowReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowReportsViewController.swift; sourceTree = "<group>"; };
+		FB6AB71E1F59FEEC00711605 /* SearchTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998721F2BB516005FC75D /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		FB7998781F2BBA85005FC75D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FB82ECEC1F59D0C7000D7F2B /* FilterEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterEntity.swift; sourceTree = "<group>"; };
+		FB82ECED1F59D0C7000D7F2B /* FilterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInteractor.swift; sourceTree = "<group>"; };
+		FB82ECEE1F59D0C7000D7F2B /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportTableViewController.swift; sourceTree = "<group>"; };
 		FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportSecondTableViewController.swift; sourceTree = "<group>"; };
 		FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgressionPinAnnotationView.swift; sourceTree = "<group>"; };
@@ -320,6 +327,11 @@
 		A149053F1F4F3CF8000DE25C /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */,
+				FB6AB71D1F59FE5700711605 /* View */,
+				FB6AB71C1F59FDF100711605 /* Contracts */,
+				FB6AB71B1F59FD4500711605 /* SearchBar */,
+				FB6AB71A1F59FCF500711605 /* Filter */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -501,6 +513,7 @@
 		D4B1E4191F2A793E00308ABB /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				FB6AB7191F59FC3600711605 /* Map */,
 				D4E91E131F3E304F004895B7 /* Comment */,
 				D4E91E121F3E3042004895B7 /* Report */,
 				9ECE54DA1F2BBA9B0035913B /* User */,
@@ -551,15 +564,6 @@
 		D4B1E4231F2A93E900308ABB /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				D4B1E4281F2A96D200308ABB /* Map.storyboard */,
-				D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */,
-				FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */,
-				FB7998721F2BB516005FC75D /* MapViewDelegate.swift */,
-				FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */,
-				FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */,
-				FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */,
-				FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */,
-				FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -599,6 +603,53 @@
 			name = SaveManager;
 			sourceTree = "<group>";
 		};
+		FB6AB7191F59FC3600711605 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		FB6AB71A1F59FCF500711605 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				FB82ECED1F59D0C7000D7F2B /* FilterInteractor.swift */,
+				FB82ECEC1F59D0C7000D7F2B /* FilterEntity.swift */,
+				FB82ECEE1F59D0C7000D7F2B /* FilterTableViewCell.swift */,
+				FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */,
+			);
+			name = Filter;
+			sourceTree = "<group>";
+		};
+		FB6AB71B1F59FD4500711605 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */,
+				FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */,
+			);
+			name = SearchBar;
+			sourceTree = "<group>";
+		};
+		FB6AB71C1F59FDF100711605 /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */,
+				FB7998721F2BB516005FC75D /* MapViewDelegate.swift */,
+				FB6AB71E1F59FEEC00711605 /* SearchTableViewDelegate.swift */,
+			);
+			name = Contracts;
+			sourceTree = "<group>";
+		};
+		FB6AB71D1F59FE5700711605 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D4B1E4281F2A96D200308ABB /* Map.storyboard */,
+				FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */,
+				FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -634,7 +685,7 @@
 				TargetAttributes = {
 					D4B1E3FD1F2A78CF00308ABB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 5A5BFGK2W9;
+						DevelopmentTeam = H6LU9H3DMX;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -678,7 +729,6 @@
 				D4B1E41F1F2A919900308ABB /* TabBar.storyboard in Resources */,
 				D4B1E4291F2A96D200308ABB /* Map.storyboard in Resources */,
 				A1B9D9F11F589A84008D041A /* ReportTableViewCell.xib in Resources */,
-				A17ADA551F59CD7A000B40CD /* ReportTableViewCell.xib in Resources */,
 				D4E91E2C1F3E30C9004895B7 /* Register.storyboard in Resources */,
 				FB60D8711F39127E001E5E51 /* ShowReports.storyboard in Resources */,
 				FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */,
@@ -758,12 +808,15 @@
 				A17ADA4E1F59CD7A000B40CD /* Extensions.swift in Sources */,
 				A1B9D9FB1F589AE4008D041A /* ChatPresenter.swift in Sources */,
 				A1B9D9FC1F589AE4008D041A /* ChatRouter.swift in Sources */,
+				FB82ECEF1F59D0C7000D7F2B /* FilterEntity.swift in Sources */,
 				A1B9D9FD1F589AE4008D041A /* ChatCollectionViewController.swift in Sources */,
 				A1B9D9FE1F589AE4008D041A /* ChatCollectionViewCell.swift in Sources */,
 				A1B9D9FF1F589AE4008D041A /* ChatNavigationView.swift in Sources */,
 				A1B9DA001F589AE4008D041A /* LoginContract.swift in Sources */,
 				A1B9DA011F589AE4008D041A /* LoginInteractor.swift in Sources */,
+				FB6AB71F1F59FEEC00711605 /* SearchTableViewDelegate.swift in Sources */,
 				A1B9DA021F589AE4008D041A /* LoginRouter.swift in Sources */,
+				FB82ECF11F59D0C7000D7F2B /* FilterTableViewCell.swift in Sources */,
 				A1B9DA031F589AE4008D041A /* LoginViewController.swift in Sources */,
 				A1B9DA041F589AE4008D041A /* RegisterContract.swift in Sources */,
 				A1B9DA051F589AE4008D041A /* RegisterInteractor.swift in Sources */,
@@ -811,6 +864,7 @@
 				D4B1E42B1F2A96ED00308ABB /* MapViewController.swift in Sources */,
 				FB8556D01F4F949B00B3D9DC /* RegisterReportTableViewController.swift in Sources */,
 				D4E91E2B1F3E30C9004895B7 /* PhotoEntity.swift in Sources */,
+				FB82ECF01F59D0C7000D7F2B /* FilterInteractor.swift in Sources */,
 				D4E91E321F3E30C9004895B7 /* UserMessageCell.swift in Sources */,
 				D4E91E2E1F3E30C9004895B7 /* RegisterPresenter.swift in Sources */,
 				A17ADA521F59CD7A000B40CD /* PhotoInteractor.swift in Sources */,
@@ -943,7 +997,7 @@
 			baseConfigurationReference = D6376FD7318B57A083ABE80E /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5A5BFGK2W9;
+				DEVELOPMENT_TEAM = H6LU9H3DMX;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.Umbrella.UmbrellaApp;
@@ -959,13 +1013,13 @@
 			baseConfigurationReference = FDC9A259B10984B778DD44F3 /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5A5BFGK2W9;
+				DEVELOPMENT_TEAM = H6LU9H3DMX;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.Umbrella.UmbrellaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = ./Umbrella/LFHeatMapHeader.h;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
