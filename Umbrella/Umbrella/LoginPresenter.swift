@@ -103,12 +103,11 @@ extension LoginPresenter {
                 user.nickname = dictionary["name"] as! String
                 user.email = dictionary["email"] as! String
                 
-                if let picture = dictionary["picture"] as? Dictionary<String,Any> {
-                    if let data = picture["data"] as? Dictionary<String,Any> {
-                        if let pictureUrl = data["url"] as? String {
-                            user.urlPhoto = pictureUrl
-                        }
-                    }
+                if let picture = dictionary["picture"] as? [String : Any],
+                   let data = picture["data"] as? [String : Any],
+                   let pictureUrl = data["url"] as? String {
+                 
+                    user.urlPhoto = pictureUrl
                 }
                 
                 self.interactor.createDatabaseUser(user)
