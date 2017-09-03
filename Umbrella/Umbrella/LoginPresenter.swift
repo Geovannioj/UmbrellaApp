@@ -65,14 +65,29 @@ extension LoginPresenter {
         }
         
         view?.indicatorView.startAnimating()
-        getUserAndCreate()
+        connectFacebookUser()
     }
     
-    func getUserAndCreate() {
+    func connectFacebookUser() {
         
         guard let access = FBSDKAccessToken.current().tokenString else {
             return
         }
+        
+        self.interactor.connectFacebookUser(accessToken: access, completion: { (id) in
+            
+            self.interactor.checkUserExists(id: id, completion: { (exist) in
+                
+                if !exist {
+                    self.createFacebookUser(id)
+                } else {
+                    self.completeLogin(isVerified: true)
+                }
+            })
+        })
+    }
+    
+    func createFacebookUser(_ id : String) {
         
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "name, email, age_range, picture, gender"]).start { (connection, result, err) in
             
@@ -84,13 +99,22 @@ extension LoginPresenter {
                 
                 let user = UserEntity()
                 
+                user.id = id
                 user.nickname = dictionary["name"] as! String
                 user.email = dictionary["email"] as! String
-        
-                self.interactor.createUserFacebook(user , accessToken: access)
                 
-                FBSDKLoginManager().logOut()
+                if let picture = dictionary["picture"] as? Dictionary<String,Any> {
+                    if let data = picture["data"] as? Dictionary<String,Any> {
+                        if let pictureUrl = data["url"] as? String {
+                            user.urlPhoto = pictureUrl
+                        }
+                    }
+                }
+                
+                self.interactor.createDatabaseUser(user)
             }
+            
+            FBSDKLoginManager().logOut()
         }
     }
 }

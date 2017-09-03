@@ -34,7 +34,8 @@ class LoginRouter : LoginRouterProtocol {
     
     func performMapControler() {
         
-        viewController?.dismiss(animated: true, completion: nil)
+        viewController?.performSegue(withIdentifier: "mapSegue", sender: nil)
+//        viewController?.dismiss(animated: true, completion: nil)
     }
     
     func performNewAccountController() {

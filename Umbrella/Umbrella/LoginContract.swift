@@ -34,7 +34,9 @@ protocol LoginInteractorProtocol : class {
     weak var output : LoginInteractorOutputProtocol! {get set}
 
     func connectUserOnline(email: String, password: String)
-    func createUserFacebook(_ newUser : UserEntity, accessToken : String)
+    func connectFacebookUser(accessToken : String, completion: @escaping (_ id : String) -> ())
+    func createDatabaseUser( _ user : UserEntity)
+    func checkUserExists(id : String, completion: @escaping (_ exist : Bool) -> ())
     func sendEmailVerification()
 }
 

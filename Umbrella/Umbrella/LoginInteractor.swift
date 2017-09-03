@@ -35,7 +35,7 @@ class LoginInteractor : LoginInteractorProtocol {
         })
     }
     
-    func createUserFacebook(_ newUser : UserEntity, accessToken : String){
+    func connectFacebookUser(accessToken : String, completion: @escaping (_ id : String) -> ()){
         
         let credentials = FacebookAuthProvider.credential(withAccessToken: accessToken)
         
@@ -46,12 +46,25 @@ class LoginInteractor : LoginInteractorProtocol {
                 return
             }
             
-            newUser.id = (user?.uid)!
+            if let id = user?.uid {
+                completion(id)
+            }
+        })
+    }
+    
+    func createDatabaseUser( _ user : UserEntity) {
+        
+        let userRef = Database.database().reference().child("user").child(user.id)
+        userRef.setValue(user.toAnyObject())
+
+        self.output.completeLogin(isVerified: true)
+    }
+    
+    func checkUserExists(id : String, completion: @escaping (_ exist : Bool) -> ()){
+        
+        Database.database().reference().child("user").child(id).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let userRef = Database.database().reference().child("user").child(newUser.id)
-            userRef.setValue(newUser.toAnyObject())
-            
-            self.output.completeLogin(isVerified: true)
+            completion(snapshot.hasChildren())
         })
     }
     
