@@ -10,12 +10,20 @@
 import GoogleMobileAds
 extension MapViewController: GADBannerViewDelegate {
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        self.bannerView.isHidden = true
-        self.setUpExpandConstrain()
+        
+        if !bannerView.isHidden {
+            self.bannerView.isHidden = true
+            self.setUpExpandConstrain()
+        }
+        
     }
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        self.bannerView.isHidden = false
-        self.setUpExpandConstrain()
+        if bannerView.isHidden{
+            self.bannerView.isHidden = false
+            self.setUpExpandConstrain()
+        }
+        
     }
+    
 
 }

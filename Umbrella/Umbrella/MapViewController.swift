@@ -64,7 +64,7 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
         
         getPrimaryConstantsValue()
         dismissKayboardInTapGesture()
-        
+        bannerView.delegate = self
  
        
         filterTable.isHidden = true
@@ -224,10 +224,18 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
     func setUpExpandConstrain(){
         if bannerView.isHidden {
             verticalExpadButtonConstrain.constant -= bannerView.frame.height
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
         }else{
             verticalExpadButtonConstrain.constant += bannerView.frame.height
+           
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
         }
-        self.view.layoutIfNeeded()
+        
     }
     
     
