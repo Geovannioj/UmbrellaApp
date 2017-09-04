@@ -200,6 +200,9 @@ class UserInteractor {
      - parameter completion: returns an User with the id parameter
      */
     static func getUser(withId id: String, completion: @escaping (UserEntity) -> ()) {
+        
+        print("Id do usuario: \(id)")
+        
         let userRef = Database.database().reference().child("user").child(id)
         let user = UserEntity()
         

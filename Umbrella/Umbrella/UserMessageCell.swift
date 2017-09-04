@@ -31,7 +31,7 @@ class UserMessageCell: UITableViewCell {
     let profileImage : UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
-        image.image = UIImage(named: "umbrella")
+        image.layer.contents = UIImage(named: "profileImageIcon")?.cgImage
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -66,6 +66,7 @@ class UserMessageCell: UITableViewCell {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = UIColor.clear
+        selectionStyle = .none
         
         addSubview(profileImage)
         addSubview(nameLabel)
