@@ -67,7 +67,7 @@ class LoginInteractor : LoginInteractorProtocol {
             completion(snapshot.hasChildren())
         })
     }
-    
+        
     // -TODO: Write a formal email verification on firebase options and test this method
     /**
      Sends an email verification to the user's email

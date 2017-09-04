@@ -49,9 +49,7 @@ class RegisterViewController: UIViewController {
         inputs.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         inputs.registerButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
-        
-        inputs.profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImage)))
-        inputs.profileImage.isUserInteractionEnabled = true
+        inputs.changedImageButton.addTarget(self, action: #selector(handleSelectProfileImage), for: .touchUpInside)
         
         inputs.closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleReturn)))
         inputs.closeButton.isUserInteractionEnabled = true

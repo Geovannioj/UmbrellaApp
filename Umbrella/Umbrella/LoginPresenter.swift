@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 
-class LoginPresenter : NSObject, LoginPresenterProtocol {
+class LoginPresenter : LoginPresenterProtocol {
     
     weak var view : LoginViewProtocol?
     var interactor : LoginInteractorProtocol!
@@ -55,17 +55,18 @@ class LoginPresenter : NSObject, LoginPresenterProtocol {
 
 extension LoginPresenter {
     
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-    }
-    
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+    func handleFacebookLogin(){
         
-        if error != nil {
-            return
+        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: view as! UIViewController) { (result, err) in
+            
+            if err != nil {
+                return
+            } else if !result!.isCancelled {
+                
+                self.view?.indicatorView.startAnimating()
+                self.connectFacebookUser()
+            }
         }
-        
-        view?.indicatorView.startAnimating()
-        connectFacebookUser()
     }
     
     func connectFacebookUser() {
@@ -89,7 +90,7 @@ extension LoginPresenter {
     
     func createFacebookUser(_ id : String) {
         
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "name, email, age_range, picture, gender"]).start { (connection, result, err) in
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "name, email, age_range, picture.type(large), gender"]).start { (connection, result, err) in
             
             if err != nil {
                 return
@@ -98,7 +99,6 @@ extension LoginPresenter {
             if let dictionary = result as? [String : Any] {
                 
                 let user = UserEntity()
-                
                 user.id = id
                 user.nickname = dictionary["name"] as! String
                 user.email = dictionary["email"] as! String
@@ -112,7 +112,7 @@ extension LoginPresenter {
                 
                 self.interactor.createDatabaseUser(user)
             }
-            
+        
             FBSDKLoginManager().logOut()
         }
     }

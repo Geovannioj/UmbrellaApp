@@ -66,9 +66,16 @@ class LoginView: UIView {
         return button
     }()
     
-    var facebookButton : FBSDKLoginButton = {
-        let button = FBSDKLoginButton()
+    var facebookButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Entrar com Facebook", for: .normal)
+        button.backgroundColor = UIColor(r: 0, g: 124, b: 204)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
     

@@ -18,7 +18,7 @@ protocol LoginViewProtocol : class {
     func showFieldMessage(_ field : FieldEnum, message : String, isValid : Bool)
 }
 
-protocol LoginPresenterProtocol : class , FBSDKLoginButtonDelegate {
+protocol LoginPresenterProtocol : class {
     
     weak var view : LoginViewProtocol? { get set }
     var interactor : LoginInteractorProtocol! {get set}
@@ -27,6 +27,7 @@ protocol LoginPresenterProtocol : class , FBSDKLoginButtonDelegate {
     func handleLogin(email : String?, password : String?)
     func handleNewAccount()
     func handleForgotPassword()
+    func handleFacebookLogin()
 }
 
 protocol LoginInteractorProtocol : class {

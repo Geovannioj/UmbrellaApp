@@ -41,6 +41,11 @@ class LoginViewController: UIViewController {
         presenter.handleForgotPassword()
     }
     
+    func handleFacebookLogin() {
+        
+        presenter.handleFacebookLogin()
+    }
+    
     func setupInputs() {
         
         inputs.translatesAutoresizingMaskIntoConstraints = false
@@ -52,9 +57,7 @@ class LoginViewController: UIViewController {
         inputs.loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         inputs.newAccountButton.addTarget(self, action: #selector(handleNewAccount), for: .touchUpInside)
         inputs.forgotPasswordButton.addTarget(self, action: #selector(handleForgotPassword), for: .touchUpInside)
-        
-        inputs.facebookButton.readPermissions = ["email", "public_profile"]
-        inputs.facebookButton.delegate = presenter
+        inputs.facebookButton.addTarget(self, action: #selector(handleFacebookLogin), for: .touchUpInside)
     }
     
     func setupIndicator() {
