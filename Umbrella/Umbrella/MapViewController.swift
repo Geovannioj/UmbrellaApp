@@ -20,10 +20,29 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
     @IBOutlet weak var expandButton: UIButton!
     @IBOutlet weak var filterTable: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var HorizontalStackButtons: UIStackView!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet weak var searchTableView: UITableView!
+    
+    //MARK: - Constrains
+    @IBOutlet weak var horizontalMsgContrain: NSLayoutConstraint!
+    
+    @IBOutlet weak var horizontalProfileConstrain: NSLayoutConstraint!
+    @IBOutlet weak var verticalMsgConstrain: NSLayoutConstraint!
+    
+    @IBOutlet weak var verticalProfileConstrain: NSLayoutConstraint!
+    @IBOutlet weak var verticalReportConstrain: NSLayoutConstraint!
+    
+    @IBOutlet weak var verticalExpadButtonConstrain: NSLayoutConstraint!
+    
+    var horizontalMsgButtonValue:CGFloat = CGFloat()
+    var verticalMsgButtonValue:CGFloat = CGFloat()
+    
+    var verticalReportButtonValue:CGFloat = CGFloat()
+    
+    var horizontalProfileButtonValue:CGFloat = CGFloat()
+    var verticalProfileButtonValue:CGFloat = CGFloat()
+    //MARK: - others
     
     var querryResults:[GeocodedPlacemark] = []
     var filtros:[String] = []
@@ -33,9 +52,7 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
     var reportToSend:Report?
     var containerViewController: FilterTableViewControlleTableViewController?
     var buttonDistance:CGFloat = CGFloat()
-    var msgCenter:CGPoint = CGPoint()
-    var perfilCenter:CGPoint = CGPoint()
-    var reportCenter:CGPoint = CGPoint()
+
    
     let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiaGVsZW5hc2ltb2VzIiwiYSI6ImNqNWp4bDBicDJpOTczMm9kaDJqemprbDcifQ.vdd9cfGAwcSXh1I7pq1mvA")
     let image = UIImage(named: "CustomLocationPIN")
@@ -45,16 +62,13 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        buttonDistance = HorizontalStackButtons.spacing
-      
+        getPrimaryConstantsValue()
         dismissKayboardInTapGesture()
         
-        self.msgCenter = msgsButton.center
-        self.perfilCenter = perfilButton.center
-        self.reportCenter = reportButton.center
+ 
        
         filterTable.isHidden = true
-        hideButtons(duration: 0)
+        hide(duration: 0)
         //Remove bussola do mapa
         mapView.compassView.removeFromSuperview()
         
@@ -116,43 +130,79 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
         }else{
             //Faz animação caso esteja logado.
             if !sender.isSelected {
-                showButtons(duration: 0.5)
+                expand(duration: 0.5)
                 sender.isSelected = true
             }else{
-                hideButtons(duration: 0.5)
+                hide(duration: 0.5)
                 sender.isSelected = false
             }
         }
     }
-    func hideButtons(duration:Double){
-        UIView.animate(withDuration: duration, animations:{
+    func expand(duration:Double){
+        expandButton.isEnabled = false
+        
+        self.verticalReportConstrain.constant = self.verticalReportButtonValue
+        
+        UIView.animate(withDuration: duration, animations: {
+            self.view.layoutIfNeeded()
+            self.reportButton.alpha = 1
             
-            self.HorizontalStackButtons.spacing = 0
-            self.reportButton.center = self.expandButton.center
             
-            self.reportButton.alpha = 0
+        }) { (sucess) in
+            self.verticalProfileConstrain.constant = self.verticalProfileButtonValue
+            self.horizontalProfileConstrain.constant = self.horizontalProfileButtonValue
+            
+            self.verticalMsgConstrain.constant = self.verticalMsgButtonValue
+            self.horizontalMsgContrain.constant = self.horizontalMsgButtonValue
+            
+            UIView.animate(withDuration: duration, animations: {
+                self.view.layoutIfNeeded()
+                
+                self.msgsButton.alpha = 1
+                self.perfilButton.alpha = 1
+                
+            }){ (sucess) in
+                self.expandButton.isEnabled = true
+                
+            }
+        }
+    }
+    func getPrimaryConstantsValue(){
+        horizontalMsgButtonValue = horizontalMsgContrain.constant
+        verticalMsgButtonValue = verticalMsgConstrain.constant
+        
+        verticalReportButtonValue = verticalReportConstrain.constant
+        
+        horizontalProfileButtonValue = horizontalProfileConstrain.constant
+        verticalProfileButtonValue = verticalProfileConstrain.constant
+        
+    }
+    func hide(duration:Double){
+        expandButton.isEnabled = false
+        
+        verticalProfileConstrain.constant = 0 - perfilButton.frame.height
+        horizontalProfileConstrain.constant = 0 - perfilButton.frame.width
+        
+        verticalMsgConstrain.constant = 0 - msgsButton.frame.height
+        horizontalMsgContrain.constant = 0 - msgsButton.frame.width
+        
+        UIView.animate(withDuration: duration, animations: {
+            self.view.layoutIfNeeded()
+            
             self.msgsButton.alpha = 0
             self.perfilButton.alpha = 0
             
-            }, completion: nil)
-        
-        
-    }
-    func showButtons(duration:Double){
-      self.view.layoutIfNeeded()
-        UIView.animate(withDuration: duration, animations:{
- 
-            self.perfilButton.alpha = 1
-           
-            self.HorizontalStackButtons.spacing = self.buttonDistance
-
-            self.reportButton.center = self.reportCenter
-            self.reportButton.alpha = 1
+        }) { (sucess) in
+            self.verticalReportConstrain.constant = 0 - self.reportButton.frame.height
             
-            self.msgsButton.alpha = 1
-            
-            
-        }, completion: nil)
+            UIView.animate(withDuration: duration, animations: {
+                self.view.layoutIfNeeded()
+                self.reportButton.alpha = 0
+            }){ (sucess) in
+                self.expandButton.isEnabled = true
+                
+            }
+        }
         
     }
 
@@ -171,6 +221,15 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
         centerOnUser()
     }
     //MARK: - config functions
+    func setUpExpandConstrain(){
+        if bannerView.isHidden {
+            verticalExpadButtonConstrain.constant -= bannerView.frame.height
+        }else{
+            verticalExpadButtonConstrain.constant += bannerView.frame.height
+        }
+        self.view.layoutIfNeeded()
+    }
+    
     
     func searchBarConfig(){
         searchBar.delegate = self
@@ -193,6 +252,7 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
         searchTableView.allowsSelection = false
         searchTableView.layer.cornerRadius = 10
     }
+    
     
     
     func tapCel(sender:UITapGestureRecognizer)  {

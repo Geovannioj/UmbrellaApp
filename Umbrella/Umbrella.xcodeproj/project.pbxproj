@@ -103,6 +103,7 @@
 		FB82ECF01F59D0C7000D7F2B /* FilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB82ECED1F59D0C7000D7F2B /* FilterInteractor.swift */; };
 		FB82ECF11F59D0C7000D7F2B /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB82ECEE1F59D0C7000D7F2B /* FilterTableViewCell.swift */; };
 		FB8556D01F4F949B00B3D9DC /* RegisterReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */; };
+		FBACDC231F5DE611001FCF19 /* MapBannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBACDC221F5DE611001FCF19 /* MapBannerDelegate.swift */; };
 		FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */; };
 		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -211,6 +212,7 @@
 		FB82ECEE1F59D0C7000D7F2B /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportTableViewController.swift; sourceTree = "<group>"; };
 		FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportSecondTableViewController.swift; sourceTree = "<group>"; };
+		FBACDC221F5DE611001FCF19 /* MapBannerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBannerDelegate.swift; sourceTree = "<group>"; };
 		FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgressionPinAnnotationView.swift; sourceTree = "<group>"; };
 		FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 		FDC9A259B10984B778DD44F3 /* Pods-Umbrella.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.release.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.release.xcconfig"; sourceTree = "<group>"; };
@@ -656,6 +658,7 @@
 				FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */,
 				FB7998721F2BB516005FC75D /* MapViewDelegate.swift */,
 				FB6AB71E1F59FEEC00711605 /* SearchTableViewDelegate.swift */,
+				FBACDC221F5DE611001FCF19 /* MapBannerDelegate.swift */,
 			);
 			name = Contracts;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 				A1B9DA0E1F589AE4008D041A /* ProfileView.swift in Sources */,
 				A1B9DA0F1F589AE4008D041A /* CustomUserLocationView.swift in Sources */,
 				A1B9DA101F589AE4008D041A /* MapViewDelegate.swift in Sources */,
+				FBACDC231F5DE611001FCF19 /* MapBannerDelegate.swift in Sources */,
 				A1B9DA111F589AE4008D041A /* SearchBarCellTableViewCell.swift in Sources */,
 				A1B9DA121F589AE4008D041A /* FilterTableViewControlleTableViewController.swift in Sources */,
 				A1B9DA131F589AE4008D041A /* ReportTableViewController.swift in Sources */,
