@@ -411,6 +411,33 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
             
         }
     }
+    func setChangedObserver(){
+        self.refReports.observe(.childChanged, with: { (snapShot) in
+            let snapShotValue = snapShot.value as! Dictionary<String,Any>
+            
+            let id = snapShotValue["id"]! as! String
+        
+            let element:Report? = self.reports.first(){
+                $0.id == id
+            }
+            if element != nil {
+                element?.userId = snapShotValue["userId"]! as! String
+                element?.title = snapShotValue["title"]! as! String
+                element?.description =  snapShotValue["description"]! as! String
+                element?.violenceKind = snapShotValue["violenceKind"]! as! String
+                element?.violenceAproximatedTime = snapShotValue["violenceAproximatedTime"] as! Double
+                element?.latitude = snapShotValue["latitude"] as! Double
+                element?.longitude = snapShotValue["longitude"] as! Double
+                element?.personGender = snapShotValue["personGender"]! as! String
+            }
+          
+            
+            
+                
+            
+            //self.reports = newArray
+        })
+    }
     func setAddObserverFireBase(){
         
         self.refReports.observe(.childAdded, with: { (snapShot) in
@@ -493,7 +520,7 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
 //                
 //            }
 //        })
-        
+        setChangedObserver()
         setAddObserverFireBase()
         setRemoveObserver()
     }
