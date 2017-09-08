@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vsi-xM-o8l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FbG-tA-Grb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Report Page View Controller-->
+        <scene sceneID="GcX-1P-AY2">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="FbG-tA-Grb" customClass="ReportPageViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
+                    <value key="contentSizeForViewInPopover" type="size" width="375" height="667"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9BF-JO-DBN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2479" y="-147"/>
+        </scene>
         <!--Register Report View Controller-->
         <scene sceneID="kmy-FC-h81">
             <objects>
@@ -25,12 +36,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Cq-WJ-VUZ" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="60" width="375" height="200"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" placeholder="Ex.: Copacabana" translatesAutoresizingMaskIntoConstraints="NO" id="8wT-XR-wMA">
+                                    <searchBar contentMode="redraw" text="" placeholder="Ex.: Copacabana" translatesAutoresizingMaskIntoConstraints="NO" id="8wT-XR-wMA">
                                         <rect key="frame" x="12.5" y="5" width="350" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="350" id="hMP-Ch-QJG"/>
                                         </constraints>
-                                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
@@ -148,12 +159,13 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="nexttButton" destination="Ajn-Fz-Ea5" id="PqB-JZ-uFx"/>
+                        <outlet property="searchBar" destination="8wT-XR-wMA" id="rfV-NP-TIX"/>
                         <outlet property="validateDateError" destination="637-GJ-HmL" id="gAh-po-fAp"/>
                         <outlet property="validateTitleError" destination="5Ox-s9-FBz" id="xYE-Ah-a69"/>
                         <outlet property="violenceAproximatedTime" destination="Gf5-Dy-JHi" id="3zH-yF-7kw"/>
                         <outlet property="violenceLocation" destination="4Cq-WJ-VUZ" id="kKL-Vs-Ltp"/>
                         <outlet property="violenceTitle" destination="nGQ-80-sg0" id="EKq-kU-W2x"/>
-                        <segue destination="40x-hh-ny2" kind="presentation" identifier="goToSecondRegisterView" modalPresentationStyle="currentContext" id="1gD-4h-Hiq"/>
+                        <segue destination="40x-hh-ny2" kind="presentation" identifier="goToSecondRegisterView" modalPresentationStyle="currentContext" modalTransitionStyle="coverVertical" id="1gD-4h-Hiq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XDX-PB-ISJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -167,14 +179,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRN-oB-Rj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-916" y="-147"/>
-        </scene>
-        <!--MapView-->
-        <scene sceneID="3QU-j9-avk">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Map" referencedIdentifier="MapView" id="obm-xU-MYz" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UwR-5M-wsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1619" y="335"/>
         </scene>
     </scenes>
     <resources>

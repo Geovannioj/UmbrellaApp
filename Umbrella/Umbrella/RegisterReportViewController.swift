@@ -14,9 +14,13 @@ import Mapbox
 protocol ReportDelegate {
     func changeBannerVisibility()
     func changeBlurViewVisibility()
+    func getFirstPopup() -> UIView
+    func getSecondPopup() -> UIView
+    func closeReport()
+    func getChildViewControllers() -> [UIViewController]
 }
 
-class RegisterReportViewController: UIViewController {
+class RegisterReportViewController: UIViewController, UISearchBarDelegate {
     
     
     // MARK: - Outlets
@@ -27,7 +31,7 @@ class RegisterReportViewController: UIViewController {
     @IBOutlet weak var nexttButton: UIButton!
     @IBOutlet weak var validateTitleError: UILabel!
     @IBOutlet weak var validateDateError: UILabel!
-    
+    @IBOutlet weak var searchBar: UISearchBar!    
     
     //Mark: acessories
     let locationManager = CLLocationManager()
@@ -66,7 +70,15 @@ class RegisterReportViewController: UIViewController {
             initFieldsToEdit()
         }
         
+        searchBarConfig()
         
+    }
+    
+    func searchBarConfig(){
+        searchBar.delegate = self
+        searchBar.isTranslucent = true
+        searchBar.backgroundImage = UIImage()
+        searchBar.barTintColor = UIColor.clear
     }
     
     //initiates the fields if there is a report to be edited
@@ -83,8 +95,20 @@ class RegisterReportViewController: UIViewController {
         if (!(self.violenceTitle.text?.isEmpty)! && self.violenceAproximatedTime.date <= Date()) {
             
             getLocation()
-            performSegue(withIdentifier: "goToSecondRegisterView", sender: Any.self)
-        
+            //performSegue(withIdentifier: "goToSecondRegisterView", sender: Any.self)
+
+            for case let secondScreen as RegisterReportSecondViewController in (delegate?.getChildViewControllers())! {
+                secondScreen.latitude = self.reportLatitude
+                secondScreen.longitude = self.reportLongitude
+                secondScreen.aproximatedTime = self.violenceAproximatedTime.date.timeIntervalSince1970
+                secondScreen.violenceTitle = self.violenceTitle.text
+            }
+            
+            
+            delegate?.getFirstPopup().isHidden = true
+            delegate?.getSecondPopup().isHidden = false
+            
+            
         }else {
             
             self.validateDateError.isHidden = false
@@ -93,18 +117,18 @@ class RegisterReportViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToSecondRegisterView" {
-            if let secondScreen = segue.destination as? RegisterReportSecondViewController {
-                
-                secondScreen.latitude = self.reportLatitude
-                secondScreen.longitude = self.reportLongitude
-                secondScreen.aproximatedTime = self.violenceAproximatedTime.date.timeIntervalSince1970
-                secondScreen.violenceTitle = self.violenceTitle.text
-                
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "goToSecondRegisterView" {
+//            if let secondScreen = segue.destination as? RegisterReportSecondViewController {
+//                
+//                secondScreen.latitude = self.reportLatitude
+//                secondScreen.longitude = self.reportLongitude
+//                secondScreen.aproximatedTime = self.violenceAproximatedTime.date.timeIntervalSince1970
+//                secondScreen.violenceTitle = self.violenceTitle.text
+//                
+//            }
+//        }
+//    }
     
     func centerCamera(image: UIImage) {
         
@@ -128,16 +152,8 @@ class RegisterReportViewController: UIViewController {
     }
     
     @IBAction func closeButtonAction(_ sender: Any) {
-        // Gambiarra
-//        print(self.view.window?.subviews.first?.subviews.filter{$0 is GADBannerView})
-//        if let bannerView = (self.view.window?.subviews.first?.subviews.filter{$0 is GADBannerView}.first) {
-//            bannerView.isHidden = false
-//        }
-        self.delegate?.changeBannerVisibility()
-        if let blurView = (self.view.window?.subviews.first?.subviews.filter{$0 is UIVisualEffectView}.first) {
-            blurView.isHidden = true
-        }
-        dismiss(animated: true, completion: nil)
+        self.delegate?.closeReport()
+        //dismiss(animated: true, completion: nil)
     }
     
         

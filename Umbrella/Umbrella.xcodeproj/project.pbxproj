@@ -18,6 +18,7 @@
 		9E6066371F463BE4002C5281 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E60662F1F463BE4002C5281 /* Profile.storyboard */; };
 		9E6066391F463BE4002C5281 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6066311F463BE4002C5281 /* ProfileViewController.swift */; };
 		9EAE03081F56A685006EE491 /* PopoverBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE03071F56A685006EE491 /* PopoverBackgroundView.swift */; };
+		9EAE030A1F5A4EFA006EE491 /* ReportPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE03091F5A4EFA006EE491 /* ReportPageViewController.swift */; };
 		9EB6AD331F4B96770099331A /* ChatNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD2F1F4B96770099331A /* ChatNavigationView.swift */; };
 		9EB6AD341F4B96770099331A /* PopUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD301F4B96770099331A /* PopUpPresenter.swift */; };
 		9EB6AD351F4B96770099331A /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6AD311F4B96770099331A /* ReportTableViewCell.swift */; };
@@ -111,6 +112,7 @@
 		9E6066311F463BE4002C5281 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9E6066321F463BE4002C5281 /* SeeReportDescriptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeReportDescriptionTableViewController.swift; path = Umbrella/SeeReportDescriptionTableViewController.swift; sourceTree = "<group>"; };
 		9EAE03071F56A685006EE491 /* PopoverBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverBackgroundView.swift; sourceTree = "<group>"; };
+		9EAE03091F5A4EFA006EE491 /* ReportPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportPageViewController.swift; sourceTree = "<group>"; };
 		9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedNavBarView.swift; sourceTree = "<group>"; };
 		9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		9EB6AD131F4935AE0099331A /* CampFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampFieldView.swift; path = Umbrella/CampFieldView.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				FB02B7301F47761D00696EAA /* CommentView.swift */,
 				FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */,
 				FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */,
+				9EAE03091F5A4EFA006EE491 /* ReportPageViewController.swift */,
 			);
 			name = Report;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				FB60D86E1F39127E001E5E51 /* Report.swift in Sources */,
 				9E60661D1F43C72F002C5281 /* PasswordRecoverViewController.swift in Sources */,
 				9E6066161F43A065002C5281 /* SettingsViewController.swift in Sources */,
+				9EAE030A1F5A4EFA006EE491 /* ReportPageViewController.swift in Sources */,
 				9EB6AD371F4B96B30099331A /* ChatCollectionViewController.swift in Sources */,
 				D4E91E2B1F3E30C9004895B7 /* PhotoEntity.swift in Sources */,
 				D4E91E321F3E30C9004895B7 /* UserMessageCell.swift in Sources */,

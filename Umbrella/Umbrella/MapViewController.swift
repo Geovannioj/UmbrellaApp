@@ -13,7 +13,7 @@ import MapboxGeocoder
 import GoogleMobileAds
 import Firebase
 
-class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate, UIPopoverPresentationControllerDelegate, ReportDelegate {
+class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ReportDelegate {
     @IBOutlet weak var msgsButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var perfilButton: UIButton!
@@ -37,7 +37,10 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     var perfilCenter:CGPoint = CGPoint()
     var reportCenter:CGPoint = CGPoint()
     
-   
+    let firstPopup = PopUpPresenter()
+    let secondPopup = PopUpPresenter()
+    
+    let blurEffectView: UIVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.extraLight))
     let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiaGVsZW5hc2ltb2VzIiwiYSI6ImNqNWp4bDBicDJpOTczMm9kaDJqemprbDcifQ.vdd9cfGAwcSXh1I7pq1mvA")
     let image = UIImage(named: "CustomLocationPIN")
    
@@ -47,6 +50,7 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         super.viewDidLoad()
         
         addBlurView()
+        setPopUp()
         
         buttonDistance = HorizontalStackButtons.spacing
       
@@ -104,11 +108,22 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
         self.expandButton.isSelected = false
     }
     
+    func snapShotImage() -> UIImage {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        if let context = UIGraphicsGetCurrentContext() {
+            self.view.layer.render(in: context)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return image!
+        }
+        
+        return UIImage()
+    }
+    
     func addBlurView() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        self.blurEffectView.frame = self.view.bounds
+        self.blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.addSubview(blurEffectView)
         self.view.subviews.last?.isHidden = true
     }
@@ -123,15 +138,32 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
     }
     
     func changeBlurViewVisibility() {
-        if let blurView = (self.view.subviews.filter{$0 is UIVisualEffectView}.first) {
-            if blurView.isHidden == false {
-                blurView.isHidden = true
-            }
-            else {
-                blurView.isHidden = false
-            }
+        if blurEffectView.isHidden == false {
+            blurEffectView.isHidden = true
+        }
+        else {
+            blurEffectView.isHidden = false
         }
         
+    }
+    
+    func getFirstPopup() -> UIView {
+        return self.firstPopup.popUpView
+    }
+    
+    func getSecondPopup() -> UIView {
+        return self.secondPopup.popUpView
+    }
+    
+    func closeReport() {
+        changeBannerVisibility()
+        changeBlurViewVisibility()
+        firstPopup.isHidden = true
+        secondPopup.isHidden = true
+    }
+    
+    func getChildViewControllers() -> [UIViewController] {
+        return self.childViewControllers
     }
     
     //MARK: Buttons functions
@@ -379,10 +411,76 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
                 sender.isSelected = false
             }
         }
-        
-        
-        
     }
+    
+    @IBAction func reportButtonAction(_ sender: UIButton) {
+        firstPopup.isHidden = false
+        changeBannerVisibility()
+        changeBlurViewVisibility()
+    }
+    
+    func setPopUp() {
+        firstPopup.prepare(view: view,
+                      popUpFrame: CGRect(x: 10, y: 26, width: self.view.frame.width - 20, height: self.view.frame.height - 36),
+                      blurFrame: nil /*CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)*/,
+                      popUpColor: UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7),
+                      blurAlpha: 0.95)
+        firstPopup.isHidden = true
+        insertFirstReportView()
+        
+        secondPopup.prepare(view: view,
+                           popUpFrame: CGRect(x: 10, y: 26, width: self.view.frame.width - 20, height: self.view.frame.height - 36),
+                           blurFrame: nil /*CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)*/,
+            popUpColor: UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7),
+            blurAlpha: 0.95)
+        secondPopup.isHidden = true
+        insertSecondReportView()
+    }
+    
+    func insertFirstReportView() {
+        
+        if let reportController = UIStoryboard(name: "RegisterReportFirst", bundle: nil).instantiateViewController(withIdentifier: "RegisterReportViewController") as? RegisterReportViewController {
+            
+            addChildViewController(reportController)
+            reportController.delegate = self
+            
+            let reportView = (reportController.view)!
+            firstPopup.popUpView.addSubview(reportView)
+            
+            reportController.didMove(toParentViewController: self)
+            
+            reportView.translatesAutoresizingMaskIntoConstraints = false
+            reportView.topAnchor.constraint(equalTo: firstPopup.popUpView.topAnchor).isActive = true
+            reportView.leftAnchor.constraint(equalTo: firstPopup.popUpView.leftAnchor).isActive = true
+            reportView.widthAnchor.constraint(equalTo: firstPopup.popUpView.widthAnchor).isActive = true
+            reportView.heightAnchor.constraint(equalTo: firstPopup.popUpView.heightAnchor).isActive = true
+            reportView.backgroundColor = .clear
+
+        }
+    }
+    
+    func insertSecondReportView() {
+        
+        if let reportController = UIStoryboard(name: "RegisterReportSecond", bundle: nil).instantiateViewController(withIdentifier: "RegisterReportSecondViewController") as? RegisterReportSecondViewController {
+            
+            addChildViewController(reportController)
+            reportController.delegate = self
+            
+            let reportView = (reportController.view)!
+            secondPopup.popUpView.addSubview(reportView)
+            
+            reportController.didMove(toParentViewController: self)
+            
+            reportView.translatesAutoresizingMaskIntoConstraints = false
+            reportView.topAnchor.constraint(equalTo: secondPopup.popUpView.topAnchor).isActive = true
+            reportView.leftAnchor.constraint(equalTo: secondPopup.popUpView.leftAnchor).isActive = true
+            reportView.widthAnchor.constraint(equalTo: secondPopup.popUpView.widthAnchor).isActive = true
+            reportView.heightAnchor.constraint(equalTo: secondPopup.popUpView.heightAnchor).isActive = true
+            reportView.backgroundColor = .clear
+            
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "containerViewSegue" {
@@ -392,37 +490,40 @@ class MapViewController: UIViewController ,UITableViewDelegate,UITableViewDataSo
             if let seeScreen = segue.destination as? SeeReportViewController {
                 seeScreen.report = self.reportToSend
             }
-            
-        } else if segue.identifier == "registerReportSegue" {
-            if let reportScreen = segue.destination as? RegisterReportViewController {
-                
-                reportScreen.delegate = self
-                
-                UIView.animate(withDuration: 1.0, delay: 0.5, options: [], animations: {
-                    reportScreen.modalPresentationStyle = UIModalPresentationStyle.popover
-                    reportScreen.preferredContentSize = CGSize(width: 365, height: 670)
-                }, completion: nil)
-                
-                reportScreen.popoverPresentationController!.delegate = self
-                reportScreen.popoverPresentationController!.sourceView = self.view
-                reportScreen.popoverPresentationController!.popoverBackgroundViewClass = PopoverBackgroundView.self
-                reportScreen.popoverPresentationController!.sourceRect = CGRect(x: 0, y: 0, width: self.view.bounds.size.width - 10, height: self.view.bounds.size.height)
-                reportScreen.popoverPresentationController!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-                reportScreen.view.backgroundColor = UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7)
-            }
+        
+//        } else if segue.identifier == "registerReportSegue" {
+//            //if let reportScreen = segue.destination as? RegisterReportViewController {
+//            if let reportScreen = segue.destination as? ReportPageViewController {
+//    
+//                reportScreen.reportDelegate = self
+//                //reportScreen.delegate = self
+//                
+//                UIView.animate(withDuration: 1.0, delay: 0.5, options: [], animations: {
+//                    reportScreen.modalPresentationStyle = UIModalPresentationStyle.popover
+//                    reportScreen.preferredContentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
+//                }, completion: nil)
+//                
+//                reportScreen.popoverPresentationController!.delegate = self
+//                reportScreen.popoverPresentationController!.sourceView = self.view
+//                reportScreen.popoverPresentationController!.popoverBackgroundViewClass = PopoverBackgroundView.self
+//                //reportScreen.popoverPresentationController!.sourceRect = self.view.bounds
+//                reportScreen.popoverPresentationController!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+//                
+//            }
 
         }
     }
-   
-    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
-        changeBannerVisibility()
-        changeBlurViewVisibility()
-    }
 
     
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.none
-    }
+//    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
+//        changeBannerVisibility()
+//        changeBlurViewVisibility()
+//    }
+//
+//    
+//    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+//        return UIModalPresentationStyle.none
+//    }
     
     func setObserverToFireBaseChanges() {
         

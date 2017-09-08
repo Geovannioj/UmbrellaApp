@@ -33,6 +33,8 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
                                     "Queer",
                                     "outros"]
     
+    var delegate: ReportDelegate?
+    
     //atributes to of the second screen
     var violenceKindChosen: String = ""
     var personIdentificationChosen: String = ""
@@ -45,7 +47,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     var refMessageReport: DatabaseReference!
     var refUserSupport: DatabaseReference!
     
-    //atributes from the frist string
+    //atributes from the frist screen
     var violenceTitle: String?
     var aproximatedTime:Double?
     var latitude:Double?
@@ -66,7 +68,8 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         dismissKayboardInTapGesture()
         
 
-        self.view.backgroundColor = UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7)
+        //self.view.backgroundColor = UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7)
+        self.view.backgroundColor = .clear
         
         self.violenceAgressionLbl.setValue(UIColor.white, forKey: "textColor")
         self.descriptionLbl.setValue(UIColor.white, forKey: "textColor")
@@ -256,11 +259,14 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     
     @IBAction func backButtonAction(_ sender: Any) {
-        performSegue(withIdentifier: "goToFirstRegisterSegue", sender: self)
+        delegate?.getFirstPopup().isHidden = false
+        delegate?.getSecondPopup().isHidden = true
+        //performSegue(withIdentifier: "goToFirstRegisterSegue", sender: self)
     }
     
     @IBAction func closeButtonAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.delegate?.closeReport()
+        //dismiss(animated: true, completion: nil)
     }
     
     
