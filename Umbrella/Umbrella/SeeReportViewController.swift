@@ -38,6 +38,7 @@ class SeeReportViewController: UIViewController {
     var refComment: DatabaseReference!
     var refUser: DatabaseReference!
     var refUserSupport: DatabaseReference!
+    var refMySupport: DatabaseReference!
     
     
     //comments to the report
@@ -50,6 +51,7 @@ class SeeReportViewController: UIViewController {
         self.refReport =  Database.database().reference().child("reports")
         self.refUser = Database.database().reference().child("user")
         self.refUserSupport = Database.database().reference().child("user-support")
+        self.refMySupport = Database.database().reference().child("my-support")
         super.viewDidLoad()
         
         
@@ -363,6 +365,7 @@ class SeeReportViewController: UIViewController {
                             //remove user to the user-support table
                             snapshot.value
                             databaseRef.child(userId!).removeValue()
+                            self.refMySupport.child(userId!).child(reportId!).removeValue()
                             self.report?.supports = Int(snapshot.childrenCount) - 2
                             self.supportLbl.text = String(describing:(self.report?.supports)!)
                             
@@ -390,7 +393,7 @@ class SeeReportViewController: UIViewController {
                         count = count + 1
                         // put the user into the user-support table
                         databaseRef.updateChildValues([userId!: userId!])
-                        
+                        self.refMySupport.child(userId!).updateChildValues([reportId!: reportId])
                         //incrise the amount of supports
                         self.report?.supports = Int(snapshot.childrenCount)
                         print(self.report?.supports)
