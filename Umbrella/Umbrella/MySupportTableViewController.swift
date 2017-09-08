@@ -9,18 +9,20 @@
 import UIKit
 import Mapbox
 import CoreLocation
+import Firebase
 
 class MySupportTableViewController: UITableViewController {
-    var relatos:[Report] = []
+    
+    var myReportSupported:[Report] = []
+    var refMySupport: DatabaseReference!
     
     override func viewDidLoad() {
+        self.refMySupport = Database.database().reference().child("my-support").child(UserInteractor.getCurrentUserUid()!)
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+       setObserverToFireBaseChanges()
+        
+        print(myReportSupported.count)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,17 +36,21 @@ class MySupportTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5//relatos.count
+        return myReportSupported.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
         let cell = tableView.dequeueReusableCell(withIdentifier: "supportCell", for: indexPath) as! MySupportTableViewCell
 
-//
-//        cell.titleLabel.text = relatos[indexPath.row].title
-//        cell.descriptionLabel.text = relatos[indexPath.row].description
-//        cell.mapView.setCenter(CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(relatos[indexPath.row].latitude), longitude: CLLocationDegrees.init(relatos[indexPath.row].longitude)), animated: false)
+        cell.titleLabel.text = myReportSupported[indexPath.row].title
+        cell.descriptionLabel.text = myReportSupported[indexPath.row].description
+        let latitude = myReportSupported[indexPath.row].latitude
+        let longitude = myReportSupported[indexPath.row].longitude
+        
+        setMapLocation(location: cell.mapView, latitude: latitude, longitude: longitude)
+        
         cell.mapView.isUserInteractionEnabled = false
         
         //PEGAR NOME E LOCALIDADE DO USUARIO
@@ -54,51 +60,70 @@ class MySupportTableViewController: UITableViewController {
 
         return cell
     }
- 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+//        self.reportToEdit = self.userReports[indexPath.row]
+//        performSegue(withIdentifier: "seeMyReport", sender: Any.self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    
+    func setMapLocation(location:MGLMapView, latitude: Double, longitude: Double){
+        
+        let locationCoodenate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        
+        location.setCenter(locationCoodenate, zoomLevel: 13, animated: true)
+        
+        location.showsUserLocation = false
+        
+        let annotation = MGLPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: (latitude), longitude: (longitude) )
+        
+        location.addAnnotation(annotation)
+        
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    //It observers the firebase database to get the newly changes
+    func setObserverToFireBaseChanges() {
+        
+        self.refMySupport.observe(.childAdded, with: {(snapshot) in
+            
+            let ref =  Database.database().reference().child("reports").child(snapshot.key)
+            
+            ref.observeSingleEvent(of: .value, with: {(snapshot) in
+                
+                if let dictonary = snapshot.value as? [String : Any] {
+                    
+                    let id = dictonary["id"]
+                    let userId = dictonary["userId"]
+                    let title = dictonary["title"]
+                    let description = dictonary["description"]
+                    let violenceKind = dictonary["violenceKind"]
+                    let violenceAproximatedTime = dictonary["violenceAproximatedTime"]
+                    let latitude = dictonary["latitude"]
+                    let longitude = dictonary["longitude"]
+                    let personGender = dictonary["personGender"]
+                    
+                    let reportAtt = Report(id: id as! String,
+                                           userId: userId as! String,
+                                           title: title as! String,
+                                           description: description as! String,
+                                           violenceKind: violenceKind as! String,
+                                           violenceAproximatedTime: violenceAproximatedTime as! Double,
+                                           latitude: latitude as! Double,
+                                           longitude: longitude as! Double,
+                                           personGender: personGender as! String)
+                    
+                    self.myReportSupported.append(reportAtt)
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            })
+        })
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
