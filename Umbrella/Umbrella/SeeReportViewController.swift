@@ -414,9 +414,33 @@ class SeeReportViewController: UIViewController {
     
     @IBAction func supportReport(_ sender: Any) {
         
+        if UserInteractor.getCurrentUserUid() != nil {
+
+            setObserverToFireBaseUserSupportTable()
         
-        setObserverToFireBaseUserSupportTable()
-             
+        } else {
+            
+            let logginAlert = UIAlertController(title: "E necessario loging",
+                                                message: " Para poder dar supporte para esse reporte e necessario fazer login",
+                                                preferredStyle: .alert)
+            
+            let loginAction = UIAlertAction(title: "login", style: .default, handler: { (action) in
+              
+                self.performSegue(withIdentifier: "goToLogin", sender: Any.self)
+                
+                
+                
+            })
+            
+            logginAlert.addAction(loginAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            
+            logginAlert.addAction(cancelAction)
+            self.present(logginAlert, animated: true, completion: nil)
+        }
+        
+        
         
     }
     
