@@ -306,13 +306,13 @@ class SeeReportViewController: UIViewController {
                                             handler: {(action) in
                                                 
             if let partnerId = self.report?.userId {
-                MessageInterector.createChat(withId: partnerId)
                 
                 UserInteractor.getUser(withId: partnerId, completion: { (user) in
                 
-                    let chatController = ChatCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-                    chatController.partner = user
-                    chatController.inputChatView.textField.text = "Eu estava presente no momento e gostaria de ajudar você com a agressão, posso ajudar?"
+                    let chatController = ChatRouter.assembleModule()
+                    chatController.presenter.partner = user
+                    chatController.chatInputView.textField.text = "Eu estava presente no momento e gostaria de ajudar você com a agressão, posso ajudar?"
+                    
                     self.present(chatController, animated: true, completion: nil)
                 })
             }

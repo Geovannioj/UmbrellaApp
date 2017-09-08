@@ -30,13 +30,22 @@ class RegisterView: UIView {
         return view
     }()
     
+    let changedImageButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .clear
+        button.setTitle("selecionar", for: .normal)
+        button.setTitleColor(.purple, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     let username : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 0
         camp.textField.autocapitalizationType = .sentences
-        camp.textField.placeholder = "Somente letras e números"
         camp.titleLabel.text = "Username"
-        camp.invalidMessageLabel.text = "Ops! username não válido."
+        camp.textField.placeholder = "Somente letras e números"
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
     }()
@@ -44,9 +53,8 @@ class RegisterView: UIView {
     let email : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 1
-        camp.textField.placeholder = "Email válido"
         camp.titleLabel.text = "Email"
-        camp.invalidMessageLabel.text = "Ops! email não válido."
+        camp.textField.placeholder = "Email válido"
         camp.textField.keyboardType = UIKeyboardType.emailAddress
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
@@ -55,9 +63,8 @@ class RegisterView: UIView {
     let password : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 2
-        camp.textField.placeholder = "Minimo de 6 caracteres"
         camp.titleLabel.text = "Senha"
-        camp.invalidMessageLabel.text = "Ops! senha não válido."
+        camp.textField.placeholder = "Minimo de 6 caracteres"
         camp.textField.isSecureTextEntry = true
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
@@ -100,6 +107,7 @@ extension RegisterView {
         
         addSubview(closeButton)
         addSubview(profileImage)
+        addSubview(changedImageButton)
         addSubview(username)
         addSubview(email)
         addSubview(password)
@@ -107,6 +115,7 @@ extension RegisterView {
         
         setupCloseImageView()
         setupProfileImageView()
+        setupChangedImageButton()
         setupUsernameField()
         setupEmailField()
         setupPasswordField()
@@ -129,10 +138,19 @@ extension RegisterView {
         profileImage.heightAnchor.constraint(equalTo: profileImage.widthAnchor).isActive = true
     }
     
+    func setupChangedImageButton() {
+        
+        changedImageButton.topAnchor.constraint(equalTo: profileImage.bottomAnchor).isActive = true
+        changedImageButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        changedImageButton.widthAnchor.constraint(equalTo: profileImage.widthAnchor).isActive = true
+        changedImageButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
+    }
+    
     func setupUsernameField() {
         
         username.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        username.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 20).isActive = true
+        username.topAnchor.constraint(equalTo: changedImageButton.bottomAnchor, constant: 20).isActive = true
         username.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3).isActive = true
         username.heightAnchor.constraint(equalToConstant: 70).isActive = true
     }

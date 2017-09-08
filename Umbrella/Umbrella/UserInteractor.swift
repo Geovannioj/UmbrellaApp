@@ -10,79 +10,125 @@ import Foundation
 import RealmSwift
 import Firebase
 
+@objc enum UserWrongfield : Int {
+    case email
+    case nickname
+    case password
+    case image
+    case none
+
+}
+
 @objc protocol InteractorCompleteProtocol {
     
     @objc optional func completeLogin(user : UserInfo?, error : Error?)
-    @objc optional func completeCreate(user : UserInfo?, error : Error?)
+    @objc optional func completeCreate(user : UserInfo?, field : UserWrongfield, error : String?)
     @objc optional func completeDelete(error : Error?)
     @objc optional func completeSingOut(error : Error?)
     @objc optional func completeEmailVerification(error : Error?)
     @objc optional func completeUpdatePassword(error : Error?)
-    
     @objc optional func completeSendPasswordResetEmail(error: Error?)
-
     @objc optional func completePhotoOperation(error : Error?)
-
 }
 
 class UserInteractor {
     
-    /**
-     Function responsable for creating an authentication for an user and save his data on a server and local database.
-     - parameter nickname: user's nickname
-     - parameter email: user's email
-     - parameter password: user's password
-     - parameter birthDate: user's birth date (optional)
-     - parameter idMinority: user's correspondent minority id (optional)
-     - parameter image: user's profile photo
-     - parameter handler: deals with errors and completes sign in actions
-     */
-    static func createUser(nickname: String, email: String,
-                           password: String, image: UIImage?,
-                           handler : InteractorCompleteProtocol) {
-        
-        // Add user to firebase
-        Auth.auth().createUser(withEmail: email, password: password) { user, error in
-            
-            // Treatment in case of user creation error
-            if error != nil {
-                handler.completeCreate?(user: user, error: error)
-                return
-            }
-            
-            let newUser = UserEntity()
-            newUser.id = (user?.uid)!
-            
-            // Reference of the user table in firebase
-            let userRef = Database.database().reference().child("user").child(String(newUser.id))
-            
-            // Fill an instance of the user with data
-            newUser.nickname = nickname
-            newUser.email = email
-            
-            if image != nil {
-                PhotoInteractor.createPhoto(image: image!, handler: handler, completion: { (photo) -> () in
-                    newUser.urlPhoto = photo
-                    
-                    // Add user to local database
-                    SaveManager.instance.create(newUser)
-                    // Add user to firebase
-                    userRef.setValue(newUser.toAnyObject())
-                    handler.completeCreate?(user: user, error: error)
-                })
-            
-            } else {
-                // Add user to local database
-                SaveManager.instance.create(newUser)
-                // Add user to firebase
-                userRef.setValue(newUser.toAnyObject())
-                handler.completeCreate?(user: user, error: error)
-            }
-        
-            // Save the password on the keychain
-            //KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
-        }
-    }
+//    /**
+//     Function responsable for creating an authentication for an user and save his data on a server and local database.
+//     - parameter nickname: user's nickname
+//     - parameter email: user's email
+//     - parameter password: user's password
+//     - parameter image: user's profile photo
+//     - parameter handler: deals with errors and completes sign in actions
+//     */
+//    static func createUser(nickname: String, email: String,
+//                           password: String, image: UIImage?,
+//                           handler : InteractorCompleteProtocol) {
+//        
+//        // Add user to firebase
+//        Auth.auth().createUser(withEmail: email, password: password) { user, error in
+//            
+//            // Treatment in case of user creation error
+//            if error != nil {
+//                let deal = UserInteractor.dealWithError(error)
+//                handler.completeCreate?(user: user, field: deal.field, error: deal.error)
+//                return
+//            }
+//            
+//            let newUser = UserEntity()
+//            newUser.id = (user?.uid)!
+//            
+//            // Reference of the user table in firebase
+//            let userRef = Database.database().reference().child("user").child(String(newUser.id))
+//            
+//            // Fill an instance of the user with data
+//            newUser.nickname = nickname
+//            newUser.email = email
+//            
+//            if image != nil {
+//                PhotoInteractor.createPhoto(image: image!, handler: handler, completion: { (photo) -> () in
+//                    newUser.urlPhoto = photo
+//                    
+//                    // Add user to local database
+//                    SaveManager.instance.create(newUser)
+//                    // Add user to firebase
+//                    userRef.setValue(newUser.toAnyObject())
+//                    handler.completeCreate?(user: user, field: .none, error: nil)
+//                })
+//            
+//            } else {
+//                // Add user to local database
+//                SaveManager.instance.create(newUser)
+//                // Add user to firebase
+//                userRef.setValue(newUser.toAnyObject())
+//                handler.completeCreate?(user: user, field: .none, error: nil)
+//            }
+//        
+//            // Save the password on the keychain
+//            //KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
+//        }
+//    }
+    
+//    static func dealWithError(_ error : Error!) -> (field : UserWrongfield, error : String) {
+//    
+//        if let errCode = AuthErrorCode(rawValue: error._code) {
+//            
+//            switch errCode {
+//            case .invalidEmail:
+//                return (.email, "Email inválido")
+//                
+//            case .wrongPassword:
+//                return (.password, "Senha inválida")
+//                
+//            case .emailAlreadyInUse:
+//                return (.email, "Email já cadastrado")
+//                
+//            case .weakPassword:
+//                return (.password, "Senha deve possuir pelo menos 6 caracteres")
+//            
+//            case .userNotFound:
+//                return (.email, "Usuario não cadastrado")
+//                
+//            case .operationNotAllowed:
+//                return (.none, "Conta não ativada. Verifique em sua caixa de entrada se você recebeu algum e-mail nosso")
+//            
+//            case .networkError:
+//                return (.none, "Verifique sua conexão com a internet")
+//            
+//            case .userDisabled:
+//                return (.none, "Essa conta de usuário está desativada")
+//                
+//            case .invalidUserToken, .userTokenExpired:
+//                return (.none, "Sessão expirada")
+//                
+//            default:
+//                break
+//            }
+//        }
+//
+//        return (.none, "Ocorreu um erro, por favor tente novamente mais tarde.")
+//    }
+//    
 
     /**
      Returns the current user's uid logged on the device.
@@ -154,6 +200,9 @@ class UserInteractor {
      - parameter completion: returns an User with the id parameter
      */
     static func getUser(withId id: String, completion: @escaping (UserEntity) -> ()) {
+        
+        print("Id do usuario: \(id)")
+        
         let userRef = Database.database().reference().child("user").child(id)
         let user = UserEntity()
         
@@ -356,17 +405,17 @@ class UserInteractor {
 //        })
 //    }
     
-    /**
-     Connects an user to the firebase
-     - parameter email: user's email
-     - parameter password: user's password
-     - parameter handler: deals with errors and completes login actions
-     */
-    static func connectUserOnline(email: String, password: String, handler: InteractorCompleteProtocol) {
-        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-            handler.completeLogin?(user: user, error: error)
-        })
-    }
+//    /**
+//     Connects an user to the firebase
+//     - parameter email: user's email
+//     - parameter password: user's password
+//     - parameter handler: deals with errors and completes login actions
+//     */
+//    static func connectUserOnline(email: String, password: String, handler: InteractorCompleteProtocol) {
+//        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+//            handler.completeLogin?(user: user, error: error)
+//        })
+//    }
     
     
 //    /**
@@ -398,11 +447,11 @@ class UserInteractor {
         }
     }
     
-    // -TODO: Write a formal email verification on firebase options and test this method
-    /**
-     Sends an email verification to the user's email
-     - parameter handler: deals with errors
-    */
+//    // -TODO: Write a formal email verification on firebase options and test this method
+//    /**
+//     Sends an email verification to the user's email
+//     - parameter handler: deals with errors
+//    */
     static func sendEmailVerification(handler: InteractorCompleteProtocol) {
         Auth.auth().currentUser?.sendEmailVerification(completion: { error in
             if error != nil {
@@ -422,69 +471,6 @@ class UserInteractor {
     }
 }
 
-
-//static func createUser(nickname: String, email: String,
-//                       password: String, birthDate: Date?,
-//                       idMinority: String?, image: UIImage?,
-//                       handler : InteractorCompleteProtocol) {
-//    
-//    // Add user to firebase
-//    Auth.auth().createUser(withEmail: email, password: password) { user, error in
-//        
-//        // Treatment in case of user creation error
-//        if error != nil {
-//            handler.completeCreate?(user: user, error: error)
-//            return
-//        }
-//        
-//        let newUser = UserEntity()
-//        newUser.id = (user?.uid)!
-//        
-//        // Reference of the user table in firebase
-//        let userRef = Database.database().reference().child("user").child(String(newUser.id))
-//        
-//        // Fill an instance of the user with data
-//        newUser.nickname = nickname
-//        newUser.email = email
-//        if birthDate != nil {
-//            newUser.birthDate = birthDate!
-//        }
-//        if idMinority != nil {
-//            newUser.idMinority = idMinority
-//            MinorityInteractor.getMinority(withId: idMinority!, completion: { minority in
-//                newUser.typeMinority = minority.type
-//                
-//                
-//                if image != nil {
-//                    PhotoInteractor.createPhoto(image: image!, handler: handler, completion: { (photo) -> () in
-//                        newUser.urlPhoto = photo
-//                        
-//                        // Add user to local database
-//                        SaveManager.instance.create(newUser)
-//                        
-//                        // Add user to firebase
-//                        userRef.setValue(newUser.toAnyObject())
-//                    })
-//                }
-//            })
-//        }
-//            
-//        else {
-//            // Add user to local database
-//            SaveManager.instance.create(newUser)
-//            
-//            // Add user to firebase
-//            userRef.setValue(newUser.toAnyObject())
-//        }
-//        
-//        
-//        handler.completeCreate?(user: user, error: error)
-//        
-//        // Save the password on the keychain
-//        //KeychainService.savePassword(service: "Umbrella-Key", account: newUser.id, data: password)
-//        
-//    }
-//}
 
 
 

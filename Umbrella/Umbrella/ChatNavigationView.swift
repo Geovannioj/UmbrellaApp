@@ -20,7 +20,7 @@ class NavigationView: UIView {
     
     let profileImage : UIImageView = {
         let icon = UIImageView()
-        icon.image = UIImage(named: "umbrella")
+        icon.layer.contents = UIImage(named: "profileImageIcon")?.cgImage
         icon.clipsToBounds = true
         icon.contentMode = .scaleAspectFill
         icon.isUserInteractionEnabled = false

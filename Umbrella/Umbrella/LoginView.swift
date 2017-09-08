@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 @IBDesignable
 class LoginView: UIView {
@@ -16,7 +17,6 @@ class LoginView: UIView {
         camp.id = 0
         camp.textField.placeholder = "Email"
         camp.iconImage.image = UIImage(named: "emailIcon")
-        camp.invalidMessageLabel.text = "Ops! Email invalido"
         camp.textField.keyboardType = UIKeyboardType.emailAddress
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
@@ -27,7 +27,6 @@ class LoginView: UIView {
         camp.id = 1
         camp.textField.placeholder = "Senha"
         camp.iconImage.image = UIImage(named: "passwordIcon")
-        camp.invalidMessageLabel.text = "Ops! Senha invalida"
         camp.textField.isSecureTextEntry = true
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
@@ -93,7 +92,7 @@ class LoginView: UIView {
     func setupView() {
         
         self.backgroundColor = UIColor.clear
-
+        
         addSubview(email)
         addSubview(password)
         addSubview(loginButton)
@@ -115,6 +114,8 @@ class LoginView: UIView {
         email.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         email.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         email.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        email.textField.delegate = self
     }
     
     func setupPasswordField() {
@@ -123,6 +124,8 @@ class LoginView: UIView {
         password.topAnchor.constraint(equalTo: email.bottomAnchor, constant: 20).isActive = true
         password.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         password.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        password.textField.delegate = self
     }
     
     func setupLoginButton() {
@@ -151,21 +154,16 @@ class LoginView: UIView {
         facebookButton.topAnchor.constraint(equalTo: newAccountButton.bottomAnchor, constant: 20).isActive = true
         facebookButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         facebookButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 3/4).isActive = true
-        facebookButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        facebookButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-    
+ 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension LoginView : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+}

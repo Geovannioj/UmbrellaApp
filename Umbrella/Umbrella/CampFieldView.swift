@@ -40,12 +40,10 @@ class CampFieldView: UIView {
         return label
     }()
     
-    let invalidMessageLabel : UILabel = {
+    let messageLabel : UILabel = {
         let label = UILabel()
-        label.text = "Ops!"
-        label.isHidden = true
+        label.text = ""
         label.font = UIFont.systemFont(ofSize: 11)
-        label.textColor = UIColor.red
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -80,8 +78,8 @@ class CampFieldView: UIView {
     func isValidImput(_ option : Bool) {
 
         validated = option
-        invalidMessageLabel.isHidden = option
-        campView.layer.borderColor = option ? UIColor.lightGray.cgColor : UIColor.red.cgColor
+        campView.layer.borderColor = option ? UIColor.green.cgColor : UIColor.red.cgColor
+        messageLabel.textColor = option ? UIColor.green : UIColor.red
     }
     
     func nextCamp() {
@@ -95,7 +93,7 @@ class CampFieldView: UIView {
          
             for camp in camps as! [CampFieldView] {
             
-                if let toId = camp.id, toId - fromId == 1 {
+                if let toId = camp.id, toId - fromId == 1, !camp.validated {
                     
                     camp.textField.becomeFirstResponder()
                     return
@@ -120,7 +118,7 @@ extension CampFieldView {
         addSubview(iconImage)
         addSubview(textField)
         addSubview(titleLabel)
-        addSubview(invalidMessageLabel)
+        addSubview(messageLabel)
         
         setupCampView()
         setupIconImage()
@@ -134,7 +132,7 @@ extension CampFieldView {
         campView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         campView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         campView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-        campView.bottomAnchor.constraint(equalTo: invalidMessageLabel.topAnchor).isActive = true
+        campView.bottomAnchor.constraint(equalTo: messageLabel.topAnchor).isActive = true
     }
     
     func setupIconImage() {
@@ -160,7 +158,7 @@ extension CampFieldView {
     
     func setupInvalidMessageLabel() {
         
-        invalidMessageLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        invalidMessageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        messageLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        messageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
 }
