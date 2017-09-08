@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import Firebase
 import NVActivityIndicatorView
+import FBSDKLoginKit
 
-class LoginViewController: UIViewController, InteractorCompleteProtocol {
+class LoginViewController: UIViewController {
     
-    @IBOutlet weak var inputs: LoginView!
-    let alert: AlertPresenter = AlertPresenter()
+    var presenter : LoginPresenterProtocol!
     var indicatorView : NVActivityIndicatorView!
+    @IBOutlet weak var inputs: LoginView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,64 +28,22 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
         
     func handleLogin() {
         
-        guard let email = inputs.email.textField.text,
-              let password = inputs.password.textField.text else {
-            return
-        }
-        indicatorView.startAnimating()
-
-        inputs.email.isValidImput(true)
-        inputs.password.isValidImput(true)
-        
-        UserInteractor.connectUserOnline(email: email, password: password, handler: self)
+        presenter.handleLogin(email: inputs.email.textField.text, password: inputs.password.textField.text)
     }
     
-    func completeLogin(user : UserInfo?, error : Error?) {
-        
-        indicatorView.stopAnimating()
-        
-        if error != nil, let errCode = AuthErrorCode(rawValue: error!._code) {
-            
-            switch errCode {
-            case .invalidEmail:
-                inputs.email.isValidImput(false)
-                
-            case .wrongPassword:
-                inputs.password.isValidImput(false)
-                
-            case .userDisabled:
-                alert.showAlert(viewController: self, title: "Alerta!!", message: "Essa conta de usuário está desativada.", confirmButton: nil, cancelButton: "OK")
-                
-            default:
-                alert.showAlert(viewController: self, title: "Alerta!!", message: "Ocorreu um erro, por favor tente novamente mais tarde.", confirmButton: nil, cancelButton: "OK")
-            }
-            return
-        }
-        else{
-            if (Auth.auth().currentUser?.isEmailVerified)! {
-                performSegue(withIdentifier: "mapSegue", sender: nil)
-            }
-            else {
-                alert.showAlert(viewController: self, title: "Alerta!!", message: "Verifique sua conta antes de fazer o login. Deseja que enviemos outro e-mail de verificação?", confirmButton: "Sim", cancelButton: "Não", onAffirmation: {
-                    UserInteractor.sendEmailVerification(handler: self)
-                })
-            }
-        }
-    }
-
     func handleNewAccount() {
-
-        performSegue(withIdentifier: "registerSegue", sender: nil)
+        
+        presenter.handleNewAccount()
     }
     
     func handleForgotPassword() {
 
-        performSegue(withIdentifier: "passwordRecoverSegue", sender: nil)
+        presenter.handleForgotPassword()
     }
     
     func handleFacebookLogin() {
         
-        // Logar com o facebook
+        presenter.handleFacebookLogin()
     }
     
     func setupInputs() {
@@ -129,12 +87,30 @@ class LoginViewController: UIViewController, InteractorCompleteProtocol {
     
 }
 
-extension LoginViewController : UITextFieldDelegate {
+enum FieldEnum : Int {
+    case nickname
+    case email
+    case password
+}
+
+extension LoginViewController : LoginViewProtocol {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder()
-        return true
+    func showFieldMessage(_ field : FieldEnum, message : String, isValid : Bool){
+    
+        switch field {
+        case .email:
+            inputs.email.isValidImput(isValid)
+            inputs.email.messageLabel.text = message
+            
+        case .password:
+            inputs.password.isValidImput(isValid)
+            inputs.password.messageLabel.text = message
+            
+        default:
+            break
+        }
     }
 }
+
+
 

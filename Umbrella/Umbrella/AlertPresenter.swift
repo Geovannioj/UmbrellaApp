@@ -9,7 +9,7 @@
 import UIKit
 
 class AlertPresenter {
-    
+        
     func showAlert(viewController: UIViewController, title: String, message: String, confirmButton: String?, cancelButton: String?, onAffirmation:  @escaping (Void) -> (Void) = { }) {
         let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
         

@@ -24,7 +24,6 @@ class PasswordRecoverView: UIView {
         let camp = CampFieldView()
         camp.textField.placeholder = "harveymilk@stonewall.com"
         camp.titleLabel.text = "Email Cadastrado"
-        camp.invalidMessageLabel.text = "Ops! Email invalido"
         camp.textField.keyboardType = UIKeyboardType.emailAddress
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp

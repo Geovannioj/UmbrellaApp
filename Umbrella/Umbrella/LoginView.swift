@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 @IBDesignable
 class LoginView: UIView {
@@ -25,7 +26,6 @@ class LoginView: UIView {
         camp.id = 0
         camp.textField.placeholder = "Email"
         camp.iconImage.image = UIImage(named: "emailIcon")
-        camp.invalidMessageLabel.text = "Ops! Email invalido"
         camp.textField.keyboardType = UIKeyboardType.emailAddress
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
@@ -36,7 +36,6 @@ class LoginView: UIView {
         camp.id = 1
         camp.textField.placeholder = "Senha"
         camp.iconImage.image = UIImage(named: "passwordIcon")
-        camp.invalidMessageLabel.text = "Ops! Senha invalida"
         camp.textField.isSecureTextEntry = true
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
@@ -134,6 +133,8 @@ class LoginView: UIView {
         email.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -70).isActive = true
         email.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3).isActive = true
         email.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        email.textField.delegate = self
     }
     
     func setupPasswordField() {
@@ -142,6 +143,8 @@ class LoginView: UIView {
         password.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         password.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3).isActive = true
         password.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        password.textField.delegate = self
     }
     
     func setupLoginButton() {
@@ -171,19 +174,14 @@ class LoginView: UIView {
         facebookButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 3/5).isActive = true
         facebookButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
-    
+ 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension LoginView : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+}

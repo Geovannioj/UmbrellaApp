@@ -53,7 +53,7 @@ class ProfileView: UIView {
         
     func setupView() {
         
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
         
         addSubview(profileImage)
         addSubview(username)

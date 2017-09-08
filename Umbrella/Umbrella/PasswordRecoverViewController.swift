@@ -8,50 +8,34 @@
 
 import UIKit
 import Firebase
+import NVActivityIndicatorView
 
-class PasswordRecoverViewController: UIViewController, InteractorCompleteProtocol {
+class PasswordRecoverViewController: UIViewController {
 
     @IBOutlet weak var inputs: PasswordRecoverView!
+    var presenter : PasswordRecoverPresenterProtocol!
+    var indicatorView : NVActivityIndicatorView!
+    
     let alert: AlertPresenter = AlertPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleReturn))
         view.backgroundImage(named: "bkgRegisterView")
         
+        dismissKayboardInTapGesture()
+        setupIndicator()
         setupPasswordRecoverInputs()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func handleRecovery() {
-        let email = inputs.email.textField.text
-        if ((email?.isEmpty)!) || !Validation.isValidEmailAddress(emailAddressString: email!) {
-            alert.showAlert(viewController: self, title: "Ei!", message: "Coloque um e-mail valido para que possamos fazer a verificação.", confirmButton: nil, cancelButton: "OK")
-            
-        }
-        else {
-            print(email!)
-            UserInteractor.sendPasswordResetEmail(email: email!, handler: self)
-        }
+        
+        presenter.handlePasswordRecover(email: inputs.email.textField.text)
     }
-    
-    func completeSendPasswordResetEmail(error: Error?) {
-        if error != nil, let errCode = AuthErrorCode(rawValue: error!._code) {
-            if errCode == .userNotFound {
-                alert.showAlert(viewController: self, title: "Alerta!", message: "Não encontramos esse email na nossa base de dados.", confirmButton: nil, cancelButton: "OK")
-            }
-            else {
-                alert.showAlert(viewController: self, title: "Alerta!", message: errCode.rawValue.description, confirmButton: nil, cancelButton: "OK")
-            }
-        }
-        else {
-            self.alert.showAlert(viewController: self, title: "Ótimo!", message: "Verifique se o e-mail chegou corretamente para você.", confirmButton: nil, cancelButton: "OK")
-        }
+        
+    func handleReturn() {
+
+        presenter.handleReturn()
     }
     
     func setupPasswordRecoverInputs() {
@@ -70,8 +54,27 @@ class PasswordRecoverViewController: UIViewController, InteractorCompleteProtoco
         inputs.recoverButton.addTarget(self, action: #selector(handleRecovery), for: .touchUpInside)
     }
 
-    func handleReturn() {
-        dismiss(animated: true, completion: nil)
+    func setupIndicator() {
+        
+        indicatorView = NVActivityIndicatorView(frame: CGRect(x: 0.0, y: 0.0, width: 50, height: 50), type: .lineSpinFadeLoader, color: .purple, padding: 1.0)
+        view.addSubview(indicatorView)
+        
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        indicatorView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        indicatorView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+    }
+}
+
+extension PasswordRecoverViewController : PasswordRecoverViewProtocol {
+    
+    func showFieldMessage(_ field : FieldEnum, message : String, isValid : Bool) {
+        
+        switch field {
+        case .email:
+            inputs.email.isValidImput(isValid)
+            inputs.email.messageLabel.text = message
+        default : break
+        }
     }
     
 }
