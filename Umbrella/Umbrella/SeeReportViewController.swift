@@ -146,10 +146,12 @@ class SeeReportViewController: UIViewController {
         if (self.report?.supports)! > 0 {
             
             self.supportLbl.text = String(describing: (self.report?.supports)!)
+            self.supportLbl.isHidden = false
         
         } else {
             
             self.supportLbl.isHidden = true
+
         }
     }
     
