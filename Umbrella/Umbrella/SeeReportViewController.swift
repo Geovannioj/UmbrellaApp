@@ -38,6 +38,7 @@ class SeeReportViewController: UIViewController {
     var refComment: DatabaseReference!
     var refUser: DatabaseReference!
     var refUserSupport: DatabaseReference!
+    var refMySupport: DatabaseReference!
     
     
     //comments to the report
@@ -50,6 +51,7 @@ class SeeReportViewController: UIViewController {
         self.refReport =  Database.database().reference().child("reports")
         self.refUser = Database.database().reference().child("user")
         self.refUserSupport = Database.database().reference().child("user-support")
+        self.refMySupport = Database.database().reference().child("my-support")
         super.viewDidLoad()
         
         
@@ -78,6 +80,9 @@ class SeeReportViewController: UIViewController {
         
         //observes the changes on the database
         setObserverToFireBaseChanges()
+        
+        //check if the user has already supported the report
+        observeIfUserHasAlreadySupported()
         
     }
     
@@ -128,7 +133,6 @@ class SeeReportViewController: UIViewController {
         self.agression.textColor = UIColor.white
         
         self.violenceDescription.text = self.report?.description
-        //self.violenceDescription.textColor = UIColor.white
         
         self.violenceDescription.isEditable = false
         self.violenceDescription.backgroundColor = UIColor(colorLiteralRed: 0.107,
@@ -142,10 +146,12 @@ class SeeReportViewController: UIViewController {
         if (self.report?.supports)! > 0 {
             
             self.supportLbl.text = String(describing: (self.report?.supports)!)
+            self.supportLbl.isHidden = false
         
         } else {
             
             self.supportLbl.isHidden = true
+
         }
     }
     
@@ -154,8 +160,7 @@ class SeeReportViewController: UIViewController {
         self.commentView.textView.text = "Insira um comentário"
         self.commentView.textView.textColor = UIColor.lightGray
     }
-    
-    
+
     func initiateLocationOnMap(map: MGLMapView,latitude: Double, longitude: Double) {
         
       let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
@@ -193,33 +198,6 @@ class SeeReportViewController: UIViewController {
         }
     }
 
-    
-    
-    @IBAction func editReport(_ sender: Any) {
-        performSegue(withIdentifier: "editReport", sender: Any?.self)
-    }
-    
-    @IBAction func deleteReport(_ sender: Any) {
-        
-        let deleteWarning = UIAlertController(title: "Delete",
-                                              message: "Are you sure you want to delete it?",
-                                              preferredStyle: .alert)
-        deleteWarning.addAction(UIAlertAction(title: "Delete", style: .destructive,
-                                              handler: { (action) in
-                                                
-                                                let reportToDelete = self.report?.id
-                                                self.map.reports.remove(at: self.getReportIndexInArray(report: self.report!))
-                                                self.refReport.child(reportToDelete!).setValue(nil)
-        }))
-        
-        
-        deleteWarning.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel,
-                                              handler:nil))
-        
-        self.present(deleteWarning, animated: true, completion: nil)
-
-    }
-    
     func getReportIndexInArray(report: Report) -> Int {
         
         var counter = 0
@@ -363,6 +341,7 @@ class SeeReportViewController: UIViewController {
                             //remove user to the user-support table
                             snapshot.value
                             databaseRef.child(userId!).removeValue()
+                            self.refMySupport.child(userId!).child(reportId!).removeValue()
                             self.report?.supports = Int(snapshot.childrenCount) - 2
                             self.supportLbl.text = String(describing:(self.report?.supports)!)
                             
@@ -390,7 +369,7 @@ class SeeReportViewController: UIViewController {
                         count = count + 1
                         // put the user into the user-support table
                         databaseRef.updateChildValues([userId!: userId!])
-                        
+                        self.refMySupport.child(userId!).updateChildValues([reportId!: reportId])
                         //incrise the amount of supports
                         self.report?.supports = Int(snapshot.childrenCount)
                         print(self.report?.supports)
@@ -404,6 +383,52 @@ class SeeReportViewController: UIViewController {
                     }
                 }
 
+            })
+        })
+    }
+    
+    func observeIfUserHasAlreadySupported() {
+        //report id
+        let reportId = self.report?.id
+        
+        //user id
+        let userId = UserInteractor.getCurrentUserUid()
+        
+        //reference to the database table
+        let databaseRef = self.refUserSupport.child(reportId!)
+        
+        self.refUserSupport.observe(.childAdded, with: { (snapshot) in
+            
+            let ref =  Database.database().reference().child("user-support").child(reportId!)
+            
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let userSupport = snapshot.value as? [String : Any] {
+                    do {
+                        
+                        guard let user =  userSupport[userId!] else {
+                            //print( "not here")
+                            throw UserError.noUser
+                        }
+                        
+                        if  (user as! String) == nil {
+                            
+                            //  print( "not here")
+                            
+                        } else if (user as! String)  == userId {
+                            
+                            print("user aqui")
+                            let imageBtnBackground = UIImage(named: "heart") as UIImage?
+                            self.supportBtn.setImage(imageBtnBackground, for: .normal)
+                            
+                        }
+                    } catch {
+                        
+                        print( "not here")
+                        
+                    }
+                }
+                
             })
         })
     }
@@ -498,10 +523,10 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     
-        if self.comments[indexPath.row].userId == UserInteractor.getCurrentUserUid() {
+        if self.comments[indexPath.row].userId == UserInteractor.getCurrentUserUid() || self.report?.userId == UserInteractor.getCurrentUserUid() {
         
             let deleteWarning = UIAlertController(title: "Apagar Comentário",
-                                              message: "Você realmente deseja apagar o seu comentário?",
+                                              message: "Você realmente deseja apagar esse comentário?",
                                               preferredStyle: .alert)
         
             deleteWarning.addAction(UIAlertAction(title: "Deletar", style: .destructive,
