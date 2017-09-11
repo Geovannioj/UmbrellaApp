@@ -15,6 +15,7 @@ class MySupportTableViewController: UITableViewController {
     
     var myReportSupported:[Report] = []
     var refMySupport: DatabaseReference!
+    var reportToSee: Report?
     
     override func viewDidLoad() {
         self.refMySupport = Database.database().reference().child("my-support").child(UserInteractor.getCurrentUserUid()!)
@@ -53,18 +54,13 @@ class MySupportTableViewController: UITableViewController {
         
         cell.mapView.isUserInteractionEnabled = false
         
-        //PEGAR NOME E LOCALIDADE DO USUARIO
-        
-
-        // Configure the cell...
-
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        self.reportToEdit = self.userReports[indexPath.row]
-//        performSegue(withIdentifier: "seeMyReport", sender: Any.self)
+        self.reportToSee = self.myReportSupported[indexPath.row]
+        performSegue(withIdentifier: "seeMyReport", sender: Any.self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
@@ -124,6 +120,14 @@ class MySupportTableViewController: UITableViewController {
                 }
             })
         })
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "seeMyReport" {
+            if let seeScreen = segue.destination as? SeeReportViewController {
+                seeScreen.report = self.reportToSee
+            }
+        }
     }
 
 }

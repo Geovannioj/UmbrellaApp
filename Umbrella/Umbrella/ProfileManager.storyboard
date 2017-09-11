@@ -116,7 +116,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kQy-BB-dHI" id="CRu-Kg-ogo">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="88.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2g-zq-Nqw" customClass="MGLMapView">
@@ -171,10 +171,21 @@
                             <outlet property="delegate" destination="ZK6-Rn-7oc" id="IK9-vC-DmB"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="5yk-mQ-qRf" kind="show" identifier="seeMyReport" id="AYA-Pl-PVp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4rM-Bc-Cm4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1676" y="115.59220389805098"/>
+        </scene>
+        <!--SeeReportViewController-->
+        <scene sceneID="h3h-ac-MZV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SeeReport" referencedIdentifier="SeeReportViewController" id="5yk-mQ-qRf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xeo-B8-bx2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2553" y="114"/>
         </scene>
         <!--Profile-->
         <scene sceneID="kRh-hh-FVp">
@@ -204,7 +215,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y1x-H1-h9R" id="Frp-KV-Sws">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="118.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
