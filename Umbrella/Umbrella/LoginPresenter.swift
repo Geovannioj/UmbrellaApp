@@ -57,11 +57,13 @@ extension LoginPresenter {
     
     func handleFacebookLogin(){
         
+        FBSDKLoginManager().logOut()
         FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: view as! UIViewController) { (result, err) in
             
             if err != nil {
+                print("handle facebook login: \(err!)")
                 return
-            } else if !result!.isCancelled {
+            } else if !result!.isCancelled && result!.grantedPermissions.contains("email"){
                 
                 self.view?.indicatorView.startAnimating()
                 self.connectFacebookUser()
@@ -72,6 +74,7 @@ extension LoginPresenter {
     func connectFacebookUser() {
         
         guard let access = FBSDKAccessToken.current().tokenString else {
+            print("tokestring nil:")
             return
         }
         
@@ -112,8 +115,6 @@ extension LoginPresenter {
                 
                 self.interactor.createDatabaseUser(user)
             }
-        
-            FBSDKLoginManager().logOut()
         }
     }
 }
