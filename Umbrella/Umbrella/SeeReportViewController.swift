@@ -501,10 +501,10 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     
-        if self.comments[indexPath.row].userId == UserInteractor.getCurrentUserUid() {
+        if self.comments[indexPath.row].userId == UserInteractor.getCurrentUserUid() || self.report?.userId == UserInteractor.getCurrentUserUid() {
         
             let deleteWarning = UIAlertController(title: "Apagar Comentário",
-                                              message: "Você realmente deseja apagar o seu comentário?",
+                                              message: "Você realmente deseja apagar esse comentário?",
                                               preferredStyle: .alert)
         
             deleteWarning.addAction(UIAlertAction(title: "Deletar", style: .destructive,
