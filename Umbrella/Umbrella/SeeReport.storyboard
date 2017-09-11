@@ -414,6 +414,19 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEO-kK-BsF">
+                                            <rect key="frame" x="365" y="26" width="32" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="DKn-vi-36N"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                            <state key="normal" title="...">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="reportAReport:" destination="saK-jK-EH4" eventType="touchUpInside" id="5QY-DC-FIO"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.19747272460000001" green="0.0" blue="0.27939365059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -425,6 +438,7 @@
                                         <constraint firstItem="Kmf-5N-f6D" firstAttribute="leading" secondItem="IlS-TY-DBs" secondAttribute="leading" constant="8" id="76E-Jf-mvb"/>
                                         <constraint firstAttribute="trailing" secondItem="GYu-L7-kgS" secondAttribute="trailing" constant="8" id="7Kr-BJ-Muf"/>
                                         <constraint firstAttribute="trailing" secondItem="f6h-Ty-6en" secondAttribute="trailing" constant="8" id="7zr-uM-B2D"/>
+                                        <constraint firstAttribute="trailing" secondItem="oEO-kK-BsF" secondAttribute="trailing" constant="17" id="MgC-NR-TOE"/>
                                         <constraint firstItem="2ya-gc-GyH" firstAttribute="leading" secondItem="IlS-TY-DBs" secondAttribute="leading" constant="8" id="RWy-rj-IKT"/>
                                         <constraint firstItem="Zat-Yb-QNc" firstAttribute="top" secondItem="sjS-aS-ryp" secondAttribute="bottom" constant="10" id="Rr9-Oa-dHo"/>
                                         <constraint firstAttribute="trailing" secondItem="Zat-Yb-QNc" secondAttribute="trailing" id="UUa-rw-7D4"/>
@@ -434,6 +448,7 @@
                                         <constraint firstItem="tGg-NP-Xne" firstAttribute="top" secondItem="GYu-L7-kgS" secondAttribute="bottom" constant="2" id="e5B-Rf-2nF"/>
                                         <constraint firstItem="tGg-NP-Xne" firstAttribute="leading" secondItem="IlS-TY-DBs" secondAttribute="leading" constant="8" id="jNg-E5-lUK"/>
                                         <constraint firstItem="bwC-HK-0dL" firstAttribute="top" secondItem="tGg-NP-Xne" secondAttribute="bottom" constant="-18" id="sZB-7n-34Q"/>
+                                        <constraint firstItem="oEO-kK-BsF" firstAttribute="top" secondItem="IlS-TY-DBs" secondAttribute="top" constant="26" id="tHo-Tq-9cF"/>
                                         <constraint firstAttribute="trailing" secondItem="4c9-86-hkM" secondAttribute="trailing" constant="8" id="txM-g8-sg4"/>
                                         <constraint firstItem="v8h-Fj-yUT" firstAttribute="leading" secondItem="IlS-TY-DBs" secondAttribute="leading" constant="8" id="u6q-vK-VYt"/>
                                         <constraint firstItem="FaF-s5-djH" firstAttribute="leading" secondItem="IlS-TY-DBs" secondAttribute="leading" constant="5" id="vOt-Bf-nmx"/>
@@ -472,6 +487,16 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H62-Vx-B0l">
+                                                    <rect key="frame" x="371" y="-4" width="30" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="Uk0-Ri-gFp"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <state key="normal" title="...">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="topMargin" secondItem="HFq-vI-ANe" secondAttribute="top" id="2ae-TL-wa7"/>
@@ -479,7 +504,9 @@
                                                 <constraint firstAttribute="leadingMargin" secondItem="HFq-vI-ANe" secondAttribute="leading" id="BGl-NN-nbq"/>
                                                 <constraint firstAttribute="topMargin" secondItem="4rZ-YV-OrR" secondAttribute="top" id="NmS-7J-72S"/>
                                                 <constraint firstItem="R4H-L5-gLa" firstAttribute="leading" secondItem="HFq-vI-ANe" secondAttribute="trailing" constant="11" id="kGE-pi-T1W"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="H62-Vx-B0l" secondAttribute="trailing" constant="5" id="p2P-Wm-DgV"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="R4H-L5-gLa" secondAttribute="trailing" constant="5" id="qea-0b-eVP"/>
+                                                <constraint firstItem="H62-Vx-B0l" firstAttribute="top" secondItem="6o7-CF-XKX" secondAttribute="topMargin" constant="-12" id="wMp-MX-bIB"/>
                                                 <constraint firstItem="R4H-L5-gLa" firstAttribute="top" secondItem="4rZ-YV-OrR" secondAttribute="bottom" constant="4" id="zYf-cK-FxG"/>
                                             </constraints>
                                         </tableViewCellContentView>

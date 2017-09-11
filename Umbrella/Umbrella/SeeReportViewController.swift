@@ -420,6 +420,7 @@ class SeeReportViewController: UIViewController {
                             print("user aqui")
                             let imageBtnBackground = UIImage(named: "heart") as UIImage?
                             self.supportBtn.setImage(imageBtnBackground, for: .normal)
+                            self.supportLbl.text = String(describing: snapshot.childrenCount)
                             
                         }
                     } catch {
@@ -469,6 +470,22 @@ class SeeReportViewController: UIViewController {
         
     }
     
+    @IBAction func reportAReport(_ sender: Any) {
+        
+        let reportAlert = UIAlertController(title: "Denunciar Relato", message: "Voce deseja realmente denunciar este relato?", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Sim", style: .default) { (obj) in
+            //code to report a report
+        }
+        
+        reportAlert.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "cancel", style: .default, handler: nil)
+        
+        reportAlert.addAction(cancelAction)
+        
+        self.present(reportAlert, animated: true)
+    }
 
 }
 
