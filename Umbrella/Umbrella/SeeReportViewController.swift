@@ -81,6 +81,9 @@ class SeeReportViewController: UIViewController {
         //observes the changes on the database
         setObserverToFireBaseChanges()
         
+        //check if the user has already supported the report
+        observeIfUserHasAlreadySupported()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -130,7 +133,6 @@ class SeeReportViewController: UIViewController {
         self.agression.textColor = UIColor.white
         
         self.violenceDescription.text = self.report?.description
-        //self.violenceDescription.textColor = UIColor.white
         
         self.violenceDescription.isEditable = false
         self.violenceDescription.backgroundColor = UIColor(colorLiteralRed: 0.107,
@@ -156,8 +158,7 @@ class SeeReportViewController: UIViewController {
         self.commentView.textView.text = "Insira um comentário"
         self.commentView.textView.textColor = UIColor.lightGray
     }
-    
-    
+
     func initiateLocationOnMap(map: MGLMapView,latitude: Double, longitude: Double) {
         
       let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
@@ -195,33 +196,6 @@ class SeeReportViewController: UIViewController {
         }
     }
 
-    
-    
-    @IBAction func editReport(_ sender: Any) {
-        performSegue(withIdentifier: "editReport", sender: Any?.self)
-    }
-    
-    @IBAction func deleteReport(_ sender: Any) {
-        
-        let deleteWarning = UIAlertController(title: "Delete",
-                                              message: "Are you sure you want to delete it?",
-                                              preferredStyle: .alert)
-        deleteWarning.addAction(UIAlertAction(title: "Delete", style: .destructive,
-                                              handler: { (action) in
-                                                
-                                                let reportToDelete = self.report?.id
-                                                self.map.reports.remove(at: self.getReportIndexInArray(report: self.report!))
-                                                self.refReport.child(reportToDelete!).setValue(nil)
-        }))
-        
-        
-        deleteWarning.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel,
-                                              handler:nil))
-        
-        self.present(deleteWarning, animated: true, completion: nil)
-
-    }
-    
     func getReportIndexInArray(report: Report) -> Int {
         
         var counter = 0
@@ -407,6 +381,52 @@ class SeeReportViewController: UIViewController {
                     }
                 }
 
+            })
+        })
+    }
+    
+    func observeIfUserHasAlreadySupported() {
+        //report id
+        let reportId = self.report?.id
+        
+        //user id
+        let userId = UserInteractor.getCurrentUserUid()
+        
+        //reference to the database table
+        let databaseRef = self.refUserSupport.child(reportId!)
+        
+        self.refUserSupport.observe(.childAdded, with: { (snapshot) in
+            
+            let ref =  Database.database().reference().child("user-support").child(reportId!)
+            
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let userSupport = snapshot.value as? [String : Any] {
+                    do {
+                        
+                        guard let user =  userSupport[userId!] else {
+                            //print( "not here")
+                            throw UserError.noUser
+                        }
+                        
+                        if  (user as! String) == nil {
+                            
+                            //  print( "not here")
+                            
+                        } else if (user as! String)  == userId {
+                            
+                            print("user aqui")
+                            let imageBtnBackground = UIImage(named: "heart") as UIImage?
+                            self.supportBtn.setImage(imageBtnBackground, for: .normal)
+                            
+                        }
+                    } catch {
+                        
+                        print( "not here")
+                        
+                    }
+                }
+                
             })
         })
     }

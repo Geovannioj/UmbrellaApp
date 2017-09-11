@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bb1-H1-beB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bb1-H1-beB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -72,7 +72,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" rowHeight="27" id="nhC-xf-0iq" customClass="SearchBarCellTableViewCell" customModule="Umbrella" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="356.5" height="27"/>
+                                                <rect key="frame" x="0.0" y="28" width="357" height="27"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhC-xf-0iq" id="jeB-v1-mhn">
                                                     <rect key="frame" x="0.0" y="0.0" width="356.5" height="26.5"/>
@@ -99,17 +99,17 @@
                                             <segue destination="gMT-Gf-mW6" kind="embed" identifier="containerViewSegue" id="xTw-iK-GzZ"/>
                                         </connections>
                                     </containerView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-0y-izz">
-                                        <rect key="frame" x="67" y="414" width="60" height="70"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-0y-izz">
+                                        <rect key="frame" x="67" y="414" width="70" height="70"/>
                                         <state key="normal" image="msgIcon"/>
                                         <connections>
                                             <action selector="messageButtonAction:" destination="bb1-H1-beB" eventType="touchUpInside" id="Rnz-0a-GTo"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-lB-8Y0">
-                                        <rect key="frame" x="257" y="414" width="60" height="70"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-lB-8Y0">
+                                        <rect key="frame" x="257" y="414" width="70" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="8vN-RD-Oef"/>
+                                            <constraint firstAttribute="width" constant="70" id="8vN-RD-Oef"/>
                                             <constraint firstAttribute="height" constant="70" id="beG-il-l8M"/>
                                         </constraints>
                                         <state key="normal" image="perfilIcon1"/>
@@ -147,8 +147,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/helenasimoes/cj6405sh04wgb2rmpbqp0kz87"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-hR-1ty">
-                                <rect key="frame" x="157.5" y="366" width="60" height="70"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-hR-1ty">
+                                <rect key="frame" x="157.5" y="366" width="70" height="70"/>
                                 <state key="normal" image="reportIcon"/>
                                 <connections>
                                     <segue destination="Qkr-UP-DA5" kind="show" id="BZ4-pX-ogP"/>
@@ -175,14 +175,14 @@
                             <constraint firstItem="8WG-Gb-tnC" firstAttribute="top" secondItem="8R4-SC-L3W" secondAttribute="bottom" constant="-1" id="HZz-e1-yeQ"/>
                             <constraint firstItem="SUe-hR-1ty" firstAttribute="height" secondItem="Ige-lB-8Y0" secondAttribute="height" id="ItA-p5-FqT"/>
                             <constraint firstItem="Czp-Ie-uU2" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" id="RJO-Xs-3TF"/>
-                            <constraint firstItem="SUe-hR-1ty" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="XD1-M2-REY"/>
+                            <constraint firstItem="SUe-hR-1ty" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" constant="5" id="XD1-M2-REY"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" id="YEM-Z0-jSd"/>
                             <constraint firstItem="Czp-Ie-uU2" firstAttribute="top" secondItem="Y3i-dk-FUm" secondAttribute="bottom" constant="21" id="cdZ-IW-ibE"/>
                             <constraint firstItem="Y3i-dk-FUm" firstAttribute="centerX" secondItem="BAZ-Iw-YaG" secondAttribute="centerX" id="e6R-PN-OoP"/>
                             <constraint firstItem="fTm-dJ-jUz" firstAttribute="top" secondItem="8R4-SC-L3W" secondAttribute="bottom" constant="43" id="gNI-gm-lKN"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="centerX" secondItem="seH-bm-Qjz" secondAttribute="centerX" id="gfC-pM-D4N"/>
                             <constraint firstItem="Y3i-dk-FUm" firstAttribute="top" secondItem="CZU-0y-izz" secondAttribute="bottom" constant="-12" id="kBz-1I-jwc"/>
-                            <constraint firstItem="Y3i-dk-FUm" firstAttribute="leading" secondItem="CZU-0y-izz" secondAttribute="trailing" constant="30" id="klA-zP-cnF"/>
+                            <constraint firstItem="Y3i-dk-FUm" firstAttribute="leading" secondItem="CZU-0y-izz" secondAttribute="trailing" constant="20" id="klA-zP-cnF"/>
                             <constraint firstItem="5Pq-8k-jmZ" firstAttribute="width" secondItem="seH-bm-Qjz" secondAttribute="width" id="obL-f5-PwS"/>
                             <constraint firstItem="BAZ-Iw-YaG" firstAttribute="centerY" secondItem="seH-bm-Qjz" secondAttribute="centerY" id="ov5-bu-zD7"/>
                             <constraint firstItem="Y3i-dk-FUm" firstAttribute="top" secondItem="SUe-hR-1ty" secondAttribute="bottom" constant="36" id="usM-Eh-LcA"/>
@@ -313,7 +313,7 @@
                                 <rect key="frame" x="0.0" y="90" width="300" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ge-4g-sta" id="bJw-lk-yKj" customClass="FilterTableViewCell" customModule="Umbrella" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="39.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dNS-4c-3tI">
