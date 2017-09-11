@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="saK-jK-EH4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="saK-jK-EH4">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -509,6 +509,7 @@
                         <outlet property="violenceAproximateTime" destination="f6h-Ty-6en" id="jfI-yo-ShO"/>
                         <outlet property="violenceDescription" destination="GYu-L7-kgS" id="hMp-6g-RUL"/>
                         <outlet property="violenceTitleLbl" destination="LhR-Pe-HWp" id="LGt-G4-5uZ"/>
+                        <segue destination="jY4-nA-feo" kind="show" identifier="goToLogin" id="TjF-Qt-wR2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jlH-qb-ufh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -547,7 +548,15 @@
                 <viewControllerPlaceholder storyboardName="Map" referencedIdentifier="MapView" id="XR8-Am-Lze" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="92B-7c-8g6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2718" y="-478"/>
+            <point key="canvasLocation" x="2708" y="-499"/>
+        </scene>
+        <!--LoginViewController-->
+        <scene sceneID="dHr-VM-Gfg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="LoginViewController" id="jY4-nA-feo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BFe-2F-6Dh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2692" y="-457"/>
         </scene>
     </scenes>
     <resources>
