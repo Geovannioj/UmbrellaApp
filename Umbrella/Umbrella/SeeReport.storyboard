@@ -509,6 +509,7 @@
                         <outlet property="violenceAproximateTime" destination="f6h-Ty-6en" id="jfI-yo-ShO"/>
                         <outlet property="violenceDescription" destination="GYu-L7-kgS" id="hMp-6g-RUL"/>
                         <outlet property="violenceTitleLbl" destination="LhR-Pe-HWp" id="LGt-G4-5uZ"/>
+                        <segue destination="jY4-nA-feo" kind="show" identifier="goToLogin" id="TjF-Qt-wR2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jlH-qb-ufh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -547,7 +548,15 @@
                 <viewControllerPlaceholder storyboardName="Map" referencedIdentifier="MapViewController" id="XR8-Am-Lze" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="92B-7c-8g6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2718" y="-478"/>
+            <point key="canvasLocation" x="2708" y="-499"/>
+        </scene>
+        <!--LoginViewController-->
+        <scene sceneID="dHr-VM-Gfg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="LoginViewController" id="jY4-nA-feo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BFe-2F-6Dh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2692" y="-457"/>
         </scene>
     </scenes>
     <resources>

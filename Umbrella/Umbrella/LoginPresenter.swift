@@ -115,8 +115,6 @@ extension LoginPresenter {
                 
                 self.interactor.createDatabaseUser(user)
             }
-        
-            FBSDKLoginManager().logOut()
         }
     }
 }

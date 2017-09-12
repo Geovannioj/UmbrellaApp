@@ -85,10 +85,15 @@ class FilterTableViewControlleTableViewController: UITableViewController {
         
     }
     @IBAction func undoAction(_ sender: UIButton) {
-//        sexual.isSelected = false
-//        physic.isSelected = false
-//        psycologic.isSelected = false
-//        verbal.isSelected = false
+       let limite = filters.count - 1
+        if limite >= 0{
+            for i in 0...limite {
+                let indexPath = IndexPath(row: i, section: 0)
+                let cell = self.tableView.cellForRow(at: indexPath) as? FilterTableViewCell
+                cell?.checkButton.isSelected = false
+            }
+        }
+       
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "filterAction"{
