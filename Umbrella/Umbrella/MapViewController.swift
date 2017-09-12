@@ -13,7 +13,7 @@ import MapboxGeocoder
 import GoogleMobileAds
 import Firebase
 
-class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ReportDelegate {
+class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, UIGestureRecognizerDelegate {
     @IBOutlet weak var msgsButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var perfilButton: UIButton!
@@ -68,11 +68,8 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addBlurView()
-        setPopUp()
-        
-        buttonDistance = HorizontalStackButtons.spacing
       
+        getPrimaryConstantsValue()
         dismissKayboardInTapGesture()
         bannerView.delegate = self
  
@@ -108,6 +105,10 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
             centerOnUser()
         }
+        
+        addBlurView()
+        setPopUp()
+        
     }
     
     
@@ -115,26 +116,26 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
         super.viewDidAppear(animated)
   
         
-        
     }
+    //MARK: - Buttons functions
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        hideButtons(duration: 0.5)
+        hide(duration: 0.5)
         self.expandButton.isSelected = false
     }
     
-    func snapShotImage() -> UIImage {
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        if let context = UIGraphicsGetCurrentContext() {
-            self.view.layer.render(in: context)
-            let image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return image!
-        }
-        
-        return UIImage()
-    }
+//    func snapShotImage() -> UIImage {
+//        UIGraphicsBeginImageContext(self.view.frame.size)
+//        if let context = UIGraphicsGetCurrentContext() {
+//            self.view.layer.render(in: context)
+//            let image = UIGraphicsGetImageFromCurrentImageContext()
+//            UIGraphicsEndImageContext()
+//            return image!
+//        }
+//        
+//        return UIImage()
+//    }
     
     func addBlurView() {
         
@@ -176,15 +177,27 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
         changeBlurViewVisibility()
         firstPopup.isHidden = true
         secondPopup.isHidden = true
+        for sub in firstPopup.popUpView.subviews {
+            sub.removeFromSuperview()
+        }
+        for sub in secondPopup.popUpView.subviews {
+            sub.removeFromSuperview()
+        }
     }
     
     func getChildViewControllers() -> [UIViewController] {
         return self.childViewControllers
     }
     
-    //MARK: Buttons functions
-    func hideButtons(duration:Double){
-        UIView.animate(withDuration: duration, animations:{
+    func getMapView() -> UIView {
+        return self.view
+    }
+    
+    @IBAction func expandAction(_ sender: UIButton) {
+        //Verifica se o Usuario ja está logado.
+        if UserInteractor.getCurrentUserUid() == nil {
+            //Adiciona Alerta para redirecionar ao login.
+            let alertControler = UIAlertController(title: "Atenção", message: "Por favor faça o login para poder acessar as opçoes de relato.", preferredStyle: .alert)
             
             alertControler.addAction(UIAlertAction(title: "Logar", style: .default, handler: { (UIAlertAction) in
                 
@@ -209,6 +222,8 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
             }
         }
     }
+    
+    
     func expand(duration:Double){
         expandButton.isEnabled = false
         
@@ -238,6 +253,8 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
             }
         }
     }
+    
+    
     func getPrimaryConstantsValue(){
         horizontalMsgButtonValue = horizontalMsgContrain.constant
         verticalMsgButtonValue = verticalMsgConstrain.constant
@@ -248,6 +265,8 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
         verticalProfileButtonValue = verticalProfileConstrain.constant
         
     }
+    
+    
     func hide(duration:Double){
         expandButton.isEnabled = false
         
@@ -316,12 +335,14 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
         searchBar.backgroundImage = UIImage()
         searchBar.barTintColor = UIColor.clear
     }
+    
     func locationCheck(){
         locationManager.delegate = self
         self.authorizationStatusCheck()
         self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         self.locationManager.startUpdatingLocation()
     }
+    
     func tableViewConstruct(){
 
         searchTableView.restorationIdentifier = "SearchTableView"
@@ -461,47 +482,111 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
             }
             
         }
-        
        
     }
-
-            }))
-            
-            self.present(alertControler, animated: true, completion: nil)
-        }else{
-            //Faz animação caso esteja logado.
-            if !sender.isSelected {
-                showButtons(duration: 0.5)
-                sender.isSelected = true
-            }else{
-                hideButtons(duration: 0.5)
-                sender.isSelected = false
-            }
-        }
-    }
+    
     
     @IBAction func reportButtonAction(_ sender: UIButton) {
-        firstPopup.isHidden = false
+        self.firstPopup.isHidden = false
+        self.secondPopup.isHidden = false
         changeBannerVisibility()
         changeBlurViewVisibility()
+        insertFirstReportView()
+        insertSecondReportView()
     }
+
     
     func setPopUp() {
         firstPopup.prepare(view: view,
                       popUpFrame: CGRect(x: 10, y: 26, width: self.view.frame.width - 20, height: self.view.frame.height - 36),
-                      blurFrame: nil /*CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)*/,
-                      popUpColor: UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7),
-                      blurAlpha: 0.95)
+                      blurFrame: nil,
+                      popUpColor: UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7))
         firstPopup.isHidden = true
-        insertFirstReportView()
+//        insertFirstReportView()
         
         secondPopup.prepare(view: view,
-                           popUpFrame: CGRect(x: 10, y: 26, width: self.view.frame.width - 20, height: self.view.frame.height - 36),
-                           blurFrame: nil /*CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)*/,
-            popUpColor: UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7),
-            blurAlpha: 0.95)
+                        popUpFrame: CGRect(x: self.view.frame.width + 10, y: 26, width: self.view.frame.width - 20, height: self.view.frame.height - 36),
+                        blurFrame: nil,
+                        popUpColor: UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7))
         secondPopup.isHidden = true
-        insertSecondReportView()
+//        insertSecondReportView()
+        
+        let firstGesture = UIPanGestureRecognizer(target: self, action: #selector(firstPopupWasDragged(gestureRecognizer:)))
+        firstPopup.popUpView.addGestureRecognizer(firstGesture)
+        firstGesture.delegate = self
+        firstPopup.popUpView.isUserInteractionEnabled = true
+        
+        let secondGesture = UIPanGestureRecognizer(target: self, action: #selector(secondPopupWasDragged(gestureRecognizer:)))
+        secondPopup.popUpView.addGestureRecognizer(secondGesture)
+        secondPopup.popUpView.isUserInteractionEnabled = true
+        secondGesture.delegate = self
+    }
+    
+    func firstPopupWasDragged(gestureRecognizer: UIPanGestureRecognizer) {
+        
+        let translation = gestureRecognizer.translation(in: self.view)
+        if gestureRecognizer.state == UIGestureRecognizerState.began || gestureRecognizer.state == UIGestureRecognizerState.changed {
+            
+            print(gestureRecognizer.view!.center.x)
+            gestureRecognizer.setTranslation(CGPoint(x: 0,y: 0), in: self.view)
+            
+            if(gestureRecognizer.view!.center.x < 200) {
+                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y)
+                secondPopup.popUpView.center = CGPoint(x: secondPopup.popUpView.center.x + translation.x, y: secondPopup.popUpView.center.y)
+            }else {
+                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x - (translation.x / 2), y: gestureRecognizer.view!.center.y)
+                secondPopup.popUpView.center = CGPoint(x: secondPopup.popUpView.center.x + translation.x + self.view.frame.size.width - (translation.x / 2), y: secondPopup.popUpView.center.y)
+            }
+        
+        }
+        if gestureRecognizer.state == .ended {
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                if(gestureRecognizer.view!.center.x < 0) {
+                    gestureRecognizer.view!.center = CGPoint(x: self.view.center.x - self.view.frame.size.width, y: gestureRecognizer.view!.center.y)
+                    self.secondPopup.popUpView.center = CGPoint(x: self.view.center.x, y: self.secondPopup.popUpView.center.y)
+                }
+                else {
+                    gestureRecognizer.view!.center = CGPoint(x: self.view.center.x, y: gestureRecognizer.view!.center.y)
+                    self.secondPopup.popUpView.center = CGPoint(x: self.view.center.x + self.view.frame.size.width, y: self.secondPopup.popUpView.center.y)
+                    
+                }
+            }, completion: nil)
+        }
+        
+    }
+
+    func secondPopupWasDragged(gestureRecognizer: UIPanGestureRecognizer) {
+        let translation = gestureRecognizer.translation(in: self.view)
+
+        if gestureRecognizer.state == UIGestureRecognizerState.began || gestureRecognizer.state == UIGestureRecognizerState.changed {
+            
+            print(gestureRecognizer.view!.center.x)
+            gestureRecognizer.setTranslation(CGPoint(x: 0,y: 0), in: self.view)
+            
+            if(gestureRecognizer.view!.center.x > 185) {
+                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y)
+                firstPopup.popUpView.center = CGPoint(x: firstPopup.popUpView.center.x + translation.x, y: firstPopup.popUpView.center.y)
+            }else {
+                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x - (translation.x / 2), y: gestureRecognizer.view!.center.y)
+                firstPopup.popUpView.center = CGPoint(x: firstPopup.popUpView.center.x + translation.x - self.view.frame.size.width - (translation.x / 2), y: firstPopup.popUpView.center.y)
+            }
+            
+        }
+        if gestureRecognizer.state == .ended {
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                if(gestureRecognizer.view!.center.x > 375) {
+                    gestureRecognizer.view!.center = CGPoint(x: self.view.center.x + self.view.frame.size.width, y: gestureRecognizer.view!.center.y)
+                    self.firstPopup.popUpView.center = CGPoint(x: self.view.center.x, y: self.firstPopup.popUpView.center.y)
+                }
+                else {
+                    gestureRecognizer.view!.center = CGPoint(x: self.view.center.x, y: gestureRecognizer.view!.center.y)
+                    self.firstPopup.popUpView.center = CGPoint(x: self.view.center.x - self.view.frame.size.width, y: self.firstPopup.popUpView.center.y)
+                }
+            }, completion: nil)
+        }
+        
+        
+        
     }
     
     func insertFirstReportView() {
@@ -526,6 +611,7 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
         }
     }
     
+    
     func insertSecondReportView() {
         
         if let reportController = UIStoryboard(name: "RegisterReportSecond", bundle: nil).instantiateViewController(withIdentifier: "RegisterReportSecondViewController") as? RegisterReportSecondViewController {
@@ -548,6 +634,8 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
         }
     }
     
+
+    //MARK: - Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "containerViewSegue" {
@@ -557,42 +645,14 @@ class MapViewController: UIViewController ,UITableViewDelegate, UITableViewDataS
             if let seeScreen = segue.destination as? SeeReportViewController {
                 seeScreen.report = self.reportToSend
             }
-        
-//        } else if segue.identifier == "registerReportSegue" {
-//            //if let reportScreen = segue.destination as? RegisterReportViewController {
-//            if let reportScreen = segue.destination as? ReportPageViewController {
-//    
-//                reportScreen.reportDelegate = self
-//                //reportScreen.delegate = self
-//                
-//                UIView.animate(withDuration: 1.0, delay: 0.5, options: [], animations: {
-//                    reportScreen.modalPresentationStyle = UIModalPresentationStyle.popover
-//                    reportScreen.preferredContentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
-//                }, completion: nil)
-//                
-//                reportScreen.popoverPresentationController!.delegate = self
-//                reportScreen.popoverPresentationController!.sourceView = self.view
-//                reportScreen.popoverPresentationController!.popoverBackgroundViewClass = PopoverBackgroundView.self
-//                //reportScreen.popoverPresentationController!.sourceRect = self.view.bounds
-//                reportScreen.popoverPresentationController!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-//                
-//            }
-
+            
         }
     }
-
-    
-//    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
-//        changeBannerVisibility()
-//        changeBlurViewVisibility()
-//    }
-//
-//    
-//    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-//        return UIModalPresentationStyle.none
-//    }
-    
-    func setObserverToFireBaseChanges() {
+    func setChangedObserver(){
+        self.refReports.observe(.childChanged, with: { (snapShot) in
+            let snapShotValue = snapShot.value as! Dictionary<String,Any>
+            
+            let id = snapShotValue["id"]! as! String
         
             let element:Report? = self.reports.first(){
                 $0.id == id

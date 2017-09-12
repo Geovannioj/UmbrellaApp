@@ -18,6 +18,7 @@ protocol ReportDelegate {
     func getSecondPopup() -> UIView
     func closeReport()
     func getChildViewControllers() -> [UIViewController]
+    func getMapView() -> UIView
 }
 
 class RegisterReportViewController: UIViewController, UISearchBarDelegate {
@@ -54,8 +55,10 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
         
         self.violenceAproximatedTime.setValue(UIColor.white, forKeyPath: "textColor")
         
-        //center the camera on the user location
-        centerCamera(image: UIImage(named: "indicador_crime")!)
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+            //center the camera on the user location
+            centerCamera(image: UIImage(named: "indicador_crime")!)
+        }
         
         //hides the errors labels and turn their font color to white
         self.validateDateError.isHidden = true
@@ -104,9 +107,10 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
                 secondScreen.violenceTitle = self.violenceTitle.text
             }
             
-            
-            delegate?.getFirstPopup().isHidden = true
-            delegate?.getSecondPopup().isHidden = false
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                self.delegate?.getFirstPopup().center = CGPoint(x: (self.delegate?.getMapView().center.x)! - (self.delegate?.getMapView().frame.size.width)!, y: (self.delegate?.getFirstPopup().center.y)!)
+                self.delegate?.getSecondPopup().center = CGPoint(x: (self.delegate?.getMapView().center.x)!, y: (self.delegate?.getSecondPopup().center.y)!)
+            } , completion: nil)
             
             
         }else {

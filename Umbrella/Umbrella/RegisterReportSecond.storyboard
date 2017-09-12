@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -164,20 +163,11 @@
                         <outlet property="violenceAgressionLbl" destination="nQu-io-J9v" id="AgK-ue-bAd"/>
                         <outlet property="violenceDescription" destination="s9Q-za-xgq" id="M3G-1b-9dP"/>
                         <outlet property="violenceKind" destination="1m5-8A-cOr" id="ywo-YW-LTU"/>
-                        <segue destination="mmc-tt-cG5" kind="presentation" identifier="goToFirstRegisterSegue" modalPresentationStyle="currentContext" id="rnf-Ny-NfZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bks-1z-FRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="98.400000000000006" y="70.614692653673174"/>
-        </scene>
-        <!--RegisterReportViewController-->
-        <scene sceneID="cbY-yp-LFF">
-            <objects>
-                <viewControllerPlaceholder storyboardName="RegisterReportFirst" referencedIdentifier="RegisterReportViewController" id="mmc-tt-cG5" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TSv-cx-pyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="834" y="70"/>
         </scene>
     </scenes>
     <resources>

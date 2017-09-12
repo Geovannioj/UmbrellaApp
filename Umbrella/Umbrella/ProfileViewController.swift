@@ -165,6 +165,10 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
         else {
             dismiss(animated: true, completion: nil)
             //performSegue(withIdentifier: "loginSegue", sender: nil)
+            
+            // Mudar para pegar a segue
+            let controller = LoginRouter.assembleModule()
+            present(controller, animated: true, completion: nil)
         }
     }
     

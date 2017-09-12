@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension MapViewController: UITableViewDelegate,UITableViewDataSource{
+extension MapViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

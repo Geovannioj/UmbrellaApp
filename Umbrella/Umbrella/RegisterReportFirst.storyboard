@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FbG-tA-Grb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vsi-xM-o8l">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Report Page View Controller-->
-        <scene sceneID="GcX-1P-AY2">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="FbG-tA-Grb" customClass="ReportPageViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
-                    <value key="contentSizeForViewInPopover" type="size" width="375" height="667"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9BF-JO-DBN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2479" y="-147"/>
-        </scene>
         <!--Register Report View Controller-->
         <scene sceneID="kmy-FC-h81">
             <objects>
@@ -165,20 +154,11 @@
                         <outlet property="violenceAproximatedTime" destination="Gf5-Dy-JHi" id="3zH-yF-7kw"/>
                         <outlet property="violenceLocation" destination="4Cq-WJ-VUZ" id="kKL-Vs-Ltp"/>
                         <outlet property="violenceTitle" destination="nGQ-80-sg0" id="EKq-kU-W2x"/>
-                        <segue destination="40x-hh-ny2" kind="presentation" identifier="goToSecondRegisterView" modalPresentationStyle="currentContext" modalTransitionStyle="coverVertical" id="1gD-4h-Hiq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XDX-PB-ISJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1620" y="-147.07646176911544"/>
-        </scene>
-        <!--RegisterReportSecond-->
-        <scene sceneID="Npi-B3-3b8">
-            <objects>
-                <viewControllerPlaceholder storyboardName="RegisterReportSecond" id="40x-hh-ny2" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eRN-oB-Rj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-916" y="-147"/>
         </scene>
     </scenes>
     <resources>

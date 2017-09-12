@@ -65,4 +65,11 @@ class PopUpPresenter {
         }
     }
     
+    var alpha: CGFloat = 1.0 {
+        didSet {
+            popUpView.alpha = self.alpha
+            blurView.alpha = self.alpha
+        }
+    }
+    
 }

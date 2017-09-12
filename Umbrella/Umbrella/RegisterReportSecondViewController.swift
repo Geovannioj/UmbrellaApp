@@ -259,9 +259,10 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     
     @IBAction func backButtonAction(_ sender: Any) {
-        delegate?.getFirstPopup().isHidden = false
-        delegate?.getSecondPopup().isHidden = true
-        //performSegue(withIdentifier: "goToFirstRegisterSegue", sender: self)
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+            self.delegate?.getFirstPopup().center = CGPoint(x: (self.delegate?.getMapView().center.x)!, y: (self.delegate?.getFirstPopup().center.y)!)
+            self.delegate?.getSecondPopup().center = CGPoint(x: (self.delegate?.getMapView().center.x)! + (self.delegate?.getMapView().frame.size.width)!, y: (self.delegate?.getSecondPopup().center.y)!)
+        }, completion: nil)
     }
     
     @IBAction func closeButtonAction(_ sender: Any) {

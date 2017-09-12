@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="saK-jK-EH4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="saK-jK-EH4">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,7 +39,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="414" height="71"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uYb-jD-087" id="NKx-JR-dsD">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sqc-I0-bFP">
@@ -445,7 +445,7 @@
                                         <rect key="frame" x="0.0" y="415" width="414" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LbY-Uh-7tM" id="6o7-CF-XKX">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HFq-vI-ANe">
@@ -541,10 +541,10 @@
             </objects>
             <point key="canvasLocation" x="2128.985507246377" y="-477.71739130434787"/>
         </scene>
-        <!--MapView-->
+        <!--MapViewController-->
         <scene sceneID="2Pj-1i-Jvy">
             <objects>
-                <viewControllerPlaceholder storyboardName="Map" referencedIdentifier="MapView" id="XR8-Am-Lze" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Map" referencedIdentifier="MapViewController" id="XR8-Am-Lze" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="92B-7c-8g6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2718" y="-478"/>

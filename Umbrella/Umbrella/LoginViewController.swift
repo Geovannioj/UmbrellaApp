@@ -10,7 +10,7 @@ import UIKit
 import NVActivityIndicatorView
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var presenter : LoginPresenterProtocol!
     var indicatorView : NVActivityIndicatorView!
