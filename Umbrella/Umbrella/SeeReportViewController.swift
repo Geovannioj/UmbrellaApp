@@ -56,6 +56,7 @@ class SeeReportViewController: UIViewController {
         self.refMySupport = Database.database().reference().child("my-support")
         self.refReportComplaint = Database.database().reference().child("report-complaint")
         self.refInativeReport = Database.database().reference().child("inative-report")
+
         super.viewDidLoad()
         
         
@@ -85,6 +86,8 @@ class SeeReportViewController: UIViewController {
         
         //check if the user has already supported the report
         observeIfUserHasAlreadySupported()
+        
+        checkReportComplaint()
         
     }
     
@@ -438,10 +441,10 @@ class SeeReportViewController: UIViewController {
         
         self.refReportComplaint.observe(.childAdded, with: { (snapshot) in
             
-            if snapshot.childrenCount >= 10 {
+            if snapshot.childrenCount > 10 {
                 //inativate Report
                 
-               // self.report?.isActive = 1 // inactivate report
+                self.report?.isActive = 1 // inactivate report
                 
                 //updateReportValue
                 self.refReport.child((self.report?.id)!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
@@ -502,6 +505,7 @@ class SeeReportViewController: UIViewController {
     
                 
                 self.refReportComplaint.child((self.report?.id)!).updateChildValues([userId!:userId])
+                self.checkReportComplaint()
             }
             
             reportAlert.addAction(okAction)

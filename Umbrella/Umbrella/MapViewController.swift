@@ -52,8 +52,7 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
     var reportToSend:Report?
     var containerViewController: FilterTableViewControlleTableViewController?
     var buttonDistance:CGFloat = CGFloat()
-
-   
+    
     let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiaGVsZW5hc2ltb2VzIiwiYSI6ImNqNWp4bDBicDJpOTczMm9kaDJqemprbDcifQ.vdd9cfGAwcSXh1I7pq1mvA")
     let image = UIImage(named: "CustomLocationPIN")
    
@@ -98,6 +97,7 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
             centerOnUser()
         }
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -470,7 +470,7 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
         
     }
     
-   
+
     func setObserverToFireBaseChanges() {
 //        self.refReports.observe(DataEventType.value, with: {(snapshot) in
 //            if snapshot.childrenCount > 0 {
