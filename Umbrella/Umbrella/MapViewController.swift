@@ -429,6 +429,8 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
                 element?.latitude = snapShotValue["latitude"] as! Double
                 element?.longitude = snapShotValue["longitude"] as! Double
                 element?.personGender = snapShotValue["personGender"]! as! String
+                element?.supports = snapShotValue["supports"]! as! Int
+                element?.isActive = snapShotValue["isActive"]! as! Int
             }
           
             
@@ -444,7 +446,7 @@ class MapViewController: UIViewController ,UISearchBarDelegate{
             let snapShotValue = snapShot.value as! Dictionary<String,Any>
             
 
-            let newReport = Report(id: snapShotValue["id"]! as! String, userId: snapShotValue["userId"]! as! String, title: snapShotValue["title"]! as! String, description: snapShotValue["description"]! as! String, violenceKind: snapShotValue["violenceKind"]! as! String, violenceAproximatedTime: snapShotValue["violenceAproximatedTime"] as! Double, latitude: snapShotValue["latitude"] as! Double, longitude: snapShotValue["longitude"] as! Double, personGender: snapShotValue["personGender"]! as! String)
+            let newReport = Report(id: snapShotValue["id"]! as! String, userId: snapShotValue["userId"]! as! String, title: snapShotValue["title"]! as! String, description: snapShotValue["description"]! as! String, violenceKind: snapShotValue["violenceKind"]! as! String, violenceAproximatedTime: snapShotValue["violenceAproximatedTime"] as! Double, latitude: snapShotValue["latitude"] as! Double, longitude: snapShotValue["longitude"] as! Double, personGender: snapShotValue["personGender"]! as! String, supports: snapShotValue["supports"]! as! Int, isActive: snapShotValue["isActive"]! as! Int)
             
             self.reports.append(newReport)
             self.filter(new:newReport)

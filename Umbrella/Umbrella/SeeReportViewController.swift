@@ -39,6 +39,8 @@ class SeeReportViewController: UIViewController {
     var refUser: DatabaseReference!
     var refUserSupport: DatabaseReference!
     var refMySupport: DatabaseReference!
+    var refReportComplaint: DatabaseReference!
+    var refInativeReport: DatabaseReference!
     
     
     //comments to the report
@@ -52,6 +54,8 @@ class SeeReportViewController: UIViewController {
         self.refUser = Database.database().reference().child("user")
         self.refUserSupport = Database.database().reference().child("user-support")
         self.refMySupport = Database.database().reference().child("my-support")
+        self.refReportComplaint = Database.database().reference().child("report-complaint")
+        self.refInativeReport = Database.database().reference().child("inative-report")
         super.viewDidLoad()
         
         
@@ -75,8 +79,6 @@ class SeeReportViewController: UIViewController {
         self.tableView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         self.headerView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
-        
-//        self.footerView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
         //observes the changes on the database
         setObserverToFireBaseChanges()
@@ -312,8 +314,6 @@ class SeeReportViewController: UIViewController {
         //reference to the database table
         let databaseRef = self.refUserSupport.child(reportId!)
         
-        var count = 0
-        
         self.refUserSupport.observe(.childAdded, with: { (snapshot) in
             
             let ref =  Database.database().reference().child("user-support").child(reportId!)
@@ -366,7 +366,7 @@ class SeeReportViewController: UIViewController {
                         print( "not here")
                         
                         //ADD A SUPPORT!
-                        count = count + 1
+        
                         // put the user into the user-support table
                         databaseRef.updateChildValues([userId!: userId!])
                         self.refMySupport.child(userId!).updateChildValues([reportId!: reportId])
@@ -420,7 +420,7 @@ class SeeReportViewController: UIViewController {
                             print("user aqui")
                             let imageBtnBackground = UIImage(named: "heart") as UIImage?
                             self.supportBtn.setImage(imageBtnBackground, for: .normal)
-                            self.supportLbl.text = String(describing: snapshot.childrenCount)
+                           // self.supportLbl.text = String(describing: snapshot.childrenCount)
                             
                         }
                     } catch {
@@ -431,6 +431,26 @@ class SeeReportViewController: UIViewController {
                 }
                 
             })
+        })
+    }
+    
+    func checkReportComplaint() {
+        
+        self.refReportComplaint.observe(.childAdded, with: { (snapshot) in
+            
+            if snapshot.childrenCount >= 10 {
+                //inativate Report
+                
+               // self.report?.isActive = 1 // inactivate report
+                
+                //updateReportValue
+                self.refReport.child((self.report?.id)!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
+                
+                //add report to the innactivated reports
+                self.refInativeReport.updateChildValues([(self.report?.id)!: (self.report?.id)!])
+                
+                
+            }
         })
     }
 
@@ -472,20 +492,50 @@ class SeeReportViewController: UIViewController {
     
     @IBAction func reportAReport(_ sender: Any) {
         
-        let reportAlert = UIAlertController(title: "Denunciar Relato", message: "Voce deseja realmente denunciar este relato?", preferredStyle: .alert)
+        let userId = UserInteractor.getCurrentUserUid()
         
-        let okAction = UIAlertAction(title: "Sim", style: .default) { (obj) in
-            //code to report a report
+        if userId != nil {
+            
+            let reportAlert = UIAlertController(title: "Denunciar Relato", message: "Voce deseja realmente denunciar este relato?", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Sim", style: .default) { (obj) in
+    
+                
+                self.refReportComplaint.child((self.report?.id)!).updateChildValues([userId!:userId])
+            }
+            
+            reportAlert.addAction(okAction)
+            
+            let cancelAction = UIAlertAction(title: "cancel", style: .default, handler: nil)
+            
+            reportAlert.addAction(cancelAction)
+            
+            self.present(reportAlert, animated: true)
+
+        } else {
+            
+            let logginAlert = UIAlertController(title: "E necessario loging",
+                                                message: " Para poder dar supporte para esse reporte e necessario fazer login",
+                                                preferredStyle: .alert)
+            
+            let loginAction = UIAlertAction(title: "login", style: .default, handler: { (action) in
+                
+                self.performSegue(withIdentifier: "goToLogin", sender: Any.self)
+                
+                
+                
+            })
+            
+            logginAlert.addAction(loginAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            
+            logginAlert.addAction(cancelAction)
+            self.present(logginAlert, animated: true, completion: nil)
+
+            
         }
-        
-        reportAlert.addAction(okAction)
-        
-        let cancelAction = UIAlertAction(title: "cancel", style: .default, handler: nil)
-        
-        reportAlert.addAction(cancelAction)
-        
-        self.present(reportAlert, animated: true)
-    }
+           }
 
 }
 
