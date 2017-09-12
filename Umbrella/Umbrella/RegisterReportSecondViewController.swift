@@ -20,6 +20,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     @IBOutlet weak var violenceKind: UIPickerView!
     @IBOutlet weak var personIdentification: UIPickerView!
     @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     //options to the picker view
     let violenceKindArray = ["Verbal","Física","Moral","Psicológica","Sexual"]
@@ -268,6 +269,13 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     @IBAction func closeButtonAction(_ sender: Any) {
         self.delegate?.closeReport()
         //dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func pageValueChanged(_ sender: UIPageControl) {
+        if sender.currentPage == 0 {
+            backButtonAction(backButton)
+        }
     }
     
     

@@ -117,6 +117,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="r2l-3x-8iq">
+                                <rect key="frame" x="172.5" y="642" width="30" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="AyE-Bc-OgR"/>
+                                    <constraint firstAttribute="height" constant="10" id="sXO-tF-HQ9"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="pageValueChanged:" destination="Vsi-xM-o8l" eventType="valueChanged" id="xdc-Gm-9xd"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" red="0.10588235294117647" green="0.0078431372549019607" blue="0.14509803921568626" alpha="0.70021404109589036" colorSpace="deviceRGB"/>
                         <constraints>
@@ -138,9 +148,11 @@
                             <constraint firstItem="BpK-hs-kIt" firstAttribute="leading" secondItem="wNp-Wj-3zx" secondAttribute="leading" constant="10" id="Wya-HG-Hat"/>
                             <constraint firstAttribute="trailing" secondItem="Gf5-Dy-JHi" secondAttribute="trailing" id="aFF-u1-Uv4"/>
                             <constraint firstAttribute="trailing" secondItem="4Cq-WJ-VUZ" secondAttribute="trailing" id="bO0-8c-OIv"/>
+                            <constraint firstItem="r2l-3x-8iq" firstAttribute="centerY" secondItem="Ajn-Fz-Ea5" secondAttribute="centerY" id="cDZ-3t-vJB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5Ox-s9-FBz" secondAttribute="trailing" constant="15" id="gpY-wK-1O1"/>
                             <constraint firstItem="qXW-7f-WlG" firstAttribute="top" secondItem="4Cq-WJ-VUZ" secondAttribute="bottom" constant="16" id="j7M-e9-mTh"/>
                             <constraint firstItem="5Ox-s9-FBz" firstAttribute="top" secondItem="nGQ-80-sg0" secondAttribute="bottom" constant="10" id="l7Q-pA-lYC"/>
+                            <constraint firstItem="r2l-3x-8iq" firstAttribute="centerX" secondItem="wNp-Wj-3zx" secondAttribute="centerX" id="nxf-FZ-WPR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ajn-Fz-Ea5" secondAttribute="trailing" constant="5" id="p2r-ec-5Jh"/>
                             <constraint firstItem="qXW-7f-WlG" firstAttribute="leading" secondItem="wNp-Wj-3zx" secondAttribute="leadingMargin" constant="15" id="pbK-E5-gdh"/>
                         </constraints>
@@ -148,6 +160,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="nexttButton" destination="Ajn-Fz-Ea5" id="PqB-JZ-uFx"/>
+                        <outlet property="pageControl" destination="r2l-3x-8iq" id="6zn-j3-YjB"/>
                         <outlet property="searchBar" destination="8wT-XR-wMA" id="rfV-NP-TIX"/>
                         <outlet property="validateDateError" destination="637-GJ-HmL" id="gAh-po-fAp"/>
                         <outlet property="validateTitleError" destination="5Ox-s9-FBz" id="xYE-Ah-a69"/>

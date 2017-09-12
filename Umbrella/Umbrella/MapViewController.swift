@@ -534,8 +534,8 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
                 gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y)
                 secondPopup.popUpView.center = CGPoint(x: secondPopup.popUpView.center.x + translation.x, y: secondPopup.popUpView.center.y)
             }else {
-                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x - (translation.x / 2), y: gestureRecognizer.view!.center.y)
-                secondPopup.popUpView.center = CGPoint(x: secondPopup.popUpView.center.x + translation.x + self.view.frame.size.width - (translation.x / 2), y: secondPopup.popUpView.center.y)
+                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x - (translation.x / 1.5), y: gestureRecognizer.view!.center.y)
+                secondPopup.popUpView.center = CGPoint(x: secondPopup.popUpView.center.x + translation.x + self.view.frame.size.width - (translation.x / 1.5), y: secondPopup.popUpView.center.y)
             }
         
         }
@@ -567,8 +567,8 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
                 gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y)
                 firstPopup.popUpView.center = CGPoint(x: firstPopup.popUpView.center.x + translation.x, y: firstPopup.popUpView.center.y)
             }else {
-                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x - (translation.x / 2), y: gestureRecognizer.view!.center.y)
-                firstPopup.popUpView.center = CGPoint(x: firstPopup.popUpView.center.x + translation.x - self.view.frame.size.width - (translation.x / 2), y: firstPopup.popUpView.center.y)
+                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x - (translation.x / 1.5), y: gestureRecognizer.view!.center.y)
+                firstPopup.popUpView.center = CGPoint(x: firstPopup.popUpView.center.x + translation.x - self.view.frame.size.width - (translation.x / 1.5), y: firstPopup.popUpView.center.y)
             }
             
         }

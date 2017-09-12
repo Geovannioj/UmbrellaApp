@@ -33,6 +33,7 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var validateTitleError: UILabel!
     @IBOutlet weak var validateDateError: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!    
+    @IBOutlet weak var pageControl: UIPageControl!
     
     //Mark: acessories
     let locationManager = CLLocationManager()
@@ -158,6 +159,13 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
     @IBAction func closeButtonAction(_ sender: Any) {
         self.delegate?.closeReport()
         //dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func pageValueChanged(_ sender: UIPageControl) {
+        if sender.currentPage == 1 {
+            ChangeScreenAction(nexttButton)
+        }
     }
     
         
