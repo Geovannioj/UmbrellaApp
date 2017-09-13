@@ -515,7 +515,7 @@ class SeeReportViewController: UIViewController {
     enum UserError: Error {
         case noUser
     }
-    
+   
     @IBAction func supportReportAction(_ sender: UIButton) {
         if UserInteractor.getCurrentUserUid() != nil {
             
@@ -541,7 +541,30 @@ class SeeReportViewController: UIViewController {
             self.present(logginAlert, animated: true, completion: nil)
         }
     }
+     // MARK: - SupportAction
     
+    @IBAction func moreButtonAction(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Opções", message: nil, preferredStyle: .actionSheet)
+        alert.view.tintColor = UmbrellaColors.lightPurple.color
+        if UserInteractor.getCurrentUserUid() == self.report?.userId {
+            alert.addAction(UIAlertAction(title: "Editar", style: .default, handler: { (alertAction) in
+                
+            }))
+        }else{
+            alert.addAction(UIAlertAction(title: "Ligar Notificações", style: .default, handler: { (alertAction) in
+                
+            }))
+            alert.addAction(UIAlertAction(title: "Reportar", style: .destructive, handler: { (alertAction) in
+                
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { (alertAction) in
+            self.removeFromParentViewController()
+        }))
+        present(alert, animated: true, completion: nil)
+        
+    }
     
 //    @IBAction func supportReport(_ sender: Any) {
 //        
