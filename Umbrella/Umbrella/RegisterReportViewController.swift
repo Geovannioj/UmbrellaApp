@@ -50,7 +50,7 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
         dismissKayboardInTapGesture()
         
         //sets the color background to dark purple
-        self.view.backgroundColor = UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7)
+        self.view.backgroundColor = .clear
         
         // it makes the font color of the datePicker turn to white
         

@@ -16,18 +16,38 @@ class SeeReportViewController: UIViewController {
     //outlets
     
 
-    @IBOutlet weak var headerView: UIView!
+//    @IBOutlet weak var headerView: UIView!
+//    @IBOutlet weak var violenceTitleLbl: UILabel!
+//    @IBOutlet weak var agression: UILabel!
+//    @IBOutlet weak var username: UILabel!
+//    @IBOutlet weak var userPhoto: UIImageView!
+//    @IBOutlet weak var violanceLocation: MGLMapView!
+//    @IBOutlet weak var violenceAproximateTime: UILabel!
+//    @IBOutlet weak var violenceDescription: UITextView!
+//    @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var sendMessageBtn: UIButton!
+//    @IBOutlet weak var supportLbl: UILabel!
+//    @IBOutlet weak var supportBtn: UIButton!
+    
+    
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var violenceTitleLbl: UILabel!
-    @IBOutlet weak var agression: UILabel!
-    @IBOutlet weak var username: UILabel!
     @IBOutlet weak var userPhoto: UIImageView!
-    @IBOutlet weak var violanceLocation: MGLMapView!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var userPlace: UILabel!
+    @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var violenceLocation: MGLMapView!
     @IBOutlet weak var violenceAproximateTime: UILabel!
     @IBOutlet weak var violenceDescription: UITextView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var sendMessageBtn: UIButton!
-    @IBOutlet weak var supportLbl: UILabel!
     @IBOutlet weak var supportBtn: UIButton!
+    @IBOutlet weak var supportersBtn: UIButton!
+    @IBOutlet weak var sendMessageBtn: UIButton!
+    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var comentaryCamp: UITextField!
+    
+    @IBOutlet weak var violenceDescriptionHeightConstraint: NSLayoutConstraint!
+    
     
     //references
     var report:Report?
@@ -40,6 +60,7 @@ class SeeReportViewController: UIViewController {
     var refUserSupport: DatabaseReference!
     var refMySupport: DatabaseReference!
     
+    var delegate: ReportDelegate?
     
     //comments to the report
     var comments:[Comment] = []
@@ -59,11 +80,11 @@ class SeeReportViewController: UIViewController {
         dismissKayboardInTapGesture()
 
         //change the background color for the two views
-        self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        self.view.backgroundColor = .clear
+        //self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
         //init the components of the screen
         initLabels()
-        initTexViewLabel()
         
         // sets the delegate to textView and tableView
         self.commentView.textView.delegate = self
@@ -72,10 +93,10 @@ class SeeReportViewController: UIViewController {
         self.tableView.dataSource = self
         
         //sets the color of the table to the same as the view
-        self.tableView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
-        self.headerView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        self.tableView.backgroundColor = .clear
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         
+        self.violenceDescription.backgroundColor = .clear
 //        self.footerView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
         //observes the changes on the database
@@ -123,42 +144,39 @@ class SeeReportViewController: UIViewController {
                 }
             }
         })
-
-        self.username.textColor = UIColor.white
         
         self.violenceTitleLbl.text = self.report?.title
-        self.violenceTitleLbl.textColor = UIColor.white
         
-        self.agression.text = self.report?.violenceKind
-        self.agression.textColor = UIColor.white
+        //self.agression.text = self.report?.violenceKind
+        //self.agression.textColor = UIColor.white
         
         self.violenceDescription.text = self.report?.description
         
-        self.violenceDescription.isEditable = false
-        self.violenceDescription.backgroundColor = UIColor(colorLiteralRed: 0.107,
-                                                           green: 0.003,
-                                                           blue: 0.148,
-                                                           alpha: 1)
+        if let heightText = (violenceDescription.constraints.filter{$0.identifier == "violenceDescriptionHeightConstraint"}.first) {
+            if self.violenceDescription.contentSize.height < 95 {
+                heightText.constant = violenceDescription.contentSize.height
+            }
+            else {
+                heightText.constant = 95
+            }
+        }
+    
         
-        self.initiateLocationOnMap(map: self.violanceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
+        self.violenceDescription.isEditable = false
+        
+        self.initiateLocationOnMap(map: self.violenceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
         self.formatDate()
         
-        if (self.report?.supports)! > 0 {
-            
-            self.supportLbl.text = String(describing: (self.report?.supports)!)
-            self.supportLbl.isHidden = false
-        
-        } else {
-            
-            self.supportLbl.isHidden = true
-
-        }
-    }
-    
-    //initial placeholder to the textView of comments
-    func initTexViewLabel() {
-        self.commentView.textView.text = "Insira um comentário"
-        self.commentView.textView.textColor = UIColor.lightGray
+//        if (self.report?.supports)! > 0 {
+//            
+//            self.supportLbl.text = String(describing: (self.report?.supports)!)
+//            self.supportLbl.isHidden = false
+//        
+//        } else {
+//            
+//            self.supportLbl.isHidden = true
+//
+//        }
     }
 
     func initiateLocationOnMap(map: MGLMapView,latitude: Double, longitude: Double) {
@@ -172,7 +190,7 @@ class SeeReportViewController: UIViewController {
         let annotation = MGLPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: (latitude), longitude: (longitude) )
         annotation.title = self.report?.title
-        self.violanceLocation.addAnnotation(annotation)
+        self.violenceLocation.addAnnotation(annotation)
         
 
     }
@@ -187,7 +205,6 @@ class SeeReportViewController: UIViewController {
         
         //setting the formated date
         self.violenceAproximateTime.text = dateFormat.string(from: startDate)
-        self.violenceAproximateTime.textColor = UIColor.white
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -214,12 +231,17 @@ class SeeReportViewController: UIViewController {
         return -1
     }
 
-    @IBAction func closeAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        performSegue(withIdentifier: "backToMap", sender: Any.self)
-        
-        
+    @IBAction func closeButtonAction(_ sender: UIButton) {
+        delegate?.closeReport()
     }
+    
+    
+//    @IBAction func closeAction(_ sender: Any) {
+//        self.dismiss(animated: true, completion: nil)
+//        performSegue(withIdentifier: "backToMap", sender: Any.self)
+//        
+//        
+//    }
     
     func setObserverToFireBaseChanges() {
         
@@ -274,33 +296,55 @@ class SeeReportViewController: UIViewController {
 
     }
     
-    @IBAction func sendMessagesAction(_ sender: Any) {
-        
+    @IBAction func sendPrivateMessagesAction(_ sender: UIButton) {
         let sendMessage = UIAlertController(title: "Enviar Mensagem",
                                             message: "Você deseja mandar mensagem para a pessoa?",
                                             preferredStyle: .alert)
         
-        sendMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
-                                            handler: {(action) in
-                                                
-            if let partnerId = self.report?.userId {
-                
-                UserInteractor.getUser(withId: partnerId, completion: { (user) in
-                
-                    let chatController = ChatRouter.assembleModule()
-                    chatController.presenter.partner = user
-                    chatController.chatInputView.textField.text = "Eu estava presente no momento e gostaria de ajudar você com a agressão, posso ajudar?"
-                    
-                    self.present(chatController, animated: true, completion: nil)
-                })
-            }
+        sendMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action) in
+                if let partnerId = self.report?.userId {
+                    UserInteractor.getUser(withId: partnerId, completion: { (user) in
+                        let chatController = ChatRouter.assembleModule()
+                        chatController.presenter.partner = user
+                        chatController.chatInputView.textField.text = "Eu estava presente no momento e gostaria de ajudar você com a agressão, posso ajudar?"
+                        self.present(chatController, animated: true, completion: nil)
+                      })
+                }
         }))
         
         sendMessage.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-            
+        
         self.present(sendMessage, animated: true, completion: nil)
-
     }
+    
+    
+//    @IBAction func sendMessagesAction(_ sender: Any) {
+//        
+//        let sendMessage = UIAlertController(title: "Enviar Mensagem",
+//                                            message: "Você deseja mandar mensagem para a pessoa?",
+//                                            preferredStyle: .alert)
+//        
+//        sendMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
+//                                            handler: {(action) in
+//                                                
+//            if let partnerId = self.report?.userId {
+//                
+//                UserInteractor.getUser(withId: partnerId, completion: { (user) in
+//                
+//                    let chatController = ChatRouter.assembleModule()
+//                    chatController.presenter.partner = user
+//                    chatController.chatInputView.textField.text = "Eu estava presente no momento e gostaria de ajudar você com a agressão, posso ajudar?"
+//                    
+//                    self.present(chatController, animated: true, completion: nil)
+//                })
+//            }
+//        }))
+//        
+//        sendMessage.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+//            
+//        self.present(sendMessage, animated: true, completion: nil)
+//
+//    }
     
     func setObserverToFireBaseUserSupportTable() {
         //report id
@@ -343,15 +387,15 @@ class SeeReportViewController: UIViewController {
                             databaseRef.child(userId!).removeValue()
                             self.refMySupport.child(userId!).child(reportId!).removeValue()
                             self.report?.supports = Int(snapshot.childrenCount) - 2
-                            self.supportLbl.text = String(describing:(self.report?.supports)!)
+//                            self.supportLbl.text = String(describing:(self.report?.supports)!)
                             
                             //if the amount of support is = 0 the label should be hidden
                             if (self.report?.supports)! > 0 {
                                 
-                                self.supportLbl.isHidden = false
+//                                self.supportLbl.isHidden = false
                                 
                             } else {
-                                self.supportLbl.isHidden = true
+//                                self.supportLbl.isHidden = true
                             }
                             
                             self.refReport.child(reportId!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
@@ -373,9 +417,9 @@ class SeeReportViewController: UIViewController {
                         //incrise the amount of supports
                         self.report?.supports = Int(snapshot.childrenCount)
                         print(self.report?.supports)
-                        self.supportLbl.text = String(describing:(self.report?.supports)!)
+//                        self.supportLbl.text = String(describing:(self.report?.supports)!)
                         
-                        self.supportLbl.isHidden = false
+//                        self.supportLbl.isHidden = false
                         
                         self.refReport.child(reportId!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
                         let imageBtnBackground = UIImage(named: "heart") as UIImage?
@@ -437,12 +481,11 @@ class SeeReportViewController: UIViewController {
         case noUser
     }
     
-    @IBAction func supportReport(_ sender: Any) {
-        
+    @IBAction func supportReportAction(_ sender: UIButton) {
         if UserInteractor.getCurrentUserUid() != nil {
-
+            
             setObserverToFireBaseUserSupportTable()
-        
+            
         } else {
             
             let logginAlert = UIAlertController(title: "E necessario loging",
@@ -450,10 +493,8 @@ class SeeReportViewController: UIViewController {
                                                 preferredStyle: .alert)
             
             let loginAction = UIAlertAction(title: "login", style: .default, handler: { (action) in
-              
+                
                 self.performSegue(withIdentifier: "goToLogin", sender: Any.self)
-                
-                
                 
             })
             
@@ -464,10 +505,40 @@ class SeeReportViewController: UIViewController {
             logginAlert.addAction(cancelAction)
             self.present(logginAlert, animated: true, completion: nil)
         }
-        
-        
-        
     }
+    
+    
+//    @IBAction func supportReport(_ sender: Any) {
+//        
+//        if UserInteractor.getCurrentUserUid() != nil {
+//
+//            setObserverToFireBaseUserSupportTable()
+//        
+//        } else {
+//            
+//            let logginAlert = UIAlertController(title: "E necessario loging",
+//                                                message: " Para poder dar supporte para esse reporte e necessario fazer login",
+//                                                preferredStyle: .alert)
+//            
+//            let loginAction = UIAlertAction(title: "login", style: .default, handler: { (action) in
+//              
+//                self.performSegue(withIdentifier: "goToLogin", sender: Any.self)
+//                
+//                
+//                
+//            })
+//            
+//            logginAlert.addAction(loginAction)
+//            
+//            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+//            
+//            logginAlert.addAction(cancelAction)
+//            self.present(logginAlert, animated: true, completion: nil)
+//        }
+//        
+//        
+//        
+//    }
     
 
 }

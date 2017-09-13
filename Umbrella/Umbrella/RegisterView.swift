@@ -15,7 +15,7 @@ class RegisterView: UIView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "CloseIcon")?.withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .scaleAspectFill
-        imageView.tintColor = UIColor(r: 74, g: 74, b: 74)
+        imageView.tintColor = UmbrellaColors.darkGray.color
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -33,9 +33,9 @@ class RegisterView: UIView {
     let changedImageButton : UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .clear
-        button.setTitle("selecionar", for: .normal)
-        button.setTitleColor(.purple, for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        button.setTitle("Selecionar", for: .normal)
+        button.setTitleColor(UmbrellaColors.lightPurple.color, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Helvetica", size: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -43,8 +43,11 @@ class RegisterView: UIView {
     let username : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 0
+        camp.textField.font = UIFont(name: ".SFUIText-Light", size: 14)
         camp.textField.autocapitalizationType = .sentences
+        camp.titleLabel.font = UIFont(name: ".SFUIText-Medium", size: 14)
         camp.titleLabel.text = "Username"
+        camp.titleLabel.textColor = UmbrellaColors.darkGray.color
         camp.textField.placeholder = "Somente letras e números"
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
@@ -53,7 +56,10 @@ class RegisterView: UIView {
     let email : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 1
+        camp.titleLabel.font = UIFont(name: ".SFUIText-Medium", size: 14)
         camp.titleLabel.text = "Email"
+        camp.titleLabel.textColor = UmbrellaColors.darkGray.color
+        camp.textField.font = UIFont(name: ".SFUIText-Light", size: 14)
         camp.textField.placeholder = "Email válido"
         camp.textField.keyboardType = UIKeyboardType.emailAddress
         camp.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +69,10 @@ class RegisterView: UIView {
     let password : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 2
+        camp.titleLabel.font = UIFont(name: ".SFUIText-Medium", size: 14)
         camp.titleLabel.text = "Senha"
+        camp.titleLabel.textColor = UmbrellaColors.darkGray.color
+        camp.textField.font = UIFont(name: ".SFUIText-Light", size: 14)
         camp.textField.placeholder = "Minimo de 6 caracteres"
         camp.textField.isSecureTextEntry = true
         camp.translatesAutoresizingMaskIntoConstraints = false
@@ -72,11 +81,11 @@ class RegisterView: UIView {
     
     let registerButton : UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(r: 52, g: 5, b: 82)
+        button.backgroundColor = UmbrellaColors.darkPurple.color
         button.setTitle("Registrar", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.masksToBounds = true
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont(name: "Helvetica", size: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

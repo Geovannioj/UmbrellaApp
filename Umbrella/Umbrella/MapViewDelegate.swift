@@ -75,7 +75,8 @@ extension MapViewController : MGLMapViewDelegate {
         }
         mapView.deselectAnnotation(annotation, animated: false)
         self.reportToSend = getAnnotationById(reportId: annotation.title!!, reports: self.reports)
-        performSegue(withIdentifier: "seeReport", sender: Any.self)
+        self.showReport()
+        //performSegue(withIdentifier: "seeReport", sender: Any.self)
         
         return false
         

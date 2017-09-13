@@ -15,15 +15,18 @@ class PasswordRecoverView: UIView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "CloseIcon")?.withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .scaleAspectFill
-        imageView.tintColor = UIColor(r: 74, g: 74, b: 74)
+        imageView.tintColor = UmbrellaColors.darkGray.color
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     let email : CampFieldView = {
         let camp = CampFieldView()
+        camp.textField.font = UIFont(name: ".SFUIText-Light", size: 14)
         camp.textField.placeholder = "harveymilk@stonewall.com"
+        camp.titleLabel.font = UIFont(name: ".SFUIText-Medium", size: 14)
         camp.titleLabel.text = "Email Cadastrado"
+        camp.titleLabel.textColor = UmbrellaColors.darkGray.color
         camp.textField.keyboardType = UIKeyboardType.emailAddress
         camp.translatesAutoresizingMaskIntoConstraints = false
         return camp
@@ -33,11 +36,11 @@ class PasswordRecoverView: UIView {
         
         let button = UIButton(type: .system)
         button.setTitle("Recuperar senha", for: .normal)
-        button.backgroundColor = UIColor(r: 52, g: 5, b: 82)
+        button.backgroundColor = UmbrellaColors.darkPurple.color
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont(name: "Helvetica", size: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -86,7 +89,7 @@ class PasswordRecoverView: UIView {
         
         recoverButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 50).isActive = true
         recoverButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        recoverButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/2).isActive = true
+        recoverButton.widthAnchor.constraint(equalToConstant: (recoverButton.titleLabel?.intrinsicContentSize.width)! + 30).isActive = true
         recoverButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     

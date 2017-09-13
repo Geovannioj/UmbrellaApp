@@ -69,7 +69,6 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         dismissKayboardInTapGesture()
         
 
-        //self.view.backgroundColor = UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7)
         self.view.backgroundColor = .clear
         
         self.violenceAgressionLbl.setValue(UIColor.white, forKey: "textColor")

@@ -24,6 +24,7 @@ class LoginView: UIView {
     let email : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 0
+        camp.textField.font = UIFont(name: ".SFUIText-Light", size: 14)
         camp.textField.placeholder = "Email"
         camp.iconImage.image = UIImage(named: "emailIcon")
         camp.textField.keyboardType = UIKeyboardType.emailAddress
@@ -34,6 +35,7 @@ class LoginView: UIView {
     let password : CampFieldView = {
         let camp = CampFieldView()
         camp.id = 1
+        camp.textField.font = UIFont(name: ".SFUIText-Light", size: 14)
         camp.textField.placeholder = "Senha"
         camp.iconImage.image = UIImage(named: "passwordIcon")
         camp.textField.isSecureTextEntry = true
@@ -44,12 +46,12 @@ class LoginView: UIView {
     var loginButton : UIButton = {
         
         let button = UIButton(type: .system)
+        button.titleLabel?.font = UIFont(name: ".SFUIDisplay", size: 16)
         button.setTitle("Entrar", for: .normal)
-        button.backgroundColor = UIColor(r: 52, g: 5, b: 82)
+        button.backgroundColor = UmbrellaColors.darkPurple.color
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -58,9 +60,9 @@ class LoginView: UIView {
     var forgotPasswordButton : UIButton = {
         
         let button = UIButton(type: .system)
+        button.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
         button.setTitle("Esqueci a senha", for: .normal)
         button.setTitleColor(UIColor.lightGray, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -68,9 +70,9 @@ class LoginView: UIView {
     var newAccountButton : UIButton = {
         
         let button = UIButton(type: .system)
+        button.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
         button.setTitle("Criar uma nova conta", for: .normal)
         button.setTitleColor(UIColor.lightGray, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -101,7 +103,7 @@ class LoginView: UIView {
     func setupView() {
         
         self.backgroundColor = UIColor.clear
-
+        
         addSubview(closeButton)
         addSubview(email)
         addSubview(password)

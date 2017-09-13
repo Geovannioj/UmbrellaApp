@@ -58,6 +58,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
     
     let firstPopup = PopUpPresenter()
     let secondPopup = PopUpPresenter()
+    let reportPopup = PopUpPresenter()
     
     let blurEffectView: UIVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.extraLight))
     let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiaGVsZW5hc2ltb2VzIiwiYSI6ImNqNWp4bDBicDJpOTczMm9kaDJqemprbDcifQ.vdd9cfGAwcSXh1I7pq1mvA")
@@ -175,14 +176,24 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
     func closeReport() {
         changeBannerVisibility()
         changeBlurViewVisibility()
-        firstPopup.isHidden = true
-        secondPopup.isHidden = true
-        for sub in firstPopup.popUpView.subviews {
-            sub.removeFromSuperview()
+        
+        if firstPopup.isHidden == false {
+            firstPopup.isHidden = true
+            secondPopup.isHidden = true
+            for sub in firstPopup.popUpView.subviews {
+                sub.removeFromSuperview()
+            }
+            for sub in secondPopup.popUpView.subviews {
+                sub.removeFromSuperview()
+            }
         }
-        for sub in secondPopup.popUpView.subviews {
-            sub.removeFromSuperview()
+        else if reportPopup.isHidden == false {
+            reportPopup.isHidden = true
+            for sub in reportPopup.popUpView.subviews {
+                sub.removeFromSuperview()
+            }
         }
+        
     }
     
     func getChildViewControllers() -> [UIViewController] {
@@ -494,22 +505,33 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
         insertFirstReportView()
         insertSecondReportView()
     }
+    
+    func showReport() {
+        self.reportPopup.isHidden = false
+        changeBannerVisibility()
+        changeBlurViewVisibility()
+        insertSeeReportView()
+    }
 
     
     func setPopUp() {
         firstPopup.prepare(view: view,
                       popUpFrame: CGRect(x: 10, y: 26, width: self.view.frame.width - 20, height: self.view.frame.height - 36),
                       blurFrame: nil,
-                      popUpColor: UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7))
+                      popUpColor: UmbrellaColors.blackPurple.color.withAlphaComponent(0.7))
         firstPopup.isHidden = true
-//        insertFirstReportView()
         
         secondPopup.prepare(view: view,
                         popUpFrame: CGRect(x: self.view.frame.width + 10, y: 26, width: self.view.frame.width - 20, height: self.view.frame.height - 36),
                         blurFrame: nil,
-                        popUpColor: UIColor(r: 27, g: 2, b: 37).withAlphaComponent(0.7))
+                        popUpColor: UmbrellaColors.blackPurple.color.withAlphaComponent(0.7))
         secondPopup.isHidden = true
-//        insertSecondReportView()
+        
+        reportPopup.prepare(view: view,
+                        popUpFrame: CGRect(x: 10, y: 26, width: self.view.frame.width - 20, height: self.view.frame.height - 36),
+                        blurFrame: nil,
+                        popUpColor: UmbrellaColors.blackPurple.color.withAlphaComponent(0.7))
+        reportPopup.isHidden = true
         
         let firstGesture = UIPanGestureRecognizer(target: self, action: #selector(firstPopupWasDragged(gestureRecognizer:)))
         firstPopup.popUpView.addGestureRecognizer(firstGesture)
@@ -520,6 +542,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
         secondPopup.popUpView.addGestureRecognizer(secondGesture)
         secondPopup.popUpView.isUserInteractionEnabled = true
         secondGesture.delegate = self
+
     }
     
     func firstPopupWasDragged(gestureRecognizer: UIPanGestureRecognizer) {
@@ -634,6 +657,29 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
         }
     }
     
+    func insertSeeReportView() {
+        if let reportController = UIStoryboard(name: "SeeReport", bundle: nil).instantiateViewController(withIdentifier: "SeeReportViewController") as? SeeReportViewController {
+            
+            addChildViewController(reportController)
+            reportController.delegate = self
+            reportController.report = self.reportToSend
+            
+            let reportView = (reportController.view)!
+            reportPopup.popUpView.addSubview(reportView)
+            
+            reportController.didMove(toParentViewController: self)
+            
+            reportView.translatesAutoresizingMaskIntoConstraints = false
+            reportView.topAnchor.constraint(equalTo: reportPopup.popUpView.topAnchor).isActive = true
+            reportView.leftAnchor.constraint(equalTo: reportPopup.popUpView.leftAnchor).isActive = true
+            reportView.widthAnchor.constraint(equalTo: reportPopup.popUpView.widthAnchor).isActive = true
+            reportView.heightAnchor.constraint(equalTo: reportPopup.popUpView.heightAnchor).isActive = true
+            reportView.backgroundColor = .clear
+            
+        }
+
+    }
+    
 
     //MARK: - Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -641,12 +687,13 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
         if segue.identifier == "containerViewSegue" {
             containerViewController = segue.destination as? FilterTableViewControlleTableViewController
             containerViewController!.containerToMaster = self
-        } else if segue.identifier == "seeReport"{
-            if let seeScreen = segue.destination as? SeeReportViewController {
-                seeScreen.report = self.reportToSend
-            }
-            
         }
+//        else if segue.identifier == "seeReport"{
+//            if let seeScreen = segue.destination as? SeeReportViewController {
+//                seeScreen.report = self.reportToSend
+//            }
+//            
+//        }
     }
     func setChangedObserver(){
         self.refReports.observe(.childChanged, with: { (snapShot) in
