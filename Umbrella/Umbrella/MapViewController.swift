@@ -550,7 +550,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
         let translation = gestureRecognizer.translation(in: self.view)
         if gestureRecognizer.state == UIGestureRecognizerState.began || gestureRecognizer.state == UIGestureRecognizerState.changed {
             
-            print(gestureRecognizer.view!.center.x)
+            //print(gestureRecognizer.view!.center.x)
             gestureRecognizer.setTranslation(CGPoint(x: 0,y: 0), in: self.view)
             
             if(gestureRecognizer.view!.center.x < 200) {
@@ -583,7 +583,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
 
         if gestureRecognizer.state == UIGestureRecognizerState.began || gestureRecognizer.state == UIGestureRecognizerState.changed {
             
-            print(gestureRecognizer.view!.center.x)
+            //print(gestureRecognizer.view!.center.x)
             gestureRecognizer.setTranslation(CGPoint(x: 0,y: 0), in: self.view)
             
             if(gestureRecognizer.view!.center.x > 185) {

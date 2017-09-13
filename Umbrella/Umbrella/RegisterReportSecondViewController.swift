@@ -95,8 +95,6 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         self.personIdentification.delegate = self
         self.personIdentification.accessibilityIdentifier = "personIdentification"
         
-        
-        
         self.violenceKind.dataSource = self
         self.violenceKind.delegate = self
         self.violenceKind.accessibilityIdentifier = "violenceKind"
@@ -104,6 +102,8 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         self.violenceDescription.delegate = self
         self.violenceDescription.text = "Digite a descrição da agressão"
         self.violenceDescription.textColor = UIColor.lightGray
+        
+        self.addBtn.layer.cornerRadius = 5
         
     }
     

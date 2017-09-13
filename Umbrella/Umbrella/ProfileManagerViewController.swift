@@ -76,7 +76,6 @@ class ProfileManagerViewController: UIViewController, ProfileTableViewController
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.isNavigationBarHidden = true
     }
     
