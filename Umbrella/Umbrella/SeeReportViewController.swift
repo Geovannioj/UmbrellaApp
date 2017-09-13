@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import Mapbox
-
+import MapboxGeocoder
 class SeeReportViewController: UIViewController {
     
     //outlets
@@ -65,6 +65,7 @@ class SeeReportViewController: UIViewController {
     //comments to the report
     var comments:[Comment] = []
     
+    let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiaGVsZW5hc2ltb2VzIiwiYSI6ImNqNWp4bDBicDJpOTczMm9kaDJqemprbDcifQ.vdd9cfGAwcSXh1I7pq1mvA")
     
     override func viewDidLoad() {
         //database reference
@@ -75,6 +76,9 @@ class SeeReportViewController: UIViewController {
         self.refMySupport = Database.database().reference().child("my-support")
         super.viewDidLoad()
         
+        
+        
+            
         
         //recognizer para sumir o teclado quando o usuário clicar na tela
         dismissKayboardInTapGesture()
@@ -161,7 +165,10 @@ class SeeReportViewController: UIViewController {
             }
         }
     
-        
+//        self.getPlace(latitude:(report?.latitude)!,longitude:(report?.longitude)!,onComplete: @escaping ([String]) -> ())
+        self.getPlace(latitude: (report?.latitude)!, longitude: (report?.longitude)!) { (texts) in
+            self.userPlace.text = "\(texts.first ?? "") - \(texts[1] )"
+        }
         self.violenceDescription.isEditable = false
         
         self.initiateLocationOnMap(map: self.violenceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
@@ -429,6 +436,34 @@ class SeeReportViewController: UIViewController {
 
             })
         })
+    }
+    /**
+     Funcao para pegar as regiões de uma determinada coordenada
+     
+     - parameter latitude: Latitude em Double.
+     - parameter longitude: Longitude em Double.
+     - parameter onComplete: Bloco a ser executado ao fim da thread
+     */
+    func getPlace(latitude:Double,longitude:Double,onComplete: @escaping ([String]) -> ()){
+        //
+        let options = ReverseGeocodeOptions(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+        var returnStringArray:[String] = []
+        _ = geocoder.geocode(options) { (placemarks, attribution, error) in
+            if error == nil{
+                guard let placemark = placemarks?.first else {
+                    return
+                }
+                
+                let auxString = placemark.administrativeRegion?.code?.characters.split(separator: Character.init("-")).map(String.init)
+                returnStringArray = [placemark.administrativeRegion?.name ?? "",auxString?[1] ?? "",auxString?[0] ?? ""]
+                
+                
+                
+                onComplete(returnStringArray)
+            }
+            
+        }
+        
     }
     
     func observeIfUserHasAlreadySupported() {

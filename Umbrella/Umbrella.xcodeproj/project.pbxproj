@@ -430,6 +430,7 @@
 		A149053F1F4F3CF8000DE25C /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				FBE6F7CC1F69B103006D035E /* Comment */,
 				D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */,
 				FB6AB71D1F59FE5700711605 /* View */,
 				FB6AB71C1F59FDF100711605 /* Contracts */,
@@ -767,6 +768,13 @@
 				FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		FBE6F7CC1F69B103006D035E /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Comment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
