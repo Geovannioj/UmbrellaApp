@@ -167,7 +167,7 @@ class SeeReportViewController: UIViewController {
     
 //        self.getPlace(latitude:(report?.latitude)!,longitude:(report?.longitude)!,onComplete: @escaping ([String]) -> ())
         self.getPlace(latitude: (report?.latitude)!, longitude: (report?.longitude)!) { (texts) in
-            self.userPlace.text = "\(texts.first ?? "") - \(texts[1] )"
+            self.userPlace.text = "\(texts.first ?? "") - \(texts[1])"
         }
         self.violenceDescription.isEditable = false
         
@@ -587,22 +587,23 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //setting cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath)
-        cell.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath) as!
+            CommentTableViewCell
+        cell.backgroundColor = .clear
+        //UmbrellaColors.blackPurple.color.withAlphaComponent(0.7)
         //comment text
-        let commentTextField = tableView.viewWithTag(2) as! UITextView
-        commentTextField.isEditable = false
-        commentTextField.text = self.comments[indexPath.row].content
-        commentTextField.textColor = UIColor.white
-        commentTextField.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        let commentTextField = cell.commentContentView
+        commentTextField?.isEditable = false
+        commentTextField?.text = self.comments[indexPath.row].content
+        commentTextField?.textColor = UIColor.white
+        commentTextField?.backgroundColor = .clear
         
         //user photo to put into the comment cell
-        let userPhoto = tableView.viewWithTag(1) as! UIImageView
+        let userPhoto = cell.userImage
         
         //comment nickname
-        let userNickName = tableView.viewWithTag(8) as! UILabel
-        userNickName.textColor = UIColor.white
+        let userNickName = cell.userNameLabel
+        userNickName?.textColor = UIColor.white
         
         
         let ref = self.refUser.child(self.comments[indexPath.row].userId)
@@ -611,12 +612,12 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
             if let user = snapshot.value as? [String: Any] {
-                userNickName.text = user["nickname"] as? String
+                userNickName?.text = user["nickname"] as? String
                 
                 if let url = user["urlPhoto"] as? String {
-                    userPhoto.loadCacheImage(url)
+                    userPhoto?.loadCacheImage(url)
                 } else {
-                    userPhoto.image = UIImage(named: "emailIcon")
+                    userPhoto?.image = UIImage(named: "emailIcon")
                 }
             }
         })
