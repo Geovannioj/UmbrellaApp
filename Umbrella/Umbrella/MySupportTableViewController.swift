@@ -17,11 +17,13 @@ class MySupportTableViewController: UITableViewController {
     var refMySupport: DatabaseReference!
     var reportToSee: Report?
     
+    var delegate: ProfileDelegate?
+    
     override func viewDidLoad() {
         self.refMySupport = Database.database().reference().child("my-support").child(UserInteractor.getCurrentUserUid()!)
         super.viewDidLoad()
         
-       setObserverToFireBaseChanges()
+        setObserverToFireBaseChanges()
         
         print(myReportSupported.count)
     }

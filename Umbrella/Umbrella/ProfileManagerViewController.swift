@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProfileManagerViewController: UIViewController, ProfileTableViewControllerProtocol {
+class ProfileManagerViewController: UIViewController, ProfileDelegate {
 
     @IBOutlet weak var profileContainer: UIView!
     @IBOutlet weak var extendedNavBar: ExtendedNavBarView!
@@ -90,14 +90,26 @@ class ProfileManagerViewController: UIViewController, ProfileTableViewController
             self.profile.isHidden = false
             self.settings.isHidden = true
             self.reportView.isHidden = true
+            if let rightButton = getNavBar().rightBarButtonItem {
+                rightButton.isEnabled = true
+                rightButton.title = "Editar"
+            }
         case 1:
             self.profile.isHidden = true
             self.settings.isHidden = true
             self.reportView.isHidden = false
+            if let rightButton = getNavBar().rightBarButtonItem {
+                rightButton.isEnabled = false
+                rightButton.title = ""
+            }
         case 2:
             self.profile.isHidden = true
             self.settings.isHidden = false
             self.reportView.isHidden = true
+            if let rightButton = getNavBar().rightBarButtonItem {
+                rightButton.isEnabled = false
+                rightButton.title = ""
+            }
         default:
             break
         }

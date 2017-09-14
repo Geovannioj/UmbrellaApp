@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ProfileTableViewControllerProtocol {
+protocol ProfileDelegate {
     func getNavBar() -> UINavigationItem
     func getSegmentedControl() -> UISegmentedControl
 }
@@ -27,7 +27,7 @@ class ProfileTableViewController: UITableViewController, InteractorCompleteProto
     @IBOutlet weak var inputs: ProfileView!
     
     
-    var delegate: ProfileTableViewControllerProtocol?
+    var delegate: ProfileDelegate?
     
     var isEdit = false
     var isBirthSelection = false
