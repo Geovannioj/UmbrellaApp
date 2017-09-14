@@ -784,6 +784,10 @@ extension MapViewController: ReportDelegate {
         return self.secondPopup.popUpView
     }
     
+    func getReportPopup() -> UIView {
+        return self.reportPopup.popUpView
+    }
+    
     func closeReport() {
         changeBannerVisibility()
         changeBlurViewVisibility()

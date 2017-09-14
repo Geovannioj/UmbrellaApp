@@ -16,6 +16,7 @@ protocol ReportDelegate {
     func changeBlurViewVisibility()
     func getFirstPopup() -> UIView
     func getSecondPopup() -> UIView
+    func getReportPopup() -> UIView
     func closeReport()
     func getChildViewControllers() -> [UIViewController]
     func getMapViewController() -> UIViewController

@@ -15,20 +15,6 @@ class SeeReportViewController: UIViewController {
     
     //outlets
     
-
-//    @IBOutlet weak var headerView: UIView!
-//    @IBOutlet weak var violenceTitleLbl: UILabel!
-//    @IBOutlet weak var agression: UILabel!
-//    @IBOutlet weak var username: UILabel!
-//    @IBOutlet weak var userPhoto: UIImageView!
-//    @IBOutlet weak var violanceLocation: MGLMapView!
-//    @IBOutlet weak var violenceAproximateTime: UILabel!
-//    @IBOutlet weak var violenceDescription: UITextView!
-//    @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var sendMessageBtn: UIButton!
-//    @IBOutlet weak var supportLbl: UILabel!
-//    @IBOutlet weak var supportBtn: UIButton!
-    
     
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var violenceTitleLbl: UILabel!
@@ -52,7 +38,6 @@ class SeeReportViewController: UIViewController {
     //references
     var report:Report?
     let map = MapViewController()
-    let commentView = CommentView()
     
     var refReport: DatabaseReference!
     var refComment: DatabaseReference!
@@ -80,32 +65,25 @@ class SeeReportViewController: UIViewController {
         super.viewDidLoad()
         
         setSupportersButton()
-        
-        
-            
-        
+
         //recognizer para sumir o teclado quando o usuário clicar na tela
         dismissKayboardInTapGesture()
 
         //change the background color for the two views
         self.view.backgroundColor = .clear
-        //self.view.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
         //init the components of the screen
         initLabels()
         
         // sets the delegate to textView and tableView
-        self.commentView.textView.delegate = self
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
         //sets the color of the table to the same as the view
         self.tableView.backgroundColor = .clear
-        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        //self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         
         self.violenceDescription.backgroundColor = .clear
-//        self.footerView.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
         
         //observes the changes on the database
         setObserverToFireBaseChanges()
@@ -114,23 +92,34 @@ class SeeReportViewController: UIViewController {
         observeIfUserHasAlreadySupported()
         
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
         self.inputAccessoryView?.removeFromSuperview()
-         NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
-
-    override var inputAccessoryView: UIView? {
-        get{
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
             
-            commentView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
-            commentView.sendCommentButton.addTarget(self, action: #selector(addComent), for: .touchUpInside)
-            
-            return self.commentView
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                self.delegate?.getReportPopup().center = CGPoint(x: (self.delegate?.getReportPopup().center.x)!, y: (self.delegate?.getMapViewController().view.center.y)! - keyboardHeight)
+            }, completion: nil)
         }
+        
     }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+            self.delegate?.getReportPopup().center = CGPoint(x: (self.delegate?.getReportPopup().center.x)!, y: (self.delegate?.getMapViewController().view.center.y)!)
+        }, completion: nil)
+    }
+    
     
     override var canBecomeFirstResponder: Bool {
         return true
@@ -169,9 +158,6 @@ class SeeReportViewController: UIViewController {
         
         self.violenceTitleLbl.text = self.report?.title
         
-        //self.agression.text = self.report?.violenceKind
-        //self.agression.textColor = UIColor.white
-        
         self.violenceDescription.text = self.report?.description
         
         if let heightText = (violenceDescription.constraints.filter{$0.identifier == "violenceDescriptionHeightConstraint"}.first) {
@@ -183,7 +169,6 @@ class SeeReportViewController: UIViewController {
             }
         }
     
-//        self.getPlace(latitude:(report?.latitude)!,longitude:(report?.longitude)!,onComplete: @escaping ([String]) -> ())
         self.getPlace(latitude: (report?.latitude)!, longitude: (report?.longitude)!) { (texts) in
             self.userPlace.text = "\(texts.first ?? "") - \(texts[1])"
         }
@@ -221,17 +206,7 @@ class SeeReportViewController: UIViewController {
                 }
             })
         })
-                // Atenção: Ignorar o primeiro support
-//        if (self.report?.supports)! > 0 {
-//            
-//            self.supportLbl.text = String(describing: (self.report?.supports)!)
-//            self.supportLbl.isHidden = false
-//        
-//        } else {
-//            
-//            self.supportLbl.isHidden = true
-//
-//        }
+
     }
 
     func initiateLocationOnMap(map: MGLMapView,latitude: Double, longitude: Double) {
@@ -291,13 +266,6 @@ class SeeReportViewController: UIViewController {
     }
     
     
-//    @IBAction func closeAction(_ sender: Any) {
-//        self.dismiss(animated: true, completion: nil)
-//        performSegue(withIdentifier: "backToMap", sender: Any.self)
-//        
-//        
-//    }
-    
     func setObserverToFireBaseChanges() {
         
         self.refComment.observe(DataEventType.value, with: {(snapshot) in
@@ -340,14 +308,13 @@ class SeeReportViewController: UIViewController {
         let id = refComment.childByAutoId().key
         let reportId = self.report?.id
         let userId = UserInteractor.getCurrentUserUid()
-        let content = self.commentView.textView.text
+        let content = self.comentaryCamp.text
         
         let comment = Comment(commentId: id, content: content!, reportId: reportId!, userId: userId!)
         
         print(comment.turnToDictionary())
         
         self.refComment.child(id).setValue(comment.turnToDictionary())
-        self.commentView.textView.text = ""
 
     }
     
@@ -372,35 +339,6 @@ class SeeReportViewController: UIViewController {
         self.present(sendMessage, animated: true, completion: nil)
     }
     
-    
-//    @IBAction func sendMessagesAction(_ sender: Any) {
-//        
-//        let sendMessage = UIAlertController(title: "Enviar Mensagem",
-//                                            message: "Você deseja mandar mensagem para a pessoa?",
-//                                            preferredStyle: .alert)
-//        
-//        sendMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
-//                                            handler: {(action) in
-//                                                
-//            if let partnerId = self.report?.userId {
-//                
-//                UserInteractor.getUser(withId: partnerId, completion: { (user) in
-//                
-//                    let chatController = ChatRouter.assembleModule()
-//                    chatController.presenter.partner = user
-//                    chatController.chatInputView.textField.text = "Eu estava presente no momento e gostaria de ajudar você com a agressão, posso ajudar?"
-//                    
-//                    self.present(chatController, animated: true, completion: nil)
-//                })
-//            }
-//        }))
-//        
-//        sendMessage.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-//            
-//        self.present(sendMessage, animated: true, completion: nil)
-//
-//    }
-    
     func setObserverToFireBaseUserSupportTable() {
         //report id
         let reportId = self.report?.id
@@ -410,8 +348,6 @@ class SeeReportViewController: UIViewController {
     
         //reference to the database table
         let databaseRef = self.refUserSupport.child(reportId!)
-        
-        var count = 0
         
         self.refUserSupport.observe(.childAdded, with: { (snapshot) in
             
@@ -474,9 +410,6 @@ class SeeReportViewController: UIViewController {
                         //incrise the amount of supports
                         self.report?.supports = Int(snapshot.childrenCount)
                         print(self.report?.supports)
-//                        self.supportLbl.text = String(describing:(self.report?.supports)!)
-                        
-//                        self.supportLbl.isHidden = false
                         
                         self.refReport.child(reportId!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
                         let imageBtnBackground = UIImage(named: "heart") as UIImage?
@@ -633,40 +566,6 @@ class SeeReportViewController: UIViewController {
         
     }
     
-//    @IBAction func supportReport(_ sender: Any) {
-//        
-//        if UserInteractor.getCurrentUserUid() != nil {
-//
-//            setObserverToFireBaseUserSupportTable()
-//            setObserveToReportSupports()
-//            
-//        
-//        } else {
-//            
-//            let logginAlert = UIAlertController(title: "E necessario loging",
-//                                                message: " Para poder dar supporte para esse reporte e necessario fazer login",
-//                                                preferredStyle: .alert)
-//            
-//            let loginAction = UIAlertAction(title: "login", style: .default, handler: { (action) in
-//              
-//                self.performSegue(withIdentifier: "goToLogin", sender: Any.self)
-//                
-//                
-//                
-//            })
-//            
-//            logginAlert.addAction(loginAction)
-//            
-//            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-//            
-//            logginAlert.addAction(cancelAction)
-//            self.present(logginAlert, animated: true, completion: nil)
-//        }
-//        
-//        
-//        
-//    }
-    
 
 }
 
@@ -682,7 +581,6 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath) as!
             CommentTableViewCell
         cell.backgroundColor = .clear
-        //UmbrellaColors.blackPurple.color.withAlphaComponent(0.7)
         //comment text
         let commentTextField = cell.commentContentView
         commentTextField?.isEditable = false
@@ -762,26 +660,4 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: false)
     }
 
-}
-
-//extension to the textView get a placeHolder
-extension SeeReportViewController: UITextViewDelegate {
- 
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-        
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            
-            textView.text = "Insira seu comentário"
-            textView.textColor = UIColor.lightGray
-            
-        }
-    }
 }
