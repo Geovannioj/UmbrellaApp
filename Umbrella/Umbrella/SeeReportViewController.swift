@@ -192,12 +192,13 @@ class SeeReportViewController: UIViewController {
                         for aux in 0..<count {
                             
                             if let urlPhoto = supporters[aux].urlPhoto {
-                                PhotoInteractor.getUserPhoto(withUrl: urlPhoto, handler: nil, completion: { (photo) in
-                                    if photo != nil {
+//                                PhotoInteractor.getUserPhoto(withUrl: urlPhoto, handler: nil, completion: { (photo) in
+//                                    if photo != nil {
                                         photos[aux]?.isHidden = false
-                                        photos[aux]?.image = UIImage(data: (photo?.image)!)
-                                    }
-                                })
+                                        photos[aux]?.loadCacheImage(urlPhoto)
+//                                        photos[aux]?.image = UIImage(data: (photo?.image)!)
+//                                    }
+//                                })
                             }
                             sub.supportCount.text = count > 3 ? "+" + String(supporters.count - 3) : ""
                             
