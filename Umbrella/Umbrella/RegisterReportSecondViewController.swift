@@ -10,6 +10,15 @@ import Foundation
 import UIKit
 import Firebase
 
+protocol FirstReportScreenDelegate {
+    func getViolenceTitle() -> UITextField
+    func getViolenceAproximatedTime() -> UIDatePicker
+    func getLatitude() -> Double
+    func getLongitude() -> Double
+    func incompleteTasksError()
+}
+
+
 class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate{
     
     
@@ -37,6 +46,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
                                     "outros"]
     
     var delegate: ReportDelegate?
+    var firstReportScreenDelegate: FirstReportScreenDelegate?
     
     //atributes to of the second screen
     var violenceKindChosen: String = ""
@@ -50,18 +60,16 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     var refMessageReport: DatabaseReference!
     var refUserSupport: DatabaseReference!
     
-    //atributes from the frist screen
-    var violenceTitle: String?
-    var aproximatedTime:Double?
-    var latitude:Double?
-    var longitude: Double?
-    
     
     override func viewDidLoad() {
         self.refReports =  Database.database().reference().child("reports")
         self.refMessageReport = Database.database().reference().child("user-reports")
         self.refUserSupport = Database.database().reference().child("user-support")
         super.viewDidLoad()
+        
+        for case let firstScreen as RegisterReportViewController in (delegate?.getChildViewControllers())! {
+            self.firstReportScreenDelegate = firstScreen
+        }
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
@@ -173,14 +181,14 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
         let id = refReports.childByAutoId().key
         let userId = UserInteractor.getCurrentUserUid()
-        let title = self.violenceTitle
+        let title = self.firstReportScreenDelegate?.getViolenceTitle().text
         let description = self.violenceDescription.text
         let violenceKind = self.violenceKindChosen
         let personGender = self.personIdentificationChosen
-        let violenceAproximatedTime = self.aproximatedTime
+        let violenceAproximatedTime = self.firstReportScreenDelegate?.getViolenceAproximatedTime().date.timeIntervalSince1970
         
-        let latitude = self.latitude
-        let longitude = self.longitude
+        let latitude = self.firstReportScreenDelegate?.getLatitude()
+        let longitude = self.firstReportScreenDelegate?.getLongitude()
         
         let report = Report(id: id,
                             userId: userId!,
@@ -220,13 +228,13 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
                 let report =  [
                     "id" : reportToEdit.id,
                     "userId" : reportToEdit.userId,
-                    "title" : self.violenceTitle,
+                    "title" : self.firstReportScreenDelegate?.getViolenceTitle(),
                     "description" : self.violenceDescription.text,
                     "violenceKind" : self.violenceKindChosen,
-                    "violenceAproximatedTime" : self.aproximatedTime,
+                    "violenceAproximatedTime" : self.firstReportScreenDelegate?.getViolenceAproximatedTime(),
                     "personGender": self.personIdentificationChosen,
-                    "latitude" : self.latitude,
-                    "longitude" : self.longitude
+                    "latitude" : self.firstReportScreenDelegate?.getLatitude(),
+                    "longitude" : self.firstReportScreenDelegate?.getLongitude()
                 ] as [String : Any]
         
                 self.refReports.child(reportToEdit.id).setValue(report)
@@ -236,16 +244,23 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     }
     
     @IBAction func registerAction(_ sender: Any) {
-        
-        if (self.reportToEdit != nil) {
+        if (!(self.firstReportScreenDelegate?.getViolenceTitle().text?.isEmpty)! &&
+            (self.firstReportScreenDelegate?.getViolenceAproximatedTime().date)! <= Date()) {
             
-            editReport(reportToEdit: self.reportToEdit!)
-            closeButtonAction(sender)
-        }else {
-            
-            addReport()
-            closeButtonAction(sender)
+            if (self.reportToEdit != nil) {
+                editReport(reportToEdit: self.reportToEdit!)
+                closeButtonAction(sender)
+            }else {
+                
+                addReport()
+                closeButtonAction(sender)
+            }
         }
+        else{
+            firstReportScreenDelegate?.incompleteTasksError()
+            backButtonAction(backButton)
+        }
+        
 
     }
     

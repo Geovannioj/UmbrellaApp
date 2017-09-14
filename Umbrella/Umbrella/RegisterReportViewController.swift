@@ -77,6 +77,7 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
         searchBarConfig()
         
     }
+
     
     func searchBarConfig(){
         searchBar.delegate = self
@@ -95,31 +96,18 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
     // MARK: - Acion
       
     @IBAction func ChangeScreenAction(_ sender: Any) {
-        
-        if (!(self.violenceTitle.text?.isEmpty)! && self.violenceAproximatedTime.date <= Date()) {
             
-            getLocation()
-            //performSegue(withIdentifier: "goToSecondRegisterView", sender: Any.self)
+        getLocation()
+        //performSegue(withIdentifier: "goToSecondRegisterView", sender: Any.self)
 
-            for case let secondScreen as RegisterReportSecondViewController in (delegate?.getChildViewControllers())! {
-                secondScreen.latitude = self.reportLatitude
-                secondScreen.longitude = self.reportLongitude
-                secondScreen.aproximatedTime = self.violenceAproximatedTime.date.timeIntervalSince1970
-                secondScreen.violenceTitle = self.violenceTitle.text
-            }
-            
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
-                self.delegate?.getFirstPopup().center = CGPoint(x: (self.delegate?.getMapViewController().view.center.x)! - (self.delegate?.getMapViewController().view.frame.size.width)!, y: (self.delegate?.getFirstPopup().center.y)!)
-                self.delegate?.getSecondPopup().center = CGPoint(x: (self.delegate?.getMapViewController().view.center.x)!, y: (self.delegate?.getSecondPopup().center.y)!)
-            } , completion: nil)
-            
-            
-        }else {
-            
-            self.validateDateError.isHidden = false
-            self.validateTitleError.isHidden = false
+//            for case let secondScreen as RegisterReportSecondViewController in (delegate?.getChildViewControllers())! {
+//
+//            }
         
-        }
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+            self.delegate?.getFirstPopup().center = CGPoint(x: (self.delegate?.getMapViewController().view.center.x)! - (self.delegate?.getMapViewController().view.frame.size.width)!, y: (self.delegate?.getFirstPopup().center.y)!)
+            self.delegate?.getSecondPopup().center = CGPoint(x: (self.delegate?.getMapViewController().view.center.x)!, y: (self.delegate?.getSecondPopup().center.y)!)
+        } , completion: nil)
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -169,4 +157,34 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
     }
     
         
+}
+
+extension RegisterReportViewController: FirstReportScreenDelegate {
+    func getViolenceTitle() -> UITextField {
+        return self.violenceTitle
+    }
+    
+    func getViolenceAproximatedTime() -> UIDatePicker {
+        return self.violenceAproximatedTime
+    }
+    
+    func getLatitude() -> Double {
+        return self.reportLatitude
+    }
+    
+    func getLongitude() -> Double {
+        return self.reportLongitude
+    }
+    
+    func incompleteTasksError() {
+        self.validateTitleError.isHidden = true
+        self.validateDateError.isHidden = true
+
+        if (violenceTitle.text?.isEmpty)! {
+            self.validateTitleError.isHidden = false
+        }
+        if violenceAproximatedTime.date > Date() {
+            self.validateDateError.isHidden = false
+        }
+    }
 }
