@@ -35,23 +35,15 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     let alert = AlertPresenter()
     
     //options to the picker view
-    let violenceKindArray = ["Verbal","Física","Moral","Psicológica","Sexual"]
-    
-    let victimIdentificationArray = ["Lesbica",
-                                    "Gay",
-                                    "Bisexual",
-                                    "Travesti",
-                                    "Transgênero",
-                                    "Transexual",
-                                    "Queer",
-                                    "outros"]
     
     var delegate: ReportDelegate?
     var firstReportScreenDelegate: FirstReportScreenDelegate?
     
     //atributes to of the second screen
-    var violenceKindChosen: String = ""
-    var personIdentificationChosen: String = ""
+    var personIdentificationChosen: MinorityEntity = MinorityEntity()
+    var minorities: [MinorityEntity] = []
+    var violenceKindChosen: FilterEntity = FilterEntity()
+    var violences: [FilterEntity] = []
     
     //report to be edited
     var reportToEdit: Report?
@@ -91,24 +83,33 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
             
             initFieldsToEdit()
     
-            self.violenceKindChosen = (reportToEdit?.violenceKind)!
+            //self.violenceKindChosen = (reportToEdit?.violenceKind)!
             
         } else {
             
             self.violenceKind.selectRow(2, inComponent: 0, animated: true)
-            self.violenceKindChosen = self.violenceKindArray[(violenceKindArray.count - 1)]
+            
             
             self.personIdentification.selectedRow(inComponent: 0)
-            self.personIdentificationChosen = self.victimIdentificationArray[(victimIdentificationArray.count - 1)]
+            
         }
         
-        self.personIdentification.dataSource = self
-        self.personIdentification.delegate = self
-        self.personIdentification.accessibilityIdentifier = "personIdentification"
+        MinorityInteractor.getMinorities(completion: { minoritiesFirebase in
+            self.minorities.append(contentsOf: minoritiesFirebase)
+            self.personIdentification.dataSource = self
+            self.personIdentification.delegate = self
+            self.personIdentification.accessibilityIdentifier = "personIdentification"
+            self.personIdentificationChosen = self.minorities[(self.minorities.count - 1)]
+        })
         
-        self.violenceKind.dataSource = self
-        self.violenceKind.delegate = self
-        self.violenceKind.accessibilityIdentifier = "violenceKind"
+        FilterInteractor.getFilters(completion: { violencesFirebase in
+            self.violences.append(contentsOf: violencesFirebase)
+            self.violenceKind.accessibilityIdentifier = "violenceKind"
+            self.violenceKind.dataSource = self
+            self.violenceKind.delegate = self
+            self.violenceKindChosen = self.violences[(self.violences.count - 1)]
+        })
+        
         
         self.violenceDescription.delegate = self
         self.violenceDescription.text = "Digite a descrição da agressão"
@@ -193,9 +194,9 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
         var counter: Int = 0
         
-        for violenceKind in self.violenceKindArray {
+        for violenceKind in self.violences {
             
-            if violenceKind == report.violenceKind{
+            if violenceKind.type == report.violenceKind{
                 return counter
             }
             counter += 1
@@ -221,8 +222,8 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         let userId = UserInteractor.getCurrentUserUid()
         let title = self.firstReportScreenDelegate?.getViolenceTitle().text
         let description = self.violenceDescription.text
-        let violenceKind = self.violenceKindChosen
-        let personGender = self.personIdentificationChosen
+        let violenceKind = self.violenceKindChosen.type
+        let personGender = self.personIdentificationChosen.type
         let violenceAproximatedTime = self.firstReportScreenDelegate?.getViolenceAproximatedTime().date.timeIntervalSince1970
         
         let latitude = self.firstReportScreenDelegate?.getLatitude()
@@ -255,7 +256,6 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         saveMessage.addAction(UIAlertAction(title: "OK",
                                             style: UIAlertActionStyle.default,
                                             handler: {(action) in
-                       self.performSegue(withIdentifier: "backToMap", sender: Any.self)
         }))
         
         self.present(saveMessage, animated: true, completion: nil)
@@ -330,40 +330,40 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.accessibilityIdentifier == "violenceKind" {
             
-            return violenceKindArray.count
+            return violences.count
         
         }else {
             
-            return self.victimIdentificationArray.count
+            return self.minorities.count
         }
         
     }
     
     //MARK: Delegates
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if pickerView.accessibilityIdentifier == "violenceKind" {
-            
-            return violenceKindArray[row]
-            
-        }else {
-            
-            return victimIdentificationArray[row]
-            
-        }
-        
-        
-    }
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        
+//        if pickerView.accessibilityIdentifier == "violenceKind" {
+//            
+//            return violenceKindArray[row]
+//            
+//        }else {
+//            
+//            return minorities[row].type
+//            
+//        }
+//        
+//        
+//    }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         if pickerView.accessibilityIdentifier == "violenceKind" {
             
-           self.violenceKindChosen = violenceKindArray[row]
+           self.violenceKindChosen = violences[row]
             
         }else {
             
-            self.personIdentificationChosen = victimIdentificationArray[row]
+            self.personIdentificationChosen = minorities[row]
             
         }
         
@@ -375,10 +375,10 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         var attributedString: NSAttributedString!
         
         if pickerView.accessibilityIdentifier == "violenceKind" {
-                attributedString = NSAttributedString(string: violenceKindArray[row],
+                attributedString = NSAttributedString(string: violences[row].type,
                                                       attributes: [NSForegroundColorAttributeName : UIColor.white])
         } else {
-                attributedString = NSAttributedString(string: victimIdentificationArray[row],
+                attributedString = NSAttributedString(string: minorities[row].type,
                                                       attributes: [NSForegroundColorAttributeName : UIColor.white])
         }
             
