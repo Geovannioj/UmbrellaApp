@@ -19,6 +19,7 @@ protocol ReportDelegate {
     func closeReport()
     func getChildViewControllers() -> [UIViewController]
     func getMapViewController() -> UIViewController
+    func getGestures() -> [UIGestureRecognizer]
 }
 
 class RegisterReportViewController: UIViewController, UISearchBarDelegate {
@@ -78,6 +79,43 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if searchBar.isFirstResponder == false {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                let keyboardHeight = keyboardSize.height
+                
+                UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                    self.delegate?.getFirstPopup().center = CGPoint(x: (self.delegate?.getFirstPopup().center.x)!, y: (self.delegate?.getMapViewController().view.center.y)! - keyboardHeight)
+                }, completion: nil)
+            }
+            nexttButton.isEnabled = false
+            pageControl.isEnabled = false
+            for gesture in (delegate?.getGestures())! {
+                gesture.isEnabled = false
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+            self.delegate?.getFirstPopup().center = CGPoint(x: (self.delegate?.getFirstPopup().center.x)!, y: (self.delegate?.getMapViewController().view.center.y)!)
+        }, completion: nil)
+        nexttButton.isEnabled = true
+        pageControl.isEnabled = true
+        for gesture in (delegate?.getGestures())! {
+            gesture.isEnabled = true
+        }
+    }
     
     func searchBarConfig(){
         searchBar.delegate = self
@@ -158,6 +196,7 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
     
         
 }
+
 
 extension RegisterReportViewController: FirstReportScreenDelegate {
     func getViolenceTitle() -> UITextField {

@@ -13,7 +13,7 @@ import MapboxGeocoder
 import GoogleMobileAds
 import Firebase
 
-class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, UIGestureRecognizerDelegate {
+class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
     @IBOutlet weak var msgsButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var perfilButton: UIButton!
@@ -56,6 +56,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
     var perfilCenter:CGPoint = CGPoint()
     var reportCenter:CGPoint = CGPoint()
     
+    var gestures: [UIGestureRecognizer] = []
     let firstPopup = PopUpPresenter()
     let secondPopup = PopUpPresenter()
     let reportPopup = PopUpPresenter()
@@ -144,64 +145,6 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
         self.blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.addSubview(blurEffectView)
         self.view.subviews.last?.isHidden = true
-    }
-    
-    func changeBannerVisibility() {
-        if bannerView.isHidden == true {
-            self.bannerView.isHidden = false
-        }
-        else {
-            self.bannerView.isHidden = true
-        }
-    }
-    
-    func changeBlurViewVisibility() {
-        if blurEffectView.isHidden == false {
-            blurEffectView.isHidden = true
-        }
-        else {
-            blurEffectView.isHidden = false
-        }
-        
-    }
-    
-    func getFirstPopup() -> UIView {
-        return self.firstPopup.popUpView
-    }
-    
-    func getSecondPopup() -> UIView {
-        return self.secondPopup.popUpView
-    }
-    
-    func closeReport() {
-        changeBannerVisibility()
-        changeBlurViewVisibility()
-        
-        if firstPopup.isHidden == false {
-            firstPopup.isHidden = true
-            secondPopup.isHidden = true
-            for sub in firstPopup.popUpView.subviews {
-                sub.removeFromSuperview()
-            }
-            for sub in secondPopup.popUpView.subviews {
-                sub.removeFromSuperview()
-            }
-        }
-        else if reportPopup.isHidden == false {
-            reportPopup.isHidden = true
-            for sub in reportPopup.popUpView.subviews {
-                sub.removeFromSuperview()
-            }
-        }
-        
-    }
-    
-    func getChildViewControllers() -> [UIViewController] {
-        return self.childViewControllers
-    }
-    
-    func getMapViewController() -> UIViewController {
-        return self
     }
     
     @IBAction func expandAction(_ sender: UIButton) {
@@ -537,12 +480,13 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
         firstPopup.popUpView.addGestureRecognizer(firstGesture)
         firstGesture.delegate = self
         firstPopup.popUpView.isUserInteractionEnabled = true
+        gestures.append(firstGesture)
         
         let secondGesture = UIPanGestureRecognizer(target: self, action: #selector(secondPopupWasDragged(gestureRecognizer:)))
         secondPopup.popUpView.addGestureRecognizer(secondGesture)
         secondPopup.popUpView.isUserInteractionEnabled = true
         secondGesture.delegate = self
-
+        gestures.append(secondGesture)
     }
     
     func firstPopupWasDragged(gestureRecognizer: UIPanGestureRecognizer) {
@@ -810,4 +754,68 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
     }
     
 
+}
+
+extension MapViewController: ReportDelegate {
+    func changeBannerVisibility() {
+        if bannerView.isHidden == true {
+            self.bannerView.isHidden = false
+        }
+        else {
+            self.bannerView.isHidden = true
+        }
+    }
+    
+    func changeBlurViewVisibility() {
+        if blurEffectView.isHidden == false {
+            blurEffectView.isHidden = true
+        }
+        else {
+            blurEffectView.isHidden = false
+        }
+        
+    }
+    
+    func getFirstPopup() -> UIView {
+        return self.firstPopup.popUpView
+    }
+    
+    func getSecondPopup() -> UIView {
+        return self.secondPopup.popUpView
+    }
+    
+    func closeReport() {
+        changeBannerVisibility()
+        changeBlurViewVisibility()
+        
+        if firstPopup.isHidden == false {
+            firstPopup.isHidden = true
+            secondPopup.isHidden = true
+            for sub in firstPopup.popUpView.subviews {
+                sub.removeFromSuperview()
+            }
+            for sub in secondPopup.popUpView.subviews {
+                sub.removeFromSuperview()
+            }
+        }
+        else if reportPopup.isHidden == false {
+            reportPopup.isHidden = true
+            for sub in reportPopup.popUpView.subviews {
+                sub.removeFromSuperview()
+            }
+        }
+        
+    }
+    
+    func getChildViewControllers() -> [UIViewController] {
+        return self.childViewControllers
+    }
+    
+    func getMapViewController() -> UIViewController {
+        return self
+    }
+    
+    func getGestures() -> [UIGestureRecognizer] {
+        return gestures
+    }
 }

@@ -30,6 +30,7 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     @IBOutlet weak var personIdentification: UIPickerView!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     let alert = AlertPresenter()
     
@@ -71,10 +72,10 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
             self.firstReportScreenDelegate = firstScreen
         }
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardNotification(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillChangeFrame,
-                                               object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(self.keyboardNotification(notification:)),
+//                                               name: NSNotification.Name.UIKeyboardWillChangeFrame,
+//                                               object: nil)
         
         dismissKayboardInTapGesture()
         
@@ -117,39 +118,76 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
     }
     
-    deinit {
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
     
-    @objc func keyboardNotification(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
             
-            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
-            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
-            
-//            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
-//                
-//                self.keyBoardConstraint?.constant = 0.0
-//                
-//            } else {
-//                
-//                self.keyBoardConstraint?.constant = endFrame?.size.height ?? 0.0
-//                let point = CGPoint(x: 0, y: 200) // 200 or any value you like.
-//                self.scrollViewMainVIew.contentOffset = point
-//
-//            }
-            
-            UIView.animate(withDuration: duration,
-                           delay: TimeInterval(0),
-                           options: animationCurve,
-                           animations: { self.view.layoutIfNeeded() },
-                           completion: nil)
-            
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                self.delegate?.getSecondPopup().center = CGPoint(x: (self.delegate?.getSecondPopup().center.x)!, y: (self.delegate?.getMapViewController().view.center.y)! - keyboardHeight)
+            }, completion: nil)
+            backButton.isEnabled = false
+            addBtn.isEnabled = false
+            pageControl.isEnabled = false
+            for gesture in (delegate?.getGestures())! {
+                gesture.isEnabled = false
+            }
         }
     }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+            self.delegate?.getSecondPopup().center = CGPoint(x: (self.delegate?.getSecondPopup().center.x)!, y: (self.delegate?.getMapViewController().view.center.y)!)
+        }, completion: nil)
+        backButton.isEnabled = true
+        addBtn.isEnabled = true
+        pageControl.isEnabled = true
+        for gesture in (delegate?.getGestures())! {
+            gesture.isEnabled = true
+        }
+    }
+    
+//    deinit {
+//        NotificationCenter.default.removeObserver(self)
+//    }
+    
+//    @objc func keyboardNotification(notification: NSNotification) {
+//        if let userInfo = notification.userInfo {
+//            
+//            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+//            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+//            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+//            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+//            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+//            
+////            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
+////                
+////                self.keyBoardConstraint?.constant = 0.0
+////                
+////            } else {
+////                
+////                self.keyBoardConstraint?.constant = endFrame?.size.height ?? 0.0
+////                let point = CGPoint(x: 0, y: 200) // 200 or any value you like.
+////                self.scrollViewMainVIew.contentOffset = point
+////
+////            }
+//            
+//            UIView.animate(withDuration: duration,
+//                           delay: TimeInterval(0),
+//                           options: animationCurve,
+//                           animations: { self.view.layoutIfNeeded() },
+//                           completion: nil)
+//            
+//        }
+//    }
     
     func getViolenceKind(report: Report) -> Int {
         

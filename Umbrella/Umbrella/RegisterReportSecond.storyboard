@@ -171,6 +171,7 @@
                         <outlet property="addBtn" destination="gdA-jm-ibb" id="9lm-cG-zyK"/>
                         <outlet property="backButton" destination="w2O-3x-QvE" id="UfD-OS-oQj"/>
                         <outlet property="descriptionLbl" destination="B08-JW-gGh" id="4nY-4k-3bu"/>
+                        <outlet property="pageControl" destination="ArS-ZB-m0E" id="VJV-u7-ftn"/>
                         <outlet property="personIdentification" destination="yvo-jV-fUF" id="WUM-fC-pSa"/>
                         <outlet property="personIdentificationLbl" destination="hc3-BC-BQb" id="Xde-fb-PZb"/>
                         <outlet property="violenceAgressionLbl" destination="nQu-io-J9v" id="AgK-ue-bAd"/>
