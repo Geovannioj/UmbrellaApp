@@ -91,6 +91,8 @@ class SeeReportViewController: UIViewController {
         //check if the user has already supported the report
         observeIfUserHasAlreadySupported()
         
+        checkReportComplaint()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -500,6 +502,7 @@ class SeeReportViewController: UIViewController {
                             print("user aqui")
                             let imageBtnBackground = UIImage(named: "heart") as UIImage?
                             self.supportBtn.setImage(imageBtnBackground, for: .normal)
+                           // self.supportLbl.text = String(describing: snapshot.childrenCount)
                             
                         }
                     } catch {
@@ -510,6 +513,26 @@ class SeeReportViewController: UIViewController {
                 }
                 
             })
+        })
+    }
+    
+    func checkReportComplaint() {
+        
+        self.refReportComplaint.observe(.childAdded, with: { (snapshot) in
+            
+            if snapshot.childrenCount > 10 {
+                //inativate Report
+                
+                self.report?.isActive = 1 // inactivate report
+                
+                //updateReportValue
+                self.refReport.child((self.report?.id)!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
+                
+                //add report to the innactivated reports
+                self.refInativeReport.updateChildValues([(self.report?.id)!: (self.report?.id)!])
+                
+                
+            }
         })
     }
 
@@ -567,6 +590,53 @@ class SeeReportViewController: UIViewController {
         
     }
     
+    @IBAction func reportAReport(_ sender: Any) {
+        
+        let userId = UserInteractor.getCurrentUserUid()
+        
+        if userId != nil {
+            
+            let reportAlert = UIAlertController(title: "Denunciar Relato", message: "Voce deseja realmente denunciar este relato?", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Sim", style: .default) { (obj) in
+    
+                
+                self.refReportComplaint.child((self.report?.id)!).updateChildValues([userId!:userId])
+                self.checkReportComplaint()
+            }
+            
+            reportAlert.addAction(okAction)
+            
+            let cancelAction = UIAlertAction(title: "cancel", style: .default, handler: nil)
+            
+            reportAlert.addAction(cancelAction)
+            
+            self.present(reportAlert, animated: true)
+
+        } else {
+            
+            let logginAlert = UIAlertController(title: "E necessario loging",
+                                                message: " Para poder dar supporte para esse reporte e necessario fazer login",
+                                                preferredStyle: .alert)
+            
+            let loginAction = UIAlertAction(title: "login", style: .default, handler: { (action) in
+                
+                self.performSegue(withIdentifier: "goToLogin", sender: Any.self)
+                
+                
+                
+            })
+            
+            logginAlert.addAction(loginAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            
+            logginAlert.addAction(cancelAction)
+            self.present(logginAlert, animated: true, completion: nil)
+
+            
+        }
+           }
 
 }
 
