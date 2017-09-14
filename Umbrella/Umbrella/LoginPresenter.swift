@@ -63,10 +63,20 @@ extension LoginPresenter {
             if err != nil {
                 print("handle facebook login: \(err!)")
                 return
-            } else if !result!.isCancelled && result!.grantedPermissions.contains("email"){
+            }
+            
+            if result!.isCancelled {
+                print("login Cancelado")
+                return
+            }
+            
+            if result!.grantedPermissions.contains("email"){
                 
                 self.view?.indicatorView.startAnimating()
                 self.connectFacebookUser()
+            } else {
+                
+                print("nao teve permissão para o email")
             }
         }
     }
