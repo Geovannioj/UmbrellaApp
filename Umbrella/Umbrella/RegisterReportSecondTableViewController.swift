@@ -236,13 +236,13 @@ class RegisterReportSecondTableViewController: UITableViewController, UIPickerVi
             let report =  [
                 "id" : reportToEdit.id,
                 "userId" : reportToEdit.userId,
-                "title" : self.violenceTitle,
+                "title" : self.violenceTitle!,
                 "description" : self.violenceDescription.text,
                 "violenceKind" : self.violenceKindChosen,
-                "violenceAproximatedTime" : self.aproximatedTime,
+                "violenceAproximatedTime" : self.aproximatedTime!,
                 "personGender": self.personIdentificationChosen,
-                "latitude" : self.latitude,
-                "longitude" : self.longitude
+                "latitude" : self.latitude!,
+                "longitude" : self.longitude!
                 ] as [String : Any]
             
             self.refReports.child(reportToEdit.id).setValue(report)

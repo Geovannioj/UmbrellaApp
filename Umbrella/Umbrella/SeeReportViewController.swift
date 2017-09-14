@@ -401,17 +401,13 @@ class SeeReportViewController: UIViewController {
                                 throw UserError.noUser
                             }
                     
-                        if  (user as! String) == nil {
-                            
-                        
-
-                        } else if (user as! String)  == userId {
+                        if (user as! String)  == userId {
                         
                             //REMOVE A SUPPORT
                            
-                            print(self.report?.supports)
+                            
                             //remove user to the user-support table
-                            snapshot.value
+                            
                             databaseRef.child(userId!).removeValue()
                             self.refMySupport.child(userId!).child(reportId!).removeValue()
                             self.refReportSupport.child(reportId!).child(userId!).removeValue()
@@ -440,11 +436,10 @@ class SeeReportViewController: UIViewController {
                         
                         // put the user into the user-support table
                         databaseRef.updateChildValues([userId!: userId!])
-                        self.refMySupport.child(userId!).updateChildValues([reportId!: reportId])
+                        self.refMySupport.child(userId!).updateChildValues([reportId!: reportId!])
                         self.refReportSupport.child(reportId!).updateChildValues([userId!: userId!])
                         //incrise the amount of supports
                         self.report?.supports = Int(snapshot.childrenCount)
-                        print(self.report?.supports)
                         
                         self.refReport.child(reportId!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
                         let imageBtnBackground = UIImage(named: "heart") as UIImage?
@@ -509,9 +504,6 @@ class SeeReportViewController: UIViewController {
         //user id
         let userId = UserInteractor.getCurrentUserUid()
         
-        //reference to the database table
-        let databaseRef = self.refUserSupport.child(reportId!)
-        
         if userId != nil {
             
             self.refUserSupport.observe(.childAdded, with: { (snapshot) in
@@ -528,11 +520,7 @@ class SeeReportViewController: UIViewController {
                                 throw UserError.noUser
                             }
                             
-                            if  (user as! String) == nil {
-                                
-                                
-                                
-                            } else if (user as! String)  == userId {
+                            if (user as! String)  == userId {
                                 
                                 
                                 let imageBtnBackground = UIImage(named: "heart") as UIImage?
@@ -618,7 +606,7 @@ class SeeReportViewController: UIViewController {
             }))
             alert.addAction(UIAlertAction(title: "Reportar", style: .destructive, handler: { (alertAction) in
                 
-                complaintAReport()
+                self.complaintAReport()
                 
             }))
         }
@@ -630,6 +618,9 @@ class SeeReportViewController: UIViewController {
         
     }
     
+    /**
+        function to complaint about a report
+     */
     func complaintAReport() {
         let userId = UserInteractor.getCurrentUserUid()
         
@@ -640,7 +631,7 @@ class SeeReportViewController: UIViewController {
             let okAction = UIAlertAction(title: "Sim", style: .default) { (obj) in
                 
                 
-                self.refReportComplaint.child((self.report?.id)!).updateChildValues([userId!:userId])
+                self.refReportComplaint.child((self.report?.id)!).updateChildValues([userId!:userId!])
                 self.checkReportComplaint()
             }
             

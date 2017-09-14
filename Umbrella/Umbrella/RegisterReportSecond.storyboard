@@ -73,7 +73,7 @@
                                     <action selector="registerAction:" destination="yfv-7J-pWA" eventType="touchUpInside" id="og9-Uh-Hnz"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="s9Q-za-xgq">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9Q-za-xgq">
                                 <rect key="frame" x="31" y="365" width="313" height="163"/>
                                 <color key="backgroundColor" red="0.97043543779999997" green="0.97043543779999997" blue="0.97043543779999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
