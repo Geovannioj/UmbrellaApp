@@ -166,7 +166,7 @@ class UserInteractor {
      Returns an array of User if there is on the server.
      - parameter completion: returns an array of User if there is users saved
      */
-    static func getUsers(completion: @escaping ([UserEntity]) -> ()) {
+    static func getUsers(completion: @escaping ([UserEntity]?) -> ()) {
         let userRef = Database.database().reference().child("user")
         var users = [UserEntity]()
         
@@ -188,6 +188,45 @@ class UserInteractor {
                 user.urlPhoto = dict["urlPhoto"] as? String
                 user.idMinority = dict["idMinority"] as? String
                 users.append(user)
+            }
+            
+            completion(users)
+        })
+    }
+    
+    /**
+     Returns an array of User if there is on the server.
+     - parameter completion: returns an array of User if there is users saved
+     */
+    static func getUsers(withIds ids: [String], completion: @escaping ([UserEntity]?) -> ()) {
+        
+        let userRef = Database.database().reference().child("user")
+        
+        userRef.observe(.value, with: { (snapshot) in
+            var users: [UserEntity] = []
+            
+            if snapshot.value is NSNull {
+                print("Users not found")
+                return
+            }
+            
+            for child in snapshot.children {
+                let user = UserEntity()
+                let snap = child as! DataSnapshot
+                
+                for id in ids {
+                    if snap.key == id {
+                        let dict = snap.value as! [String : Any]
+                        
+                        user.id = snapshot.key
+                        user.email = dict["email"] as! String
+                        user.nickname = dict["nickname"] as! String
+                        user.birthDate = dict["birthDate"] as? Date
+                        user.urlPhoto = dict["urlPhoto"] as? String
+                        user.idMinority = dict["idMinority"] as? String
+                        users.append(user)
+                    }
+                }
             }
             
             completion(users)

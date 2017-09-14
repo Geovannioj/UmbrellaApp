@@ -37,6 +37,8 @@
 		9E7BDC751F68CA9900603ACC /* SF-UI-Text-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7BDC691F68CA7300603ACC /* SF-UI-Text-RegularItalic.otf */; };
 		9E7BDC761F68CA9C00603ACC /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7BDC6A1F68CA7300603ACC /* SF-UI-Text-Semibold.otf */; };
 		9E7BDC771F68CA9F00603ACC /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7BDC6B1F68CA7300603ACC /* SF-UI-Text-SemiboldItalic.otf */; };
+		9E7BDCC01F69B1F600603ACC /* SupportersButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E7BDCBF1F69B1F600603ACC /* SupportersButton.xib */; };
+		9E7BDCC31F69BDF600603ACC /* SupportersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7BDCC21F69BDF600603ACC /* SupportersButton.swift */; };
 		9EAE03081F56A685006EE491 /* PopoverBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE03071F56A685006EE491 /* PopoverBackgroundView.swift */; };
 		9EAE030A1F5A4EFA006EE491 /* ReportPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE03091F5A4EFA006EE491 /* ReportPageViewController.swift */; };
 		9EB6AD371F4B96B30099331A /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -177,6 +179,8 @@
 		9E7BDC691F68CA7300603ACC /* SF-UI-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-RegularItalic.otf"; sourceTree = "<group>"; };
 		9E7BDC6A1F68CA7300603ACC /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
 		9E7BDC6B1F68CA7300603ACC /* SF-UI-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		9E7BDCBF1F69B1F600603ACC /* SupportersButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportersButton.xib; sourceTree = "<group>"; };
+		9E7BDCC21F69BDF600603ACC /* SupportersButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportersButton.swift; sourceTree = "<group>"; };
 		9EAE03071F56A685006EE491 /* PopoverBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverBackgroundView.swift; sourceTree = "<group>"; };
 		9EAE03091F5A4EFA006EE491 /* ReportPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportPageViewController.swift; sourceTree = "<group>"; };
 		9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedNavBarView.swift; sourceTree = "<group>"; };
@@ -346,6 +350,15 @@
 				9E7BDC6B1F68CA7300603ACC /* SF-UI-Text-SemiboldItalic.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9E7BDCC11F69BD1A00603ACC /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				9E7BDCBF1F69B1F600603ACC /* SupportersButton.xib */,
+				9E7BDCC21F69BDF600603ACC /* SupportersButton.swift */,
+			);
+			name = Xib;
 			sourceTree = "<group>";
 		};
 		9EB6AD041F47787D0099331A /* PopUp */ = {
@@ -606,6 +619,7 @@
 		D4B1E4141F2A78E200308ABB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9E7BDCC11F69BD1A00603ACC /* Xib */,
 				A1A46E3D1F436E490045E13A /* ProfileManager */,
 				A1A46E691F46302A0045E13A /* Profile */,
 				D4B1E4231F2A93E900308ABB /* Map */,
@@ -877,6 +891,7 @@
 				9E7BDC761F68CA9C00603ACC /* SF-UI-Text-Semibold.otf in Resources */,
 				9E7BDC491F68889D00603ACC /* SFCompactDisplay-Black.otf in Resources */,
 				9E7BDC6C1F68CA7B00603ACC /* SF-UI-Text-Bold.otf in Resources */,
+				9E7BDCC01F69B1F600603ACC /* SupportersButton.xib in Resources */,
 				9E7BDC4C1F68889D00603ACC /* SFCompactDisplay-Light.otf in Resources */,
 				9E7BDC6E1F68CA8300603ACC /* SF-UI-Text-Heavy.otf in Resources */,
 				9E7BDC6D1F68CA8000603ACC /* SF-UI-Text-BoldItalic.otf in Resources */,
@@ -993,6 +1008,7 @@
 				A1B9DA171F589AE4008D041A /* ShowReportsViewController.swift in Sources */,
 				A1B9DA181F589AE4008D041A /* TabBarViewController.swift in Sources */,
 				A1B9DA191F589AE4008D041A /* PasswordRecoverViewController.swift in Sources */,
+				9E7BDCC31F69BDF600603ACC /* SupportersButton.swift in Sources */,
 				A1B9DA1A1F589AE4008D041A /* PasswordRecoverView.swift in Sources */,
 				A1B9DA1B1F589AE4008D041A /* AppDelegate.swift in Sources */,
 				D4F8F0901F4A7FC100EA685A /* CommentView.swift in Sources */,

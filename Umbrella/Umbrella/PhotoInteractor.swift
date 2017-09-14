@@ -67,6 +67,30 @@ class PhotoInteractor {
     }
 
     /**
+     Function responsable for returning a photo giving an especific url.
+     - parameter url: desired photo's url
+     - parameter handler: deals with errors and completes photo operation actions
+     - parameter completion: returns the desired photo if it founds
+     */
+    static func getUserPhoto(withUrl url: String, handler: InteractorCompleteProtocol?, completion: @escaping (PhotoEntity?) -> ()) {
+        let ref = Storage.storage().reference(forURL: url)
+        ref.getData(maxSize: 1 * 1024 * 1024 * 3) { (data, error) -> Void in
+            if (error != nil) {
+                if (handler != nil) {
+                    handler?.completePhotoOperation!(error: error)
+                }
+            } else {
+                let photo = PhotoEntity()
+                photo.url = url
+                photo.image = data
+                
+                completion(photo)
+            }
+        }
+        completion(nil)
+    }
+    
+    /**
      Function responsable for switching the user's photo in the server and local database with a new one.
      - parameter image: an UIImage that will be saved on the databases
      - parameter handler: deals with errors and completes photo operation actions

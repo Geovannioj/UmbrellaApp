@@ -59,6 +59,7 @@ class SeeReportViewController: UIViewController {
     var refUser: DatabaseReference!
     var refUserSupport: DatabaseReference!
     var refMySupport: DatabaseReference!
+    var refReportSupport: DatabaseReference!
     
     var delegate: ReportDelegate?
     
@@ -73,8 +74,11 @@ class SeeReportViewController: UIViewController {
         self.refUser = Database.database().reference().child("user")
         self.refUserSupport = Database.database().reference().child("user-support")
         self.refMySupport = Database.database().reference().child("my-support")
+        self.refReportSupport = Database.database().reference().child("report-support")
+        
         super.viewDidLoad()
         
+        setSupportersButton()
         
         //recognizer para sumir o teclado quando o usuário clicar na tela
         dismissKayboardInTapGesture()
@@ -128,6 +132,19 @@ class SeeReportViewController: UIViewController {
         return true
     }
     
+    func setSupportersButton() {
+        if let xibView = Bundle.main.loadNibNamed("SupportersButton", owner: self, options: nil)?.first as? SupportersButton {
+            
+            supportersBtn.addSubview(xibView)
+            xibView.translatesAutoresizingMaskIntoConstraints = false
+            xibView.topAnchor.constraint(equalTo: supportersBtn.topAnchor).isActive = true
+            xibView.leftAnchor.constraint(equalTo: supportersBtn.leftAnchor).isActive = true
+            xibView.widthAnchor.constraint(equalTo: supportersBtn.widthAnchor).isActive = true
+            xibView.heightAnchor.constraint(equalTo: supportersBtn.heightAnchor).isActive = true
+        }
+       
+    }
+    
     func initLabels() {
     
         let ref = self.refUser.child((self.report?.userId)!)
@@ -144,6 +161,7 @@ class SeeReportViewController: UIViewController {
                 }
             }
         })
+        self.userPhoto.layer.cornerRadius = userPhoto.bounds.size.width / 2
         
         self.violenceTitleLbl.text = self.report?.title
         
@@ -167,6 +185,36 @@ class SeeReportViewController: UIViewController {
         self.initiateLocationOnMap(map: self.violenceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
         self.formatDate()
         
+        setObserveToReportSupports(completion: { (usersId) in
+            UserInteractor.getUsers(withIds: usersId!, completion: { (users) in
+                self.report?.supporters = users!
+                if let sub = self.supportersBtn.subviews.first as? SupportersButton {
+                    sub.firstPhoto.isHidden = true
+                    sub.secondPhoto.isHidden = true
+                    sub.thirdPhoto.isHidden = true
+                    let photos = [sub.firstPhoto, sub.secondPhoto, sub.thirdPhoto]
+                    
+                    if let supporters = self.report?.supporters {
+                        let count = supporters.count < 3 ? supporters.count : 3
+                        
+                        for aux in 0..<count {
+                            
+                            if let urlPhoto = supporters[aux].urlPhoto {
+                                PhotoInteractor.getUserPhoto(withUrl: urlPhoto, handler: nil, completion: { (photo) in
+                                    if photo != nil {
+                                        photos[aux]?.isHidden = false
+                                        photos[aux]?.image = UIImage(data: (photo?.image)!)
+                                    }
+                                })
+                            }
+                            sub.supportCount.text = count > 3 ? "+" + String(supporters.count - 3) : ""
+                            
+                        }
+                    }
+                }
+            })
+        })
+                // Atenção: Ignorar o primeiro support
 //        if (self.report?.supports)! > 0 {
 //            
 //            self.supportLbl.text = String(describing: (self.report?.supports)!)
@@ -386,6 +434,7 @@ class SeeReportViewController: UIViewController {
                             snapshot.value
                             databaseRef.child(userId!).removeValue()
                             self.refMySupport.child(userId!).child(reportId!).removeValue()
+                            self.refReportSupport.child(reportId!).child(userId!).removeValue()
                             self.report?.supports = Int(snapshot.childrenCount) - 2
 //                            self.supportLbl.text = String(describing:(self.report?.supports)!)
                             
@@ -410,10 +459,11 @@ class SeeReportViewController: UIViewController {
                         print( "not here")
                         
                         //ADD A SUPPORT!
-                        count = count + 1
+                        
                         // put the user into the user-support table
                         databaseRef.updateChildValues([userId!: userId!])
                         self.refMySupport.child(userId!).updateChildValues([reportId!: reportId])
+                        self.refReportSupport.child(reportId!).updateChildValues([userId!: userId!])
                         //incrise the amount of supports
                         self.report?.supports = Int(snapshot.childrenCount)
                         print(self.report?.supports)
@@ -428,6 +478,23 @@ class SeeReportViewController: UIViewController {
                 }
 
             })
+        })
+    }
+    
+    func setObserveToReportSupports(completion: @escaping ([String]?) -> () = {_ in }) {
+        var users: [String] = []
+        
+        self.refReportSupport.child((report?.id)!).observe(.value, with: { (snapshot) in
+            if snapshot.value is NSNull {
+                return
+            }
+            
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                users.append(snap.key)
+            }
+            completion(users)
+            
         })
     }
     
@@ -513,6 +580,8 @@ class SeeReportViewController: UIViewController {
 //        if UserInteractor.getCurrentUserUid() != nil {
 //
 //            setObserverToFireBaseUserSupportTable()
+//            setObserveToReportSupports()
+//            
 //        
 //        } else {
 //            

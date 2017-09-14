@@ -20,6 +20,7 @@ class Report {
     var longitude : Double
     var personGender : String
     var supports: Int
+    var supporters: [UserEntity] = []
     
     init(id : String,
          userId: String,

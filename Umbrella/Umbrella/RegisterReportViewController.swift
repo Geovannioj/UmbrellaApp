@@ -18,7 +18,7 @@ protocol ReportDelegate {
     func getSecondPopup() -> UIView
     func closeReport()
     func getChildViewControllers() -> [UIViewController]
-    func getMapView() -> UIView
+    func getMapViewController() -> UIViewController
 }
 
 class RegisterReportViewController: UIViewController, UISearchBarDelegate {
@@ -109,8 +109,8 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
             }
             
             UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
-                self.delegate?.getFirstPopup().center = CGPoint(x: (self.delegate?.getMapView().center.x)! - (self.delegate?.getMapView().frame.size.width)!, y: (self.delegate?.getFirstPopup().center.y)!)
-                self.delegate?.getSecondPopup().center = CGPoint(x: (self.delegate?.getMapView().center.x)!, y: (self.delegate?.getSecondPopup().center.y)!)
+                self.delegate?.getFirstPopup().center = CGPoint(x: (self.delegate?.getMapViewController().view.center.x)! - (self.delegate?.getMapViewController().view.frame.size.width)!, y: (self.delegate?.getFirstPopup().center.y)!)
+                self.delegate?.getSecondPopup().center = CGPoint(x: (self.delegate?.getMapViewController().view.center.x)!, y: (self.delegate?.getSecondPopup().center.y)!)
             } , completion: nil)
             
             

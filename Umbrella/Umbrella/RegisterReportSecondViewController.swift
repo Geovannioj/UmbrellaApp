@@ -22,6 +22,8 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
+    let alert = AlertPresenter()
+    
     //options to the picker view
     let violenceKindArray = ["Verbal","Física","Moral","Psicológica","Sexual"]
     
@@ -229,18 +231,8 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
         
                 self.refReports.child(reportToEdit.id).setValue(report)
         
-        let updateMessage = UIAlertController(title: "Report Updated",
-                                              message: "This report has been successfully updated",
-                                              preferredStyle: .alert)
+        alert.showAlert(viewController: (delegate?.getMapViewController())!, title: "Report Updated", message: "This report has been successfully updated", confirmButton: nil, cancelButton: "OK")
         
-        updateMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
-                                              handler: { (action) in
-        
-                    self.performSegue(withIdentifier: "backToMap", sender: Any.self)
-        
-        }))
-        
-        self.present(updateMessage, animated: true, completion: nil)
     }
     
     @IBAction func registerAction(_ sender: Any) {
@@ -260,8 +252,8 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     @IBAction func backButtonAction(_ sender: Any) {
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
-            self.delegate?.getFirstPopup().center = CGPoint(x: (self.delegate?.getMapView().center.x)!, y: (self.delegate?.getFirstPopup().center.y)!)
-            self.delegate?.getSecondPopup().center = CGPoint(x: (self.delegate?.getMapView().center.x)! + (self.delegate?.getMapView().frame.size.width)!, y: (self.delegate?.getSecondPopup().center.y)!)
+            self.delegate?.getFirstPopup().center = CGPoint(x: (self.delegate?.getMapViewController().view.center.x)!, y: (self.delegate?.getFirstPopup().center.y)!)
+            self.delegate?.getSecondPopup().center = CGPoint(x: (self.delegate?.getMapViewController().view.center.x)! + (self.delegate?.getMapViewController().view.frame.size.width)!, y: (self.delegate?.getSecondPopup().center.y)!)
         }, completion: nil)
     }
     

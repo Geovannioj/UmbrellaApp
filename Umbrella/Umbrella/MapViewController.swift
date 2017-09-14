@@ -200,8 +200,8 @@ class MapViewController: UIViewController, UISearchBarDelegate, ReportDelegate, 
         return self.childViewControllers
     }
     
-    func getMapView() -> UIView {
-        return self.view
+    func getMapViewController() -> UIViewController {
+        return self
     }
     
     @IBAction func expandAction(_ sender: UIButton) {
