@@ -263,16 +263,19 @@ class RegisterReportSecondViewController: UIViewController, UIPickerViewDataSour
     
     func editReport(reportToEdit: Report){
         
+        let title = self.firstReportScreenDelegate?.getViolenceTitle().text
+        let violenceTime = self.firstReportScreenDelegate?.getViolenceAproximatedTime().date
+        
                 let report =  [
                     "id" : reportToEdit.id,
                     "userId" : reportToEdit.userId,
-                    "title" : self.firstReportScreenDelegate?.getViolenceTitle(),
+                    "title" : title!,
                     "description" : self.violenceDescription.text,
                     "violenceKind" : self.violenceKindChosen,
-                    "violenceAproximatedTime" : self.firstReportScreenDelegate?.getViolenceAproximatedTime(),
+                    "violenceAproximatedTime" : violenceTime as Any,
                     "personGender": self.personIdentificationChosen,
-                    "latitude" : self.firstReportScreenDelegate?.getLatitude(),
-                    "longitude" : self.firstReportScreenDelegate?.getLongitude()
+                    "latitude" : self.firstReportScreenDelegate?.getLatitude() as Any,
+                    "longitude" : self.firstReportScreenDelegate?.getLongitude() as Any
                 ] as [String : Any]
         
                 self.refReports.child(reportToEdit.id).setValue(report)
