@@ -673,21 +673,23 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
         self.refReports.observe(.childAdded, with: { (snapShot) in
             let snapShotValue = snapShot.value as! Dictionary<String,Any>
             
-
-            let newReport = Report(id: snapShotValue["id"]! as! String,
-                                   userId: snapShotValue["userId"]! as! String,
-                                   title: snapShotValue["title"]! as! String,
-                                   description: snapShotValue["description"]! as! String,
-                                   violenceKind: snapShotValue["violenceKind"]! as! String,
-                                   violenceAproximatedTime: snapShotValue["violenceAproximatedTime"] as! Double,
-                                   latitude: snapShotValue["latitude"] as! Double,
-                                   longitude: snapShotValue["longitude"] as! Double,
-                                   personGender: snapShotValue["personGender"]! as! String,
-                                   supports: snapShotValue["supports"]! as! Int,
-                                   isActive: snapShotValue["isActive"]! as! Int)
-            
-            self.reports.append(newReport)
-            self.filter(new:newReport)
+            if let isActive = snapShotValue["isActive"] as? Int {
+                let newReport = Report(id: snapShotValue["id"]! as! String,
+                                       userId: snapShotValue["userId"]! as! String,
+                                       title: snapShotValue["title"]! as! String,
+                                       description: snapShotValue["description"]! as! String,
+                                       violenceKind: snapShotValue["violenceKind"]! as! String,
+                                       violenceAproximatedTime: snapShotValue["violenceAproximatedTime"] as! Double,
+                                       latitude: snapShotValue["latitude"] as! Double,
+                                       longitude: snapShotValue["longitude"] as! Double,
+                                       personGender: snapShotValue["personGender"]! as! String,
+                                       supports: snapShotValue["supports"]! as! Int,
+                                       isActive: snapShotValue["isActive"]! as! Int)
+                
+                self.reports.append(newReport)
+                self.filter(new:newReport)
+            }
+           
 
         })
     }

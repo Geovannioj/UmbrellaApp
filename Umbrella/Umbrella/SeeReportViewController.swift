@@ -45,6 +45,8 @@ class SeeReportViewController: UIViewController {
     var refUserSupport: DatabaseReference!
     var refMySupport: DatabaseReference!
     var refReportSupport: DatabaseReference!
+    var refReportComplaint: DatabaseReference!
+    var refInativeReport: DatabaseReference!
     
     var delegate: ReportDelegate?
     
@@ -62,6 +64,9 @@ class SeeReportViewController: UIViewController {
         self.refMySupport = Database.database().reference().child("my-support")
         self.refReportSupport = Database.database().reference().child("report-support")
         
+        self.refReportComplaint = Database.database().reference().child("report-complaint")
+        self.refInativeReport = Database.database().reference().child("inative-report")
+
         super.viewDidLoad()
         
         setSupportersButton()

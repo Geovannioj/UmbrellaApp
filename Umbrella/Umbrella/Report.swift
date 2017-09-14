@@ -21,6 +21,7 @@ class Report {
     var personGender : String
     var supports: Int
     var supporters: [UserEntity] = []
+    var isActive: Int // 0 active 1 innactive
     
     init(id : String,
          userId: String,
