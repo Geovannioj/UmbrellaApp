@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import Mapbox
-
+import MapboxGeocoder
 class SeeReportViewController: UIViewController {
     
     //outlets
@@ -66,6 +66,7 @@ class SeeReportViewController: UIViewController {
     //comments to the report
     var comments:[Comment] = []
     
+    let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiaGVsZW5hc2ltb2VzIiwiYSI6ImNqNWp4bDBicDJpOTczMm9kaDJqemprbDcifQ.vdd9cfGAwcSXh1I7pq1mvA")
     
     override func viewDidLoad() {
         //database reference
@@ -79,6 +80,9 @@ class SeeReportViewController: UIViewController {
         super.viewDidLoad()
         
         setSupportersButton()
+        
+        
+            
         
         //recognizer para sumir o teclado quando o usuário clicar na tela
         dismissKayboardInTapGesture()
@@ -179,7 +183,10 @@ class SeeReportViewController: UIViewController {
             }
         }
     
-        
+//        self.getPlace(latitude:(report?.latitude)!,longitude:(report?.longitude)!,onComplete: @escaping ([String]) -> ())
+        self.getPlace(latitude: (report?.latitude)!, longitude: (report?.longitude)!) { (texts) in
+            self.userPlace.text = "\(texts.first ?? "") - \(texts[1])"
+        }
         self.violenceDescription.isEditable = false
         
         self.initiateLocationOnMap(map: self.violenceLocation, latitude: (report?.latitude)!, longitude: (report?.longitude)!)
@@ -480,6 +487,34 @@ class SeeReportViewController: UIViewController {
             })
         })
     }
+    /**
+     Funcao para pegar as regiões de uma determinada coordenada
+     
+     - parameter latitude: Latitude em Double.
+     - parameter longitude: Longitude em Double.
+     - parameter onComplete: Bloco a ser executado ao fim da thread
+     */
+    func getPlace(latitude:Double,longitude:Double,onComplete: @escaping ([String]) -> ()){
+        //
+        let options = ReverseGeocodeOptions(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+        var returnStringArray:[String] = []
+        _ = geocoder.geocode(options) { (placemarks, attribution, error) in
+            if error == nil{
+                guard let placemark = placemarks?.first else {
+                    return
+                }
+                
+                let auxString = placemark.administrativeRegion?.code?.characters.split(separator: Character.init("-")).map(String.init)
+                returnStringArray = [placemark.administrativeRegion?.name ?? "",auxString?[1] ?? "",auxString?[0] ?? ""]
+                
+                
+                
+                onComplete(returnStringArray)
+            }
+            
+        }
+        
+    }
     
     func setObserveToReportSupports(completion: @escaping ([String]?) -> () = {_ in }) {
         var users: [String] = []
@@ -547,7 +582,7 @@ class SeeReportViewController: UIViewController {
     enum UserError: Error {
         case noUser
     }
-    
+   
     @IBAction func supportReportAction(_ sender: UIButton) {
         if UserInteractor.getCurrentUserUid() != nil {
             
@@ -573,7 +608,30 @@ class SeeReportViewController: UIViewController {
             self.present(logginAlert, animated: true, completion: nil)
         }
     }
+     // MARK: - SupportAction
     
+    @IBAction func moreButtonAction(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Opções", message: nil, preferredStyle: .actionSheet)
+        alert.view.tintColor = UmbrellaColors.lightPurple.color
+        if UserInteractor.getCurrentUserUid() == self.report?.userId {
+            alert.addAction(UIAlertAction(title: "Editar", style: .default, handler: { (alertAction) in
+                
+            }))
+        }else{
+            alert.addAction(UIAlertAction(title: "Ligar Notificações", style: .default, handler: { (alertAction) in
+                
+            }))
+            alert.addAction(UIAlertAction(title: "Reportar", style: .destructive, handler: { (alertAction) in
+                
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { (alertAction) in
+            self.removeFromParentViewController()
+        }))
+        present(alert, animated: true, completion: nil)
+        
+    }
     
 //    @IBAction func supportReport(_ sender: Any) {
 //        
@@ -621,22 +679,23 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //setting cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath)
-        cell.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath) as!
+            CommentTableViewCell
+        cell.backgroundColor = .clear
+        //UmbrellaColors.blackPurple.color.withAlphaComponent(0.7)
         //comment text
-        let commentTextField = tableView.viewWithTag(2) as! UITextView
-        commentTextField.isEditable = false
-        commentTextField.text = self.comments[indexPath.row].content
-        commentTextField.textColor = UIColor.white
-        commentTextField.backgroundColor = UIColor(colorLiteralRed: 0.107, green: 0.003, blue: 0.148, alpha: 1)
+        let commentTextField = cell.commentContentView
+        commentTextField?.isEditable = false
+        commentTextField?.text = self.comments[indexPath.row].content
+        commentTextField?.textColor = UIColor.white
+        commentTextField?.backgroundColor = .clear
         
         //user photo to put into the comment cell
-        let userPhoto = tableView.viewWithTag(1) as! UIImageView
+        let userPhoto = cell.userImage
         
         //comment nickname
-        let userNickName = tableView.viewWithTag(8) as! UILabel
-        userNickName.textColor = UIColor.white
+        let userNickName = cell.userNameLabel
+        userNickName?.textColor = UIColor.white
         
         
         let ref = self.refUser.child(self.comments[indexPath.row].userId)
@@ -645,12 +704,12 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
             if let user = snapshot.value as? [String: Any] {
-                userNickName.text = user["nickname"] as? String
+                userNickName?.text = user["nickname"] as? String
                 
                 if let url = user["urlPhoto"] as? String {
-                    userPhoto.loadCacheImage(url)
+                    userPhoto?.loadCacheImage(url)
                 } else {
-                    userPhoto.image = UIImage(named: "emailIcon")
+                    userPhoto?.image = UIImage(named: "emailIcon")
                 }
             }
         })

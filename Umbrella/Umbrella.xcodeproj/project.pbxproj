@@ -136,6 +136,7 @@
 		FB82ECF11F59D0C7000D7F2B /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB82ECEE1F59D0C7000D7F2B /* FilterTableViewCell.swift */; };
 		FB8556D01F4F949B00B3D9DC /* RegisterReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */; };
 		FBACDC231F5DE611001FCF19 /* MapBannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBACDC221F5DE611001FCF19 /* MapBannerDelegate.swift */; };
+		FBE6F7D11F69BA26006D035E /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6F7D01F69BA26006D035E /* CommentTableViewCell.swift */; };
 		FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */; };
 		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -276,6 +277,7 @@
 		FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportTableViewController.swift; sourceTree = "<group>"; };
 		FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportSecondTableViewController.swift; sourceTree = "<group>"; };
 		FBACDC221F5DE611001FCF19 /* MapBannerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBannerDelegate.swift; sourceTree = "<group>"; };
+		FBE6F7D01F69BA26006D035E /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgressionPinAnnotationView.swift; sourceTree = "<group>"; };
 		FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 		FDC9A259B10984B778DD44F3 /* Pods-Umbrella.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.release.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.release.xcconfig"; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 		A149053F1F4F3CF8000DE25C /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				FBE6F7CC1F69B103006D035E /* Comment */,
 				D4B1E42A1F2A96ED00308ABB /* MapViewController.swift */,
 				FB6AB71D1F59FE5700711605 /* View */,
 				FB6AB71C1F59FDF100711605 /* Contracts */,
@@ -689,6 +692,7 @@
 				FB8556CF1F4F949B00B3D9DC /* RegisterReportTableViewController.swift */,
 				FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */,
 				9EAE03091F5A4EFA006EE491 /* ReportPageViewController.swift */,
+				FBE6F7D01F69BA26006D035E /* CommentTableViewCell.swift */,
 			);
 			name = Report;
 			sourceTree = "<group>";
@@ -781,6 +785,13 @@
 				FB60D85F1F39127E001E5E51 /* CustomUserLocationView.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		FBE6F7CC1F69B103006D035E /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Comment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -967,6 +978,7 @@
 				A1B9D9F91F589AE4008D041A /* ChatContract.swift in Sources */,
 				A1B9D9FA1F589AE4008D041A /* ChatInteractor.swift in Sources */,
 				A17ADA4E1F59CD7A000B40CD /* Extensions.swift in Sources */,
+				FBE6F7D11F69BA26006D035E /* CommentTableViewCell.swift in Sources */,
 				A1B9D9FB1F589AE4008D041A /* ChatPresenter.swift in Sources */,
 				A1B9D9FC1F589AE4008D041A /* ChatRouter.swift in Sources */,
 				FB82ECEF1F59D0C7000D7F2B /* FilterEntity.swift in Sources */,
