@@ -46,8 +46,10 @@ class LoginInteractor : LoginInteractorProtocol {
                 return
             }
             
-            if let id = user?.uid {
+            if let id = user?.uid, user?.email != nil {
                 completion(id)
+            } else {
+                self.output.fetched("Dados não encontrados, tente mais tarde", field: nil)
             }
         })
     }
