@@ -273,7 +273,7 @@ class SeeReportViewController: UIViewController {
         delegate?.closeReport()
     }
     
-    
+    //observer to the comment table on Firebase
     func setObserverToFireBaseChanges() {
         
         self.refComment.observe(DataEventType.value, with: {(snapshot) in
@@ -327,25 +327,55 @@ class SeeReportViewController: UIViewController {
     }
     
     @IBAction func sendPrivateMessagesAction(_ sender: UIButton) {
-        let sendMessage = UIAlertController(title: "Enviar Mensagem",
-                                            message: "Você deseja mandar mensagem para a pessoa?",
-                                            preferredStyle: .alert)
         
-        sendMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action) in
+        if UserInteractor.getCurrentUserUid() != nil {
+            
+            let sendMessage = UIAlertController(title: "Enviar Mensagem",
+                                                message: "Você deseja mandar mensagem para a pessoa?",
+                                                preferredStyle: .alert)
+            
+            sendMessage.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action) in
                 if let partnerId = self.report?.userId {
                     UserInteractor.getUser(withId: partnerId, completion: { (user) in
                         let chatController = ChatRouter.assembleModule()
                         chatController.presenter.partner = user
-                        chatController.chatInputView.textField.text = "Eu estava presente no momento e gostaria de ajudar você com a agressão, posso ajudar?"
+                        chatController.chatInputView.textField.text = "Eu estava presente no momento e gostaria de ajudar, posso?"
                         self.present(chatController, animated: true, completion: nil)
-                      })
+                    })
                 }
-        }))
+            }))
+            
+            sendMessage.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            
+            self.present(sendMessage, animated: true, completion: nil)
+            
+            
+        } else {
+            
+            let logginAlert = UIAlertController(title: "E necessario loging",
+                                                message: " Para poder mandar mensagens e necessario fazer login",
+                                                preferredStyle: .alert)
+            
+            let loginAction = UIAlertAction(title: "login", style: .default, handler: { (action) in
+                
+                self.performSegue(withIdentifier: "goToLogin", sender: Any.self)
+                
+            })
+            
+            logginAlert.addAction(loginAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            
+            logginAlert.addAction(cancelAction)
+            self.present(logginAlert, animated: true, completion: nil)
+        }
+
         
-        sendMessage.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        
-        self.present(sendMessage, animated: true, completion: nil)
     }
+    
+    /**
+        Observer to the number of supports that a report has
+    */
     
     func setObserverToFireBaseUserSupportTable() {
         //report id
@@ -367,17 +397,16 @@ class SeeReportViewController: UIViewController {
                     do {
                             
                         guard let user =  userSupport[userId!] else {
-                                //print( "not here")
+                        
                                 throw UserError.noUser
                             }
                     
                         if  (user as! String) == nil {
                             
-                          //  print( "not here")
+                        
 
                         } else if (user as! String)  == userId {
-                            
-                            print("user aqui")
+                        
                             //REMOVE A SUPPORT
                            
                             print(self.report?.supports)
@@ -407,8 +436,6 @@ class SeeReportViewController: UIViewController {
                         }
                     } catch {
                         
-                        print( "not here")
-                        
                         //ADD A SUPPORT!
                         
                         // put the user into the user-support table
@@ -428,6 +455,7 @@ class SeeReportViewController: UIViewController {
             })
         })
     }
+    
     /**
      Funcao para pegar as regiões de uma determinada coordenada
      
@@ -484,41 +512,44 @@ class SeeReportViewController: UIViewController {
         //reference to the database table
         let databaseRef = self.refUserSupport.child(reportId!)
         
-        self.refUserSupport.observe(.childAdded, with: { (snapshot) in
+        if userId != nil {
             
-            let ref =  Database.database().reference().child("user-support").child(reportId!)
-            
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.refUserSupport.observe(.childAdded, with: { (snapshot) in
                 
-                if let userSupport = snapshot.value as? [String : Any] {
-                    do {
+                let ref =  Database.database().reference().child("user-support").child(reportId!)
+                
+                ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    if let userSupport = snapshot.value as? [String : Any] {
+                        do {
+                            
+                            guard let user =  userSupport[userId!] else {
+                                //print( "not here")
+                                throw UserError.noUser
+                            }
+                            
+                            if  (user as! String) == nil {
+                                
+                                
+                                
+                            } else if (user as! String)  == userId {
+                                
+                                
+                                let imageBtnBackground = UIImage(named: "heart") as UIImage?
+                                self.supportBtn.setImage(imageBtnBackground, for: .normal)
+                                // self.supportLbl.text = String(describing: snapshot.childrenCount)
+                                
+                            }
+                        } catch {
                         
-                        guard let user =  userSupport[userId!] else {
-                            //print( "not here")
-                            throw UserError.noUser
+                            
                         }
-                        
-                        if  (user as! String) == nil {
-                            
-                            //  print( "not here")
-                            
-                        } else if (user as! String)  == userId {
-                            
-                            print("user aqui")
-                            let imageBtnBackground = UIImage(named: "heart") as UIImage?
-                            self.supportBtn.setImage(imageBtnBackground, for: .normal)
-                           // self.supportLbl.text = String(describing: snapshot.childrenCount)
-                            
-                        }
-                    } catch {
-                        
-                        print( "not here")
-                        
                     }
-                }
-                
+                    
+                })
             })
-        })
+        }
+        
     }
     
     func checkReportComplaint() {
@@ -570,9 +601,11 @@ class SeeReportViewController: UIViewController {
             self.present(logginAlert, animated: true, completion: nil)
         }
     }
+    
      // MARK: - SupportAction
     
     @IBAction func moreButtonAction(_ sender: UIButton) {
+       
         let alert = UIAlertController(title: "Opções", message: nil, preferredStyle: .actionSheet)
         alert.view.tintColor = UmbrellaColors.lightPurple.color
         if UserInteractor.getCurrentUserUid() == self.report?.userId {
@@ -585,6 +618,8 @@ class SeeReportViewController: UIViewController {
             }))
             alert.addAction(UIAlertAction(title: "Reportar", style: .destructive, handler: { (alertAction) in
                 
+                complaintAReport()
+                
             }))
         }
         
@@ -595,8 +630,7 @@ class SeeReportViewController: UIViewController {
         
     }
     
-    @IBAction func reportAReport(_ sender: Any) {
-        
+    func complaintAReport() {
         let userId = UserInteractor.getCurrentUserUid()
         
         if userId != nil {
@@ -604,7 +638,7 @@ class SeeReportViewController: UIViewController {
             let reportAlert = UIAlertController(title: "Denunciar Relato", message: "Voce deseja realmente denunciar este relato?", preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: "Sim", style: .default) { (obj) in
-    
+                
                 
                 self.refReportComplaint.child((self.report?.id)!).updateChildValues([userId!:userId])
                 self.checkReportComplaint()
@@ -617,7 +651,7 @@ class SeeReportViewController: UIViewController {
             reportAlert.addAction(cancelAction)
             
             self.present(reportAlert, animated: true)
-
+            
         } else {
             
             let logginAlert = UIAlertController(title: "E necessario loging",
@@ -638,12 +672,12 @@ class SeeReportViewController: UIViewController {
             
             logginAlert.addAction(cancelAction)
             self.present(logginAlert, animated: true, completion: nil)
-
+            
             
         }
-           }
+    }
 
-}
+    }
 
 extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
     
