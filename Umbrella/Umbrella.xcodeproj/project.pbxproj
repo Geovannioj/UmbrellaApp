@@ -412,8 +412,6 @@
 			isa = PBXGroup;
 			children = (
 				FB0144D81F3B8663004FFBCC /* SaveManager */,
-				A14905411F4F3D0C000DE25C /* Login */,
-				A14905401F4F3D05000DE25C /* Report */,
 				A149053F1F4F3CF8000DE25C /* Map */,
 				A149053E1F4F3CF1000DE25C /* Message */,
 				A149053D1F4F3CD4000DE25C /* Chat */,
@@ -461,20 +459,6 @@
 			name = Map;
 			sourceTree = "<group>";
 		};
-		A14905401F4F3D05000DE25C /* Report */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Report;
-			sourceTree = "<group>";
-		};
-		A14905411F4F3D0C000DE25C /* Login */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Login;
-			sourceTree = "<group>";
-		};
 		A14905421F4F3D12000DE25C /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,7 +494,6 @@
 		A1A46E3D1F436E490045E13A /* ProfileManager */ = {
 			isa = PBXGroup;
 			children = (
-				9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */,
 				9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */,
 				9E6066091F43A065002C5281 /* ProfileManagerViewController.swift */,
 				9E6066081F43A065002C5281 /* ProfileManager.storyboard */,
@@ -847,9 +830,7 @@
 				TargetAttributes = {
 					D4B1E3FD1F2A78CF00308ABB = {
 						CreatedOnToolsVersion = 8.3.3;
-
 						DevelopmentTeam = 5A5BFGK2W9;
-
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1202,9 +1183,7 @@
 			baseConfigurationReference = D6376FD7318B57A083ABE80E /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
 				DEVELOPMENT_TEAM = 5A5BFGK2W9;
-
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.Umbrella.UmbrellaApp;
@@ -1220,9 +1199,7 @@
 			baseConfigurationReference = FDC9A259B10984B778DD44F3 /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
 				DEVELOPMENT_TEAM = 5A5BFGK2W9;
-
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.Umbrella.UmbrellaApp;
