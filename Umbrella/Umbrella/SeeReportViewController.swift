@@ -599,6 +599,8 @@ class SeeReportViewController: UIViewController {
         if UserInteractor.getCurrentUserUid() == self.report?.userId {
             alert.addAction(UIAlertAction(title: "Editar", style: .default, handler: { (alertAction) in
                 
+                self.performSegue(withIdentifier: "editReport", sender: Any.self)
+            
             }))
         }else{
             alert.addAction(UIAlertAction(title: "Ligar Notificações", style: .default, handler: { (alertAction) in
