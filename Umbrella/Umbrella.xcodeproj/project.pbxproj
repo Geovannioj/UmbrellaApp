@@ -414,8 +414,6 @@
 			isa = PBXGroup;
 			children = (
 				FB0144D81F3B8663004FFBCC /* SaveManager */,
-				A14905411F4F3D0C000DE25C /* Login */,
-				A14905401F4F3D05000DE25C /* Report */,
 				A149053F1F4F3CF8000DE25C /* Map */,
 				A149053E1F4F3CF1000DE25C /* Message */,
 				A149053D1F4F3CD4000DE25C /* Chat */,
@@ -461,20 +459,6 @@
 				FB6AB71A1F59FCF500711605 /* Filter */,
 			);
 			name = Map;
-			sourceTree = "<group>";
-		};
-		A14905401F4F3D05000DE25C /* Report */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Report;
-			sourceTree = "<group>";
-		};
-		A14905411F4F3D0C000DE25C /* Login */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Login;
 			sourceTree = "<group>";
 		};
 		A14905421F4F3D12000DE25C /* Register */ = {

@@ -171,7 +171,7 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToEditReport" {
-            if let editScreen = segue.destination as? RegisterReportTableViewController {
+            if let editScreen = segue.destination as? RegisterReportViewController {
                 editScreen.reportToEdit = self.reportToEdit
             }
         } else if segue.identifier == "seeMyReport" {

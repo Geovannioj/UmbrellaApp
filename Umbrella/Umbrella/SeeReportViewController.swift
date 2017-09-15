@@ -14,8 +14,6 @@ import MapboxGeocoder
 class SeeReportViewController: UIViewController {
     
     //outlets
-    
-    
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var violenceTitleLbl: UILabel!
     @IBOutlet weak var userPhoto: UIImageView!
@@ -79,6 +77,9 @@ class SeeReportViewController: UIViewController {
         
         //init the components of the screen
         initLabels()
+        
+        // set the delegate of textFields
+        self.comentaryCamp.delegate = self
         
         // sets the delegate to textView and tableView
         self.tableView.delegate = self
@@ -194,21 +195,15 @@ class SeeReportViewController: UIViewController {
                     let photos = [sub.firstPhoto, sub.secondPhoto, sub.thirdPhoto]
                     
                     if let supporters = self.report?.supporters {
-                        let count = supporters.count < 3 ? supporters.count : 3
+                        let count = supporters.count < 3 ? supporters.count : 3 // aplicar mod de 3
                         
                         for aux in 0..<count {
                             
                             if let urlPhoto = supporters[aux].urlPhoto {
-//                                PhotoInteractor.getUserPhoto(withUrl: urlPhoto, handler: nil, completion: { (photo) in
-//                                    if photo != nil {
-                                        photos[aux]?.isHidden = false
-                                        photos[aux]?.loadCacheImage(urlPhoto)
-//                                        photos[aux]?.image = UIImage(data: (photo?.image)!)
-//                                    }
-//                                })
+                                photos[aux]?.isHidden = false
+                                photos[aux]?.loadCacheImage(urlPhoto)
                             }
                             sub.supportCount.text = count > 3 ? "+" + String(supporters.count - 3) : ""
-                            
                         }
                     }
                 }
@@ -217,6 +212,11 @@ class SeeReportViewController: UIViewController {
 
     }
 
+    @IBAction func showAllSupports(_ sender: Any) {
+     
+        print("All sup = \(self.report?.supporters)")
+    }
+    
     func initiateLocationOnMap(map: MGLMapView,latitude: Double, longitude: Double) {
         
       let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
@@ -544,7 +544,7 @@ class SeeReportViewController: UIViewController {
         
         self.refReportComplaint.observe(.childAdded, with: { (snapshot) in
             
-            if snapshot.childrenCount > 10 {
+            if snapshot.childrenCount >= 1 {
                 //inativate Report
                 
                 self.report?.isActive = 1 // inactivate report
@@ -599,6 +599,8 @@ class SeeReportViewController: UIViewController {
         if UserInteractor.getCurrentUserUid() == self.report?.userId {
             alert.addAction(UIAlertAction(title: "Editar", style: .default, handler: { (alertAction) in
                 
+                self.performSegue(withIdentifier: "editReport", sender: Any.self)
+            
             }))
         }else{
             alert.addAction(UIAlertAction(title: "Ligar Notificações", style: .default, handler: { (alertAction) in
@@ -668,7 +670,7 @@ class SeeReportViewController: UIViewController {
         }
     }
 
-    }
+}
 
 extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
     
@@ -756,9 +758,25 @@ extension SeeReportViewController:  UITableViewDelegate, UITableViewDataSource {
     
     }
 
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
+}
 
+extension SeeReportViewController : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == comentaryCamp {
+            addComent()
+        }
+        
+        textField.text?.removeAll()
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+    }
 }
