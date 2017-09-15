@@ -103,28 +103,33 @@ extension LoginPresenter {
     
     func createFacebookUser(_ id : String) {
         
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "name, email, age_range, picture.type(large), gender"]).start { (connection, result, err) in
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, email, age_range, picture.type(large), gender"]).start { (connection, result, err) in
             
             if err != nil {
                 return
             }
             
-            if let dictionary = result as? [String : Any] {
+            guard let dictionary = result as? [String : Any],
+                  let email = dictionary["email"] as? String,
+                  let name = dictionary["name"] as? String else {
                 
-                let user = UserEntity()
-                user.id = id
-                user.nickname = dictionary["name"] as! String
-                user.email = dictionary["email"] as! String
-                
-                if let picture = dictionary["picture"] as? [String : Any],
-                   let data = picture["data"] as? [String : Any],
-                   let pictureUrl = data["url"] as? String {
-                 
-                    user.urlPhoto = pictureUrl
-                }
-                
-                self.interactor.createDatabaseUser(user)
+                self.fetched("Dados não encontrados, tente mais tarde", field: nil)
+                return
             }
+            
+            let user = UserEntity()
+            user.id = id
+            user.nickname = name
+            user.email = email
+            
+            if let picture = dictionary["picture"] as? [String : Any],
+                let data = picture["data"] as? [String : Any],
+                let pictureUrl = data["url"] as? String {
+                
+                user.urlPhoto = pictureUrl
+            }
+            
+            self.interactor.createDatabaseUser(user)
         }
     }
 }

@@ -49,11 +49,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func setupInputs() {
         
         inputs.translatesAutoresizingMaskIntoConstraints = false
-//        inputs.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        inputs.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 2/3).isActive = true
-//        inputs.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -80).isActive = true
-//        inputs.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-
         inputs.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         inputs.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         inputs.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true

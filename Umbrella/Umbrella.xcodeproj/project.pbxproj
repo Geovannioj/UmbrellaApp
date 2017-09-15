@@ -139,6 +139,9 @@
 		FBE6F7D11F69BA26006D035E /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6F7D01F69BA26006D035E /* CommentTableViewCell.swift */; };
 		FBEFEACB1F3A31C000CDC99A /* AgressionPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */; };
 		FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */; };
+		FBFBF6A11F6B34550064CF37 /* RegisterReportMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFBF6A01F6B34550064CF37 /* RegisterReportMapDelegate.swift */; };
+		FBFBF6A51F6B4DAD0064CF37 /* SeeReportMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFBF6A41F6B4DAD0064CF37 /* SeeReportMapDelegate.swift */; };
+		FBFBF6A71F6B4E850064CF37 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFBF6A61F6B4E850064CF37 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -280,6 +283,9 @@
 		FBE6F7D01F69BA26006D035E /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		FBEFEACA1F3A31C000CDC99A /* AgressionPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgressionPinAnnotationView.swift; sourceTree = "<group>"; };
 		FBF16B741F2CF49C00529EA8 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
+		FBFBF6A01F6B34550064CF37 /* RegisterReportMapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterReportMapDelegate.swift; sourceTree = "<group>"; };
+		FBFBF6A41F6B4DAD0064CF37 /* SeeReportMapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeReportMapDelegate.swift; sourceTree = "<group>"; };
+		FBFBF6A61F6B4E850064CF37 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		FDC9A259B10984B778DD44F3 /* Pods-Umbrella.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Umbrella.release.xcconfig"; path = "Pods/Target Support Files/Pods-Umbrella/Pods-Umbrella.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -679,6 +685,8 @@
 		D4B1E4221F2A93CC00308ABB /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				FBFBF69F1F6B342E0064CF37 /* Delegates */,
+				9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */,
 				FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */,
 				D4B1E4261F2A95D600308ABB /* RegisterReportViewController.swift */,
 				FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */,
@@ -792,6 +800,16 @@
 			children = (
 			);
 			name = Comment;
+			sourceTree = "<group>";
+		};
+		FBFBF69F1F6B342E0064CF37 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				FBFBF6A01F6B34550064CF37 /* RegisterReportMapDelegate.swift */,
+				FBFBF6A41F6B4DAD0064CF37 /* SeeReportMapDelegate.swift */,
+				FBFBF6A61F6B4E850064CF37 /* File.swift */,
+			);
+			name = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -996,6 +1014,7 @@
 				A1B9DA051F589AE4008D041A /* RegisterInteractor.swift in Sources */,
 				A1B9DA061F589AE4008D041A /* RegisterRouter.swift in Sources */,
 				A1B9DA071F589AE4008D041A /* Report.swift in Sources */,
+				FBFBF6A71F6B4E850064CF37 /* File.swift in Sources */,
 				A1B9DA081F589AE4008D041A /* ImagePickerRouter.swift in Sources */,
 				A17ADA501F59CD7A000B40CD /* MySupportTableViewCell.swift in Sources */,
 				A1B9DA091F589AE4008D041A /* Validations.swift in Sources */,
@@ -1003,6 +1022,7 @@
 				A17ADA541F59CD7A000B40CD /* ReportTableViewCell.swift in Sources */,
 				A1B9DA0A1F589AE4008D041A /* AlertPresenter.swift in Sources */,
 				A1B9DA0B1F589AE4008D041A /* ExtendedNavBarView.swift in Sources */,
+				FBFBF6A11F6B34550064CF37 /* RegisterReportMapDelegate.swift in Sources */,
 				A1B9DA0C1F589AE4008D041A /* ProfileManagerViewController.swift in Sources */,
 				A1B9DA0D1F589AE4008D041A /* ProfileViewController.swift in Sources */,
 				A1B9DA0E1F589AE4008D041A /* ProfileView.swift in Sources */,
@@ -1052,6 +1072,7 @@
 				FBF16B751F2CF49C00529EA8 /* LocationManagerDelegate.swift in Sources */,
 				D4E91E271F3E30C9004895B7 /* LoginView.swift in Sources */,
 				D4E91E281F3E30C9004895B7 /* MessageEntity.swift in Sources */,
+				FBFBF6A51F6B4DAD0064CF37 /* SeeReportMapDelegate.swift in Sources */,
 				A17ADA4D1F59CD7A000B40CD /* CampFieldView.swift in Sources */,
 				FB0144D31F3B85A7004FFBCC /* SaveManager.swift in Sources */,
 				A1E9FF741F5B3F1C007B14D7 /* PasswordRecoverPresenter.swift in Sources */,
