@@ -107,9 +107,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
             name:NSNotification.Name.init(rawValue: "AuthorizationAccepted"),
             object: nil
         )
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
-            centerOnUser()
-        }
+        
         
         addBlurView()
         setPopUp()
@@ -119,7 +117,10 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-  
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+            centerOnUser()
+        }
         
     }
     //MARK: - Buttons functions
