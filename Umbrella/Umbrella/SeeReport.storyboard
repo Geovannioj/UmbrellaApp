@@ -651,6 +651,9 @@
                                     <constraint firstAttribute="width" constant="200" id="dl8-U8-srt"/>
                                     <constraint firstAttribute="height" constant="30" id="kcd-LU-AZU"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="showAllSupports:" destination="SfG-2L-ptj" eventType="touchUpInside" id="lFm-ki-mJQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dm5-26-BXI">
                                 <rect key="frame" x="290" y="386.5" width="27" height="22"/>
@@ -663,7 +666,7 @@
                                     <action selector="sendPrivateMessagesAction:" destination="SfG-2L-ptj" eventType="touchUpInside" id="DsB-3n-j2S"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqn-38-yNQ">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqn-38-yNQ">
                                 <rect key="frame" x="345" y="383.5" width="20" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="9a2-BO-53Y"/>
@@ -731,14 +734,14 @@
                                     <outlet property="delegate" destination="SfG-2L-ptj" id="mlp-co-AVv"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comentar..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hic-6Y-vve">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comentar..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hic-6Y-vve">
                                 <rect key="frame" x="10" y="617" width="355" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="2yT-Fs-Tji"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.1058823529" green="0.0078431372550000003" blue="0.1450980392" alpha="0.70021404109999996" colorSpace="deviceRGB"/>
