@@ -395,12 +395,13 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
  
      */
     func filter(new:Report){
-    
+        
         if(!filtros.isEmpty){
             
           //  removePins()
             for filtro in filtros{
                // for report in reports{
+                print(new.violenceKind.lowercased() + "?" + filtro.lowercased())
                     if new.violenceKind.lowercased() == filtro.lowercased(){
                         addPin(new: new)
                         
