@@ -544,7 +544,7 @@ class SeeReportViewController: UIViewController {
         
         self.refReportComplaint.observe(.childAdded, with: { (snapshot) in
             
-            if snapshot.childrenCount > 10 {
+            if snapshot.childrenCount >= 1 {
                 //inativate Report
                 
                 self.report?.isActive = 1 // inactivate report
