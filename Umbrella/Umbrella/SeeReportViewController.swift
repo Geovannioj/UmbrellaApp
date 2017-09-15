@@ -175,7 +175,7 @@ class SeeReportViewController: UIViewController {
                 heightText.constant = 95
             }
         }
-    
+        self.violenceLocation.delegate = self
         self.getPlace(latitude: (report?.latitude)!, longitude: (report?.longitude)!) { (texts) in
             self.userPlace.text = "\(texts.first ?? "") - \(texts[1])"
         }

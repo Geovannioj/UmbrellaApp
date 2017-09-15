@@ -124,6 +124,7 @@
 		FB02B7441F47761D00696EAA /* MessageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB02B7341F47761D00696EAA /* MessageInteractor.swift */; };
 		FB2047B11F54A3A3004AE911 /* RegisterReportSecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8556D11F4F95F800B3D9DC /* RegisterReportSecondTableViewController.swift */; };
 		FB3450161F323CC70077A101 /* SearchBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */; };
+		FB36594E1F6C472A00BBBEDC /* ReportTableViewControllerMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB36594D1F6C472A00BBBEDC /* ReportTableViewControllerMapDelegate.swift */; };
 		FB3734101F3914E400FB3213 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */; };
 		FB60D86B1F39127E001E5E51 /* RegisterReportFirst.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8611F39127E001E5E51 /* RegisterReportFirst.storyboard */; };
 		FB60D86C1F39127E001E5E51 /* RegisterReportSecond.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB60D8621F39127E001E5E51 /* RegisterReportSecond.storyboard */; };
@@ -258,6 +259,7 @@
 		FB02B7361F47761D00696EAA /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
 		FB02B7371F47761D00696EAA /* ChatNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatNavigationView.swift; sourceTree = "<group>"; };
 		FB3450151F323CC70077A101 /* SearchBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarControllerViewController.swift; sourceTree = "<group>"; };
+		FB36594D1F6C472A00BBBEDC /* ReportTableViewControllerMapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewControllerMapDelegate.swift; sourceTree = "<group>"; };
 		FB37340F1F3914E400FB3213 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Umbrella/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB60D7D21F38DD03001E5E51 /* SearchBarCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarCellTableViewCell.swift; sourceTree = "<group>"; };
 		FB60D7D41F38E10A001E5E51 /* FilterTableViewControlleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewControlleTableViewController.swift; sourceTree = "<group>"; };
@@ -510,7 +512,6 @@
 		A1A46E3D1F436E490045E13A /* ProfileManager */ = {
 			isa = PBXGroup;
 			children = (
-				9EB6AD021F476C3A0099331A /* ReportTableViewController.swift */,
 				9EB6AD001F472F580099331A /* ExtendedNavBarView.swift */,
 				9E6066091F43A065002C5281 /* ProfileManagerViewController.swift */,
 				9E6066081F43A065002C5281 /* ProfileManager.storyboard */,
@@ -808,6 +809,7 @@
 				FBFBF6A01F6B34550064CF37 /* RegisterReportMapDelegate.swift */,
 				FBFBF6A41F6B4DAD0064CF37 /* SeeReportMapDelegate.swift */,
 				FBFBF6A61F6B4E850064CF37 /* File.swift */,
+				FB36594D1F6C472A00BBBEDC /* ReportTableViewControllerMapDelegate.swift */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -847,9 +849,7 @@
 				TargetAttributes = {
 					D4B1E3FD1F2A78CF00308ABB = {
 						CreatedOnToolsVersion = 8.3.3;
-
 						DevelopmentTeam = 5A5BFGK2W9;
-
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1005,6 +1005,7 @@
 				A1B9D9FD1F589AE4008D041A /* ChatCollectionViewController.swift in Sources */,
 				A1B9D9FE1F589AE4008D041A /* ChatCollectionViewCell.swift in Sources */,
 				A1B9D9FF1F589AE4008D041A /* ChatNavigationView.swift in Sources */,
+				FB36594E1F6C472A00BBBEDC /* ReportTableViewControllerMapDelegate.swift in Sources */,
 				9E7BDC5F1F68C40C00603ACC /* Color.swift in Sources */,
 				A1B9DA001F589AE4008D041A /* LoginContract.swift in Sources */,
 				A1B9DA011F589AE4008D041A /* LoginInteractor.swift in Sources */,
@@ -1202,9 +1203,7 @@
 			baseConfigurationReference = D6376FD7318B57A083ABE80E /* Pods-Umbrella.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
 				DEVELOPMENT_TEAM = 5A5BFGK2W9;
-
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.Umbrella.UmbrellaApp;
@@ -1220,9 +1219,7 @@
 			baseConfigurationReference = FDC9A259B10984B778DD44F3 /* Pods-Umbrella.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
 				DEVELOPMENT_TEAM = 5A5BFGK2W9;
-
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.Umbrella.UmbrellaApp;
