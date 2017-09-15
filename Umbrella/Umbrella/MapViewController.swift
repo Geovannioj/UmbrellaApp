@@ -676,7 +676,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
         self.refReports.observe(.childAdded, with: { (snapShot) in
             let snapShotValue = snapShot.value as! Dictionary<String,Any>
             
-            if let isActive = snapShotValue["isActive"] {
+            if snapShotValue["isActive"] != nil {
                 let newReport = Report(id: snapShotValue["id"]! as! String,
                                        userId: snapShotValue["userId"]! as! String,
                                        title: snapShotValue["title"]! as! String,
