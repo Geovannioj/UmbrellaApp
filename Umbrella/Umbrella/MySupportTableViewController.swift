@@ -22,7 +22,7 @@ class MySupportTableViewController: UITableViewController {
     override func viewDidLoad() {
         self.refMySupport = Database.database().reference().child("my-support").child(UserInteractor.getCurrentUserUid()!)
         super.viewDidLoad()
-        
+        self.tableView.separatorStyle = .none
         setObserverToFireBaseChanges()
         
         print(myReportSupported.count)
@@ -46,7 +46,7 @@ class MySupportTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "supportCell", for: indexPath) as! MySupportTableViewCell
-
+        cell.mapView.delegate = self
         cell.titleLabel.text = myReportSupported[indexPath.row].title
         cell.descriptionLabel.text = myReportSupported[indexPath.row].description
         let latitude = myReportSupported[indexPath.row].latitude

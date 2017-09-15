@@ -26,7 +26,9 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
     
     //MARK: - Constrains
     @IBOutlet weak var horizontalMsgContrain: NSLayoutConstraint!
+    @IBOutlet weak var spaceToBanner: NSLayoutConstraint!
     
+    @IBOutlet weak var bannerHeight: NSLayoutConstraint!
     @IBOutlet weak var horizontalProfileConstrain: NSLayoutConstraint!
     @IBOutlet weak var verticalMsgConstrain: NSLayoutConstraint!
     
@@ -69,7 +71,8 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+   
+       
       
         getPrimaryConstantsValue()
         dismissKayboardInTapGesture()
@@ -87,7 +90,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
         //Requisitando propagandas e setando os devices
         let request = GADRequest()
         filterTable.isHidden = true
-        request.testDevices = ["ed38a929ee1c81d9bdfdd596a77be9e0"]
+        request.testDevices = ["asdasd"]
         bannerView.adUnitID = "ca-app-pub-1296835094216265/5601148764"
         bannerView.rootViewController = self
         bannerView.load(request)
@@ -267,15 +270,15 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
     //MARK: - config functions
     func setUpExpandConstrain(){
         if bannerView.isHidden {
-            verticalExpadButtonConstrain.constant -= bannerView.frame.height
-            
-            UIView.animate(withDuration: 0.5, animations: {
+            //verticalExpadButtonConstrain.constant -= bannerView.frame.height
+            spaceToBanner.constant = -1 * bannerHeight.constant
+            UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
             })
         }else{
-            verticalExpadButtonConstrain.constant += bannerView.frame.height
-           
-            UIView.animate(withDuration: 0.5, animations: {
+            spaceToBanner.constant = 0
+            
+            UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
             })
         }

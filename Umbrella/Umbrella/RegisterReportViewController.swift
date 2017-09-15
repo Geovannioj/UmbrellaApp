@@ -48,6 +48,8 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //set map delegate to self
+        violenceLocation.delegate = self
         
         dismissKayboardInTapGesture()
         
@@ -77,6 +79,7 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
         }
         
         searchBarConfig()
+        
         
     }
 
@@ -169,7 +172,7 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
 
             let imageView = UIImageView(image: image)
             
-            imageView.center = CGPoint(x: (violenceLocation.center.x), y: (violenceLocation.center.y ))
+            imageView.center = CGPoint(x: (violenceLocation.center.x), y: (violenceLocation.center.y - imageView.frame.height/2))
             imageView.restorationIdentifier = "pinPoint"
             self.view.addSubview(imageView)
         //}
@@ -178,8 +181,8 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
     
     func getLocation () {
         
-        self.reportLatitude = violenceLocation.camera.centerCoordinate.latitude
-        self.reportLongitude = violenceLocation.camera.centerCoordinate.longitude
+        self.reportLatitude = self.violenceLocation.centerCoordinate.latitude//violenceLocation.camera.centerCoordinate.latitude
+        self.reportLongitude = self.violenceLocation.centerCoordinate.longitude//
         
     }
     

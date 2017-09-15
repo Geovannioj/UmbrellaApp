@@ -32,6 +32,8 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         self.refUserSupport = Database.database().reference().child("user-support")
         self.refCommentReport = Database.database().reference().child("comments")
         
+        self.tableView.separatorStyle = .none
+        
         self.tableView.backgroundColor = UIColor(white: 1, alpha: 0.1)
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -62,6 +64,7 @@ class ReportTableViewController: UIViewController, UITableViewDelegate, UITableV
         cell.reportDescription.text = self.userReports[indexPath.row].description
         
         //it sets the view as a MapView
+        cell.map.delegate = self
         cell.map.isZoomEnabled = false
         cell.map.isRotateEnabled = false
         cell.map.isScrollEnabled = false
