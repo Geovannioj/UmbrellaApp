@@ -544,18 +544,22 @@ class SeeReportViewController: UIViewController {
         
         self.refReportComplaint.observe(.childAdded, with: { (snapshot) in
             
-            if snapshot.childrenCount >= 1 {
-                //inativate Report
+            if snapshot.key == self.report?.id {
                 
-                self.report?.isActive = 1 // inactivate report
+                if snapshot.childrenCount >= 1 {
+                    //inativate Report
+                    
+                    self.report?.isActive = 1 // inactivate report
+                    
+                    //updateReportValue
+                    self.refReport.child((self.report?.id)!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
+                    
+                    //add report to the innactivated reports
+                    self.refInativeReport.updateChildValues([(self.report?.id)!: (self.report?.id)!])
                 
-                //updateReportValue
-                self.refReport.child((self.report?.id)!).updateChildValues(self.report?.turnToDictionary() as! [AnyHashable : Any])
-                
-                //add report to the innactivated reports
-                self.refInativeReport.updateChildValues([(self.report?.id)!: (self.report?.id)!])
-                
-                
+                    
+                }
+
             }
         })
     }

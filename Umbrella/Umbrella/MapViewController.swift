@@ -652,6 +652,23 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
             let element:Report? = self.reports.first(){
                 $0.id == id
             }
+            
+            if element?.isActive == 0 {
+                
+                
+            } else {
+                if self.mapView.annotations?.count != nil {
+                    for i in 0...((self.mapView.annotations?.count)! - 1){
+                       let anot = self.mapView.annotations?[i]
+                        if (anot?.title)! == element?.id{
+                            self.mapView.removeAnnotation(anot!)
+                            break
+                        }
+                    }
+                }
+                
+                //self.mapView.removeAnnotation()
+            }
             if element != nil {
                 element?.userId = snapShotValue["userId"]! as! String
                 element?.title = snapShotValue["title"]! as! String
@@ -664,10 +681,11 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
                 element?.supports = snapShotValue["supports"]! as! Int
                 element?.isActive = snapShotValue["isActive"]! as! Int
             }
-          
+
             
             
-                
+            
+            
             
             //self.reports = newArray
         })
