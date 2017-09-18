@@ -67,6 +67,7 @@ class FilterTableViewControlleTableViewController: UITableViewController {
 //        if psycologic.isSelected{
 //            desirables.append("psicológica")
 //        }
+        self.desirables.removeAll()
         for i in 0...filters.count - 1 {
             let indexPath = IndexPath(row: i, section: 0)
             let cell = self.tableView.cellForRow(at: indexPath) as! FilterTableViewCell
@@ -79,8 +80,10 @@ class FilterTableViewControlleTableViewController: UITableViewController {
         //performSegue(withIdentifier: "filterAction", sender: self)
         containerToMaster?.filtros = desirables
         containerToMaster?.removePins()
+        print("@@@@@@\(containerToMaster?.filtros ?? [""])@@@@@")
         containerToMaster?.addPins(reports: (containerToMaster?.reports)!)
         NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "CloseFilter"), object: nil)
+        
        
         
     }

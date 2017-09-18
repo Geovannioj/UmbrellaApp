@@ -210,6 +210,7 @@ extension MapViewController : MGLMapViewDelegate {
         if mapView.annotations != nil {
             mapView.removeAnnotations(mapView.annotations!)
         }
+        
     }
     
     func addPoint(image:UIImage) {

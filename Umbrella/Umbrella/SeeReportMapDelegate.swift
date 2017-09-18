@@ -9,7 +9,7 @@
 import Foundation
 import Mapbox
 
-extension ReportTableViewController:MGLMapViewDelegate{
+extension SeeReportViewController:MGLMapViewDelegate{
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
             
             let reuseIdentifier = "\(annotation.coordinate.longitude)"
