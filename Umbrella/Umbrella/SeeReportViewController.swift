@@ -214,7 +214,7 @@ class SeeReportViewController: UIViewController {
 
     @IBAction func showAllSupports(_ sender: Any) {
      
-        print("All sup = \(self.report?.supporters)")
+        print("All sup = \(String(describing: self.report?.supporters))")
     }
     
     func initiateLocationOnMap(map: MGLMapView,latitude: Double, longitude: Double) {
