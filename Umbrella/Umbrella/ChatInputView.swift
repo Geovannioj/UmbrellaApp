@@ -19,13 +19,14 @@ class ChatInputView: UIView {
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-    } ()
+    }()
 
     let textField : UITextField  = {
         let text = UITextField()
         text.placeholder = "Mensagem"
         text.font = UIFont.systemFont(ofSize: 14)
         text.textColor = UIColor.black
+        text.enablesReturnKeyAutomatically = true
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()

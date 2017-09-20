@@ -26,7 +26,9 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
     
     //MARK: - Constrains
     @IBOutlet weak var horizontalMsgContrain: NSLayoutConstraint!
+    @IBOutlet weak var spaceToBanner: NSLayoutConstraint!
     
+    @IBOutlet weak var bannerHeight: NSLayoutConstraint!
     @IBOutlet weak var horizontalProfileConstrain: NSLayoutConstraint!
     @IBOutlet weak var verticalMsgConstrain: NSLayoutConstraint!
     
@@ -69,7 +71,8 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+   
+       
       
         getPrimaryConstantsValue()
         dismissKayboardInTapGesture()
@@ -87,7 +90,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
         //Requisitando propagandas e setando os devices
         let request = GADRequest()
         filterTable.isHidden = true
-        request.testDevices = ["ed38a929ee1c81d9bdfdd596a77be9e0"]
+        request.testDevices = ["asdasd"]
         bannerView.adUnitID = "ca-app-pub-1296835094216265/5601148764"
         bannerView.rootViewController = self
         bannerView.load(request)
@@ -104,9 +107,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
             name:NSNotification.Name.init(rawValue: "AuthorizationAccepted"),
             object: nil
         )
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
-            centerOnUser()
-        }
+        
         
         addBlurView()
         setPopUp()
@@ -116,7 +117,10 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-  
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+            centerOnUser()
+        }
         
     }
     //MARK: - Buttons functions
@@ -267,15 +271,15 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
     //MARK: - config functions
     func setUpExpandConstrain(){
         if bannerView.isHidden {
-            verticalExpadButtonConstrain.constant -= bannerView.frame.height
-            
-            UIView.animate(withDuration: 0.5, animations: {
+            //verticalExpadButtonConstrain.constant -= bannerView.frame.height
+            spaceToBanner.constant = -1 * bannerHeight.constant
+            UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
             })
         }else{
-            verticalExpadButtonConstrain.constant += bannerView.frame.height
-           
-            UIView.animate(withDuration: 0.5, animations: {
+            spaceToBanner.constant = 0
+            
+            UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
             })
         }
@@ -391,12 +395,13 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
  
      */
     func filter(new:Report){
-    
+        
         if(!filtros.isEmpty){
             
           //  removePins()
             for filtro in filtros{
                // for report in reports{
+                print(new.violenceKind.lowercased() + "?" + filtro.lowercased())
                     if new.violenceKind.lowercased() == filtro.lowercased(){
                         addPin(new: new)
                         
@@ -648,6 +653,23 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
             let element:Report? = self.reports.first(){
                 $0.id == id
             }
+            
+            if element?.isActive == 0 {
+                
+                
+            } else {
+                if self.mapView.annotations?.count != nil {
+                    for i in 0...((self.mapView.annotations?.count)! - 1){
+                       let anot = self.mapView.annotations?[i]
+                        if (anot?.title)! == element?.id{
+                            self.mapView.removeAnnotation(anot!)
+                            break
+                        }
+                    }
+                }
+                
+                //self.mapView.removeAnnotation()
+            }
             if element != nil {
                 element?.userId = snapShotValue["userId"]! as! String
                 element?.title = snapShotValue["title"]! as! String
@@ -660,10 +682,11 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
                 element?.supports = snapShotValue["supports"]! as! Int
                 element?.isActive = snapShotValue["isActive"]! as! Int
             }
-          
+
             
             
-                
+            
+            
             
             //self.reports = newArray
         })
@@ -674,23 +697,30 @@ class MapViewController: UIViewController, UISearchBarDelegate, UIGestureRecogni
             let snapShotValue = snapShot.value as! Dictionary<String,Any>
             
             if snapShotValue["isActive"] != nil {
-                let newReport = Report(id: snapShotValue["id"]! as! String,
-                                       userId: snapShotValue["userId"]! as! String,
-                                       title: snapShotValue["title"]! as! String,
-                                       description: snapShotValue["description"]! as! String,
-                                       violenceKind: snapShotValue["violenceKind"]! as! String,
-                                       violenceAproximatedTime: snapShotValue["violenceAproximatedTime"] as! Double,
-                                       latitude: snapShotValue["latitude"] as! Double,
-                                       longitude: snapShotValue["longitude"] as! Double,
-                                       personGender: snapShotValue["personGender"]! as! String,
-                                       supports: snapShotValue["supports"]! as! Int,
-                                       isActive: snapShotValue["isActive"]! as! Int)
+                let reportStatus = snapShotValue["isActive"]! as! Int
                 
-                self.reports.append(newReport)
-                self.filter(new:newReport)
-            }
-           
+                //if isActive == 0 is Ok if no isActive is == 1
+                
+                if reportStatus == 0 {
+                    let newReport = Report(id: snapShotValue["id"]! as! String,
+                                           userId: snapShotValue["userId"]! as! String,
+                                           title: snapShotValue["title"]! as! String,
+                                           description: snapShotValue["description"]! as! String,
+                                           violenceKind: snapShotValue["violenceKind"]! as! String,
+                                           violenceAproximatedTime: snapShotValue["violenceAproximatedTime"] as! Double,
+                                           latitude: snapShotValue["latitude"] as! Double,
+                                           longitude: snapShotValue["longitude"] as! Double,
+                                           personGender: snapShotValue["personGender"]! as! String,
+                                           supports: snapShotValue["supports"]! as! Int,
+                                           isActive: snapShotValue["isActive"]! as! Int)
+                    
+                    self.reports.append(newReport)
+                    self.filter(new:newReport)
 
+                } else {
+                    
+                }
+            }
         })
     }
     func setRemoveObserver(){

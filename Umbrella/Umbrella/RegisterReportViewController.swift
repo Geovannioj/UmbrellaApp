@@ -36,6 +36,7 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var validateDateError: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!    
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     //Mark: acessories
     let locationManager = CLLocationManager()
@@ -48,6 +49,8 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //set map delegate to self
+        violenceLocation.delegate = self
         
         dismissKayboardInTapGesture()
         
@@ -77,6 +80,7 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
         }
         
         searchBarConfig()
+        
         
     }
 
@@ -167,19 +171,20 @@ class RegisterReportViewController: UIViewController, UISearchBarDelegate {
         violenceLocation.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
         violenceLocation.showsUserLocation = true
 
-            let imageView = UIImageView(image: image)
-            
-            imageView.center = CGPoint(x: (violenceLocation.center.x), y: (violenceLocation.center.y ))
-            imageView.restorationIdentifier = "pinPoint"
-            self.view.addSubview(imageView)
-        //}
+//            let imageView = UIImageView(image: image)
+//            
+//            imageView.center = CGPoint(x: (violenceLocation.center.x), y: (violenceLocation.center.y - imageView.frame.height/2))
+//            imageView.restorationIdentifier = "pinPoint"
+//            self.view.addSubview(imageView)
+//            
+//        //}
         
     }
     
     func getLocation () {
         
-        self.reportLatitude = violenceLocation.camera.centerCoordinate.latitude
-        self.reportLongitude = violenceLocation.camera.centerCoordinate.longitude
+        self.reportLatitude = self.violenceLocation.centerCoordinate.latitude//violenceLocation.camera.centerCoordinate.latitude
+        self.reportLongitude = self.violenceLocation.centerCoordinate.longitude//
         
     }
     
